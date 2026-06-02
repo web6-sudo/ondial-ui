@@ -104,56 +104,56 @@
   filter: brightness(0) invert(1);
 }
 
-/* Full width of site shell — avoid 100vw (clipped by overflow-x-hidden on shell) */
+/* Full width — cylindrical 3D ring (reference: perspective + rotateY/translateZ chain) */
 .carouselStage {
+  display: grid;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  margin-top: 0;
-  min-height: var(--carousel-card-h, 28rem);
+  margin-top: -0.9rem;
   overflow: visible;
   background: transparent;
   user-select: none;
-  perspective: 980px;
+  /* final tune to match reference depth/curve */
+  perspective: 38em;
   perspective-origin: 50% 50%;
+  --carousel-card-w: clamp(10.5rem, 15.5vw, 16.8em);
+  min-height: calc(var(--carousel-card-w) * 10 / 7 + 3.8em);
 }
 
 @media (min-width: 640px) {
   .carouselStage {
-    margin-top: 0;
+    margin-top: -1.1rem;
   }
 }
 
-.carouselContainer {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-}
-
 .carouselRing {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 0;
-  height: 0;
+  display: grid;
+  place-self: center;
   transform-style: preserve-3d;
 }
 
 .carouselCard {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: var(--carousel-card-w, 22%);
-  height: var(--carousel-card-h, auto);
+  --w: var(--carousel-card-w, 17.5em);
+  --ba: calc(1turn / var(--n));
+  grid-area: 1 / 1;
+  width: var(--w);
+  aspect-ratio: 7 / 10;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 1.35em;
   transform-style: preserve-3d;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform:
+    rotateY(calc(var(--i) * var(--ba)))
+    translateZ(calc(-1 * (0.5 * var(--w) + 0.5em) / tan(0.5 * var(--ba))));
   box-shadow: none;
   will-change: transform;
+}
+
+.carouselImage {
+  display: block;
+  height: 100%;
+  object-fit: cover;
 }
 
 .carouselCardBg {
@@ -271,12 +271,7 @@
 
 @media (max-width: 767px) {
   .carouselStage {
-    perspective: 900px;
-    perspective-origin: 50% 50%;
-  }
-
-  .carouselRing {
-    top: 50%;
+    --carousel-card-w: clamp(9.25rem, 42vw, 13.6em);
   }
 
   .carouselCategory,
@@ -299,12 +294,7 @@
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .carouselStage {
-    perspective: 1100px;
-    perspective-origin: 50% 50%;
-  }
-
-  .carouselRing {
-    top: 50%;
+    --carousel-card-w: clamp(10.5rem, 23vw, 14.75em);
   }
 
   .carouselDescription {
@@ -312,8 +302,12 @@
   }
 }
 
-/* Large screens: fixed card typography (matches 320px card width) */
+/* Large screens: reference card width + typography */
 @media (min-width: 1024px) {
+  .carouselStage {
+    --carousel-card-w: clamp(11.75rem, 16vw, 16.8em);
+  }
+
   .carouselCardInner {
     padding: 1.5rem;
   }
