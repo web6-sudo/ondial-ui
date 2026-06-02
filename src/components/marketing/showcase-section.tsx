@@ -85,18 +85,21 @@ export function ShowcaseSection() {
       }
       aria-label="Platform showcase"
     >
-      <header className={styles.header + " mb-10"}>
-        <p className="text-center text-black text-sm bg-purple-300 rounded-full px-2 py-1 w-fit mx-auto border border-purple-500 mb-5 mt-4">more than 1000+ companies use Ondial</p>
+      <header className={styles.header}>
+        <p className={styles.badge}>more than 1000+ companies use Ondial</p>
         <h2 className={styles.title}>Automate Your Calls with AI</h2>
         <p className={styles.description}>
           Explore how teams use AI voice for reminders, outreach, surveys, and
-          support—from first plan to ongoing scale.
+          support from first plan to ongoing scale.
         </p>
         <ShowcaseCta />
       </header>
 
       <ThreeDCarousel />
-      <p className="text-center text-black/50 text-sm ">Create voice agents that have natural, flowing conversations and provide 24/7 customer support with human-like understanding.</p>
+      <p className={styles.caption}>
+        Create voice agents that have natural, flowing conversations and provide 24/7
+        customer support with human-like understanding.
+      </p>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -22,6 +22,7 @@ const DATA = [
 ] as const;
 
 const CARD_COUNT = DATA.length;
+const MOBILE_MEDIA = "(max-width: 767px)";
 const AUTO_ROTATE_DURATION_S = 32;
 const AUTO_ROTATE_DURATION_REDUCED_S = 128;
 const DRAG_ROTATION_FACTOR = 0.22;
@@ -36,6 +37,41 @@ function getAutoRotateDuration() {
     : AUTO_ROTATE_DURATION_S;
 }
 
+function isMobileViewport() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia(MOBILE_MEDIA).matches;
+}
+
+function readRotationY(element: HTMLElement): number {
+  const fromGsap = gsap.getProperty(element, "rotationY");
+  if (typeof fromGsap === "number" && !Number.isNaN(fromGsap)) return fromGsap;
+
+  const transform = window.getComputedStyle(element).transform;
+  if (!transform || transform === "none") return 0;
+
+  if (transform.startsWith("matrix3d(")) {
+    const values = transform
+      .slice(9, -1)
+      .split(",")
+      .map((part) => Number.parseFloat(part.trim()));
+    if (values.length === 16) {
+      return (Math.atan2(values[2], values[0]) * 180) / Math.PI;
+    }
+  }
+
+  if (transform.startsWith("matrix(")) {
+    const values = transform
+      .slice(7, -1)
+      .split(",")
+      .map((part) => Number.parseFloat(part.trim()));
+    if (values.length === 6) {
+      return (Math.atan2(values[1], values[0]) * 180) / Math.PI;
+    }
+  }
+
+  return 0;
+}
+
 export function ThreeDCarousel() {
   const stageRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
@@ -46,13 +82,37 @@ export function ThreeDCarousel() {
   const startAutoRotateRef = useRef<(() => void) | null>(null);
   const lastDragTsRef = useRef(0);
   const velocityRef = useRef(0);
+  const useMobileCssSpinRef = useRef(true);
+  const [imageWidth, setImageWidth] = useState(280);
 
   const stopInertia = () => {
     inertiaTweenRef.current?.kill();
     inertiaTweenRef.current = null;
   };
 
+  const clearMobileCssSpin = (ring: HTMLDivElement) => {
+    ring.classList.remove(styles.carouselRingMobileSpin);
+    ring.style.animationDuration = "";
+    ring.style.animationPlayState = "";
+  };
+
+  const freezeMobileCssSpin = (ring: HTMLDivElement) => {
+    ring.style.animationPlayState = "paused";
+    const rotationY = readRotationY(ring);
+    clearMobileCssSpin(ring);
+    gsap.set(ring, { rotationY, force3D: true });
+    return rotationY;
+  };
+
   const pauseAutoRotate = () => {
+    const ring = ringRef.current;
+    if (!ring) return;
+
+    if (isMobileViewport() && useMobileCssSpinRef.current && ring.classList.contains(styles.carouselRingMobileSpin)) {
+      ring.style.animationPlayState = "paused";
+      return;
+    }
+
     autoRotateTweenRef.current?.kill();
     autoRotateTweenRef.current = null;
   };
@@ -93,6 +153,7 @@ export function ThreeDCarousel() {
         duration: INERTIA_DURATION_S,
         ease: "power3.out",
         overwrite: "auto",
+        force3D: true,
         onComplete: () => {
           inertiaTweenRef.current = null;
           resumeAutoRotate();
@@ -109,12 +170,22 @@ export function ThreeDCarousel() {
   };
 
   const dragStart = (clientX: number) => {
+    const ring = ringRef.current;
+    if (!ring) return;
+
     isDraggingRef.current = true;
-    xPosRef.current = Math.round(clientX);
+    xPosRef.current = clientX;
     lastDragTsRef.current = performance.now();
     velocityRef.current = 0;
     stopInertia();
-    pauseAutoRotate();
+
+    if (isMobileViewport() && useMobileCssSpinRef.current && ring.classList.contains(styles.carouselRingMobileSpin)) {
+      useMobileCssSpinRef.current = false;
+      freezeMobileCssSpin(ring);
+    } else {
+      pauseAutoRotate();
+    }
+
     if (stageRef.current) {
       stageRef.current.style.cursor = "grabbing";
     }
@@ -125,54 +196,89 @@ export function ThreeDCarousel() {
   };
 
   const drag = (currentClientX: number) => {
-    if (!isDraggingRef.current) return;
+    if (!isDraggingRef.current || !ringRef.current) return;
     const now = performance.now();
-    const currentX = Math.round(currentClientX);
-    const deltaX = currentX - xPosRef.current;
-    const rotationDelta = (deltaX * DRAG_ROTATION_FACTOR) % 360;
+    const deltaX = currentClientX - xPosRef.current;
+    const rotationDelta = deltaX * DRAG_ROTATION_FACTOR;
     const dt = Math.max(now - lastDragTsRef.current, 1);
     const instantaneousVelocity = rotationDelta / dt;
     velocityRef.current = velocityRef.current * 0.78 + instantaneousVelocity * 0.22;
 
     gsap.set(ringRef.current, {
       rotationY: `-=${rotationDelta}`,
+      force3D: true,
     });
 
-    xPosRef.current = currentX;
+    xPosRef.current = currentClientX;
     lastDragTsRef.current = now;
   };
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_MEDIA);
+    const updateImageWidth = () => {
+      setImageWidth(mq.matches ? 220 : 280);
+    };
+    updateImageWidth();
+    mq.addEventListener("change", updateImageWidth);
+    return () => mq.removeEventListener("change", updateImageWidth);
+  }, []);
 
   useGSAP(
     () => {
       const ring = ringRef.current;
       if (!ring) return;
-      gsap.set(ring, { force3D: true });
+
+      gsap.set(ring, { force3D: true, transformOrigin: "50% 50%" });
 
       const startAutoRotate = () => {
         autoRotateTweenRef.current?.kill();
+        autoRotateTweenRef.current = null;
+        clearMobileCssSpin(ring);
+
+        if (isDraggingRef.current) return;
+
+        const duration = getAutoRotateDuration();
+
+        if (isMobileViewport() && useMobileCssSpinRef.current) {
+          ring.classList.add(styles.carouselRingMobileSpin);
+          ring.style.animationDuration = `${duration}s`;
+          ring.style.animationPlayState = "running";
+          return;
+        }
+
         autoRotateTweenRef.current = gsap.to(ring, {
           rotationY: "+=360",
-          duration: getAutoRotateDuration(),
+          duration,
           ease: "none",
           repeat: -1,
+          force3D: true,
+          lazy: false,
         });
-        if (isDraggingRef.current) {
-          autoRotateTweenRef.current.pause();
-        }
       };
-      startAutoRotateRef.current = startAutoRotate;
 
+      startAutoRotateRef.current = startAutoRotate;
       startAutoRotate();
 
       const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-      reducedMotionQuery.addEventListener("change", startAutoRotate);
+      const mobileQuery = window.matchMedia(MOBILE_MEDIA);
+
+      const onMotionPreferenceChange = () => startAutoRotate();
+      const onViewportChange = () => {
+        useMobileCssSpinRef.current = isMobileViewport();
+        startAutoRotate();
+      };
+
+      reducedMotionQuery.addEventListener("change", onMotionPreferenceChange);
+      mobileQuery.addEventListener("change", onViewportChange);
 
       return () => {
         autoRotateTweenRef.current?.kill();
         autoRotateTweenRef.current = null;
         stopInertia();
+        clearMobileCssSpin(ring);
         startAutoRotateRef.current = null;
-        reducedMotionQuery.removeEventListener("change", startAutoRotate);
+        reducedMotionQuery.removeEventListener("change", onMotionPreferenceChange);
+        mobileQuery.removeEventListener("change", onViewportChange);
       };
     },
     { scope: stageRef },
@@ -205,9 +311,11 @@ export function ThreeDCarousel() {
               key={id}
               className={`carousel-card ${styles.carouselCard} ${styles.carouselImage}`}
               style={cardStyle}
-              src={`https://images.unsplash.com/photo-${id}?w=280&auto=format&fit=crop`}
+              src={`https://images.unsplash.com/photo-${id}?w=${imageWidth}&auto=format&fit=crop&q=80`}
               alt="Jellyfish"
               draggable={false}
+              decoding="async"
+              loading={index < 4 ? "eager" : "lazy"}
             />
           );
         })}
