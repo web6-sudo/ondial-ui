@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 
+import { marketingEyebrowClass } from "@/config/marketing-layout";
 import { cn } from "@/lib/utils";
 
 export const ONDIAL_ACCENT_STYLE = {
@@ -110,10 +111,10 @@ export function SplitScreenSection({
     >
       <p
         className={cn(
-          "mb-4 w-fit rounded-full border px-3 py-1 text-xs font-semibold tracking-wide",
+          "mb-4 w-fit",
           isContrast
-            ? "border-primary-foreground/25 bg-primary-foreground/10 text-primary-foreground"
-            : "border-[hsl(var(--section-accent-h)_var(--section-accent-s)_var(--section-accent-l)/0.35)] bg-[hsl(var(--section-accent-h)_var(--section-accent-s)_var(--section-accent-l)/0.12)] text-[hsl(var(--section-accent-h)_var(--section-accent-s)_calc(var(--section-accent-l)_-_8%))]",
+            ? "rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary-foreground"
+            : marketingEyebrowClass,
         )}
       >
         {eyebrow}

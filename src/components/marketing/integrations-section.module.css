@@ -35,12 +35,6 @@
   pointer-events: none;
 }
 
-/* SSR/hydration-safe shell before client orbit mounts (no inline dimensions). */
-.orbitPlaceholder {
-  width: 100%;
-  min-height: clamp(11rem, 42vw, 17rem);
-}
-
 .semiOrbitWrap {
   width: 100%;
   max-width: 100%;
@@ -141,11 +135,6 @@
 
   .orbitPivotQuarter {
     margin-inline: 0;
-  }
-
-  .semiOrbitWrap[data-orbit-layout="quarter"] .orbitIconSlot {
-    left: 100%;
-    top: 100%;
   }
 
   .semiOrbitWrap[data-orbit-layout="quarter"] .semiOrbitGuides {

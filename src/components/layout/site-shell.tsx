@@ -20,15 +20,25 @@ type SiteShellProps = {
   mainClassName?: string;
   /** Ref to the rounded card’s scroll container (e.g. scroll reset on client navigation). */
   shellScrollerRef?: Ref<HTMLDivElement>;
+  /** Login split: main bleeds under nav without extra top padding (layout handles offsets). */
+  bleedUnderNav?: boolean;
 };
 
-export function SiteShell({ children, header, footer, mainClassName, shellScrollerRef }: SiteShellProps) {
+export function SiteShell({
+  children,
+  header,
+  footer,
+  mainClassName,
+  shellScrollerRef,
+  bleedUnderNav = false,
+}: SiteShellProps) {
   const nav = header === null ? null : header === undefined ? <SiteNavbar /> : header;
   const foot = footer === null ? null : footer === undefined ? <SiteFooter /> : footer;
 
   /** Pulls main under the sticky header so page bg starts at the top; padding keeps content below the bar. */
-  const mainOverlap =
-    "mt-[calc(-1*(env(safe-area-inset-top)+4.25rem))] pt-[calc(env(safe-area-inset-top)+4.25rem)]";
+  const mainOverlap = bleedUnderNav
+    ? "mt-[calc(-1*(env(safe-area-inset-top)+4.25rem))]"
+    : "mt-[calc(-1*(env(safe-area-inset-top)+4.25rem))] pt-[calc(env(safe-area-inset-top)+4.25rem)]";
   // Outer shell: bottom padding matches sides so the black frame shows under the rounded card (same as top).
   const shellFrame =
     "box-border flex h-dvh min-h-0 flex-col bg-black px-2 pt-2 pb-2 sm:px-3 sm:pt-3 sm:pb-3 lg:px-4 lg:pt-4 lg:pb-4";
@@ -38,8 +48,9 @@ export function SiteShell({ children, header, footer, mainClassName, shellScroll
       <div
         ref={shellScrollerRef}
         className={cn(
-          "relative flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden rounded-2xl bg-background text-foreground shadow-[0_24px_64px_-24px_rgba(0,0,0,0.45)]",
-          "scroll-auto no-scrollbar"
+          "relative flex min-h-0 flex-1 flex-col overflow-x-hidden rounded-2xl bg-background text-foreground shadow-[0_24px_64px_-24px_rgba(0,0,0,0.45)]",
+          bleedUnderNav ? "overflow-hidden" : "overflow-y-auto scroll-auto",
+          "no-scrollbar",
         )}
       >
         <div className="sticky top-0 z-60 w-full shrink-0">

@@ -4,8 +4,11 @@ import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import type { EmblaCarouselType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 
-import { ServiceCardWithButton } from "./service-card";
+import { marketingEyebrowClass } from "@/config/marketing-layout";
+import { cn } from "@/lib/utils";
 import { SERVICES_DATA } from "@/lib/services-data";
+
+import { ServiceCardWithButton } from "./service-card";
 
 function useDotButton(emblaApi: EmblaCarouselType | undefined) {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -127,7 +130,7 @@ export default function ServicesSlider() {
     <section className="overflow-x-clip bg-neutral-50 py-14 sm:py-20 lg:py-28">
       <div className="mx-auto w-full min-w-0 max-w-[min(100%,80rem)] px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="mb-10 max-w-4xl sm:mb-14 lg:mb-16">
-          <span className="mb-4 inline-block rounded-full border border-neutral-200 bg-white/80 px-3 py-1 text-[0.7rem] font-semibold tracking-wide text-neutral-800 sm:mb-6 sm:px-4 sm:py-1.5 sm:text-xs">
+          <span className={cn(marketingEyebrowClass, "mb-4 sm:mb-6")}>
             Industries we serve
           </span>
           <h2 className="max-w-4xl text-balance text-[clamp(1.65rem,4.2vw+0.85rem,3.65rem)] font-semibold leading-[1.12] tracking-tight text-neutral-950 sm:leading-[1.1]">

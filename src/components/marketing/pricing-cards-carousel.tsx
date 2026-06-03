@@ -7,6 +7,8 @@ import {
   PricingPlanCard,
   type PricingPlanCardProps,
 } from "@/components/marketing/pricing-plan-card";
+import { marketingEyebrowClass } from "@/config/marketing-layout";
+import { cn } from "@/lib/utils";
 
 type PricingCardItem = Pick<
   PricingPlanCardProps,
@@ -112,7 +114,7 @@ export function PricingCardsCarousel({ cards }: PricingCardsCarouselProps) {
       </div>
       {showSwipeHint ? (
         <div className="pointer-events-none mt-3 flex justify-center">
-          <div className="rounded-full border border-purple-200 bg-white/90 px-3 py-1 text-[11px] font-medium tracking-wide text-purple-600 shadow-sm backdrop-blur-sm">
+          <div className={cn(marketingEyebrowClass, "shadow-sm backdrop-blur-sm")}>
             Swipe to see other plans
           </div>
         </div>

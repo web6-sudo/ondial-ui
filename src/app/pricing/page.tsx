@@ -42,7 +42,6 @@ export default function PricingPage() {
           />
         </div>
       </div>
-
       <PricingCalculator />
     </MarketingPageBody>
   );

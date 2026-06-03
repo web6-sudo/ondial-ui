@@ -89,7 +89,7 @@ export function PricingPlanCard({
               {features.map((feature) => (
                 <li key={feature} className="flex items-center gap-2 leading-snug">
                   <span
-                    className="h-1.5 w-1.5 shrink-0 rounded-full bg-purple-500"
+                    className="h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground"
                     aria-hidden
                   />
                   <span>{feature}</span>
@@ -98,7 +98,7 @@ export function PricingPlanCard({
               {EXTRA_FEATURES.map((feature) => (
                 <li key={feature} className="flex items-center gap-2 leading-snug">
                   <span
-                    className="h-1.5 w-1.5 shrink-0 rounded-full bg-purple-500"
+                    className="h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground"
                     aria-hidden
                   />
                   <span>{feature}</span>

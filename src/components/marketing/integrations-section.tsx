@@ -1,8 +1,7 @@
-import Link from "next/link";
-
-import { IntegrationsOrbitVisual } from "@/components/marketing/integrations-orbit-visual";
-import { INTEGRATIONS_API_CALLOUT, INTEGRATIONS_HEADING } from "@/data/integrations";
+import { IntegrationsOrbitClient } from "@/components/marketing/integrations-orbit-client";
+import { INTEGRATIONS_HEADING } from "@/data/integrations";
 import {
+  marketingEyebrowClass,
   marketingSectionBgClass,
   marketingSectionContainerClass,
 } from "@/config/marketing-layout";
@@ -20,7 +19,7 @@ export function IntegrationsSection() {
       <div className={cn(marketingSectionContainerClass, "relative max-md:px-3")}>
         <div className={styles.composition} data-composition>
           <header className={styles.copy}>
-            <p className="mx-auto mb-4 inline-block rounded-full border border-border/60 bg-transparent px-3 py-1 text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-muted-foreground md:mx-0">
+            <p className={cn("mx-auto mb-4 md:mx-0", marketingEyebrowClass)}>
               {INTEGRATIONS_HEADING.eyebrow}
             </p>
             <h2
@@ -35,7 +34,7 @@ export function IntegrationsSection() {
           </header>
 
           <div className={styles.orbitColumn} data-orbit-column data-orbit-layer>
-            <IntegrationsOrbitVisual />
+            <IntegrationsOrbitClient />
           </div>
         </div>
       </div>

@@ -1,15 +1,21 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-import { runLoadProgress } from "@/lib/loading-progress";
+import { runLoadProgress, runNavigationProgress } from "@/lib/loading-progress";
 
 import styles from "./progressive-loader.module.css";
 
 const MIN_VISIBLE_MS = 1200;
 const MIN_COUNTER_RAMP_MS = 2400;
 const MAX_WAIT_MS = 14000;
+
+const NAV_MIN_VISIBLE_MS = 700;
+const NAV_MIN_COUNTER_RAMP_MS = 1400;
+const NAV_MAX_WAIT_MS = 10000;
+
 const EXIT_DURATION_S = 0.8;
 const COUNTER_COMPLETE_HOLD_MS = 280;
 
@@ -35,18 +41,30 @@ function easeOutCubic(t: number) {
 }
 
 export function ProgressiveLoader() {
+  const pathname = usePathname();
   const prefersReducedMotion = useReducedMotion();
   const [progress, setProgress] = useState(0);
   const [barProgress, setBarProgress] = useState(0);
   const [show, setShow] = useState(true);
-  const hasRunRef = useRef(false);
+  const loadCountRef = useRef(0);
   const displayRef = useRef(0);
   const loadProgressRef = useRef(0);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (hasRunRef.current) return;
-    hasRunRef.current = true;
+    const isNavigation = loadCountRef.current > 0;
+    loadCountRef.current += 1;
+
+    const minVisibleMs = isNavigation ? NAV_MIN_VISIBLE_MS : MIN_VISIBLE_MS;
+    const minCounterRampMs = isNavigation ? NAV_MIN_COUNTER_RAMP_MS : MIN_COUNTER_RAMP_MS;
+    const maxWaitMs = isNavigation ? NAV_MAX_WAIT_MS : MAX_WAIT_MS;
+    const runProgress = isNavigation ? runNavigationProgress : runLoadProgress;
+
+    setShow(true);
+    setProgress(0);
+    setBarProgress(0);
+    displayRef.current = 0;
+    loadProgressRef.current = 0;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -59,7 +77,7 @@ export function ProgressiveLoader() {
     const requestHide = () => {
       if (cancelled || !counterComplete) return;
       const elapsed = performance.now() - startedAt;
-      const waitBeforeHide = Math.max(0, MIN_VISIBLE_MS - elapsed);
+      const waitBeforeHide = Math.max(0, minVisibleMs - elapsed);
 
       window.setTimeout(() => {
         if (!cancelled) {
@@ -70,7 +88,7 @@ export function ProgressiveLoader() {
 
     const tick = () => {
       const elapsed = performance.now() - startedAt;
-      const timeCap = easeOutCubic(Math.min(1, elapsed / MIN_COUNTER_RAMP_MS)) * 96;
+      const timeCap = easeOutCubic(Math.min(1, elapsed / minCounterRampMs)) * 96;
       const loadCap = loadProgressRef.current;
 
       let target = Math.max(timeCap, loadCap);
@@ -113,13 +131,13 @@ export function ProgressiveLoader() {
       loadProgressRef.current = 100;
     };
 
-    void runLoadProgress((value) => {
+    void runProgress((value) => {
       loadProgressRef.current = value;
     })
       .then(finish)
       .catch(finish);
 
-    const timeoutId = window.setTimeout(finish, MAX_WAIT_MS);
+    const timeoutId = window.setTimeout(finish, maxWaitMs);
 
     return () => {
       cancelled = true;
@@ -129,7 +147,7 @@ export function ProgressiveLoader() {
       }
       document.body.style.overflow = previousOverflow;
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <AnimatePresence
@@ -139,14 +157,14 @@ export function ProgressiveLoader() {
     >
       {show ? (
         <motion.div
-          key="progressive-loader"
+          key={`progressive-loader-${pathname}`}
           className={styles.overlay}
           role="progressbar"
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={progress}
           aria-busy
-          aria-label="Loading website"
+          aria-label="Loading page"
           initial={false}
           variants={prefersReducedMotion ? overlayExitReduced : overlayExitVariants}
           exit="exit"

@@ -13,6 +13,14 @@ function footerShowsCtaCard(pathname: string) {
   return true;
 }
 
+function footerHidden(pathname: string) {
+  return pathname === "/login" || pathname === "/signup";
+}
+
+function isAuthSplitRoute(pathname: string) {
+  return pathname === "/login" || pathname === "/signup";
+}
+
 type AppLayoutShellProps = {
   children: ReactNode;
 };
@@ -29,13 +37,20 @@ export function AppLayoutShell({ children }: AppLayoutShellProps) {
   }, [pathname]);
 
   const showFooterCta = footerShowsCtaCard(pathname);
+  const hideFooter = footerHidden(pathname);
+  const authSplit = isAuthSplitRoute(pathname);
 
   return (
     <SiteShell
       shellScrollerRef={shellScrollRef}
-      footer={<SiteFooter showCtaCard={showFooterCta} />}
-      /* `min-h-min` with `SiteShell` `grow shrink-0` on `main` keeps height to content (no clipping over footer). */
-      mainClassName="flex min-h-min flex-col"
+      bleedUnderNav={authSplit}
+      footer={hideFooter ? null : <SiteFooter showCtaCard={showFooterCta} />}
+      /* Auth split (login/signup): transparent main so column backgrounds reach behind the nav. */
+      mainClassName={
+        authSplit
+          ? "flex h-full min-h-0 flex-1 flex-col overflow-hidden bg-transparent"
+          : "flex min-h-min flex-col"
+      }
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -47,7 +62,7 @@ export function AppLayoutShell({ children }: AppLayoutShellProps) {
             duration: 0.3,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="flex flex-1 flex-col"
+          className={authSplit ? "flex h-full min-h-0 flex-1 flex-col" : "flex flex-1 flex-col"}
         >
           {children}
         </motion.div>

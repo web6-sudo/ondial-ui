@@ -9,14 +9,14 @@ import {
   type TestimonialPhotoCard,
   type TestimonialPhotoColumn,
 } from "@/data/testimonials-hero-gallery";
-import { marketingSectionBgClass, marketingSectionContainerClass } from "@/config/marketing-layout";
+import {
+  marketingEyebrowClass,
+  marketingSectionBgClass,
+  marketingSectionContainerClass,
+} from "@/config/marketing-layout";
 import { cn } from "@/lib/utils";
 
 import styles from "./home-testimonials-section.module.css";
-
-/** Matches hero + integrations / pricing / split-screen section typography */
-const sectionEyebrowClass =
-  "mb-3 inline-block rounded-full border border-violet-300/60 bg-violet-100/80 px-3 py-1 text-xs font-semibold text-violet-800";
 
 const sectionHeadingClass =
   "w-full max-w-3xl text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl";
@@ -180,7 +180,7 @@ export function HomeTestimonialsSection() {
         </div>
 
         <header className={cn(styles.center, "text-center")}>
-          <p className={sectionEyebrowClass}>{TESTIMONIAL_HERO_COPY.eyebrow}</p>
+          <p className={cn("mb-3", marketingEyebrowClass)}>{TESTIMONIAL_HERO_COPY.eyebrow}</p>
           <h2 id="testimonials-hero-title" className={sectionHeadingClass}>
             <span className="block text-foreground sm:whitespace-nowrap">
               {TESTIMONIAL_HERO_COPY.titleBold}

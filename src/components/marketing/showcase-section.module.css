@@ -27,15 +27,9 @@
   text-align: center;
 }
 
-.badge {
+.badgeSpacing {
   margin-top: 1rem;
   margin-bottom: 1.25rem;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid rgb(168 85 247);
-  border-radius: 9999px;
-  background: rgb(216 180 254);
-  font-size: 0.875rem;
-  color: rgb(0 0 0);
 }
 
 .caption {

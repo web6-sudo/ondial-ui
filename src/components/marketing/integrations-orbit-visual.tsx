@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { INTEGRATION_PARTNERS, type IntegrationPartner } from "@/data/integrations";
 import { cn } from "@/lib/utils";
@@ -22,6 +22,7 @@ const ORBIT_MAX_DIAMETER_PX = 920;
 const SCROLL_DURATION_MS = 48_000;
 const ARC_INSET = 0.06;
 const MOBILE_ORBIT_MQ = "(max-width: 767px)";
+const SSR_ORBIT_DIAMETER_PX = 560;
 
 const QUARTER_VIEW = 500;
 const SEMI_VIEW_W = 1000;
@@ -163,7 +164,9 @@ function applySvgIconTransform(
     scrollPhase,
   );
   const { x, y } = iconPointOnArc(layout, angleRad, icon.radiusVb);
-  el.setAttribute("transform", `translate(${x} ${y})`);
+  const rx = Math.round(x * 1000) / 1000;
+  const ry = Math.round(y * 1000) / 1000;
+  el.setAttribute("transform", `translate(${rx} ${ry})`);
 }
 
 export function IntegrationsOrbitVisual() {
@@ -174,15 +177,21 @@ export function IntegrationsOrbitVisual() {
   const rafRef = useRef(0);
   const layoutRef = useRef<OrbitArcLayout>("semi");
 
-  const [arcLayout, setArcLayout] = useState<OrbitArcLayout | null>(null);
-  const [orbitDiameterPx, setOrbitDiameterPx] = useState(560);
+  const [arcLayout, setArcLayout] = useState<OrbitArcLayout>("semi");
+  const [orbitDiameterPx, setOrbitDiameterPx] = useState(SSR_ORBIT_DIAMETER_PX);
+  const [ready, setReady] = useState(false);
 
-  const layout = arcLayout ?? "semi";
-  const placedIcons = useMemo(() => buildPlacedIcons(layout), [layout]);
+  const placedIcons = useMemo(() => buildPlacedIcons(arcLayout), [arcLayout]);
   iconsRef.current = placedIcons;
-  layoutRef.current = layout;
+  layoutRef.current = arcLayout;
+
+  useEffect(() => {
+    setReady(true);
+  }, []);
 
   useLayoutEffect(() => {
+    if (!ready) return;
+
     const mq = window.matchMedia(MOBILE_ORBIT_MQ);
     const sync = () => {
       const next: OrbitArcLayout = mq.matches ? "quarter" : "semi";
@@ -192,10 +201,10 @@ export function IntegrationsOrbitVisual() {
     sync();
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
-  }, []);
+  }, [ready]);
 
   useLayoutEffect(() => {
-    if (!arcLayout) return;
+    if (!ready) return;
 
     const svg = svgRef.current;
     if (!svg) return;
@@ -222,18 +231,19 @@ export function IntegrationsOrbitVisual() {
       cancelAnimationFrame(measureRaf);
       observer.disconnect();
     };
-  }, [arcLayout]);
+  }, [arcLayout, ready]);
 
   useLayoutEffect(() => {
-    if (!arcLayout) return;
+    if (!ready) return;
+
     for (const icon of placedIcons) {
       const el = slotsRef.current.get(icon.partner.id);
       if (el) applySvgIconTransform(el, icon, scrollPhaseRef.current, arcLayout);
     }
-  }, [placedIcons, arcLayout]);
+  }, [placedIcons, arcLayout, ready]);
 
   useLayoutEffect(() => {
-    if (!arcLayout) return;
+    if (!ready) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const startedAt = performance.now();
@@ -250,24 +260,22 @@ export function IntegrationsOrbitVisual() {
     };
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [arcLayout]);
+  }, [arcLayout, ready]);
 
-  if (!arcLayout) {
-    return <div className={styles.orbitPlaceholder} aria-hidden />;
-  }
-
-  const isQuarter = arcLayout === "quarter";
-  const outerR = Math.ceil(outerRadiusFromDiameter(orbitDiameterPx));
-  const stageHeightPx = isQuarter ? outerR : Math.ceil(orbitDiameterPx / 2);
-  const pivotWidthPx = isQuarter ? outerR : orbitDiameterPx;
+  const renderLayout = ready ? arcLayout : "semi";
+  const renderDiameterPx = ready ? orbitDiameterPx : SSR_ORBIT_DIAMETER_PX;
+  const isQuarter = renderLayout === "quarter";
+  const outerR = Math.ceil(outerRadiusFromDiameter(renderDiameterPx));
+  const stageHeightPx = isQuarter ? outerR : Math.ceil(renderDiameterPx / 2);
+  const pivotWidthPx = isQuarter ? outerR : renderDiameterPx;
   const pivotHeightPx = isQuarter ? outerR : stageHeightPx;
   const viewBox = isQuarter ? `0 0 ${QUARTER_VIEW} ${QUARTER_VIEW}` : `0 0 ${SEMI_VIEW_W} ${SEMI_VIEW_H}`;
-  const { cx, cy } = orbitCenter(arcLayout);
+  const { cx, cy } = orbitCenter(renderLayout);
 
   return (
     <div
       className={cn(styles.semiOrbitWrap, isQuarter && styles.semiOrbitWrapQuarter)}
-      data-orbit-layout={arcLayout}
+      data-orbit-layout={renderLayout}
       aria-hidden
     >
       <div
@@ -287,7 +295,7 @@ export function IntegrationsOrbitVisual() {
             aria-hidden
           >
             {RING_DEFS.map((def, ringIndex) => {
-              const r = ringRadiusVb(arcLayout, ringIndex, def);
+              const r = ringRadiusVb(renderLayout, ringIndex, def);
               if (isQuarter) {
                 return (
                   <path
@@ -310,39 +318,32 @@ export function IntegrationsOrbitVisual() {
               );
             })}
 
-            {placedIcons.map((icon) => {
-              const wide = icon.partner.logoFit === "wide";
-              const w = wide ? ICON_WIDE_VB.w : ICON_VB;
-              const h = wide ? ICON_WIDE_VB.h : ICON_VB;
-              const angleRad = arcAngleOnVisibleArc(
-                arcLayout,
-                icon.slotIndex,
-                icon.slotCount,
-                icon.ringPhaseStep,
-                scrollPhaseRef.current,
-              );
-              const { x, y } = iconPointOnArc(arcLayout, angleRad, icon.radiusVb);
+            {ready
+              ? placedIcons.map((icon) => {
+                  const wide = icon.partner.logoFit === "wide";
+                  const w = wide ? ICON_WIDE_VB.w : ICON_VB;
+                  const h = wide ? ICON_WIDE_VB.h : ICON_VB;
 
-              return (
-                <g
-                  key={icon.partner.id}
-                  ref={(el) => {
-                    if (el) slotsRef.current.set(icon.partner.id, el);
-                    else slotsRef.current.delete(icon.partner.id);
-                  }}
-                  transform={`translate(${x} ${y})`}
-                >
-                  <image
-                    href={icon.partner.logoSrc}
-                    x={-w / 2}
-                    y={-h / 2}
-                    width={w}
-                    height={h}
-                    preserveAspectRatio="xMidYMid meet"
-                  />
-                </g>
-              );
-            })}
+                  return (
+                    <g
+                      key={icon.partner.id}
+                      ref={(el) => {
+                        if (el) slotsRef.current.set(icon.partner.id, el);
+                        else slotsRef.current.delete(icon.partner.id);
+                      }}
+                    >
+                      <image
+                        href={icon.partner.logoSrc}
+                        x={-w / 2}
+                        y={-h / 2}
+                        width={w}
+                        height={h}
+                        preserveAspectRatio="xMidYMid meet"
+                      />
+                    </g>
+                  );
+                })
+              : null}
           </svg>
         </div>
       </div>

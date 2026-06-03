@@ -11,18 +11,8 @@
   text-align: center;
 }
 
-.eyebrow {
-  display: inline-block;
+.eyebrowSpacing {
   margin-bottom: 0.625rem;
-  padding: 0.25rem 0.75rem;
-  border: 1px solid rgb(126 34 206 / 0.3);
-  border-radius: 9999px;
-  background: rgb(243 232 255 / 0.7);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: capitalize;
-  color: rgb(91 33 182);
 }
 
 .title {

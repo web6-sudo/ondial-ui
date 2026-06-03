@@ -8,7 +8,7 @@ import type { CSSProperties } from "react";
 
 import arrowRightAnimation from "@/assets/animations/arrow-right.json";
 import { ThreeDCarousel } from "@/components/marketing/three-d-carousel";
-import { marketingSectionBgClass } from "@/config/marketing-layout";
+import { marketingEyebrowClass, marketingSectionBgClass } from "@/config/marketing-layout";
 
 import { cn } from "@/lib/utils";
 
@@ -86,7 +86,9 @@ export function ShowcaseSection() {
       aria-label="Platform showcase"
     >
       <header className={styles.header}>
-        <p className={styles.badge}>more than 1000+ companies use Ondial</p>
+        <p className={cn(marketingEyebrowClass, styles.badgeSpacing)}>
+          more than 1000+ companies use Ondial
+        </p>
         <h2 className={styles.title}>Automate Your Calls with AI</h2>
         <p className={styles.description}>
           Explore how teams use AI voice for reminders, outreach, surveys, and

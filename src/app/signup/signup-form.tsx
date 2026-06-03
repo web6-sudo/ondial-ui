@@ -21,17 +21,30 @@ function GoogleIcon(props: React.ComponentProps<"svg">) {
   );
 }
 
-/** Match `src/app/login/page.tsx` input styling for auth consistency. */
+/** Match `src/app/login/page.tsx` */
 const inputBase =
-  "h-9 rounded-full border border-border/70 bg-muted/40 px-3 text-[13px] leading-normal shadow-none transition-[border-color,background-color,box-shadow] duration-200 " +
-  "placeholder:text-[13px] placeholder:text-muted-foreground/55 " +
-  "hover:border-border hover:bg-muted/55 " +
-  "focus-visible:border-foreground/25 focus-visible:bg-background focus-visible:ring-1 focus-visible:ring-foreground/15";
+  "h-10 rounded-full border border-border bg-muted/50 px-4 text-sm shadow-none transition-[border-color,background-color] duration-200 " +
+  "placeholder:text-sm placeholder:text-muted-foreground " +
+  "hover:border-border hover:bg-muted/70 " +
+  "focus-visible:border-foreground/30 focus-visible:bg-background focus-visible:ring-2 focus-visible:ring-foreground/10";
 
 function inputClass(invalid: boolean) {
   return cn(
     inputBase,
     invalid && "border-destructive/80 focus-visible:border-destructive/50 focus-visible:ring-destructive/25"
+  );
+}
+
+/** Tighter stacks on mobile; desktop matches login spacing. */
+const formStack = "mt-4 flex flex-col gap-2 sm:mt-8 sm:gap-4";
+const fieldGroup = "grid gap-1.5 sm:gap-2";
+const fieldRow = "grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4";
+
+function FieldError({ id, message }: { id: string; message: string }) {
+  return (
+    <p id={id} role="status" className="text-xs leading-snug text-destructive">
+      {message}
+    </p>
   );
 }
 
@@ -51,7 +64,6 @@ export function SignupForm() {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [formError, setFormError] = useState<string | null>(null);
 
   const validateField = (name: string, value: string) => {
     let error = "";
@@ -84,7 +96,6 @@ export function SignupForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
-    setFormError(null);
 
     setErrors((prev) => {
       const next = { ...prev };
@@ -118,13 +129,12 @@ export function SignupForm() {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      setFormError("Please fix the highlighted fields before continuing.");
       const firstErrorField = Object.keys(newErrors)[0];
       document.getElementById(firstErrorField)?.focus();
+      document.getElementById("auth-form-scroll")?.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
-    setFormError(null);
     setIsSubmitting(true);
     // Simulate API call
     try {
@@ -137,30 +147,18 @@ export function SignupForm() {
   };
 
   return (
-    <div className="w-full max-w-[min(28rem,calc(100vw-1.5rem))] origin-top sm:max-w-[min(36rem,calc(100vw-2rem))] animate-in fade-in slide-in-from-bottom-2 duration-500">
-      <h1
-        className="mb-0.5 text-center text-[1.35rem] font-bold leading-tight tracking-tight text-foreground sm:text-[1.65rem]"
-      >
+    <div className="w-full max-w-md">
+      <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
         Create account
       </h1>
-      <p className="mb-2 text-center text-[11px] leading-snug text-muted-foreground/90 sm:mb-2.5 sm:text-[12px]">
+      <p className="mt-1.5 text-sm leading-snug text-muted-foreground sm:mt-2 sm:leading-relaxed">
         Join us and start your journey today.
       </p>
 
-      <form className="flex flex-col gap-1.5 sm:gap-2" onSubmit={handleSubmit} noValidate>
-        {formError ? (
-          <div
-            role="alert"
-            className="rounded-xl border border-destructive/25 bg-destructive/10 px-3 py-2 text-center text-[12px] font-medium text-destructive"
-          >
-            {formError}
-          </div>
-        ) : null}
+      <form className={formStack} onSubmit={handleSubmit} noValidate>
         {/* Who are you? selector */}
-        <div className="grid gap-1">
-          <Label className="text-[12px] font-semibold leading-none text-foreground">
-            Who are you?
-          </Label>
+        <div className={fieldGroup}>
+          <Label className="text-sm font-medium text-foreground">Who are you?</Label>
           <div className="flex touch-manipulation rounded-full border border-border/40 bg-muted/40 p-0.5">
             <button
               type="button"
@@ -189,9 +187,12 @@ export function SignupForm() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2 sm:gap-2">
-          <div className="grid gap-1">
-            <Label htmlFor="fullname" className={`text-[12px] font-semibold leading-none transition-colors ${errors.fullname ? "text-destructive" : "text-foreground"}`}>
+        <div className={fieldRow}>
+          <div className={fieldGroup}>
+            <Label
+              htmlFor="fullname"
+              className={cn("text-sm font-medium", errors.fullname ? "text-destructive" : "text-foreground")}
+            >
               Full name
             </Label>
             <Input
@@ -204,15 +205,14 @@ export function SignupForm() {
               aria-invalid={!!errors.fullname}
               aria-describedby={errors.fullname ? "fullname-error" : undefined}
             />
-            {errors.fullname ? (
-              <p id="fullname-error" role="status" className="text-[11px] font-medium text-destructive animate-in fade-in slide-in-from-top-1 duration-200">
-                {errors.fullname}
-              </p>
-            ) : null}
+            {errors.fullname ? <FieldError id="fullname-error" message={errors.fullname} /> : null}
           </div>
 
-          <div className="grid gap-1">
-            <Label htmlFor="email" className={`text-[12px] font-semibold leading-none transition-colors ${errors.email ? "text-destructive" : "text-foreground"}`}>
+          <div className={fieldGroup}>
+            <Label
+              htmlFor="email"
+              className={cn("text-sm font-medium", errors.email ? "text-destructive" : "text-foreground")}
+            >
               Email
             </Label>
             <Input
@@ -226,17 +226,16 @@ export function SignupForm() {
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? "email-error" : undefined}
             />
-            {errors.email ? (
-              <p id="email-error" role="status" className="text-[11px] font-medium text-destructive animate-in fade-in slide-in-from-top-1 duration-200">
-                {errors.email}
-              </p>
-            ) : null}
+            {errors.email ? <FieldError id="email-error" message={errors.email} /> : null}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2 sm:gap-2">
-          <div className="grid gap-1">
-            <Label htmlFor="phone" className={`text-[12px] font-semibold leading-none transition-colors ${errors.phone ? "text-destructive" : "text-foreground"}`}>
+        <div className={fieldRow}>
+          <div className={fieldGroup}>
+            <Label
+              htmlFor="phone"
+              className={cn("text-sm font-medium", errors.phone ? "text-destructive" : "text-foreground")}
+            >
               Phone number
             </Label>
             <Input
@@ -250,16 +249,12 @@ export function SignupForm() {
               aria-invalid={!!errors.phone}
               aria-describedby={errors.phone ? "phone-error" : undefined}
             />
-            {errors.phone ? (
-              <p id="phone-error" role="status" className="text-[11px] font-medium text-destructive animate-in fade-in slide-in-from-top-1 duration-200">
-                {errors.phone}
-              </p>
-            ) : null}
+            {errors.phone ? <FieldError id="phone-error" message={errors.phone} /> : null}
           </div>
 
-          <div className="grid gap-1">
-            <Label htmlFor="referral" className="text-[12px] font-semibold leading-none text-foreground">
-              Referral code <span className="text-muted-foreground/60 font-normal">(optional)</span>
+          <div className={fieldGroup}>
+            <Label htmlFor="referral" className="text-sm font-medium text-foreground">
+              Referral code <span className="font-normal text-muted-foreground">(optional)</span>
             </Label>
             <Input
               id="referral"
@@ -271,8 +266,11 @@ export function SignupForm() {
           </div>
         </div>
 
-        <div className="grid gap-1">
-          <Label htmlFor="password" className={`text-[12px] font-semibold leading-none transition-colors ${errors.password ? "text-destructive" : "text-foreground"}`}>
+        <div className={fieldGroup}>
+          <Label
+            htmlFor="password"
+            className={cn("text-sm font-medium", errors.password ? "text-destructive" : "text-foreground")}
+          >
             Password
           </Label>
           <div className="relative">
@@ -280,7 +278,7 @@ export function SignupForm() {
               id="password"
               type={showPassword ? "text" : "password"}
               placeholder="Create a password"
-              className={cn(inputClass(!!errors.password), "pr-10")}
+              className={cn(inputClass(!!errors.password), "pr-11")}
               value={formData.password}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -296,15 +294,14 @@ export function SignupForm() {
               {showPassword ? <EyeOff className="size-4" strokeWidth={1.75} /> : <Eye className="size-4" strokeWidth={1.75} />}
             </button>
           </div>
-          {errors.password ? (
-            <p id="password-error" role="status" className="text-[11px] font-medium text-destructive animate-in fade-in slide-in-from-top-1 duration-200">
-              {errors.password}
-            </p>
-          ) : null}
+          {errors.password ? <FieldError id="password-error" message={errors.password} /> : null}
         </div>
 
-        <div className="grid gap-1">
-          <Label htmlFor="confirmPassword" className={`text-[12px] font-semibold leading-none transition-colors ${errors.confirmPassword ? "text-destructive" : "text-foreground"}`}>
+        <div className={fieldGroup}>
+          <Label
+            htmlFor="confirmPassword"
+            className={cn("text-sm font-medium", errors.confirmPassword ? "text-destructive" : "text-foreground")}
+          >
             Confirm password
           </Label>
           <div className="relative">
@@ -312,7 +309,7 @@ export function SignupForm() {
               id="confirmPassword"
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirm your password"
-              className={cn(inputClass(!!errors.confirmPassword), "pr-10")}
+              className={cn(inputClass(!!errors.confirmPassword), "pr-11")}
               value={formData.confirmPassword}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -329,40 +326,38 @@ export function SignupForm() {
             </button>
           </div>
           {errors.confirmPassword ? (
-            <p id="confirmPassword-error" role="status" className="text-[11px] font-medium text-destructive animate-in fade-in slide-in-from-top-1 duration-200">
-              {errors.confirmPassword}
-            </p>
+            <FieldError id="confirmPassword-error" message={errors.confirmPassword} />
           ) : null}
         </div>
 
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="mt-0 h-9 w-full rounded-full bg-foreground text-[13px] font-semibold text-background shadow-none transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
+          className="h-10 w-full rounded-full bg-foreground text-sm font-semibold text-background hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {isSubmitting ? "Creating account..." : "Create account"}
         </Button>
 
-        <div className="relative py-0">
-          <div className="absolute inset-x-0 top-1/2 h-px bg-border/80" />
-          <div className="relative flex justify-center text-[11px] uppercase tracking-wider text-muted-foreground/70">
-            <span className="bg-background px-2 font-medium">Or continue with</span>
-          </div>
+        <div className="relative py-0 sm:py-1">
+          <div className="absolute inset-x-0 top-1/2 h-px bg-border" />
+          <span className="relative mx-auto block w-fit bg-background px-3 text-xs text-muted-foreground">
+            Or continue with
+          </span>
         </div>
 
         <Button
           type="button"
           variant="outline"
-          className="h-9 w-full rounded-full border-border/80 bg-background text-[13px] font-medium shadow-none transition-colors hover:bg-muted/20"
+          className="h-10 w-full rounded-full border-border bg-background text-sm font-medium hover:bg-muted/40"
         >
           <GoogleIcon className="mr-2 size-4" />
-          Continue with Google
+          Sign up with Google
         </Button>
       </form>
 
-      <p className="mt-3 text-center text-[11px] leading-relaxed text-muted-foreground sm:mt-4 sm:text-[12px]">
+      <p className="mt-4 text-center text-sm text-muted-foreground sm:mt-6">
         Already have an account?{" "}
-        <Link href="/login" className="font-semibold text-foreground underline-offset-2 hover:underline">
+        <Link href="/login" className="font-semibold text-foreground underline-offset-4 hover:underline">
           Sign in
         </Link>
       </p>

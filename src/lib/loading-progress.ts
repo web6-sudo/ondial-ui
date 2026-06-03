@@ -141,6 +141,64 @@ export async function runLoadProgress(reporter: LoadProgressReporter): Promise<v
   report(97);
   await delay(TICK_MS);
   report(99);
-  await new Promise((resolve) => requestAnimationFrame(() => resolve()));
+  await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+  report(100);
+}
+
+/**
+ * Shorter progress curve for client-side route changes (DOM/window are already warm).
+ */
+export async function runNavigationProgress(reporter: LoadProgressReporter): Promise<void> {
+  let progress = 0;
+
+  const report = (next: number) => {
+    progress = clampProgress(Math.max(progress, next));
+    reporter(progress);
+  };
+
+  const ramp = async (from: number, to: number, steps: number) => {
+    if (steps <= 0 || to <= from) {
+      report(to);
+      return;
+    }
+    const stepSize = (to - from) / steps;
+    for (let i = 1; i <= steps; i += 1) {
+      report(Math.round(from + stepSize * i));
+      await delay(TICK_MS);
+    }
+  };
+
+  report(4);
+  await ramp(4, 22, 3);
+
+  await new Promise<void>((resolve) => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => resolve());
+    });
+  });
+  await ramp(progress, 48, 4);
+
+  const imageStart = progress;
+  const imageEnd = 88;
+  let lastImageRatio = 0;
+
+  await waitForVisibleImages((ratio) => {
+    lastImageRatio = ratio;
+    const next = imageStart + Math.round(ratio * (imageEnd - imageStart));
+    if (next > progress) {
+      report(next);
+    }
+  });
+
+  if (progress < imageEnd) {
+    await ramp(progress, imageEnd, Math.max(2, Math.round((1 - lastImageRatio) * 5)));
+  }
+
+  await waitForFonts();
+  await ramp(progress, 96, 3);
+
+  await delay(TICK_MS);
+  report(99);
+  await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
   report(100);
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 
 import { AuthPageShell } from "@/components/auth/auth-page-shell";
+import { AuthSplitLayout } from "@/components/auth/auth-split-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -24,15 +25,15 @@ function GoogleIcon(props: React.ComponentProps<"svg">) {
 }
 
 const inputBase =
-  "h-9 rounded-full border border-border/70 bg-muted/40 px-3 text-[13px] leading-normal shadow-none transition-[border-color,background-color,box-shadow] duration-200 " +
-  "placeholder:text-[13px] placeholder:text-muted-foreground/55 " +
-  "hover:border-border hover:bg-muted/55 " +
-  "focus-visible:border-foreground/25 focus-visible:bg-background focus-visible:ring-1 focus-visible:ring-foreground/15";
+  "h-10 rounded-full border border-border bg-muted/50 px-4 text-sm shadow-none transition-[border-color,background-color] duration-200 " +
+  "placeholder:text-sm placeholder:text-muted-foreground " +
+  "hover:border-border hover:bg-muted/70 " +
+  "focus-visible:border-foreground/30 focus-visible:bg-background focus-visible:ring-2 focus-visible:ring-foreground/10";
 
 function inputClass(invalid: boolean) {
   return cn(
     inputBase,
-    invalid && "border-destructive/80 focus-visible:border-destructive/50 focus-visible:ring-destructive/25"
+    invalid && "border-destructive focus-visible:border-destructive focus-visible:ring-destructive/20",
   );
 }
 
@@ -91,139 +92,148 @@ export default function LoginPage() {
   };
 
   return (
-    <AuthPageShell>
-      <div className="w-full max-w-[min(24rem,calc(100vw-1.5rem))] sm:max-w-[min(28rem,calc(100vw-2rem))] animate-in fade-in slide-in-from-bottom-2 duration-500">
-        <h1
-          className="mb-0.5 text-center text-[1.35rem] font-bold leading-tight tracking-tight text-foreground sm:text-[1.65rem]"
-        >
-          Welcome back
-        </h1>
-        <p className="mb-2 text-center text-[11px] leading-snug text-muted-foreground/90 sm:mb-2.5 sm:text-[12px]">
-          Enter your email and password to access your account.
-        </p>
+    <AuthPageShell fullScreen>
+      <AuthSplitLayout fullScreen>
+        <div className="w-full max-w-md">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            Welcome back
+          </h1>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Enter your email and password to access your account.
+          </p>
 
-        <form className="flex flex-col gap-1.5 sm:gap-2" onSubmit={handleSubmit} noValidate>
-          {errors.form ? (
-            <div
-              role="alert"
-              className="rounded-xl border border-destructive/25 bg-destructive/10 px-3 py-2 text-center text-[12px] font-medium text-destructive"
-            >
-              {errors.form}
-            </div>
-          ) : null}
-
-          <div className="grid gap-1">
-            <Label htmlFor="login-email" className={cn("text-[12px] font-semibold leading-none", errors.email ? "text-destructive" : "text-foreground")}>
-              Email
-            </Label>
-            <Input
-              id="login-email"
-              type="email"
-              name="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                clearFieldError("email");
-              }}
-              onBlur={handleBlurEmail}
-              placeholder="Enter your email"
-              autoComplete="email"
-              aria-invalid={!!errors.email}
-              aria-describedby={errors.email ? "login-email-error" : undefined}
-              className={inputClass(!!errors.email)}
-            />
-            {errors.email ? (
-              <p id="login-email-error" className="text-[11px] font-medium text-destructive" role="status">
-                {errors.email}
-              </p>
+          <form className="mt-8 flex flex-col gap-5" onSubmit={handleSubmit} noValidate>
+            {errors.form ? (
+              <div
+                role="alert"
+                className="rounded-xl border border-destructive/25 bg-destructive/10 px-4 py-3 text-sm font-medium text-destructive"
+              >
+                {errors.form}
+              </div>
             ) : null}
-          </div>
 
-          <div className="grid gap-1">
-            <Label htmlFor="login-password" className={cn("text-[12px] font-semibold leading-none", errors.password ? "text-destructive" : "text-foreground")}>
-              Password
-            </Label>
-            <div className="relative">
+            <div className="grid gap-2">
+              <Label
+                htmlFor="login-email"
+                className={cn("text-sm font-medium", errors.email ? "text-destructive" : "text-foreground")}
+              >
+                Email
+              </Label>
               <Input
-                id="login-password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                value={password}
+                id="login-email"
+                type="email"
+                name="email"
+                value={email}
                 onChange={(e) => {
-                  setPassword(e.target.value);
-                  clearFieldError("password");
+                  setEmail(e.target.value);
+                  clearFieldError("email");
                 }}
-                onBlur={handleBlurPassword}
-                placeholder="Enter your password"
-                autoComplete="current-password"
-                aria-invalid={!!errors.password}
-                aria-describedby={errors.password ? "login-password-error" : undefined}
-                className={cn(inputClass(!!errors.password), "pr-10")}
+                onBlur={handleBlurEmail}
+                placeholder="Enter your email"
+                autoComplete="email"
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "login-email-error" : undefined}
+                className={inputClass(!!errors.email)}
               />
+              {errors.email ? (
+                <p id="login-email-error" className="text-xs leading-snug text-destructive" role="status">
+                  {errors.email}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="grid gap-2">
+              <Label
+                htmlFor="login-password"
+                className={cn("text-sm font-medium", errors.password ? "text-destructive" : "text-foreground")}
+              >
+                Password
+              </Label>
+              <div className="relative">
+                <Input
+                  id="login-password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    clearFieldError("password");
+                  }}
+                  onBlur={handleBlurPassword}
+                  placeholder="Enter your password"
+                  autoComplete="current-password"
+                  aria-invalid={!!errors.password}
+                  aria-describedby={errors.password ? "login-password-error" : undefined}
+                  className={cn(inputClass(!!errors.password), "pr-11")}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((p) => !p)}
+                  className="absolute right-1 top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                </button>
+              </div>
+              {errors.password ? (
+                <p id="login-password-error" className="text-xs leading-snug text-destructive" role="status">
+                  {errors.password}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  id="remember"
+                  checked={remember}
+                  onCheckedChange={(v) => setRemember(!!v)}
+                  className="size-4"
+                />
+                <Label htmlFor="remember" className="cursor-pointer text-sm font-normal text-muted-foreground">
+                  Remember me
+                </Label>
+              </div>
               <button
                 type="button"
-                onClick={() => setShowPassword((p) => !p)}
-                className="absolute right-1 top-1/2 flex size-9 min-h-9 min-w-9 -translate-y-1/2 touch-manipulation items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-foreground"
-                aria-label={showPassword ? "Hide password" : "Show password"}
+                className="text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
               >
-                {showPassword ? <EyeOff className="size-4" strokeWidth={1.75} /> : <Eye className="size-4" strokeWidth={1.75} />}
+                Forgot password
               </button>
             </div>
-            {errors.password ? (
-              <p id="login-password-error" className="text-[11px] font-medium text-destructive" role="status">
-                {errors.password}
-              </p>
-            ) : null}
-          </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-2 pt-0">
-            <div className="flex min-h-9 items-center gap-2">
-              <Checkbox
-                id="remember"
-                checked={remember}
-                onCheckedChange={(v) => setRemember(!!v)}
-                className="size-4 rounded border-border/80 data-[state=checked]:bg-foreground data-[state=checked]:text-background"
-              />
-              <Label htmlFor="remember" className="cursor-pointer text-[12px] font-normal leading-none text-muted-foreground">
-                Remember me
-              </Label>
-            </div>
-            <button
-              type="button"
-              className="min-h-9 shrink-0 touch-manipulation px-1 text-[11px] text-muted-foreground underline-offset-2 transition-colors hover:text-foreground hover:underline sm:text-[12px]"
+            <Button
+              type="submit"
+              className="h-10 w-full rounded-full bg-foreground text-sm font-semibold text-background hover:opacity-90"
             >
-              Forgot password
-            </button>
-          </div>
+              Sign in
+            </Button>
 
-          <Button
-            type="submit"
-            className="h-9 w-full rounded-full bg-foreground text-[13px] font-semibold text-background shadow-none transition-opacity hover:opacity-90"
-          >
-            Sign in
-          </Button>
+            <div className="relative py-1">
+              <div className="absolute inset-x-0 top-1/2 h-px bg-border" />
+              <span className="relative mx-auto block w-fit bg-background px-3 text-xs text-muted-foreground">
+                Or continue with
+              </span>
+            </div>
 
-          <div className="relative py-0">
-            <div className="absolute inset-x-0 top-1/2 h-px bg-border/80" />
-          </div>
+            <Button
+              type="button"
+              variant="outline"
+              className="h-10 w-full rounded-full border-border bg-background text-sm font-medium hover:bg-muted/40"
+            >
+              <GoogleIcon className="mr-2 size-4" />
+              Sign in with Google
+            </Button>
+          </form>
 
-          <Button
-            type="button"
-            variant="outline"
-            className="h-9 w-full rounded-full border-border/80 bg-background text-[13px] font-medium shadow-none transition-colors hover:bg-muted/20"
-          >
-            <GoogleIcon className="mr-2 size-4" />
-            Sign in with Google
-          </Button>
-        </form>
-
-        <p className="mt-3 text-center text-[11px] leading-relaxed text-muted-foreground sm:mt-4 sm:text-[12px]">
-          Don&apos;t have an account?{" "}
-          <Link href="/signup" className="font-semibold text-foreground underline-offset-2 hover:underline">
-            Sign up
-          </Link>
-        </p>
-      </div>
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            Don&apos;t have an account?{" "}
+            <Link href="/signup" className="font-semibold text-foreground underline-offset-4 hover:underline">
+              Sign up
+            </Link>
+          </p>
+        </div>
+      </AuthSplitLayout>
     </AuthPageShell>
   );
 }
