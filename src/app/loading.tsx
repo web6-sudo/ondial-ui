@@ -1,11 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton";
-
+/** Route-level fallback — full-screen loader is handled globally in `ProgressiveLoader`. */
 export default function Loading() {
-  return (
-    <div className="flex flex-1 flex-col gap-4 p-8">
-      <Skeleton className="h-10 w-56" />
-      <Skeleton className="h-4 w-full max-w-md" />
-      <Skeleton className="h-4 w-full max-w-sm" />
-    </div>
-  );
+  return null;
 }

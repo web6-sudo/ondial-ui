@@ -1,0 +1,48 @@
+.overlay {
+  --loader-bg: #e6e0ea;
+  --loader-counter: #a690cf;
+  --loader-progress-h: 8px;
+  --loader-counter-gap: 0.2rem;
+
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  will-change: transform;
+  background-color: var(--loader-bg);
+}
+
+.counterWrap {
+  position: absolute;
+  right: clamp(1.25rem, 4vw, 2.5rem);
+  bottom: calc(var(--loader-progress-h) + var(--loader-counter-gap));
+  line-height: 0.9;
+}
+
+.progressTrack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--loader-progress-h);
+  background: color-mix(in srgb, var(--loader-counter) 28%, var(--loader-bg));
+}
+
+.progressFill {
+  width: 100%;
+  height: 100%;
+  background: var(--loader-counter);
+  will-change: transform;
+}
+
+.counter {
+  font-size: clamp(4.5rem, 18vw, 9rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--loader-counter);
+  font-variant-numeric: tabular-nums;
+}
+
+.counter :global(number-flow-react) {
+  --number-flow-char-height: 1em;
+}
