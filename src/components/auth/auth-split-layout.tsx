@@ -13,12 +13,12 @@ type AuthSplitLayoutProps = {
 const navContentOffset =
   "scroll-pt-[calc(env(safe-area-inset-top,0px)+5.75rem)] pt-[calc(env(safe-area-inset-top,0px)+5.75rem)] md:scroll-pt-[calc(env(safe-area-inset-top,0px)+4.25rem)] md:pt-[calc(env(safe-area-inset-top,0px)+4.25rem)]";
 
-/** Equal inset top / right / bottom; flush on the split edge (matches shell frame). */
-const panelPad =
-  "box-border flex flex-col pl-0 pt-2 pr-2 pb-2 sm:pt-3 sm:pr-3 sm:pb-3 lg:pt-4 lg:pr-4 lg:pb-4";
+/** Top/bottom inset only — flush to the split edge (left) and shell edge (right). */
+const collagePanelPad =
+  "box-border flex flex-col pl-0 pr-1 pb-0 sm:pt-3 sm:pb-3 lg:pt-7 lg:pb-4 lg:pr-4" ;
 
 /**
- * Full-height 50/50 split: form column + inset rounded panel column.
+ * Form-heavy split on xl+: left column gets extra width; right fits the collage artboard.
  */
 export function AuthSplitLayout({
   children,
@@ -28,7 +28,7 @@ export function AuthSplitLayout({
   return (
     <div
       className={cn(
-        "grid h-full min-h-0 w-full flex-1 xl:grid-cols-2",
+        "grid h-full min-h-0 w-full flex-1 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]",
         fullScreen && "min-h-full",
         className,
       )}
@@ -52,8 +52,8 @@ export function AuthSplitLayout({
         className={cn("hidden h-full min-h-0 flex-col bg-background xl:flex")}
         aria-hidden
       >
-        <div className={cn("min-h-0 w-full flex-1 overflow-visible", panelPad)}>
-          <div className="flex h-full min-h-0 w-full items-center justify-center overflow-visible rounded-2xl">
+        <div className={cn("min-h-0 w-full flex-1 overflow-visible", collagePanelPad)}>
+          <div className="flex h-full min-h-0 w-full items-center justify-end overflow-visible">
             <AuthCollagePanel />
           </div>
         </div>
