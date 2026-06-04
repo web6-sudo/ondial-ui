@@ -28,7 +28,7 @@ export function AuthSplitLayout({
   return (
     <div
       className={cn(
-        "grid h-full min-h-0 w-full flex-1 md:grid-cols-2",
+        "grid h-full min-h-0 w-full flex-1 xl:grid-cols-2",
         fullScreen && "min-h-full",
         className,
       )}
@@ -42,14 +42,14 @@ export function AuthSplitLayout({
             "px-5 pb-5 sm:px-8 sm:pb-6 md:px-10 lg:px-14",
           )}
         >
-          <div className="flex w-full shrink-0 flex-col justify-start py-2 sm:py-4 md:min-h-full md:flex-1 md:justify-center md:py-6">
+          <div className="flex min-h-full w-full flex-1 flex-col justify-center py-2 sm:py-4 md:py-6">
             <div className="mx-auto w-full max-w-md">{children}</div>
           </div>
         </div>
       </div>
 
       <div
-        className={cn("hidden h-full min-h-0 flex-col bg-background md:flex")}
+        className={cn("hidden h-full min-h-0 flex-col bg-background xl:flex")}
         aria-hidden
       >
         <div className={cn("min-h-0 w-full flex-1 overflow-visible", panelPad)}>
