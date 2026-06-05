@@ -19,6 +19,8 @@ const nextConfig: NextConfig = {
     viewTransition: true,
   },
   images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
     remotePatterns: [
       {
         protocol: "https",
@@ -27,10 +29,6 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "i.pinimg.com",
-      },
-      {
-        protocol: "https",
-        hostname: "flagcdn.com",
       },
       {
         protocol: "https",

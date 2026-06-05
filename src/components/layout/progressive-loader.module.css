@@ -72,3 +72,106 @@
   color: var(--loader-fg);
   font-variant-numeric: tabular-nums;
 }
+
+.centerStage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.brandHeading {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: clamp(3.25rem, 12vw, 8.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--loader-line);
+}
+
+.headingStart,
+.headingEnd {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: flex-end;
+}
+
+.headingStart {
+  justify-content: flex-end;
+}
+
+.headingEnd {
+  justify-content: flex-start;
+}
+
+.letterMask {
+  display: block;
+  height: 1.05em;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.letter {
+  display: block;
+  line-height: 1.05;
+  will-change: transform;
+}
+
+.loaderBox {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: flex-end;
+  justify-content: center;
+  width: 0;
+  height: 1.05em;
+  overflow: hidden;
+}
+
+.loaderBoxInner {
+  position: relative;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+.growingImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.growingImageWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 100%;
+}
+
+.coverImage,
+.coverImageExtra {
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 767px) {
+  .brandHeading {
+    font-size: clamp(2.5rem, 16vw, 4.25rem);
+  }
+}

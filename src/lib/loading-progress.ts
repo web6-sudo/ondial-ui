@@ -1,8 +1,9 @@
 export type LoadProgressReporter = (value: number) => void;
 
-const IMAGE_TIMEOUT_MS = 4500;
+const IMAGE_TIMEOUT_MS = 2800;
+const WINDOW_LOAD_TIMEOUT_MS = 2200;
 const MAX_TRACKED_IMAGES = 48;
-const TICK_MS = 48;
+const TICK_MS = 32;
 
 function clampProgress(value: number) {
   return Math.min(100, Math.max(0, value));
@@ -10,6 +11,13 @@ function clampProgress(value: number) {
 
 function delay(ms: number) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T | undefined> {
+  return Promise.race([
+    promise.then((value) => value as T | undefined),
+    delay(ms).then(() => undefined),
+  ]);
 }
 
 function waitForDomReady(): Promise<void> {
@@ -103,14 +111,14 @@ export async function runLoadProgress(reporter: LoadProgressReporter): Promise<v
     }
   };
 
-  report(2);
-  await ramp(2, 12, 4);
+  report(4);
+  await ramp(4, 18, 3);
 
   await waitForDomReady();
-  await ramp(progress, 28, 6);
+  await ramp(progress, 36, 4);
 
   await waitForFonts();
-  await ramp(progress, 40, 5);
+  await ramp(progress, 52, 3);
 
   await new Promise<void>((resolve) => {
     requestAnimationFrame(() => {
@@ -119,7 +127,7 @@ export async function runLoadProgress(reporter: LoadProgressReporter): Promise<v
   });
 
   const imageStart = progress;
-  const imageEnd = 82;
+  const imageEnd = 88;
   let lastImageRatio = 0;
 
   await waitForVisibleImages((ratio) => {
@@ -131,17 +139,12 @@ export async function runLoadProgress(reporter: LoadProgressReporter): Promise<v
   });
 
   if (progress < imageEnd) {
-    await ramp(progress, imageEnd, Math.max(3, Math.round((1 - lastImageRatio) * 8)));
+    await ramp(progress, imageEnd, Math.max(2, Math.round((1 - lastImageRatio) * 5)));
   }
 
-  await waitForWindowLoad();
-  await ramp(progress, 94, 4);
+  await withTimeout(waitForWindowLoad(), WINDOW_LOAD_TIMEOUT_MS);
+  await ramp(progress, 96, 2);
 
-  await delay(TICK_MS);
-  report(97);
-  await delay(TICK_MS);
-  report(99);
-  await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
   report(100);
 }
 
@@ -168,18 +171,18 @@ export async function runNavigationProgress(reporter: LoadProgressReporter): Pro
     }
   };
 
-  report(4);
-  await ramp(4, 22, 3);
+  report(8);
+  await ramp(8, 32, 2);
 
   await new Promise<void>((resolve) => {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => resolve());
     });
   });
-  await ramp(progress, 48, 4);
+  await ramp(progress, 58, 3);
 
   const imageStart = progress;
-  const imageEnd = 88;
+  const imageEnd = 90;
   let lastImageRatio = 0;
 
   await waitForVisibleImages((ratio) => {
@@ -191,14 +194,11 @@ export async function runNavigationProgress(reporter: LoadProgressReporter): Pro
   });
 
   if (progress < imageEnd) {
-    await ramp(progress, imageEnd, Math.max(2, Math.round((1 - lastImageRatio) * 5)));
+    await ramp(progress, imageEnd, Math.max(2, Math.round((1 - lastImageRatio) * 4)));
   }
 
-  await waitForFonts();
-  await ramp(progress, 96, 3);
+  await withTimeout(waitForFonts(), 800);
+  await ramp(progress, 96, 2);
 
-  await delay(TICK_MS);
-  report(99);
-  await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
   report(100);
 }

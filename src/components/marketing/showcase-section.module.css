@@ -201,6 +201,7 @@
 .carouselCard {
   --w: var(--carousel-card-w, 17.5em);
   --ba: calc(1turn / var(--n));
+  position: relative;
   grid-area: 1 / 1;
   width: var(--w);
   aspect-ratio: 7 / 10;

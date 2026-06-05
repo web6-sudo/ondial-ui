@@ -1,4 +1,1 @@
-<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <title>ServiceNow</title>
-  <path fill="#81B5A1" d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2Zm-1.2 5.5v4.1L6.8 14.2l1.7 1.7 5.3-5.3V7.5H10.8Zm2.4 9 5.3-5.3-1.7-1.7-3.6 3.6V7.5h-2.4v9Z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>ServiceNow</title><path fill="#81b5a1" d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2m-1.2 5.5v4.1l-4 2.6 1.7 1.7 5.3-5.3V7.5zm2.4 9 5.3-5.3-1.7-1.7-3.6 3.6V7.5h-2.4v9Z"/></svg>

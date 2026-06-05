@@ -88,6 +88,7 @@ export function getLanguageRows(
   return rows;
 }
 
+/** Self-hosted WebP flags (generated via `npm run optimize:assets`). */
 export function flagImageUrl(countryCode: string): string {
-  return `https://flagcdn.com/w80/${countryCode}.png`;
+  return `/flags/${countryCode}.webp`;
 }

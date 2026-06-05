@@ -1,4 +1,1 @@
-<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <title>Close</title>
-  <path fill="#1E88E5" d="m4 16 8-12 8 12h-3.2l-4.8-7.2L7.2 16H4Z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Close</title><path fill="#1e88e5" d="m4 16 8-12 8 12h-3.2L12 8.8 7.2 16z"/></svg>

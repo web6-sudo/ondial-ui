@@ -91,7 +91,7 @@ function FooterCtaVisual() {
         );
       })}
       <div className="relative z-10 flex size-14 items-center justify-center rounded-2xl border border-border/60 bg-background shadow-md">
-        <Image src="/fav.svg" alt="" width={32} height={32} className="size-8" />
+        <Image src="/fav.svg" alt="" width={32} height={32} className="size-8" loading="lazy" />
       </div>
     </div>
   );
@@ -154,7 +154,7 @@ export function MarketingSiteFooter({ className, showCtaCard = true }: Marketing
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-12 lg:gap-y-10">
           <div className="lg:col-span-4 xl:col-span-3">
             <Link href="/" className="inline-flex items-center gap-2.5" prefetch>
-              <Image src="/fav.svg" alt="" width={28} height={28} className="size-7" />
+              <Image src="/fav.svg" alt="" width={28} height={28} className="size-7" loading="lazy" />
               <span className="text-lg font-semibold tracking-tight text-foreground">{APP_NAME}</span>
             </Link>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">

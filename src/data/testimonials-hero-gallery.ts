@@ -1,3 +1,5 @@
+import { testimonialPhotoPath } from "@/data/home-testimonial-images";
+
 export type TestimonialPhotoCard = {
   id: string;
   type: "photo" | "placeholder";
@@ -39,8 +41,7 @@ export const TESTIMONIAL_COL_GAP = 12;
 /** Vertical gap between cards in a column (artboard px → spacer height) */
 export const TESTIMONIAL_CARD_GAP = 10;
 
-const u = (id: string) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=400&h=500&q=80`;
+const u = (id: string) => testimonialPhotoPath(id);
 
 /** Column layout from `testimonials_hero_pixel_perfect.html` */
 export const TESTIMONIAL_HERO_COLUMNS: readonly TestimonialPhotoColumn[] = [

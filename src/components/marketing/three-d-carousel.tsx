@@ -1,27 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
+
+import { HOME_CAROUSEL_IMAGES } from "@/data/home-carousel-images";
 
 import styles from "./showcase-section.module.css";
 
-const DATA = [
-  "1540968221243-29f5d70540bf",
-  "1596135187959-562c650d98bc",
-  "1628944682084-831f35256163",
-  "1590013330451-3946e83e0392",
-  "1590421959604-741d0eec0a2e",
-  "1572613000712-eadc57acbecd",
-  "1570097192570-4b49a6736f9f",
-  "1620789550663-2b10e0080354",
-  "1617775623669-20bff4ffaa5c",
-  "1548600916-dc8492f8e845",
-  "1573824969595-a76d4365a2e6",
-  "1633936929709-59991b5fdd72",
-] as const;
-
-const CARD_COUNT = DATA.length;
+const CARD_COUNT = HOME_CAROUSEL_IMAGES.length;
 const MOBILE_MEDIA = "(max-width: 767px)";
 const AUTO_ROTATE_DURATION_S = 32;
 const AUTO_ROTATE_DURATION_REDUCED_S = 128;
@@ -83,7 +71,6 @@ export function ThreeDCarousel() {
   const lastDragTsRef = useRef(0);
   const velocityRef = useRef(0);
   const useMobileCssSpinRef = useRef(true);
-  const [imageWidth, setImageWidth] = useState(280);
 
   const stopInertia = () => {
     inertiaTweenRef.current?.kill();
@@ -213,16 +200,6 @@ export function ThreeDCarousel() {
     lastDragTsRef.current = now;
   };
 
-  useEffect(() => {
-    const mq = window.matchMedia(MOBILE_MEDIA);
-    const updateImageWidth = () => {
-      setImageWidth(mq.matches ? 220 : 280);
-    };
-    updateImageWidth();
-    mq.addEventListener("change", updateImageWidth);
-    return () => mq.removeEventListener("change", updateImageWidth);
-  }, []);
-
   useGSAP(
     () => {
       const ring = ringRef.current;
@@ -301,22 +278,28 @@ export function ThreeDCarousel() {
       }}
     >
       <div ref={ringRef} className={styles.carouselRing} style={ringStyle}>
-        {DATA.map((id, index) => {
+        {HOME_CAROUSEL_IMAGES.map((src, index) => {
           const cardStyle = {
             "--i": index,
           } as CSSProperties;
 
           return (
-            <img
-              key={id}
-              className={`carousel-card ${styles.carouselCard} ${styles.carouselImage}`}
+            <div
+              key={src}
+              className={`carousel-card ${styles.carouselCard}`}
               style={cardStyle}
-              src={`https://images.unsplash.com/photo-${id}?w=${imageWidth}&auto=format&fit=crop&q=80`}
-              alt="Jellyfish"
-              draggable={false}
-              decoding="async"
-              loading={index < 4 ? "eager" : "lazy"}
-            />
+            >
+              <Image
+                src={src}
+                alt=""
+                fill
+                sizes="(max-width: 767px) 220px, 280px"
+                className={styles.carouselImage}
+                priority={index === 0}
+                fetchPriority={index === 0 ? "high" : undefined}
+                loading="eager"
+              />
+            </div>
           );
         })}
       </div>

@@ -1,4 +1,1 @@
-<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <title>SugarCRM</title>
-  <path fill="#E61D24" d="M5 8.5 12 4l7 4.5v7L12 20l-7-4.5v-7Zm7 1.8-4.2 2.7v5.4L12 17.2l4.2-2.8v-5.4L12 10.3Z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>SugarCRM</title><path fill="#e61d24" d="M5 8.5 12 4l7 4.5v7L12 20l-7-4.5zm7 1.8L7.8 13v5.4l4.2-1.2 4.2-2.8V9z"/></svg>

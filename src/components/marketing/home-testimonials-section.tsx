@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { testimonialPhotoPath } from "@/data/home-testimonial-images";
 import {
   TESTIMONIAL_HERO_COLUMNS,
   TESTIMONIAL_HERO_COPY,
@@ -27,16 +28,12 @@ const sectionDescriptionClass =
 const sectionCtaClass =
   "inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90";
 
-function unsplashThumb(id: string) {
-  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=200&h=250&q=80`;
-}
-
 const MOBILE_TILES = [
-  { src: unsplashThumb("photo-1494790108377-be9c29b29330"), offset: "" },
-  { src: unsplashThumb("photo-1507003211169-0a1dd7228f2d"), offset: styles.mobileTileOffset },
-  { src: unsplashThumb("photo-1500648767791-00dcc994a43e"), offset: styles.mobileTileOffset2 },
+  { src: testimonialPhotoPath("photo-1494790108377-be9c29b29330"), offset: "" },
+  { src: testimonialPhotoPath("photo-1507003211169-0a1dd7228f2d"), offset: styles.mobileTileOffset },
+  { src: testimonialPhotoPath("photo-1500648767791-00dcc994a43e"), offset: styles.mobileTileOffset2 },
   { src: null, offset: "" },
-  { src: unsplashThumb("photo-1438761681033-6461ffad8d80"), offset: styles.mobileTileOffset },
+  { src: testimonialPhotoPath("photo-1438761681033-6461ffad8d80"), offset: styles.mobileTileOffset },
 ] as const;
 
 function PhotoCard({
@@ -85,7 +82,7 @@ function PhotoCard({
               height={Math.max(card.height, 200)}
               sizes="(min-width: 1280px) 96px, (min-width: 768px) 80px, 20vw"
               className={cn(styles.photoImage, monochrome && styles.photoImageMonochrome)}
-              unoptimized
+              loading="lazy"
             />
           ) : null}
         </div>
@@ -163,7 +160,9 @@ export function HomeTestimonialsSection() {
                     alt=""
                     width={80}
                     height={100}
+                    sizes="80px"
                     className={styles.photoImage}
+                    loading="lazy"
                   />
                 ) : null}
               </div>

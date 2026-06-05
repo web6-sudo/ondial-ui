@@ -41,7 +41,7 @@ function ManualLoggingIllustration({ className }: IllustrationProps) {
             {row.color ? (
               <div className={cn("absolute inset-y-0 left-0 rounded-full", row.color, row.fill)} />
             ) : null}
-            {row.badge ? (
+            {"badge" in row && row.badge ? (
               <span className="absolute -right-0.5 top-1/2 -translate-y-1/2 rounded-full bg-[#fde8e8] px-1.5 py-0.5 text-[7px] font-semibold leading-none text-[#9b1c1c]">
                 {row.badge}
               </span>

@@ -42,8 +42,9 @@ export function SupportedLanguagesSection() {
                     alt={itemIndex < row.length ? `${item.country} flag` : ""}
                     width={42}
                     height={42}
+                    sizes="42px"
                     className={styles.avatar}
-                    unoptimized
+                    loading="lazy"
                   />
                   <span className={styles.copy}>
                     <span className={styles.country}>{item.country}</span>
