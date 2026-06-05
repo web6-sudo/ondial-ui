@@ -1,0 +1,75 @@
+@keyframes problemBarGrow {
+  from {
+    transform: scaleY(0);
+    opacity: 0.6;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes problemLineDraw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes problemDotPop {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes problemLegendIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bar {
+  transform-origin: bottom center;
+  animation: problemBarGrow 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lineTrack {
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: problemLineDraw 0.85s cubic-bezier(0.4, 0, 0.2, 1) 0.45s both;
+}
+
+.dot {
+  animation: problemDotPop 0.4s cubic-bezier(0.34, 1.45, 0.64, 1) both;
+}
+
+.legend {
+  animation: problemLegendIn 0.5s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .lineTrack,
+  .dot,
+  .legend {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .lineTrack {
+    transform: scaleX(1);
+  }
+}

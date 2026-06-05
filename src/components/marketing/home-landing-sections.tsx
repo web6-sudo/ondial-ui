@@ -1,34 +1,12 @@
 import { SplitScreenSection, SplitSectionLink } from "@/components/marketing/split-screen-section";
 import { cn } from "@/lib/utils";
 
-const problemPoints = [
-  "Manual call queues eat hours your team should spend closing deals",
-  "Inconsistent scripts make every customer experience feel different",
-  "Scaling outreach means hiring faster—not sounding better",
-];
-
 const featureItems = [
   { title: "Natural voice agents", detail: "Human-like tone, pacing, and turn-taking on every call." },
   { title: "24/7 coverage", detail: "Reminders, surveys, and support without shift planning." },
   { title: "Live analytics", detail: "Transcripts, outcomes, and sentiment in one dashboard." },
   { title: "CRM-ready hooks", detail: "Sync outcomes to the tools your team already uses." },
 ];
-
-function ProblemList() {
-  return (
-    <ul className="mt-2 space-y-3">
-      {problemPoints.map((point) => (
-        <li key={point} className="flex gap-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-          <span
-            className="mt-2 size-1.5 shrink-0 rounded-full bg-[hsl(var(--section-accent-h)_var(--section-accent-s)_var(--section-accent-l))]"
-            aria-hidden
-          />
-          {point}
-        </li>
-      ))}
-    </ul>
-  );
-}
 
 function FeaturesList() {
   return (
@@ -43,26 +21,6 @@ function FeaturesList() {
         </li>
       ))}
     </ul>
-  );
-}
-
-export function HomeProblemSection() {
-  return (
-    <SplitScreenSection
-      id="problem"
-      aria-label="The problem we solve"
-      eyebrow="The problem"
-      title="Your team shouldn't live on the phone"
-      description="Outbound and inbound calls still run on spreadsheets, sticky notes, and burnt-out reps—while customers expect instant, consistent answers."
-      visualPosition="right"
-      tone="default"
-      visualLabel="Problem — UI placeholder"
-    >
-      <ProblemList />
-      <div className="mt-8">
-        <SplitSectionLink href="/about">See how teams switch</SplitSectionLink>
-      </div>
-    </SplitScreenSection>
   );
 }
 

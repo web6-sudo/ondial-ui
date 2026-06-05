@@ -1,7 +1,6 @@
-import {
-  HomeFeaturesSection,
-  HomeProblemSection,
-} from "@/components/marketing/home-landing-sections";
+import { HomeFeaturesSection } from "@/components/marketing/home-landing-sections";
+import { HomeProblemSection } from "@/components/marketing/home-problem-section";
+import { ComplianceTrustSection } from "@/components/marketing/compliance-trust-section";
 import { HomeTestimonialsSection } from "@/components/marketing/home-testimonials-section";
 import { IntegrationsSection } from "@/components/marketing/integrations-section";
 import { SocialProofLogosSection } from "@/components/marketing/social-proof-logos-section";
@@ -15,6 +14,7 @@ export default function HomePage() {
       <SocialProofLogosSection />
       <HomeProblemSection />
       <HomeFeaturesSection />
+      <ComplianceTrustSection />
       <IntegrationsSection />
       <SupportedLanguagesSection />
       <HomeTestimonialsSection />

@@ -14,7 +14,7 @@ export type SplitScreenSectionProps = {
   id?: string;
   "aria-label": string;
   eyebrow: string;
-  title: string;
+  title: ReactNode;
   description: string;
   /** Content column on the left on large screens when `visualPosition` is `right`. */
   visualPosition?: "left" | "right";
