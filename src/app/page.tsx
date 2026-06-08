@@ -1,6 +1,7 @@
 import { HomeFeaturesSection } from "@/components/marketing/home-landing-sections";
 import { HomeProblemSection } from "@/components/marketing/home-problem-section";
 import { ComplianceTrustSection } from "@/components/marketing/compliance-trust-section";
+import { HomeFaqSection } from "@/components/marketing/home-faq-section";
 import { HomeTestimonialsSection } from "@/components/marketing/home-testimonials-section";
 import { IntegrationsSection } from "@/components/marketing/integrations-section";
 import { SocialProofLogosSection } from "@/components/marketing/social-proof-logos-section";
@@ -18,6 +19,7 @@ export default function HomePage() {
       <IntegrationsSection />
       <SupportedLanguagesSection />
       <HomeTestimonialsSection />
+      <HomeFaqSection />
     </main>
   );
 }
