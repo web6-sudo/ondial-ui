@@ -39,6 +39,8 @@ export function AppLayoutShell({ children }: AppLayoutShellProps) {
   const showFooterCta = footerShowsCtaCard(pathname);
   const hideFooter = footerHidden(pathname);
   const authSplit = isAuthSplitRoute(pathname);
+  /** Page `transform` breaks `backdrop-filter` on industry hero blur layers. */
+  const industryDetailPage = pathname.startsWith("/industries/") && pathname !== "/industries";
 
   return (
     <SiteShell
@@ -52,21 +54,25 @@ export function AppLayoutShell({ children }: AppLayoutShellProps) {
           : "flex min-h-min flex-col"
       }
     >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={pathname}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{
-            duration: 0.3,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className={authSplit ? "flex h-full min-h-0 flex-1 flex-col" : "flex flex-1 flex-col"}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
+      {industryDetailPage ? (
+        <div className="flex flex-1 flex-col">{children}</div>
+      ) : (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{
+              duration: 0.3,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className={authSplit ? "flex h-full min-h-0 flex-1 flex-col" : "flex flex-1 flex-col"}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
+      )}
     </SiteShell>
   );
 }

@@ -1,35 +1,62 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import { MarketingPageBody } from "@/components/layout/marketing-page-body";
+import { IndustryHeroHeader } from "@/components/marketing/industry-hero-header";
 import { Button } from "@/components/ui/button";
+import {
+  getAllIndustrySlugs,
+  getIndustryBySlug,
+  getIndustryHeroContent,
+} from "@/data/industry-hero-content";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateStaticParams() {
+  return getAllIndustrySlugs().map((slug) => ({ slug }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const industry = getIndustryBySlug(slug);
+  if (!industry) return { title: "Industry" };
+
   return {
-    title: `Industry · ${slug}`,
-    description: `How Ondial helps in ${slug.replaceAll("-", " ")}.`,
+    title: industry.name,
+    description: industry.description,
   };
 }
 
 export default async function IndustryPage({ params }: Props) {
   const { slug } = await params;
+  const industry = getIndustryBySlug(slug);
+  if (!industry) notFound();
+
+  const hero = getIndustryHeroContent(industry);
 
   return (
-    <MarketingPageBody
-      title={`Industry: ${slug}`}
-      description="Industry-specific landing content. Fetch by slug from your CMS or static generation map."
-    >
-      <div className="flex flex-col gap-4">
-        <p className="text-sm text-muted-foreground">Try `/industries/healthcare` or any slug you support.</p>
-        <Button variant="outline" className="self-start" render={<Link href="/" prefetch />} nativeButton={false}>
-          Back home
-        </Button>
-      </div>
-    </MarketingPageBody>
+    <main className="flex flex-1 flex-col">
+      <IndustryHeroHeader {...hero} />
+
+      <section className="mx-auto w-full max-w-3xl px-4 pb-14 pt-2 text-center sm:px-6 sm:pb-16">
+        <p className="text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+          {industry.description}
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Button render={<Link href="/industries" prefetch />} nativeButton={false}>
+            Explore all industries
+          </Button>
+          <Button
+            variant="outline"
+            render={<Link href="/pricing" prefetch />}
+            nativeButton={false}
+          >
+            View pricing
+          </Button>
+        </div>
+      </section>
+    </main>
   );
 }
