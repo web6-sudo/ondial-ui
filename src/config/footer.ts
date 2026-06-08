@@ -19,7 +19,7 @@ export type FooterNavLink = {
 export const FOOTER_COMPANY_LINKS: readonly FooterNavLink[] = [
   { href: "/pricing", label: "Pricing" },
   { href: "/contact", label: "Contact us" },
-  { href: "/services", label: "Services" },
+  { href: "/industries", label: "Industries" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
 ] as const;
@@ -29,7 +29,7 @@ export const FOOTER_PLATFORM_LINKS: readonly FooterNavLink[] = [
   { href: "/pricing", label: "Pricing" },
   { href: "/#faq", label: "FAQs" },
   { href: "/#testimonials", label: "Testimonials" },
-  { href: "/services", label: "Services" },
+  { href: "/industries", label: "Industries" },
 ] as const;
 
 export const FOOTER_SOCIAL_LINKS: readonly FooterNavLink[] = [
@@ -47,7 +47,7 @@ export const FOOTER_CTA = {
   description:
     "Spin up a voice agent in minutes, test with real numbers, and go live when your script sounds right.",
   buttonLabel: "Get started now",
-  buttonHref: "/services",
+  buttonHref: "/industries",
 } as const;
 
 export const FOOTER_NEWSLETTER = {

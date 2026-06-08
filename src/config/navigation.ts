@@ -1,13 +1,16 @@
-/**
- * Example nav data — wire your own routes and labels here, then map in your header component.
- */
-export const MAIN_NAV = [
+import type { NavMenuKind } from "@/config/nav-menus";
+
+export type MainNavItem = {
+  href: string;
+  label: string;
+  menu?: NavMenuKind;
+};
+
+export const MAIN_NAV: readonly MainNavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
+  { href: "/services", label: "Services", menu: "services" },
+  { href: "/industries", label: "Industries", menu: "industries" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
+  { href: "/blog", label: "Resources", menu: "resources" },
   { href: "/login", label: "Login" },
 ] as const;
-
-export type MainNavItem = (typeof MAIN_NAV)[number];

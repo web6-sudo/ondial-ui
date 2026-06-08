@@ -4,22 +4,19 @@ import { AppLink as Link } from "@/components/ui/app-link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { ChevronRight, Menu, X } from "lucide-react";
+import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 
-import { MAIN_NAV } from "@/config/navigation";
+import { NavDropdownPortal } from "@/components/layout/nav-dropdown-portal";
+import { NavMegaDropdown } from "@/components/layout/nav-mega-dropdown";
+import { NAV_MENUS } from "@/config/nav-menus";
+import { NAV_DROPDOWN_CLOSE_DELAY_MS } from "@/lib/nav-dropdown-motion";
+import { MAIN_NAV, type MainNavItem } from "@/config/navigation";
 import { Button } from "@/components/ui/button";
+import { navItemIsActive } from "@/lib/nav-utils";
 import { cn } from "@/lib/utils";
 
-export type NavItem = {
-  href: string;
-  label: string;
-};
-
-function linkIsActive(pathname: string, href: string) {
-  if (href === "/") return pathname === "/";
-  return pathname === href || pathname.startsWith(`${href}/`);
-}
+export type NavItem = MainNavItem;
 
 function desktopLinkClassName(highlighted: boolean) {
   return cn(
@@ -74,18 +71,22 @@ const magneticPullSpring = (reduceMotion: boolean | null) =>
     : { stiffness: 180, damping: 14, mass: 0.12 };
 
 type DesktopMagneticNavProps = {
-  items: readonly NavItem[];
+  items: readonly MainNavItem[];
   pathname: string;
   reduceMotion: boolean | null;
 };
 
 function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNavProps) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const linkRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
+  const linkRefs = useRef<Map<string, HTMLElement>>(new Map());
+  const pointerInTriggerRef = useRef<string | null>(null);
+  const pointerInPanelRef = useRef(false);
+  const closeTimerRef = useRef<number | null>(null);
   const [hoveredHref, setHoveredHref] = useState<string | null>(null);
+  const [openMenuHref, setOpenMenuHref] = useState<string | null>(null);
 
-  const activeHref = items.find((item) => linkIsActive(pathname, item.href))?.href ?? null;
-  const pillHref = hoveredHref ?? activeHref;
+  const activeHref = items.find((item) => navItemIsActive(pathname, item))?.href ?? null;
+  const pillHref = openMenuHref ?? hoveredHref ?? activeHref;
 
   const pillLeft = useMotionValue(0);
   const pillWidth = useMotionValue(0);
@@ -153,9 +154,71 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
     syncPillToLink(pillHref);
   }, [pillHref, syncPillToLink, items]);
 
+  const cancelScheduledClose = useCallback(() => {
+    if (closeTimerRef.current !== null) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, []);
+
+  const scheduleClose = useCallback(() => {
+    cancelScheduledClose();
+    closeTimerRef.current = window.setTimeout(() => {
+      if (!pointerInTriggerRef.current && !pointerInPanelRef.current) {
+        setOpenMenuHref(null);
+      }
+      closeTimerRef.current = null;
+    }, NAV_DROPDOWN_CLOSE_DELAY_MS);
+  }, [cancelScheduledClose]);
+
+  const closeMenuNow = useCallback(() => {
+    cancelScheduledClose();
+    pointerInTriggerRef.current = null;
+    pointerInPanelRef.current = false;
+    setOpenMenuHref(null);
+  }, [cancelScheduledClose]);
+
+  const handleTriggerEnter = useCallback(
+    (href: string) => {
+      pointerInTriggerRef.current = href;
+      cancelScheduledClose();
+      setOpenMenuHref(href);
+      setHoveredHref(href);
+    },
+    [cancelScheduledClose],
+  );
+
+  const handleTriggerLeave = useCallback(
+    (href: string) => {
+      if (pointerInTriggerRef.current === href) {
+        pointerInTriggerRef.current = null;
+      }
+      scheduleClose();
+    },
+    [scheduleClose],
+  );
+
+  const handlePanelEnter = useCallback(() => {
+    pointerInPanelRef.current = true;
+    cancelScheduledClose();
+  }, [cancelScheduledClose]);
+
+  const handlePanelLeave = useCallback(() => {
+    pointerInPanelRef.current = false;
+    scheduleClose();
+  }, [scheduleClose]);
+
   useEffect(() => {
     setHoveredHref(null);
-  }, [pathname]);
+    setOpenMenuHref(null);
+    pointerInTriggerRef.current = null;
+    pointerInPanelRef.current = false;
+    cancelScheduledClose();
+  }, [pathname, cancelScheduledClose]);
+
+  useEffect(() => {
+    return () => cancelScheduledClose();
+  }, [cancelScheduledClose]);
 
   useEffect(() => {
     const onResize = () => syncPillToLink(pillHref, false);
@@ -179,6 +242,8 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
     (event: MouseEvent<HTMLDivElement>) => {
       if (reduceMotion) return;
 
+      if (openMenuHref) return;
+
       const nearest = findNearestHref(event.clientX, event.clientY);
       if (nearest) setHoveredHref(nearest);
 
@@ -193,7 +258,7 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
       pillOffsetX.set(clamp(nx * 6, 7));
       pillOffsetY.set(clamp(ny * 3, 4));
     },
-    [findNearestHref, pillOffsetX, pillOffsetY, reduceMotion]
+    [findNearestHref, openMenuHref, pillOffsetX, pillOffsetY, reduceMotion]
   );
 
   const clearHover = useCallback(() => {
@@ -202,12 +267,18 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
     pillOffsetY.set(0);
   }, [pillOffsetX, pillOffsetY]);
 
+  const openMenuItem = items.find((item) => item.href === openMenuHref && item.menu);
+  const openMenu = openMenuItem?.menu ? NAV_MENUS[openMenuItem.menu] : null;
+  const openTriggerEl = openMenuHref ? (linkRefs.current.get(openMenuHref) ?? null) : null;
+
   return (
     <div
       ref={trackRef}
       className={cn(navTrack, "relative")}
       onMouseMove={handleTrackMouseMove}
-      onMouseLeave={clearHover}
+      onMouseLeave={() => {
+        if (!openMenuHref) clearHover();
+      }}
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget as Node)) {
           clearHover();
@@ -229,8 +300,40 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
       />
 
       {items.map((item) => {
-        const active = linkIsActive(pathname, item.href);
+        const active = navItemIsActive(pathname, item);
         const highlighted = pillHref === item.href;
+        const menuOpen = openMenuHref === item.href;
+
+        if (item.menu) {
+          return (
+            <NavMegaDropdown
+              key={item.href}
+              ref={(node) => {
+                if (node) linkRefs.current.set(item.href, node);
+                else linkRefs.current.delete(item.href);
+              }}
+              label={item.label}
+              active={active}
+              highlighted={highlighted || menuOpen}
+              open={menuOpen}
+              triggerClassName={desktopLinkClassName(highlighted || menuOpen)}
+              onPointerEnter={() => handleTriggerEnter(item.href)}
+              onPointerLeave={() => handleTriggerLeave(item.href)}
+              onFocus={() => handleTriggerEnter(item.href)}
+              onBlur={(event) => {
+                if (
+                  menuOpen ||
+                  event.currentTarget
+                    .closest("[data-nav-dropdown-trigger]")
+                    ?.contains(event.relatedTarget as Node)
+                ) {
+                  return;
+                }
+                clearHover();
+              }}
+            />
+          );
+        }
 
         return (
           <Link
@@ -250,6 +353,15 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
           </Link>
         );
       })}
+
+      <NavDropdownPortal
+        open={Boolean(openMenuItem)}
+        menu={openMenu}
+        triggerEl={openTriggerEl}
+        onPointerEnter={handlePanelEnter}
+        onPointerLeave={handlePanelLeave}
+        onClose={closeMenuNow}
+      />
     </div>
   );
 }
@@ -368,9 +480,102 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
     },
   };
 
+  const [mobileExpandedHref, setMobileExpandedHref] = useState<string | null>(() => {
+    const activeMenu = items.find((item) => item.menu && navItemIsActive(pathname, item));
+    return activeMenu?.href ?? null;
+  });
+
+  useEffect(() => {
+    if (!mobileOpen) setMobileExpandedHref(null);
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    const activeMenu = items.find((item) => item.menu && navItemIsActive(pathname, item));
+    if (activeMenu) setMobileExpandedHref(activeMenu.href);
+  }, [pathname, items]);
+
+  const renderMobileSubLink = (href: string, label: string, slug: string) => {
+    const subActive = pathname === href || pathname.startsWith(`${href}/`);
+    return (
+      <Link
+        key={slug}
+        href={href}
+        prefetch
+        className={cn(
+          "flex min-h-9 items-center rounded-xl px-3 text-[0.8125rem] font-medium text-muted-foreground transition-colors",
+          subActive
+            ? "bg-background font-semibold text-foreground ring-1 ring-foreground/10"
+            : "hover:bg-muted/50 hover:text-foreground",
+        )}
+        aria-current={subActive ? "page" : undefined}
+      >
+        {label}
+      </Link>
+    );
+  };
+
   const renderMobileLinks = () =>
     items.map((item) => {
-      const active = linkIsActive(pathname, item.href);
+      const active = navItemIsActive(pathname, item);
+
+      if (item.menu) {
+        const menu = NAV_MENUS[item.menu];
+        const expanded = mobileExpandedHref === item.href;
+        const gridCols = item.menu === "industries" ? "sm:grid-cols-2" : "grid-cols-1";
+
+        return (
+          <motion.div key={item.href} variants={linkItemVariants} className="min-w-0">
+            <button
+              type="button"
+              className={cn(mobileLinkClassName(active), "text-left")}
+              aria-expanded={expanded}
+              onClick={() =>
+                setMobileExpandedHref((current) => (current === item.href ? null : item.href))
+              }
+            >
+              <span className="min-w-0 flex-1 text-pretty">{item.label}</span>
+              <ChevronDown
+                className={cn(
+                  "size-4 shrink-0 opacity-50 transition-transform duration-200",
+                  expanded && "rotate-180",
+                )}
+                aria-hidden
+              />
+            </button>
+            <AnimatePresence initial={false}>
+              {expanded ? (
+                <motion.div
+                  initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
+                  transition={{ duration: 0.22, ease: drawerEase }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-1 max-h-52 overflow-y-auto rounded-2xl border border-border/50 bg-muted/20 p-2 [-webkit-overflow-scrolling:touch]">
+                    <Link
+                      href={menu.overviewHref}
+                      prefetch
+                      className={cn(
+                        "mb-1 flex min-h-9 items-center rounded-xl px-3 text-[0.8125rem] font-semibold text-foreground",
+                        pathname === menu.overviewHref && "bg-background ring-1 ring-foreground/10",
+                      )}
+                      aria-current={pathname === menu.overviewHref ? "page" : undefined}
+                    >
+                      {menu.overviewLabel}
+                    </Link>
+                    <div className={cn("grid grid-cols-1 gap-0.5", gridCols)}>
+                      {menu.items.map((subItem) =>
+                        renderMobileSubLink(subItem.href, subItem.label, subItem.slug),
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+          </motion.div>
+        );
+      }
+
       return (
         <motion.div key={item.href} variants={linkItemVariants} className="min-w-0">
           <Link
