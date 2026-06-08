@@ -1,5 +1,6 @@
 import { ShieldCheck } from "lucide-react";
 
+import { TextReveal } from "@/components/ui/text-reveal";
 import {
   marketingEyebrowClass,
   marketingSectionContainerClass,
@@ -21,12 +22,13 @@ export function ComplianceTrustSection() {
       <div className={marketingSectionContainerClass}>
         <header className="mx-auto max-w-3xl text-center">
           <p className={cn("mb-4", marketingEyebrowClass)}>{COMPLIANCE_HEADING.eyebrow}</p>
-          <h2
+          <TextReveal
+            as="h2"
             id="compliance-title"
             className="text-balance text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.5rem]"
           >
             {COMPLIANCE_HEADING.title}
-          </h2>
+          </TextReveal>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             {COMPLIANCE_HEADING.description}
           </p>

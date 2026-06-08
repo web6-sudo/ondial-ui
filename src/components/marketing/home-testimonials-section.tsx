@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { AppLink as Link } from "@/components/ui/app-link";
+import { TextReveal } from "@/components/ui/text-reveal";
 import { testimonialPhotoPath } from "@/data/home-testimonial-images";
 import {
   TESTIMONIAL_HERO_COLUMNS,
@@ -181,12 +182,21 @@ export function HomeTestimonialsSection() {
         <header className={cn(styles.center, "text-center")}>
           <p className={cn("mb-3", marketingEyebrowClass)}>{TESTIMONIAL_HERO_COPY.eyebrow}</p>
           <h2 id="testimonials-hero-title" className={sectionHeadingClass}>
-            <span className="block text-foreground sm:whitespace-nowrap">
+            <TextReveal
+              as="span"
+              className="block text-foreground sm:whitespace-nowrap"
+              stagger={0.06}
+            >
               {TESTIMONIAL_HERO_COPY.titleBold}
-            </span>
-            <span className="block text-muted-foreground sm:whitespace-nowrap">
+            </TextReveal>
+            <TextReveal
+              as="span"
+              className="block text-muted-foreground sm:whitespace-nowrap"
+              delay={0.12}
+              stagger={0.06}
+            >
               {TESTIMONIAL_HERO_COPY.titleMuted}
-            </span>
+            </TextReveal>
           </h2>
           <p className={sectionDescriptionClass}>{TESTIMONIAL_HERO_COPY.description}</p>
           <Link

@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { TextReveal } from "@/components/ui/text-reveal";
 import { marketingEyebrowClass } from "@/config/marketing-layout";
 import { cn } from "@/lib/utils";
 import {
@@ -17,7 +18,9 @@ export function SupportedLanguagesSection() {
     <section id="languages" className={styles.section} aria-label="Supported languages">
       <header className={styles.header}>
         <p className={cn(marketingEyebrowClass, styles.eyebrowSpacing)}>Global coverage</p>
-        <h2 className={styles.title}>Languages We Support</h2>
+        <TextReveal as="h2" className={styles.title}>
+          Languages We Support
+        </TextReveal>
         <p className={styles.description}>
           Reach customers in their local language with natural AI voice conversations.
         </p>

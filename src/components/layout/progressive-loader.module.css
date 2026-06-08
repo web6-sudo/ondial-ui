@@ -91,10 +91,13 @@
   justify-content: center;
   white-space: nowrap;
   font-size: clamp(3.25rem, 12vw, 8.5rem);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--loader-line);
+  --loader-cube-size: 0.56em;
+  --loader-cube-gap: 0.16em;
+  --loader-cube-half: calc(var(--loader-cube-size) / 2);
 }
 
 .headingStart,
@@ -132,18 +135,20 @@
   z-index: 1;
   display: inline-flex;
   flex-shrink: 0;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   width: 0;
   height: 1.05em;
-  overflow: hidden;
+  margin-inline: var(--loader-cube-gap);
+  overflow: visible;
 }
 
 .loaderBoxInner {
   position: relative;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
+  width: var(--loader-cube-size);
+  height: var(--loader-cube-size);
+  overflow: visible;
 }
 
 .growingImage {
@@ -152,20 +157,59 @@
   left: 0;
   width: 0%;
   height: 100%;
-  overflow: hidden;
+  overflow: visible;
 }
 
-.growingImageWrap {
+.cubeScene {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 1em;
-  height: 100%;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+  transform: translateZ(0);
 }
 
-.coverImage,
-.coverImageExtra {
-  object-fit: cover;
+.cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.cubeFace {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  background: var(--loader-bg, #fafafa);
+}
+
+.cubeFaceFront {
+  transform: rotateX(0deg) translateZ(var(--loader-cube-half));
+}
+
+.cubeFaceTop {
+  transform: rotateX(90deg) translateZ(var(--loader-cube-half));
+}
+
+.cubeFaceBack {
+  transform: rotateX(180deg) translateZ(var(--loader-cube-half));
+}
+
+.cubeFaceBottom {
+  transform: rotateX(-90deg) translateZ(var(--loader-cube-half));
+}
+
+.cubeFaceImage {
+  object-fit: contain;
+  padding: 8%;
   pointer-events: none;
   user-select: none;
 }

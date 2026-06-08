@@ -4,6 +4,7 @@ import {
   ProblemCardIllustration,
   problemSectionAccentStyle,
 } from "@/components/marketing/home-problem-illustrations";
+import { TextReveal } from "@/components/ui/text-reveal";
 import {
   marketingEyebrowClass,
   marketingSectionContainerClass,
@@ -31,15 +32,19 @@ export function HomeProblemSection() {
       <div className={marketingSectionContainerClass}>
         <header className="mx-auto max-w-3xl text-center">
           <p className={cn("mb-4", marketingEyebrowClass)}>{HOME_PROBLEM_HEADING.eyebrow}</p>
-          <h2
+          <TextReveal
+            as="h2"
             id="problem-title"
             className="text-balance text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]"
-          >
-            Your team shouldn&apos;t live on the{" "}
-            <span className="text-[hsl(var(--section-accent-h)_var(--section-accent-s)_var(--section-accent-l))]">
-              phone
-            </span>
-          </h2>
+            segments={[
+              { text: "Your team shouldn't live on the" },
+              {
+                text: "phone",
+                className:
+                  "text-[hsl(var(--section-accent-h)_var(--section-accent-s)_var(--section-accent-l))]",
+              },
+            ]}
+          />
           <p className="mx-auto mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             {HOME_PROBLEM_HEADING.tagline}
           </p>

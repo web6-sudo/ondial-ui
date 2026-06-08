@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { AppLink as Link } from "@/components/ui/app-link";
 import { ArrowUpRight } from "lucide-react";
 
 import { FooterNewsletterForm } from "@/components/layout/footer-newsletter-form";

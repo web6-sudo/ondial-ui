@@ -1,12 +1,19 @@
 import Image from "next/image";
 import { forwardRef } from "react";
 
-import { LOADER_BRAND_IMAGES } from "@/data/loader-brand-images";
+import { LOADER_CUBE_FACE_COUNT, LOADER_CUBE_LOGO } from "@/data/loader-brand-images";
 
 import styles from "./progressive-loader.module.css";
 
 const START_LETTERS = ["O", "n"] as const;
 const END_LETTERS = ["D", "i", "a", "l"] as const;
+
+const CUBE_FACE_CLASS = [
+  styles.cubeFaceFront,
+  styles.cubeFaceTop,
+  styles.cubeFaceBack,
+  styles.cubeFaceBottom,
+] as const;
 
 type LoaderBrandRevealProps = {
   className?: string;
@@ -30,28 +37,24 @@ export const LoaderBrandReveal = forwardRef<HTMLDivElement, LoaderBrandRevealPro
           <div className={styles.loaderBox} data-loader-box>
             <div className={styles.loaderBoxInner}>
               <div className={styles.growingImage} data-loader-growing-image>
-                <div className={styles.growingImageWrap}>
-                  {LOADER_BRAND_IMAGES.extras.map((src, index) => (
-                    <Image
-                      key={src}
-                      src={src}
-                      alt=""
-                      fill
-                      sizes="20vw"
-                      className={styles.coverImageExtra}
-                      data-loader-cover-extra
-                      style={{ zIndex: 3 - index }}
-                      priority
-                    />
-                  ))}
-                  <Image
-                    src={LOADER_BRAND_IMAGES.main}
-                    alt=""
-                    fill
-                    sizes="20vw"
-                    className={styles.coverImage}
-                    priority
-                  />
+                <div className={styles.cubeScene}>
+                  <div className={styles.cube} data-loader-cube>
+                    {Array.from({ length: LOADER_CUBE_FACE_COUNT }, (_, index) => (
+                      <div
+                        key={CUBE_FACE_CLASS[index]}
+                        className={`${styles.cubeFace} ${CUBE_FACE_CLASS[index]}`}
+                      >
+                        <Image
+                          src={LOADER_CUBE_LOGO}
+                          alt=""
+                          fill
+                          sizes="80px"
+                          className={styles.cubeFaceImage}
+                          priority
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,8 +1,4 @@
-export const LOADER_BRAND_IMAGES = {
-  main: "/home/loader/main.webp",
-  extras: [
-    "/home/loader/extra-1.webp",
-    "/home/loader/extra-2.webp",
-    "/home/loader/extra-3.webp",
-  ],
-} as const;
+export const LOADER_CUBE_LOGO = "/home/logo-home.png";
+
+/** Number of faces on the X-axis flip cube. */
+export const LOADER_CUBE_FACE_COUNT = 4;

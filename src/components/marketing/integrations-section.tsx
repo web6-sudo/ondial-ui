@@ -1,4 +1,5 @@
 import { IntegrationsOrbitClient } from "@/components/marketing/integrations-orbit-client";
+import { TextReveal } from "@/components/ui/text-reveal";
 import { INTEGRATIONS_HEADING } from "@/data/integrations";
 import {
   marketingEyebrowClass,
@@ -22,12 +23,13 @@ export function IntegrationsSection() {
             <p className={cn("mx-auto mb-4 md:mx-0", marketingEyebrowClass)}>
               {INTEGRATIONS_HEADING.eyebrow}
             </p>
-            <h2
+            <TextReveal
+              as="h2"
               id="integrations-title"
               className="text-center text-balance text-3xl font-semibold leading-tight tracking-tight text-foreground max-md:pt-1 sm:text-4xl md:text-left lg:text-[2.5rem]"
             >
               {INTEGRATIONS_HEADING.title}
-            </h2>
+            </TextReveal>
             <p className="mx-auto mt-4 max-w-xl text-pretty text-center text-base leading-relaxed text-muted-foreground max-md:max-w-[21rem] sm:text-lg md:mx-0 md:max-w-xl md:text-left">
               {INTEGRATIONS_HEADING.description}
             </p>

@@ -1,6 +1,7 @@
 "use client";
 
 import gsap from "gsap";
+import { Kodchasan } from "next/font/google";
 import { useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
@@ -13,8 +14,16 @@ import {
   runLoaderExitAnimation,
 } from "@/lib/loader-mask-morph";
 
+import { useLoaderActions } from "@/components/providers/loader-context";
+
 import { LoaderBrandReveal } from "./loader-brand-reveal";
 import styles from "./progressive-loader.module.css";
+
+const loaderBrandFont = Kodchasan({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
 
 const MIN_VISIBLE_MS = 900;
 const MIN_COUNTER_RAMP_MS = 1600;
@@ -34,6 +43,7 @@ function easeOutCubic(t: number) {
 
 export function ProgressiveLoader() {
   const pathname = usePathname();
+  const { markLoaderStarted, markLoaderComplete } = useLoaderActions();
   const prefersReducedMotion = useReducedMotion();
   const clipId = useId().replace(/:/g, "");
   const panelRef = useRef<HTMLDivElement>(null);
@@ -70,6 +80,7 @@ export function ProgressiveLoader() {
     const maxWaitMs = isNavigation ? NAV_MAX_WAIT_MS : MAX_WAIT_MS;
     const runProgress = isNavigation ? runNavigationProgress : runLoadProgress;
 
+    markLoaderStarted();
     setShow(true);
     setProgress(0);
     setBarProgress(0);
@@ -93,6 +104,7 @@ export function ProgressiveLoader() {
 
     const finishExit = () => {
       if (cancelled) return;
+      markLoaderComplete();
       requestAnimationFrame(() => {
         setShow(false);
         requestAnimationFrame(() => {
@@ -222,7 +234,7 @@ export function ProgressiveLoader() {
       }
       document.body.style.overflow = previousOverflow;
     };
-  }, [pathname]);
+  }, [pathname, markLoaderStarted, markLoaderComplete]);
 
   useLayoutEffect(() => {
     brandContextRef.current?.revert();
@@ -277,7 +289,10 @@ export function ProgressiveLoader() {
         aria-label="Loading page"
       >
         {showBrandReveal ? (
-          <LoaderBrandReveal ref={brandRootRef} className={styles.centerStage} />
+          <LoaderBrandReveal
+            ref={brandRootRef}
+            className={`${styles.centerStage} ${loaderBrandFont.className}`}
+          />
         ) : null}
         <div className={styles.footer}>
           <div className={styles.bottomRow}>

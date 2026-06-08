@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 
+import { TextReveal } from "@/components/ui/text-reveal";
 import { marketingEyebrowClass } from "@/config/marketing-layout";
 import { cn } from "@/lib/utils";
 
@@ -119,14 +120,26 @@ export function SplitScreenSection({
       >
         {eyebrow}
       </p>
-      <h2
-        className={cn(
-          "max-w-xl text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-[2.35rem]",
-          isContrast ? "text-primary-foreground" : "text-foreground",
-        )}
-      >
-        {title}
-      </h2>
+      {typeof title === "string" ? (
+        <TextReveal
+          as="h2"
+          className={cn(
+            "max-w-xl text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-[2.35rem]",
+            isContrast ? "text-primary-foreground" : "text-foreground",
+          )}
+        >
+          {title}
+        </TextReveal>
+      ) : (
+        <h2
+          className={cn(
+            "max-w-xl text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-[2.35rem]",
+            isContrast ? "text-primary-foreground" : "text-foreground",
+          )}
+        >
+          {title}
+        </h2>
+      )}
       <p
         className={cn(
           "mt-4 max-w-lg text-pretty text-base leading-relaxed sm:text-lg",
