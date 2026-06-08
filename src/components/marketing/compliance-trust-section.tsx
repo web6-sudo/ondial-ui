@@ -1,73 +1,139 @@
-import { ShieldCheck } from "lucide-react";
+"use client";
 
+import { BadgeCheck, CreditCard, GlobeLock, ShieldCheck } from "lucide-react";
+import { motion, useInView, useReducedMotion, type Variants } from "framer-motion";
+import { useRef, type ElementType } from "react";
+
+import { ONDIAL_ACCENT_STYLE } from "@/components/marketing/split-screen-section";
 import { TextReveal } from "@/components/ui/text-reveal";
 import {
   marketingEyebrowClass,
   marketingSectionContainerClass,
   marketingSectionShellClass,
 } from "@/config/marketing-layout";
-import { COMPLIANCE_BADGES, COMPLIANCE_HEADING } from "@/data/compliance-badges";
+import {
+  COMPLIANCE_BADGES,
+  COMPLIANCE_HEADING,
+  type ComplianceBadgeId,
+} from "@/data/compliance-badges";
 import { cn } from "@/lib/utils";
 
+import styles from "./compliance-trust-section.module.css";
+
+const headingClass =
+  "text-balance text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]";
+
+const descriptionClass =
+  "mx-auto mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg";
+
+const badgeMeta: Record<
+  ComplianceBadgeId,
+  { icon: ElementType; iconClass: string }
+> = {
+  hipaa: { icon: ShieldCheck, iconClass: styles.iconHipaa },
+  gdpr: { icon: GlobeLock, iconClass: styles.iconGdpr },
+  "pci-dss": { icon: CreditCard, iconClass: styles.iconPci },
+  "soc-2": { icon: BadgeCheck, iconClass: styles.iconSoc },
+};
+
+const gridVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.07,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 export function ComplianceTrustSection() {
+  const prefersReducedMotion = useReducedMotion();
+  const gridRef = useRef<HTMLUListElement>(null);
+  const gridInView = useInView(gridRef, { once: true, amount: 0.12 });
+  const showCards = prefersReducedMotion || gridInView;
+
   return (
     <section
       id="compliance"
-      className={cn(
-        marketingSectionShellClass,
-        "border-y border-border/60 bg-muted/25",
-      )}
+      className={cn(marketingSectionShellClass, styles.section, "bg-background")}
+      style={ONDIAL_ACCENT_STYLE}
       aria-labelledby="compliance-title"
     >
       <div className={marketingSectionContainerClass}>
         <header className="mx-auto max-w-3xl text-center">
           <p className={cn("mb-4", marketingEyebrowClass)}>{COMPLIANCE_HEADING.eyebrow}</p>
+          <h2 id="compliance-title" className={headingClass}>
+            <TextReveal as="span" className="block" delay={0.05} stagger={0.07} inViewAmount={0.5}>
+              {COMPLIANCE_HEADING.titleLead}
+            </TextReveal>
+            <TextReveal
+              as="span"
+              className="block"
+              delay={0.12}
+              stagger={0.07}
+              inViewAmount={0.5}
+              segments={[{ text: COMPLIANCE_HEADING.titleAccent, className: styles.titleAccent }]}
+            />
+          </h2>
           <TextReveal
-            as="h2"
-            id="compliance-title"
-            className="text-balance text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.5rem]"
+            as="p"
+            className={descriptionClass}
+            delay={0.22}
+            stagger={0.028}
+            inViewAmount={0.4}
           >
-            {COMPLIANCE_HEADING.title}
-          </TextReveal>
-          <p className="mx-auto mt-4 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
             {COMPLIANCE_HEADING.description}
-          </p>
+          </TextReveal>
         </header>
 
-        <ul
-          className="mt-10 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-4 lg:gap-5"
+        <motion.ul
+          ref={gridRef}
+          className={cn(styles.grid, "mx-auto mt-10 max-w-5xl sm:mt-12 lg:mt-14")}
           aria-label="Compliance and security standards"
+          variants={gridVariants}
+          initial="hidden"
+          animate={showCards ? "visible" : "hidden"}
         >
-          {COMPLIANCE_BADGES.map((badge) => (
-            <li key={badge.id}>
-              <div
-                className={cn(
-                  "flex h-full flex-col items-center rounded-2xl border border-border/70 bg-background px-4 py-5 text-center shadow-sm",
-                  "transition-[border-color,box-shadow] duration-200 hover:border-border hover:shadow-md",
-                  "sm:px-5 sm:py-6",
-                )}
-              >
-                <span
-                  className="mb-3 flex size-11 items-center justify-center rounded-xl border border-border/60 bg-muted/50 text-foreground sm:size-12"
-                  aria-hidden
-                >
-                  <ShieldCheck className="size-5 sm:size-6" strokeWidth={1.75} />
-                </span>
-                <p className="text-sm font-semibold tracking-tight text-foreground sm:text-base">
-                  {badge.label}
-                </p>
-                <p className="mt-1.5 text-xs leading-snug text-muted-foreground sm:text-sm">
-                  {badge.detail}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
+          {COMPLIANCE_BADGES.map((badge) => {
+            const { icon: Icon, iconClass } = badgeMeta[badge.id];
 
-        <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed text-muted-foreground sm:text-sm">
-          AI-specific controls for voice transcripts, call recordings, and agent workflows—so
-          regulated teams can deploy with confidence.
-        </p>
+            return (
+              <motion.li
+                key={badge.id}
+                className={cn(styles.card, prefersReducedMotion && styles.cardMotionReduce)}
+                variants={cardVariants}
+              >
+                <span className={cn(styles.iconWrap, iconClass)} aria-hidden>
+                  <Icon className="size-5 sm:size-[1.35rem]" strokeWidth={1.75} />
+                </span>
+                <p className={styles.label}>{badge.label}</p>
+                <p className={styles.detail}>{badge.detail}</p>
+              </motion.li>
+            );
+          })}
+        </motion.ul>
+
+        <TextReveal
+          as="p"
+          className={styles.footnote}
+          delay={0.08}
+          stagger={0.022}
+          inViewAmount={0.35}
+        >
+          {COMPLIANCE_HEADING.footnote}
+        </TextReveal>
       </div>
     </section>
   );

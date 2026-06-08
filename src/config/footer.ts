@@ -24,6 +24,14 @@ export const FOOTER_COMPANY_LINKS: readonly FooterNavLink[] = [
   { href: "/blog", label: "Blog" },
 ] as const;
 
+export const FOOTER_PLATFORM_LINKS: readonly FooterNavLink[] = [
+  { href: "/#features", label: "Features" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/#faq", label: "FAQs" },
+  { href: "/#testimonials", label: "Testimonials" },
+  { href: "/services", label: "Services" },
+] as const;
+
 export const FOOTER_SOCIAL_LINKS: readonly FooterNavLink[] = [
   { href: "https://linkedin.com", label: "LinkedIn", external: true },
   { href: "https://x.com", label: "Twitter / X", external: true },

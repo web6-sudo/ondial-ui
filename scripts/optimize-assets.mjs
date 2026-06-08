@@ -48,7 +48,40 @@ const TESTIMONIAL_IDS = [
 ];
 
 const FLAG_CODES = [
-  "gb", "us", "in", "fr", "de", "es", "br", "sa", "jp", "kr", "cn", "it", "nl", "tr", "vn", "id", "ru", "th", "au", "ca",
+  "gb",
+  "us",
+  "in",
+  "fr",
+  "de",
+  "es",
+  "br",
+  "sa",
+  "jp",
+  "kr",
+  "cn",
+  "it",
+  "nl",
+  "tr",
+  "vn",
+  "id",
+  "ru",
+  "th",
+  "au",
+  "ca",
+  // Languages section accent flags
+  "za",
+  "mx",
+  "ar",
+  "co",
+  "be",
+  "at",
+  "ch",
+  "pt",
+  "tw",
+  "hk",
+  "ae",
+  "eg",
+  "bd",
 ];
 
 const LOADER_SOURCES = [

@@ -78,11 +78,10 @@ export function SiteShell({
         <main
           id="main-content"
           className={cn(
-            "relative z-0 flex min-h-0 min-w-0 flex-col bg-background outline-none",
+            "relative z-10 flex min-h-0 min-w-0 flex-col bg-background outline-none",
             /**
-             * Short page: `grow` lets `main` absorb space under the header so the footer (incl. bottom border)
-             * sits at the bottom of the shell. Tall page: footer follows content end (scroll). Bottom border
-             * lives on `SiteFooter` so it scrolls with content — not on this `h-full` scroller (would pin to viewport).
+             * Sticky footer reveal: main sits above the footer (z-10 + solid bg) until scroll
+             * exposes the footer pinned with `sticky bottom-0`.
              */
             "grow shrink-0 basis-auto",
             mainOverlap,

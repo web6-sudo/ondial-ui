@@ -1,0 +1,145 @@
+.section {
+  background: var(--background);
+}
+
+.titleAccent {
+  color: hsl(var(--section-accent-h) var(--section-accent-s) var(--section-accent-l));
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.card {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 0.75rem;
+  text-align: center;
+  transition:
+    transform 0.22s ease,
+    opacity 0.22s ease;
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-2px);
+  }
+
+  .card:hover .iconWrap {
+    transform: scale(1.04);
+  }
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.875rem;
+  border-radius: 0.875rem;
+  transition: transform 0.22s ease;
+}
+
+@media (min-width: 640px) {
+  .iconWrap {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+  }
+}
+
+.iconHipaa {
+  background: #e1f5ee;
+  color: #085041;
+}
+
+.iconGdpr {
+  background: #e6f1fb;
+  color: #0c447c;
+}
+
+.iconPci {
+  background: #faeeda;
+  color: #633806;
+}
+
+.iconSoc {
+  background: hsl(var(--section-accent-h) var(--section-accent-s) var(--section-accent-l) / 0.12);
+  color: hsl(var(--section-accent-h) var(--section-accent-s) calc(var(--section-accent-l) - 18%));
+}
+
+.label {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+@media (min-width: 640px) {
+  .label {
+    font-size: 1rem;
+  }
+}
+
+.detail {
+  margin: 0.375rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+@media (min-width: 640px) {
+  .detail {
+    font-size: 0.875rem;
+  }
+}
+
+.footnote {
+  margin: 2rem auto 0;
+  max-width: 42rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--muted-foreground);
+}
+
+@media (min-width: 640px) {
+  .footnote {
+    margin-top: 2.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+.cardMotionReduce {
+  transform: none !important;
+}
+
+.cardMotionReduce .iconWrap {
+  transform: none !important;
+}
