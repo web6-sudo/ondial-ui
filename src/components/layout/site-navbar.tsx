@@ -614,7 +614,7 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
             exit={{ opacity: 0 }}
             transition={drawerTransition}
             className={cn(
-              "pointer-events-auto fixed inset-0 z-[2147483000] touch-manipulation md:hidden",
+              "pointer-events-auto fixed inset-0 z-[2147483000] touch-manipulation lg:hidden",
               "cursor-default bg-black/50 backdrop-blur-md motion-reduce:transition-none"
             )}
             aria-label="Close navigation"
@@ -633,7 +633,7 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
             exit={{ x: "100%" }}
             transition={drawerTransition}
             className={cn(
-              "pointer-events-auto fixed right-0 top-0 z-[2147483001] flex h-dvh max-h-dvh w-[min(22.5rem,calc(100vw-12px))] flex-col touch-manipulation will-change-transform md:hidden",
+              "pointer-events-auto fixed right-0 top-0 z-[2147483001] flex h-dvh max-h-dvh w-[min(22.5rem,calc(100vw-12px))] flex-col touch-manipulation will-change-transform lg:hidden",
               "border-l border-white/30 bg-linear-to-b from-background/93 via-background/88 to-background/94",
               "pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] pl-5 pr-4",
               "shadow-[-28px_0_56px_-28px_rgba(15,23,42,0.42)] backdrop-blur-2xl backdrop-saturate-150 supports-backdrop-filter:from-background/82 supports-backdrop-filter:via-background/78 supports-backdrop-filter:to-background/85",
@@ -723,18 +723,18 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
           className
         )}
       >
-      <div className="pointer-events-none relative z-[1] mx-auto flex w-full justify-end px-2 sm:px-3 md:justify-center">
+      <div className="pointer-events-none relative z-[1] mx-auto flex w-full justify-end px-2 sm:px-3 lg:justify-center">
         <div
           className={cn(
             "pointer-events-auto relative z-[2] flex w-fit max-w-[min(100%,calc(100vw-1.25rem))] shrink-0 items-center rounded-full p-0.5 sm:p-1",
             "gap-0.5 sm:gap-1",
-            end && "md:gap-2",
+            end && "lg:gap-2",
             glassBar
           )}
         >
             <nav
               aria-label="Primary"
-              className="hidden min-h-0 flex-row flex-wrap items-stretch justify-center gap-1 sm:gap-1.5 md:flex"
+              className="hidden min-h-0 flex-row flex-wrap items-stretch justify-center gap-1 sm:gap-1.5 lg:flex"
             >
               <DesktopMagneticNav
                 items={allDesktopItems}
@@ -746,14 +746,14 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
             <div
               className={cn(
                 "flex shrink-0 items-center gap-2",
-                end ? navTrack : "md:contents"
+                end ? navTrack : "lg:contents"
               )}
             >
               {end}
               <button
                 type="button"
                 className={cn(
-                  "relative z-[100] inline-flex touch-manipulation md:hidden",
+                  "relative z-[100] inline-flex touch-manipulation lg:hidden",
                   "size-10 min-h-10 min-w-10 shrink-0 items-center justify-center rounded-full border-0 bg-transparent text-white ring-0",
                   "hover:bg-white/10 hover:shadow-[0_4px_20px_rgba(0,0,0,0.25)]",
                   "active:scale-[0.96] motion-reduce:active:scale-100",

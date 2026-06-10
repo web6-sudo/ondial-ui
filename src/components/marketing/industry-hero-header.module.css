@@ -1,165 +1,29 @@
-.hero {
-  width: 600px;
-  aspect-ratio: 2 / 1.1;
-  max-height: calc(100svh - 2rem);
-  position: relative;
-  overflow: hidden;
-  max-width: calc(100% - 2rem);
-  margin-inline: auto;
-}
-
-@media (orientation: portrait) {
-  .hero {
-    min-height: 330px;
-  }
-}
-
-/* ── assets layer ── sky jpg → title → tower png ── */
-.assets {
-  position: absolute;
-  inset: 0;
-  border-radius: 4rem;
-  overflow: hidden;
-}
-
-.assets img {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  translate: -50% 0;
-  height: 100%;
-  width: 660px;
-  max-width: none;
-  object-fit: cover;
-  object-position: center 43%;
-  user-select: none;
-  pointer-events: none;
-}
-
-.assets img:first-of-type {
-  filter: saturate(1.5) brightness(0.9);
-}
-
-.assets h1 {
-  position: absolute;
-  left: 50%;
-  top: 6%;
-  margin: 0;
-  font-size: clamp(3.5rem, 14vw, 8rem);
-  translate: -50% 0;
-  text-transform: uppercase;
-  font-family: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
-  color: white;
-  white-space: nowrap;
-  pointer-events: none;
-  line-height: 1;
-}
-
-/* ── blur layer — exact CodePen reference ── */
-.blur {
-  --layers: 5;
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.blur > div {
-  position: absolute;
-  inset: 0;
-}
-
+/* Blur layers — stacked backdrop-filter with linear bottom-to-top mask */
 .layer {
-  --blur: calc(sin(((var(--layers) - var(--index)) / var(--layers)) * 90deg) * 30);
-  --stop: calc(sin((var(--index) / var(--layers)) * 90deg) * 15);
+  --blur: calc((var(--index) / var(--layers)) * 18px);
+  --start: calc((1 - (var(--index) / var(--layers))) * 45%);
 
   position: absolute;
   inset: 0;
-  background: hsl(0 0% 60% / 0.05);
-  backdrop-filter: blur(calc(var(--blur) * 1px));
-  mask: radial-gradient(
-    150% 130% at 45% 90%,
-    #fff 15%,
-    #0000 calc((15 + var(--stop)) * 1%)
+  backdrop-filter: blur(var(--blur));
+  mask: linear-gradient(
+    to top,
+    #fff 0%,
+    #fff var(--start),
+    #0000 calc(var(--start) + 25%)
   );
 }
 
-/* ── content overlay ── */
-.content {
-  min-height: 32%;
+/* Smooth linear gradient overlay — dark at bottom, fades cleanly upward */
+.blurOverlay {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  color: white;
-  display: grid;
-  gap: 0.2rem;
-  place-items: center;
-  align-content: center;
-  padding-bottom: 0.5rem;
-  z-index: 2;
+  inset: 0;
   pointer-events: none;
-}
-
-.contentRow {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: clamp(0.95rem, 2.8vw, 1.2rem);
-  position: relative;
-}
-
-.contentRow:first-of-type::after {
-  content: '';
-  position: absolute;
-  bottom: calc(100% + 1rem);
-  left: 50%;
-  width: 6ch;
-  background: white;
-  height: 1px;
-  translate: -50% 0;
-}
-
-.contentRow:last-of-type {
-  opacity: 0.8;
-  font-size: clamp(0.85rem, 2.8vw, 1rem);
-}
-
-.icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  flex-shrink: 0;
-}
-
-/* ── page section wrapper ── */
-.section {
-  width: 100%;
-  padding: 1.5rem 1rem 3rem;
-}
-
-@media (min-width: 640px) {
-  .section {
-    padding: 2rem 1.5rem 4rem;
-  }
-}
-
-.backLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-bottom: 1.25rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--muted-foreground);
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-
-.backLink:hover {
-  color: var(--foreground);
-}
-
-.body {
-  margin-inline: auto;
-  max-width: 42rem;
-  text-align: center;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.38) 25%,
+    rgba(0, 0, 0, 0.10) 50%,
+    transparent 70%
+  );
 }
