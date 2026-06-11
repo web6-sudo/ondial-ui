@@ -10,9 +10,11 @@ import {
   ShieldCheck, Play,
   Brain, Wrench, CheckCheck, UserPlus, Bell, Tag, Search,
   Flame, Star, RotateCcw, PhoneCall, ListChecks, CalendarCheck,
+  ArrowRight,
 } from "lucide-react";
 import type { IndustryPageContent } from "@/data/industry-hero-content";
 import { useDemoSync } from "@/components/providers/demo-sync-context";
+import { TextReveal } from "@/components/ui/text-reveal";
 import { marketingEyebrowClass } from "@/config/marketing-layout";
 import { cn } from "@/lib/utils";
 
@@ -1085,13 +1087,101 @@ function HowItWorks() {
 }
 
 /* ─── Shared animation helpers ───────────────────────────── */
+const EASE_OUT = [0.22, 1, 0.36, 1] as const;
+
 const fadeUp: Variants = {
   hidden:  { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE_OUT } },
 };
 const stagger: Variants = {
   hidden:  {},
   visible: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
+};
+
+const cardGridVariants: Variants = {
+  hidden:  {},
+  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.14 } },
+};
+const cardRevealVariants: Variants = {
+  hidden:  { opacity: 0, y: 28, scale: 0.96 },
+  visible: {
+    opacity: 1, y: 0, scale: 1,
+    transition: { duration: 0.52, ease: EASE_OUT, staggerChildren: 0.05, delayChildren: 0.1 },
+  },
+};
+const USE_CASE_SOFT_COLORS = [
+  { iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]" },
+  { iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]" },
+  { iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]" },
+  { iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]" },
+  { iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]" },
+] as const;
+
+/** Shared S-curve shape (300 × 340) — used on every outcome card */
+const OUTCOME_SHAPE = {
+  width: 300,
+  height: 340,
+  path: "M 176 10 L 254 10 A 36 36 0 0 1 290 46 L 290 74 A 36 36 0 0 1 254 110 L 140 110 L 140 110 L 140 46 A 36 36 0 0 1 176 10 Z M 46 100 L 140 100 L 140 100 L 140 240 L 140 240 L 46 240 A 36 36 0 0 1 10 204 L 10 136 A 36 36 0 0 1 46 100 Z M 140 220 L 254 220 A 36 36 0 0 1 290 256 L 290 294 A 36 36 0 0 1 254 330 L 176 330 A 36 36 0 0 1 140 294 L 140 220 L 140 220 Z M 140 64 C 140 91 132.8 100 104 100 H 140 Z M 140 146 C 140 119 147.2 110 176 110 H 140 Z M 140 184 C 140 211 147.2 220 176 220 H 140 Z M 140 276 C 140 249 132.8 240 104 240 H 140 Z",
+  gradFrom: { x: 300, y: 0 },
+  gradTo: { x: 0, y: 340 },
+} as const;
+
+/** Natural shape proportions — avoids horizontal squash */
+const OUTCOME_CARD_ASPECT = "300 / 340";
+
+const OUTCOME_STAT_SHADOW =
+  "[text-shadow:0_1px_4px_rgba(255,255,255,0.95),0_0_18px_rgba(255,255,255,0.85),0_2px_8px_rgba(255,255,255,0.5)]";
+const OUTCOME_BODY_SHADOW =
+  "[text-shadow:0_1px_3px_rgba(255,255,255,0.95),0_0_14px_rgba(255,255,255,0.8)]";
+const OUTCOME_SUB_SHADOW =
+  "[text-shadow:0_1px_2px_rgba(255,255,255,0.9),0_0_10px_rgba(255,255,255,0.75)]";
+
+const OUTCOME_CARD_THEMES = [
+  {
+    softBg: "#EEEDFE",
+    accent: "text-[#4338CA]",
+    stops: [
+      { offset: "0%", color: "#4338CA" },
+      { offset: "45%", color: "#7C75E0" },
+      { offset: "78%", color: "#C7D2FE" },
+      { offset: "100%", color: "#EEEDFE" },
+    ],
+  },
+  {
+    softBg: "#E1F5EE",
+    accent: "text-[#064E3B]",
+    stops: [
+      { offset: "0%", color: "#064E3B" },
+      { offset: "45%", color: "#1D9E75" },
+      { offset: "78%", color: "#D1FAE5" },
+      { offset: "100%", color: "#E1F5EE" },
+    ],
+  },
+  {
+    softBg: "#FAEEDA",
+    accent: "text-[#78350F]",
+    stops: [
+      { offset: "0%", color: "#78350F" },
+      { offset: "45%", color: "#C2710C" },
+      { offset: "78%", color: "#FEF3C7" },
+      { offset: "100%", color: "#FAEEDA" },
+    ],
+  },
+  {
+    softBg: "#E6F1FB",
+    accent: "text-[#1E3A8A]",
+    stops: [
+      { offset: "0%", color: "#1E3A8A" },
+      { offset: "45%", color: "#2563EB" },
+      { offset: "78%", color: "#DBEAFE" },
+      { offset: "100%", color: "#E6F1FB" },
+    ],
+  },
+] as const;
+
+const cardTextVariants: Variants = {
+  hidden:  { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.38, ease: EASE_OUT } },
 };
 
 function FadeSection({ children, className }: { children: React.ReactNode; className?: string }) {
@@ -1107,21 +1197,60 @@ function FadeSection({ children, className }: { children: React.ReactNode; class
   );
 }
 
+/* ─── Full-width dot background for industry page sections ─ */
+function IndustryDotBackground() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 -z-10 text-foreground/15"
+      style={{
+        backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)",
+        backgroundSize: "14px 14px",
+        maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent), linear-gradient(to bottom, transparent, black 8%, black 92%, transparent)",
+        WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent), linear-gradient(to bottom, transparent, black 8%, black 92%, transparent)",
+        maskComposite: "intersect",
+        WebkitMaskComposite: "source-in",
+      }}
+    />
+  );
+}
+
 /* ─── Separators / labels — site-matched ─────────────────── */
-function Sep() { return <hr className="border-0 border-t border-border/40 my-12" />; }
 function Eyebrow({ children }: { children: React.ReactNode }) {
+  if (typeof children === "string") {
+    return (
+      <TextReveal
+        as="p"
+        className={cn(marketingEyebrowClass, "mb-4")}
+        delay={0}
+        stagger={0.14}
+        inViewAmount={0.45}
+      >
+        {children}
+      </TextReveal>
+    );
+  }
   return <motion.p variants={fadeUp} className={cn(marketingEyebrowClass, "mb-4")}>{children}</motion.p>;
 }
 function SectionHead({ title, sub }: { title: React.ReactNode; sub: string }) {
+  const headingClass =
+    "text-balance text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl mb-3";
+  const subClass = "text-base leading-relaxed text-muted-foreground mb-8 max-w-xl";
+
   return (
     <>
-      <motion.h2 variants={fadeUp}
-        className="text-balance text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl mb-3">
-        {title}
-      </motion.h2>
-      <motion.p variants={fadeUp} className="text-base leading-relaxed text-muted-foreground mb-8 max-w-xl">
+      {typeof title === "string" ? (
+        <TextReveal as="h2" className={headingClass} delay={0.05} stagger={0.055} inViewAmount={0.35}>
+          {title}
+        </TextReveal>
+      ) : (
+        <motion.h2 variants={fadeUp} className={headingClass}>
+          {title}
+        </motion.h2>
+      )}
+      <TextReveal as="p" className={subClass} delay={0.2} stagger={0.028} inViewAmount={0.3}>
         {sub}
-      </motion.p>
+      </TextReveal>
     </>
   );
 }
@@ -1131,20 +1260,38 @@ export function IndustryPageSections({ content, industryName }: {
   content: IndustryPageContent;
   industryName: string;
 }) {
+  const prefersReducedMotion = useReducedMotion();
+  const useCaseGridRef = useRef<HTMLDivElement>(null);
+  const useCaseGridInView = useInView(useCaseGridRef, { once: true, amount: 0.08 });
+  const showUseCaseCards = prefersReducedMotion || useCaseGridInView;
+
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 pb-20 pt-8">
+    <div className="relative isolate w-full min-w-0">
+      <IndustryDotBackground />
+      <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
 
       {/* ── Headline + CTAs ── */}
-      <FadeSection className="mb-10">
-        <motion.h1 variants={fadeUp}
-          className="text-balance text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.5rem] mb-4">
-          {content.headline}{" "}
-          <span className="text-[#534AB7]">{content.headlineHighlight}</span>
-        </motion.h1>
-        <motion.p variants={fadeUp}
-          className="text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg max-w-xl mb-7">
+      <FadeSection className="pt-12 sm:pt-16 pb-8">
+        <TextReveal
+          as="h1"
+          className="text-balance text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-[2.5rem] mb-4"
+          delay={0.05}
+          stagger={0.05}
+          inViewAmount={0.4}
+          segments={[
+            { text: `${content.headline} ` },
+            { text: content.headlineHighlight, className: "text-[#534AB7]" },
+          ]}
+        />
+        <TextReveal
+          as="p"
+          className="text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg max-w-xl mb-7"
+          delay={0.22}
+          stagger={0.028}
+          inViewAmount={0.35}
+        >
           {content.subheadline}
-        </motion.p>
+        </TextReveal>
         <motion.div variants={fadeUp} className="flex gap-3 flex-wrap">
           <Link href="/pricing"
             className="inline-flex items-center gap-2 rounded-full bg-[#534AB7] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#4338CA]">
@@ -1158,101 +1305,225 @@ export function IndustryPageSections({ content, industryName }: {
       </FadeSection>
 
       {/* ── Stats strip ── */}
-      <FadeSection className="mb-12">
+      <FadeSection className="pb-12 sm:pb-16">
         <motion.div variants={stagger}
-          className="grid grid-cols-2 sm:grid-cols-4 border border-border/60 rounded-2xl overflow-hidden divide-x divide-y sm:divide-y-0 divide-border/60">
+          className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           {content.stats.map((s, i) => (
-            <motion.div key={i} variants={fadeUp} className="px-5 py-6 text-center bg-background">
-              <p className="text-[2rem] font-semibold text-foreground leading-none mb-1">{s.value}</p>
-              <p className="text-xs text-muted-foreground tracking-wide">{s.label}</p>
+            <motion.div key={i} variants={fadeUp}
+              className="px-5 py-6 text-center bg-white border border-border/60 rounded-2xl shadow-sm hover:shadow-md transition-all relative overflow-hidden group duration-300">
+              {/* Subtle top accent gradient */}
+              <span className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[#534AB7]/40 to-[#534AB7] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <p className="text-[2rem] sm:text-[2.25rem] font-semibold text-foreground leading-none mb-2">
+                {s.value}
+              </p>
+              <p className="text-xs sm:text-[13px] text-muted-foreground font-medium tracking-wide">
+                {s.label}
+              </p>
             </motion.div>
           ))}
         </motion.div>
       </FadeSection>
 
-      <Sep />
-
       {/* ── How it works simulation ── */}
-      <FadeSection className="mb-12">
+      <FadeSection className="py-12 sm:py-16">
         <HowItWorks />
       </FadeSection>
 
-      <Sep />
-
       {/* ── Use cases ── */}
-      <FadeSection>
+      <FadeSection className="py-12 sm:py-16">
+        {/*
+          SVG clip-path for use-case card inner shape.
+          Original path viewBox: x 50→370 (w=320), y 175→340 (h=165)
+          Normalised: Xn=(x-50)/320  Yn=(y-175)/165
+          Container must keep aspect-ratio 320/165 so curves aren't distorted.
+        */}
+        <svg width="0" height="0" aria-hidden className="absolute overflow-hidden">
+          <defs>
+            <clipPath id="uc-inner-clip" clipPathUnits="objectBoundingBox">
+              <path d="M0,0.485 V0.121 Q0,0 0.0625,0 H0.719 Q0.781,0 0.781,0.103 V0.273 Q0.781,0.382 0.844,0.382 H0.953 Q1,0.382 1,0.473 V0.879 Q1,1 0.938,1 H0.059 Q0,1 0,0.879 Z" />
+            </clipPath>
+          </defs>
+        </svg>
+
         <Eyebrow>Use cases</Eyebrow>
         <SectionHead
           title="What the agent handles"
           sub="Every routine call — handled automatically, perfectly, every time."
         />
-        <motion.div variants={stagger}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-2">
+
+        <motion.div
+          ref={useCaseGridRef}
+          variants={cardGridVariants}
+          initial="hidden"
+          animate={showUseCaseCards ? "visible" : "hidden"}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-4 justify-items-center"
+        >
           {content.useCases.map((uc, i) => (
-            <motion.div key={i} variants={fadeUp}
-              className="border border-border/60 rounded-2xl p-5 bg-background hover:shadow-md transition-shadow group">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${uc.iconBg}`}>
-                <Icon name={uc.icon} className={`w-5 h-5 ${uc.iconColor}`} />
+            <motion.div key={i} variants={cardRevealVariants}
+              className="group relative w-full max-w-[340px] bg-white border border-border/60 rounded-2xl overflow-hidden hover:shadow-md transition-shadow px-3 pt-2.5 pb-4">
+
+              <div className="relative w-full aspect-320/165">
+                <motion.div
+                  variants={cardTextVariants}
+                  className={cn("absolute inset-0", uc.iconBg)}
+                  style={{ clipPath: "url(#uc-inner-clip)" }}
+                />
+
+                <motion.div variants={cardTextVariants} className="absolute top-2.5 right-3.5 z-20">
+                  <Icon name={uc.icon} className={cn("w-6.5 h-6.5", uc.iconColor)} />
+                </motion.div>
+
+                <motion.div variants={cardTextVariants} className="absolute top-0.5 left-0.5 w-[72%] z-10 px-3 pt-2.5 pr-1">
+                  <p className={cn("text-sm sm:text-[15px] mt-1 ml-1.5 font-semibold leading-tight", uc.iconColor)}>
+                    {uc.title}
+                  </p>
+                </motion.div>
+
+                <motion.div variants={cardTextVariants} className="absolute inset-x-0 bottom-0 top-[38%] z-10 px-3.5 pt-1.5 pb-3">
+                  <p className="text-[12px] sm:text-[13px] text-foreground/70 leading-relaxed">
+                    {uc.description}
+                  </p>
+                </motion.div>
               </div>
-              <p className="text-sm font-semibold text-foreground mb-1.5">{uc.title}</p>
-              <p className="text-[13px] text-muted-foreground leading-relaxed">{uc.description}</p>
+
             </motion.div>
           ))}
         </motion.div>
       </FadeSection>
 
-      <Sep />
-
       {/* ── How it helps ── */}
-      <FadeSection>
+      <FadeSection className="py-12 sm:py-16">
+        {/*
+          Benefit card clip-path — viewBox 0→150 (w=150), 0→50 (h=50)
+          Normalised: Xn=x/150  Yn=y/50
+        */}
+        <svg width="0" height="0" aria-hidden className="absolute overflow-hidden">
+          <defs>
+            <clipPath id="benefit-card-clip" clipPathUnits="objectBoundingBox">
+              <path d="M0,0.8 V0.4 Q0,0.3 0.033,0.3 Q0.1,0.3 0.1,0.1 Q0.1,0 0.133,0 H0.933 Q1,0 1,0.2 V0.6 Q1,0.7 0.967,0.7 Q0.9,0.7 0.9,0.9 Q0.9,1 0.867,1 H0.067 Q0,1 0,0.8 Z" />
+            </clipPath>
+          </defs>
+        </svg>
+
         <Eyebrow>How OnDial helps</Eyebrow>
         <SectionHead
           title={<>Built for <span className="text-[#534AB7]">{industryName.toLowerCase()}</span> teams</>}
           sub="From small teams to large operations — fits right into your workflow."
         />
-        <motion.div variants={stagger} className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2">
-          {content.benefits.map((b, i) => (
-            <motion.div key={i} variants={fadeUp}
-              className="flex gap-4 items-start p-5 border border-border/60 rounded-2xl bg-background hover:shadow-md transition-shadow">
-              <div className="w-10 h-10 rounded-xl bg-[#EEEDFE] flex items-center justify-center shrink-0 mt-0.5">
-                <Icon name={b.icon} className="w-5 h-5 text-[#534AB7]" />
+        <motion.div variants={cardGridVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {content.benefits.map((b, i) => {
+            const colors = USE_CASE_SOFT_COLORS[i % USE_CASE_SOFT_COLORS.length];
+            return (
+            <motion.div key={i} variants={cardRevealVariants}
+              className="group relative w-full bg-white border border-border/60 rounded-2xl overflow-hidden hover:shadow-md transition-shadow px-2.5 py-2.5">
+
+              <div className="relative w-full aspect-150/50">
+                <motion.div
+                  variants={cardTextVariants}
+                  className={cn("absolute inset-0", colors.iconBg)}
+                  style={{ clipPath: "url(#benefit-card-clip)" }}
+                />
+
+                <motion.div variants={cardTextVariants} className="absolute top-2 left-2 z-20">
+                  <Icon name={b.icon} className={cn("w-6.5 h-6.5", colors.iconColor)} />
+                </motion.div>
+                <motion.div variants={cardTextVariants} className="absolute bottom-0 right-0 bg-black w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-full flex items-center justify-center z-20">
+                  
+                  <ArrowRight className="w-4 h-4 text-white rotate-30" />
+                </motion.div>
+                <motion.div variants={cardTextVariants} className="absolute top-2 left-[18%] right-2 z-10">
+                  <p className={cn("text-sm sm:text-[15px] font-semibold mt-1.5 leading-tight", colors.iconColor)}>
+                    {b.title}
+                  </p>
+                </motion.div>
+
+                <motion.div variants={cardTextVariants} className="absolute inset-x-2 bottom-2 top-[42%] z-10">
+                  <p className="text-[12px] sm:text-[13px] text-foreground/70 px-3 leading-relaxed">
+                    {b.description}
+                  </p>
+                </motion.div>
               </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground mb-1">{b.title}</p>
-                <p className="text-[13px] text-muted-foreground leading-relaxed">{b.description}</p>
-              </div>
+
             </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
       </FadeSection>
 
-      <Sep />
-
       {/* ── Outcomes ── */}
-      <FadeSection>
+      <FadeSection className="py-12 sm:py-16">
         <Eyebrow>Outcomes</Eyebrow>
         <SectionHead
           title={<>Results {industryName.toLowerCase()} teams see</>}
           sub="Measured across 500+ businesses using OnDial."
         />
-        <motion.div variants={stagger} className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-2">
-          {content.outcomes.map((o, i) => (
-            <motion.div key={i} variants={fadeUp}
-              className="bg-muted/30 border border-border/50 rounded-2xl p-6 text-center">
-              <p className="text-[2.25rem] font-semibold text-foreground leading-none mb-1.5">{o.value}</p>
-              <p className="text-sm font-medium text-foreground mb-0.5">{o.label}</p>
-              <p className="text-xs text-muted-foreground leading-snug">{o.sublabel}</p>
-            </motion.div>
-          ))}
+        <motion.div variants={stagger} className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4">
+          {content.outcomes.map((o, i) => {
+            const theme = OUTCOME_CARD_THEMES[i % OUTCOME_CARD_THEMES.length];
+            const gradId = `outcome-grad-${i}`;
+            return (
+              <motion.div key={i} variants={fadeUp}
+                className="relative w-full min-h-[260px] sm:min-h-[300px] overflow-hidden rounded-2xl"
+                style={{ aspectRatio: OUTCOME_CARD_ASPECT, backgroundColor: theme.softBg }}>
+
+                <svg
+                  viewBox={`0 0 ${OUTCOME_SHAPE.width} ${OUTCOME_SHAPE.height}`}
+                  className="absolute inset-0 h-full w-full"
+                  preserveAspectRatio="none"
+                  shapeRendering="geometricPrecision"
+                  aria-hidden
+                >
+                  <defs>
+                    <linearGradient
+                      id={gradId}
+                      gradientUnits="userSpaceOnUse"
+                      x1={OUTCOME_SHAPE.gradFrom.x}
+                      y1={OUTCOME_SHAPE.gradFrom.y}
+                      x2={OUTCOME_SHAPE.gradTo.x}
+                      y2={OUTCOME_SHAPE.gradTo.y}
+                    >
+                      {theme.stops.map((stop) => (
+                        <stop key={stop.offset} offset={stop.offset} stopColor={stop.color} />
+                      ))}
+                    </linearGradient>
+                  </defs>
+                  <path d={OUTCOME_SHAPE.path} fill={`url(#${gradId})`} />
+                </svg>
+
+                <div className="relative z-10 h-full text-left">
+                  <p className={cn(
+                    "absolute top-4 left-4 sm:top-5 sm:left-5",
+                    "text-[1.75rem] sm:text-[2.25rem] font-semibold leading-none tracking-tight",
+                    theme.accent,
+                    OUTCOME_STAT_SHADOW,
+                  )}>
+                    {o.value}
+                  </p>
+                  <div className="absolute inset-x-4 bottom-4 sm:inset-x-5 sm:bottom-5 space-y-1">
+                    <p className={cn(
+                      "text-xs sm:text-sm font-semibold text-foreground leading-snug",
+                      OUTCOME_BODY_SHADOW,
+                    )}>
+                      {o.label}
+                    </p>
+                    <p className={cn(
+                      "text-[11px] sm:text-xs text-foreground/70 leading-snug",
+                      OUTCOME_SUB_SHADOW,
+                    )}>
+                      {o.sublabel}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </FadeSection>
 
-      <Sep />
-
       {/* ── Testimonial ── */}
-      <FadeSection>
+      <FadeSection className="py-12 sm:py-16">
         <motion.div variants={fadeUp}
-          className="relative border border-border/60 rounded-2xl p-7 bg-background mb-12 overflow-hidden">
+          className="relative border border-border/60 rounded-2xl p-7 bg-background overflow-hidden">
           <span className="absolute -top-1 right-5 text-[72px] leading-none font-serif select-none pointer-events-none text-[#534AB7]/10">
             "
           </span>
@@ -1275,73 +1546,77 @@ export function IndustryPageSections({ content, industryName }: {
       </FadeSection>
 
       {/* ── CTA ── */}
-      <FadeSection>
-        {/*
-          SVG clip-path definition — objectBoundingBox so it scales to any element size.
-          Original viewBox: (10,5)→(490,156), Width=480, Height=151
-          Normalised: X_n=(X-10)/480, Y_n=(Y-5)/151
-        */}
-        <svg width="0" height="0" className="absolute overflow-hidden" aria-hidden>
-          <defs>
-            <clipPath id="cta-clip" clipPathUnits="objectBoundingBox">
-              <path d="
-                M0,0.4305
-                V0.0397
-                Q0,0 0.0104,0
-                H0.4479
-                Q0.4583,0 0.4750,0.0530
-                Q0.4813,0.0728 0.4917,0.0795
-                H0.9896
-                Q1,0.0795 1,0.1126
-                V0.8808
-                Q1,0.9073 0.9958,0.9139
-                L0.9729,0.9735
-                Q0.9646,1 0.9583,1
-                H0.2313
-                Q0.2250,1 0.2188,0.9801
-                L0.2021,0.9404
-                Q0.1958,0.9272 0.1875,0.9272
-                H0.0125
-                Q0,0.9272 0,0.8874
-                Z
-              " />
-            </clipPath>
-          </defs>
-        </svg>
-
-        {/* drop-shadow traces the clip shape (unlike box-shadow which ignores clip-path) */}
+      <FadeSection className="py-12 sm:py-16">
         <motion.div variants={fadeUp}>
-          <div className="text-white"
-            style={{
-              background: "linear-gradient(135deg, #6259C9 0%, #534AB7 45%, #3D33A5 100%)",
-              clipPath: "url(#cta-clip)",
-            }}>
-            {/* Inner content constrained to safe visible zone of the custom shape */}
-            <div className="mx-auto max-w-xl text-center px-6 py-9">
-              <p className="mb-3 inline-block rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-white/80">
-                Get started
-              </p>
-              <h2 className="text-balance text-xl font-semibold leading-tight tracking-tight text-white sm:text-2xl mb-2.5">
-                {content.ctaHeadline}
-              </h2>
-              <p className="text-white/70 text-sm leading-relaxed mb-6">
-                {content.ctaSubheadline}
-              </p>
-              <div className="flex gap-3 justify-center flex-wrap">
-                <Link href="/pricing"
-                  className="inline-flex items-center gap-2 rounded-full bg-white text-[#3D33A5] px-5 py-2 text-sm font-medium transition-opacity hover:opacity-90 shadow-sm">
-                  <CalendarDays className="w-3.5 h-3.5" /> Book a live demo
-                </Link>
-                <Link href="/pricing"
-                  className="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-white/20">
-                  Start free trial
-                </Link>
+          {/* Outer white card frame */}
+          <div className="rounded-[1.75rem] bg-white border border-border/60 shadow-lg p-2">
+            {/* Inner purple gradient banner */}
+            <div className="relative overflow-hidden rounded-2xl text-white"
+              style={{ background: "linear-gradient(135deg, #6259C9 0%, #534AB7 50%, #3D33A5 100%)" }}>
+
+              {/* Decorative blobs */}
+              <span aria-hidden className="absolute -left-8 -top-8 w-36 h-36 rounded-full bg-white/10 blur-2xl" />
+              <span aria-hidden className="absolute right-4 bottom-4 w-28 h-28 rounded-full bg-white/10 blur-xl" />
+              <span aria-hidden className="absolute right-1/3 -top-6 w-20 h-20 rounded-full bg-white/[0.07]" />
+
+              <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 px-7 py-7">
+
+                {/* Left — badge + headline + sub */}
+                <div className="min-w-0">
+                  <span className="inline-flex items-center gap-1.5 mb-3 rounded-full bg-white/15 border border-white/20 px-3 py-1 text-[0.6875rem] font-medium uppercase tracking-widest text-white/90">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#A5F3C4] inline-block" />
+                    Get started free
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-semibold leading-snug tracking-tight text-white mb-2 text-balance">
+                    {content.ctaHeadline}
+                  </h2>
+                  <p className="text-sm text-white/70 leading-relaxed max-w-sm">
+                    {content.ctaSubheadline}
+                  </p>
+                </div>
+
+                {/* Right — buttons + social proof */}
+                <div className="flex flex-col items-start sm:items-end gap-4 shrink-0">
+                  <div className="flex gap-2.5 flex-wrap">
+                    <Link href="/pricing"
+                      className="inline-flex items-center gap-2 rounded-full bg-white text-[#3D33A5] px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90 shadow-sm whitespace-nowrap">
+                      <CalendarDays className="w-3.5 h-3.5" /> Book a demo →
+                    </Link>
+                    <Link href="/pricing"
+                      className="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/20 whitespace-nowrap">
+                      Start free trial
+                    </Link>
+                  </div>
+                  {/* Social proof */}
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex -space-x-2.5">
+                      {[
+                        "photo-1494790108377-be9c29b29330",
+                        "photo-1507003211169-0a1dd7228f2d",
+                        "photo-1438761681033-6461ffad8d80",
+                        "photo-1500648767791-00dcc994a43e"
+                      ].map((photoId, i) => (
+                        <img
+                          key={i}
+                          src={`https://images.unsplash.com/${photoId}?auto=format&fit=crop&w=64&h=64&q=80`}
+                          alt="Customer Avatar"
+                          className="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-[11px] text-white/75 leading-tight">
+                      <span className="font-semibold text-white">500+</span> businesses trust OnDial
+                    </p>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
         </motion.div>
       </FadeSection>
 
+      </div>
     </div>
   );
 }

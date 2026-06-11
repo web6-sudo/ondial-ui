@@ -95,7 +95,7 @@ export function IndustryHeroHeader({
       <div className="relative w-full max-w-full md:max-w-[85vw] xl:max-w-[60vw] h-[65vh] md:h-[60vh] min-h-[380px]" style={{ marginTop: "calc(env(safe-area-inset-top) + 4.25rem + 1.5rem)" }}>
 
         <article
-          className="absolute inset-0 overflow-hidden rounded-2xl [clip-path:inset(0_round_1rem)]"
+          className="absolute inset-0 overflow-hidden rounded-3xl [clip-path:inset(0_round_1.5rem)]"
           aria-label={`${highlight} hero`}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
