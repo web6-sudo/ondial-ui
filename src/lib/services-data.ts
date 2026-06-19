@@ -343,6 +343,21 @@ export const INDUSTRY_SEO_METADATA: Record<string, { title: string; description:
     description:
       "Boost farm efficiency with OnDial's AI Voice Agent for Agriculture Services. Automate guidance, support, and insights for smarter farming operations.",
   },
+  "event-management-services": {
+    title: "AI Voice Agent for Event Management Services | OnDial",
+    description:
+      "Streamline event registrations, bookings, and attendee communication with OnDial's AI Voice Agent for Event Management Services.",
+  },
+  "consulting-services": {
+    title: "AI Voice Agent for Consulting Services | OnDial",
+    description:
+      "Automate client intake, appointment scheduling, and advisory follow-ups with OnDial's AI Voice Agent for Consulting Services.",
+  },
+  "pharmaceutical-services": {
+    title: "AI Voice Agent for Pharmaceutical Services | OnDial",
+    description:
+      "Enhance prescription support, delivery notifications, and customer care with OnDial's AI Voice Agent for Pharmaceutical Services.",
+  },
 };
 
 export const SERVICES_DATA = DEFAULT_INDUSTRIES.map((industry, index) => ({

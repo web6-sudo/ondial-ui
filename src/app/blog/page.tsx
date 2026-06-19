@@ -21,6 +21,25 @@ export const metadata: Metadata = {
   title: { absolute: "Best AI Voice Agent Automation Blogs & Insights | OnDial" },
   description:
     "Stay updated with OnDial's blog on AI voice agents, automation, and customer experience. Learn strategies, trends, and tips to grow your business smarter.",
+  alternates: { canonical: "https://www.ondial.ai/blog" },
+  openGraph: {
+    title: "Best AI Voice Agent Automation Blogs & Insights | OnDial",
+    description:
+      "Stay updated with OnDial's blog on AI voice agents, automation, and customer experience. Learn strategies, trends, and tips to grow your business smarter.",
+    url: "https://www.ondial.ai/blog",
+    siteName: "OnDial",
+    images: [{ url: "https://www.ondial.ai/img/logo/og.png", width: 1200, height: 630, alt: "OnDial Blog" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Best AI Voice Agent Automation Blogs & Insights | OnDial",
+    description:
+      "Stay updated with OnDial's blog on AI voice agents, automation, and customer experience. Learn strategies, trends, and tips to grow your business smarter.",
+    images: ["https://www.ondial.ai/img/logo/og.png"],
+    creator: "@ondialai",
+  },
 };
 
 async function getBlogPosts(): Promise<BlogPost[]> {

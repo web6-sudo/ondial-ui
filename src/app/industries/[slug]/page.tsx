@@ -24,12 +24,33 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const industry = getIndustryBySlug(slug);
-  if (!industry) return { title: "Industry" };
+  if (!industry) return { title: "Industry", robots: { index: false } };
 
   const seo = INDUSTRY_SEO_METADATA[slug];
+  const title = seo?.title ?? industry.name;
+  const description = seo?.description ?? industry.description;
+  const url = `https://www.ondial.ai/industries/${slug}`;
+
   return {
-    title: { absolute: seo?.title ?? industry.name },
-    description: seo?.description ?? industry.description,
+    title: { absolute: title },
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "OnDial",
+      images: [{ url: "https://www.ondial.ai/img/logo/og.png", width: 1200, height: 630, alt: title }],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://www.ondial.ai/img/logo/og.png"],
+      creator: "@ondialai",
+    },
   };
 }
 

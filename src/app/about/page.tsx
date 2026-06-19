@@ -12,6 +12,25 @@ export const metadata: Metadata = {
   title: { absolute: "About OnDial | AI Voice Agents for Smarter Calls" },
   description:
     "Discover OnDial - building AI Voice Agents that answer calls instantly, speak 20+ languages, and deliver secure, human-like customer experiences.",
+  alternates: { canonical: "https://www.ondial.ai/about" },
+  openGraph: {
+    title: "About OnDial | AI Voice Agents for Smarter Calls",
+    description:
+      "Discover OnDial - building AI Voice Agents that answer calls instantly, speak 20+ languages, and deliver secure, human-like customer experiences.",
+    url: "https://www.ondial.ai/about",
+    siteName: "OnDial",
+    images: [{ url: "https://www.ondial.ai/img/logo/og.png", width: 1200, height: 630, alt: "About OnDial" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About OnDial | AI Voice Agents for Smarter Calls",
+    description:
+      "Discover OnDial - building AI Voice Agents that answer calls instantly, speak 20+ languages, and deliver secure, human-like customer experiences.",
+    images: ["https://www.ondial.ai/img/logo/og.png"],
+    creator: "@ondialai",
+  },
 };
 
 export default function AboutPage() {

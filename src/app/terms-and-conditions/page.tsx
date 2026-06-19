@@ -7,6 +7,25 @@ export const metadata: Metadata = {
   title: { absolute: "OnDial AI Terms & Conditions – Service Agreement" },
   description:
     "Review OnDial AI's Terms & Conditions for using our AI voice agents, services, and support. Understand your rights and responsibilities.",
+  alternates: { canonical: "https://www.ondial.ai/terms-and-conditions" },
+  openGraph: {
+    title: "OnDial AI Terms & Conditions – Service Agreement",
+    description:
+      "Review OnDial AI's Terms & Conditions for using our AI voice agents, services, and support. Understand your rights and responsibilities.",
+    url: "https://www.ondial.ai/terms-and-conditions",
+    siteName: "OnDial",
+    images: [{ url: "https://www.ondial.ai/img/logo/og.png", width: 1200, height: 630, alt: "OnDial Terms & Conditions" }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OnDial AI Terms & Conditions – Service Agreement",
+    description:
+      "Review OnDial AI's Terms & Conditions for using our AI voice agents, services, and support. Understand your rights and responsibilities.",
+    images: ["https://www.ondial.ai/img/logo/og.png"],
+    creator: "@ondialai",
+  },
 };
 
 export default function TermsAndConditionsPage() {

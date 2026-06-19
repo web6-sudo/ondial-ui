@@ -27,20 +27,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = blog ? mapBlogDetail(blog) : null;
 
     if (!post) {
-      return { title: "Blog Post" };
+      return { title: "Blog Post", robots: { index: false } };
     }
 
+    const title = post.metaTitle || post.title;
+    const description = post.metaDescription || post.excerpt || "";
+    const ogImage = post.image
+      ? [{ url: post.image, width: 1200, height: 630, alt: title }]
+      : [{ url: "https://www.ondial.ai/img/logo/og.png", width: 1200, height: 630, alt: title }];
+    const canonicalUrl = `https://www.ondial.ai/blog/${id}`;
+
     return {
-      title: post.metaTitle,
-      description: post.metaDescription,
+      title,
+      description,
+      alternates: { canonical: canonicalUrl },
       openGraph: {
-        title: post.metaTitle,
-        description: post.metaDescription,
-        images: post.image ? [{ url: post.image }] : undefined,
+        title,
+        description,
+        url: canonicalUrl,
+        siteName: "OnDial",
+        images: ogImage,
+        locale: "en_US",
+        type: "article",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: [ogImage[0].url],
+        creator: "@ondialai",
       },
     };
   } catch {
-    return { title: "Blog Post" };
+    return { title: "Blog Post", robots: { index: false } };
   }
 }
 

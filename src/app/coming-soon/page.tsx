@@ -5,8 +5,9 @@ import { MarketingPageBody } from "@/components/layout/marketing-page-body";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Coming soon",
-  description: "We are almost ready.",
+  title: { absolute: "Coming Soon | OnDial" },
+  description: "Something exciting is coming soon from OnDial. Stay tuned for updates on our latest AI voice agent features.",
+  robots: { index: false, follow: false },
 };
 
 export default function ComingSoonPage() {

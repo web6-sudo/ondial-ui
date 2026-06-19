@@ -6,8 +6,10 @@ import { AuthSplitLayout } from "@/components/auth/auth-split-layout";
 import { SignupForm } from "./signup-form";
 
 export const metadata: Metadata = {
-  title: "Sign up | OnDial",
-  description: "Create your OnDial account to get started.",
+  title: { absolute: "Sign Up | OnDial" },
+  description: "Create your OnDial account to get started with AI voice agents for your business.",
+  alternates: { canonical: "https://www.ondial.ai/signup" },
+  robots: { index: false, follow: false },
 };
 
 export default function SignupPage() {

@@ -15,28 +15,25 @@ const fontSans = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://ondial.ai"),
+  metadataBase: new URL("https://www.ondial.ai"),
   title: {
     default: "Best AI Voice Agents to Automate Your Phone Calls | OnDial",
     template: "%s | OnDial",
   },
   description: "Discover the best AI voice agents to automate your phone calls, reduce costs, and improve customer satisfaction with OnDial's Top AI Call Agents solution.",
-  keywords: ["AI voice agents", "customer support automation", "AI sales calls", "virtual receptionist", "Ondial"],
-  authors: [{ name: "Ondial" }],
-  creator: "Ondial",
-  publisher: "Ondial",
+  keywords: ["AI voice agents", "customer support automation", "AI sales calls", "virtual receptionist", "OnDial"],
+  authors: [{ name: "OnDial" }],
+  creator: "OnDial",
+  publisher: "OnDial",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Best AI Voice Agents to Automate Your Phone Calls | OnDial",
     description: "Discover the best AI voice agents to automate your phone calls, reduce costs, and improve customer satisfaction with OnDial's Top AI Call Agents solution.",
-    url: "https://ondial.ai",
+    url: "https://www.ondial.ai",
     siteName: "OnDial",
     images: [
       {
@@ -54,11 +51,11 @@ export const metadata: Metadata = {
     title: "Best AI Voice Agents to Automate Your Phone Calls | OnDial",
     description: "Discover the best AI voice agents to automate your phone calls, reduce costs, and improve customer satisfaction with OnDial's Top AI Call Agents solution.",
     images: ["/img/logo/og.png"],
-    creator: "@OndialAI",
+    creator: "@ondialai",
   },
   icons: {
     icon: "/fav.svg",
-    apple: "/fav.svg", // Fallback, consider adding proper apple-touch-icon
+    apple: "/fav.svg",
   },
   robots: {
     index: true,
@@ -98,20 +95,37 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Ondial",
-              url: "https://ondial.ai",
-              logo: "https://ondial.ai/fav.svg",
-              description: "Enterprise AI voice agents for customer support and sales automation.",
+              name: "OnDial",
+              url: "https://www.ondial.ai",
+              logo: "https://www.ondial.ai/img/logo/og.png",
+              description: "OnDial provides enterprise-grade AI Voice Agents for inbound and outbound call automation, multilingual customer support, lead qualification, appointment scheduling, and business communication automation.",
               sameAs: [
-                "https://twitter.com/OndialAI",
-                "https://www.linkedin.com/company/ondial"
+                "https://twitter.com/ondialai",
+                "https://www.linkedin.com/company/ondialai",
+                "https://www.facebook.com/ondialai",
+                "https://www.instagram.com/ondialai",
               ],
-              contactPoint: {
-                "@type": "ContactPoint",
-                telephone: "+1-800-555-0199", // Update with real number
-                contactType: "customer support",
-                availableLanguage: ["English"]
-              }
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  telephone: "+91-9979620507",
+                  contactType: "customer service",
+                  areaServed: ["IN", "US"],
+                  availableLanguage: ["English", "Hindi"],
+                },
+                {
+                  "@type": "ContactPoint",
+                  telephone: "+91-8160835445",
+                  contactType: "sales",
+                  areaServed: ["IN", "US"],
+                  availableLanguage: ["English", "Hindi"],
+                },
+              ],
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "IN",
+                addressRegion: "Gujarat",
+              },
             }),
           }}
         />
@@ -121,13 +135,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Ondial",
-              url: "https://ondial.ai",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://ondial.ai/search?q={search_term_string}",
-                "query-input": "required name=search_term_string"
-              }
+              name: "OnDial",
+              url: "https://www.ondial.ai",
             }),
           }}
         />
