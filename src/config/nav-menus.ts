@@ -10,7 +10,7 @@ import {
 } from "@/config/resources-nav";
 import {
   SERVICES_NAV_ITEMS,
-  SERVICES_OVERVIEW_HREF,
+  // SERVICES_OVERVIEW_HREF,
   type ServiceNavItem,
 } from "@/config/services-nav";
 
@@ -42,8 +42,8 @@ export const NAV_MENUS: Record<NavMenuKind, NavMenuConfig> = {
       [SERVICES_NAV_ITEMS[0], SERVICES_NAV_ITEMS[1]],
       [SERVICES_NAV_ITEMS[2], SERVICES_NAV_ITEMS[3]],
     ],
-    overviewHref: SERVICES_OVERVIEW_HREF,
-    overviewLabel: "View all services",
+    // overviewHref: SERVICES_OVERVIEW_HREF,
+    // overviewLabel: "View all services",
     footerHint: "4 AI voice agents",
     panelMaxWidthPx: 440,
     ariaLabel: "Services",

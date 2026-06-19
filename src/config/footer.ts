@@ -11,7 +11,7 @@ export type FooterNavLink = {
 export const FOOTER_QUICK_LINKS: readonly FooterNavLink[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
-  { href: "/services", label: "Services" },
+  { href: "/services/sales-agent", label: "Services" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

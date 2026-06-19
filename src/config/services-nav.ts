@@ -15,4 +15,4 @@ export const SERVICES_NAV_ITEMS: readonly ServiceNavItem[] = [
   { href: "/services/finance-agent", label: "Finance Agent", slug: "finance-agent" },
 ] as const;
 
-export const SERVICES_OVERVIEW_HREF = "/services";
+// export const SERVICES_OVERVIEW_HREF = "/services";

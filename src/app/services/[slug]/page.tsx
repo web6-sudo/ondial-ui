@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { MarketingPageBody } from "@/components/layout/marketing-page-body";
-import { Button } from "@/components/ui/button";
 import { SERVICES_NAV_ITEMS } from "@/config/services-nav";
 
 type Props = {
@@ -38,9 +36,9 @@ export default async function ServiceAgentPage({ params }: Props) {
         <p className="text-sm text-muted-foreground">
           Configure scripts, routing, and CRM sync for {service.label.toLowerCase()} workflows.
         </p>
-        <Button variant="outline" className="self-center" render={<Link href="/services" prefetch />} nativeButton={false}>
+        {/* <Button variant="outline" className="self-center" render={<Link href="/services" prefetch />} nativeButton={false}>
           All services
-        </Button>
+        </Button> */}
       </div>
     </MarketingPageBody>
   );

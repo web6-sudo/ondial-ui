@@ -1,32 +1,36 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import { MarketingPageBody } from "@/components/layout/marketing-page-body";
-import { SERVICES_NAV_ITEMS } from "@/config/services-nav";
+// import { BlogPageShell } from "@/components/layout/blog-page-shell";
+// import {
+//   ServicesFaqSection,
+//   ServicesFinalCtaSection,
+//   ServicesHeroSection,
+//   ServicesHowItWorksSection,
+//   ServicesIndustriesSection,
+//   ServicesWhyChooseSection,
+// } from "@/components/marketing/services-page-sections";
 
 export const metadata: Metadata = {
-  title: "Services",
-  description: "AI voice agents for sales, support, recruitment, and finance workflows.",
+  title: "Services — OnDial Best AI Call Assistant",
+  description:
+    "Transform the way your business communicates. OnDial AI voice call automation for 20+ industries — industry-specific templates, compliance, CRM integrations, and real-time analytics.",
 };
 
+/** Main services overview — hidden for now; sub-routes under `/services/[slug]` stay live. */
 export default function ServicesPage() {
-  return (
-    <MarketingPageBody
-      title="AI voice agents for every team"
-      description="Deploy specialized agents that handle outbound, inbound, screening, and finance workflows with natural conversations."
-    >
-      <ul className="grid w-full gap-3 sm:grid-cols-2">
-        {SERVICES_NAV_ITEMS.map((service) => (
-          <li key={service.slug}>
-            <Link
-              href={service.href}
-              className="flex min-h-14 items-center rounded-2xl border border-border/60 bg-muted/20 px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted/40"
-            >
-              {service.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </MarketingPageBody>
-  );
+  notFound();
+
+  // return (
+  //   <main className="flex flex-1 flex-col">
+  //     <BlogPageShell>
+  //       <ServicesHeroSection />
+  //       <ServicesWhyChooseSection />
+  //       <ServicesIndustriesSection />
+  //       <ServicesHowItWorksSection />
+  //       <ServicesFaqSection />
+  //       <ServicesFinalCtaSection />
+  //     </BlogPageShell>
+  //   </main>
+  // );
 }
