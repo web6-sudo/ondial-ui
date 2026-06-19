@@ -39,6 +39,8 @@ export const FOOTER_SOCIAL_LINKS: readonly FooterNavLink[] = [
 export const FOOTER_BRAND_TAGLINE =
   "AI voice agents for reminders, outreach, surveys, and support—natural conversations at any scale.";
 
+export const FOOTER_CONTACT_EMAIL = "info@ondial.ai";
+
 export const FOOTER_CTA = {
   eyebrow: "Get started",
   title: "Put your next thousand calls on autopilot",
@@ -51,6 +53,6 @@ export const FOOTER_CTA = {
 export const FOOTER_NEWSLETTER = {
   title: "Newsletter",
   description: "Product updates, voice AI tips, and early access to new features.",
-  placeholder: "Enter your email…",
+  placeholder: "Enter your email..",
   buttonLabel: "Subscribe",
 } as const;

@@ -1,17 +1,22 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
 import { FOOTER_NEWSLETTER } from "@/config/footer";
 import { cn } from "@/lib/utils";
 
+import styles from "./marketing-site-footer.module.css";
+
 type FooterNewsletterFormProps = {
   className?: string;
 };
 
 export function FooterNewsletterForm({ className }: FooterNewsletterFormProps) {
+  const prefersReducedMotion = useReducedMotion();
   const [submitted, setSubmitted] = useState(false);
+  const [focused, setFocused] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -20,14 +25,23 @@ export function FooterNewsletterForm({ className }: FooterNewsletterFormProps) {
 
   if (submitted) {
     return (
-      <p className={cn("text-sm text-muted-foreground", className)} role="status">
+      <motion.p
+        className={cn(styles.newsletterSuccess, className)}
+        role="status"
+        initial={prefersReducedMotion ? false : { opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      >
         Thanks—you&apos;re on the list. We&apos;ll be in touch soon.
-      </p>
+      </motion.p>
     );
   }
 
   return (
-    <form className={cn("relative", className)} onSubmit={handleSubmit}>
+    <form
+      className={cn(styles.newsletterForm, focused && styles.newsletterFormFocused, className)}
+      onSubmit={handleSubmit}
+    >
       <label htmlFor="footer-newsletter-email" className="sr-only">
         Email for newsletter
       </label>
@@ -38,21 +52,28 @@ export function FooterNewsletterForm({ className }: FooterNewsletterFormProps) {
         required
         autoComplete="email"
         placeholder={FOOTER_NEWSLETTER.placeholder}
-        className={cn(
-          "h-11 w-full rounded-full border border-border/80 bg-background pr-12 pl-4 text-sm text-foreground shadow-sm outline-none",
-          "placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/40",
-        )}
+        className={styles.newsletterInput}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
       />
-      <button
+      <motion.button
         type="submit"
-        className={cn(
-          "absolute top-1/2 right-1 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-foreground text-background",
-          "transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-        )}
+        className={styles.newsletterButton}
         aria-label={FOOTER_NEWSLETTER.buttonLabel}
+        whileHover={prefersReducedMotion ? undefined : { scale: 1.06 }}
+        whileTap={prefersReducedMotion ? undefined : { scale: 0.94 }}
+        transition={{ type: "spring", stiffness: 420, damping: 24 }}
       >
-        <ArrowRight className="size-4" aria-hidden />
-      </button>
+        <motion.span
+          className={styles.newsletterButtonIcon}
+          aria-hidden
+          initial={false}
+          whileHover={prefersReducedMotion ? undefined : { x: 2 }}
+          transition={{ type: "spring", stiffness: 380, damping: 22 }}
+        >
+          <ArrowRight className="size-4" strokeWidth={2.25} />
+        </motion.span>
+      </motion.button>
     </form>
   );
 }

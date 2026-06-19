@@ -279,3 +279,128 @@
     font-size: 0.6875rem;
   }
 }
+
+.addOnList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2rem;
+  width: 100%;
+  border-top: 1px solid rgb(148 163 184 / 0.18);
+}
+
+.addOnRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.addOnRow + .addOnRow {
+  border-top: 1px solid rgb(148 163 184 / 0.12);
+}
+
+.addOnCopy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: left;
+}
+
+.addOnLabel {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--foreground);
+}
+
+.addOnUnit {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: var(--muted-foreground);
+}
+
+.addOnStepper {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  min-width: 6.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(168 184 232 / 0.95);
+  background: #fff;
+  padding: 0.3125rem 0.4375rem;
+  box-shadow: 0 2px 10px rgb(47 103 216 / 0.08);
+}
+
+.addOnStepperButton {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: rgb(71 85 105 / 0.82);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.addOnStepperButton:hover:not(:disabled) {
+  background: rgb(148 163 184 / 0.12);
+  color: var(--foreground);
+}
+
+.addOnStepperButton:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.addOnStepperButton:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.addOnStepperButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(47 103 216 / 0.22);
+}
+
+.addOnStepperValue {
+  min-width: 1.75rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+.addOnStepperValue :global(number-flow-react) {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+@media (min-width: 640px) {
+  .addOnList {
+    margin-top: 2.25rem;
+  }
+
+  .addOnRow {
+    padding: 1.125rem 0;
+  }
+
+  .addOnLabel {
+    font-size: 0.9375rem;
+  }
+}

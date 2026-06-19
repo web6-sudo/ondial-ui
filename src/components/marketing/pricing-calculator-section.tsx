@@ -2,14 +2,16 @@
 
 import NumberFlow, { continuous, type Trend } from "@number-flow/react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Minus, Plus } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useMemo, useRef, useState } from "react";
 
 import { ONDIAL_ACCENT_STYLE } from "@/components/marketing/split-screen-section";
 import { marketingSectionContainerClass } from "@/config/marketing-layout";
 import {
-  computeMinutesMonthlyPrice,
+  computeCalculatorMonthlyPrice,
   getPricingPlanForMinutes,
+  PRICING_CALCULATOR_ADDONS,
   PRICING_MINUTES_CALCULATOR,
 } from "@/data/pricing-plans";
 import { cn } from "@/lib/utils";
@@ -403,6 +405,110 @@ function MinutesTickSlider({ value, onChange, onDragChange }: MinutesTickSliderP
   );
 }
 
+type CalculatorAddOnStepperProps = {
+  label: string;
+  unitLabel: string;
+  value: number;
+  min: number;
+  max: number;
+  onChange: (value: number) => void;
+};
+
+function CalculatorAddOnStepper({
+  label,
+  unitLabel,
+  value,
+  min,
+  max,
+  onChange,
+}: CalculatorAddOnStepperProps) {
+  const clamp = useCallback(
+    (next: number) => Math.min(max, Math.max(min, next)),
+    [max, min],
+  );
+
+  const decrement = useCallback(() => {
+    onChange(clamp(value - 1));
+  }, [clamp, onChange, value]);
+
+  const increment = useCallback(() => {
+    onChange(clamp(value + 1));
+  }, [clamp, onChange, value]);
+
+  return (
+    <div className={styles.addOnRow} role="group" aria-label={label}>
+      <div className={styles.addOnCopy}>
+        <p className={styles.addOnLabel}>{label}</p>
+        <p className={styles.addOnUnit}>{unitLabel}</p>
+      </div>
+      <div className={styles.addOnStepper}>
+        <button
+          type="button"
+          className={styles.addOnStepperButton}
+          aria-label={`Decrease ${label}`}
+          disabled={value <= min}
+          onClick={decrement}
+        >
+          <Minus className="size-3.5" aria-hidden strokeWidth={2} />
+        </button>
+        <NumberFlow
+          value={value}
+          format={{ maximumFractionDigits: 0 }}
+          locales="en-US"
+          className={styles.addOnStepperValue}
+          plugins={[continuous]}
+          willChange
+          {...numberFlowTiming}
+        />
+        <button
+          type="button"
+          className={styles.addOnStepperButton}
+          aria-label={`Increase ${label}`}
+          disabled={value >= max}
+          onClick={increment}
+        >
+          <Plus className="size-3.5" aria-hidden strokeWidth={2} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function CalculatorAddOns({
+  channels,
+  numbers,
+  onChannelsChange,
+  onNumbersChange,
+}: {
+  channels: number;
+  numbers: number;
+  onChannelsChange: (value: number) => void;
+  onNumbersChange: (value: number) => void;
+}) {
+  const { channels: channelConfig, numbers: numberConfig } = PRICING_CALCULATOR_ADDONS;
+
+  return (
+    <div className={styles.addOnList}>
+      <CalculatorAddOnStepper
+        label={channelConfig.label}
+        unitLabel={channelConfig.unitLabel}
+        value={channels}
+        min={channelConfig.min}
+        max={channelConfig.max}
+        onChange={onChannelsChange}
+      />
+      <CalculatorAddOnStepper
+        label={numberConfig.label}
+        unitLabel={numberConfig.unitLabel}
+        value={numbers}
+        min={numberConfig.min}
+        max={numberConfig.max}
+        onChange={onNumbersChange}
+      />
+    </div>
+  );
+}
+
 function PlanBuyButton({
   minutes,
   monthlyPrice,
@@ -577,8 +683,13 @@ function PriceCounter({
 export function PricingCalculatorSection() {
   const prefersReducedMotion = useReducedMotion();
   const [minutes, setMinutes] = useState<number>(PRICING_MINUTES_CALCULATOR.defaultMinutes);
+  const [channels, setChannels] = useState<number>(PRICING_CALCULATOR_ADDONS.channels.default);
+  const [numbers, setNumbers] = useState<number>(PRICING_CALCULATOR_ADDONS.numbers.default);
   const [isDragging, setIsDragging] = useState(false);
-  const monthlyPrice = useMemo(() => computeMinutesMonthlyPrice(minutes), [minutes]);
+  const monthlyPrice = useMemo(
+    () => computeCalculatorMonthlyPrice({ minutes, channels, numbers }),
+    [minutes, channels, numbers],
+  );
 
   const staggerContainer = useMemo(
     () => ({
@@ -653,6 +764,12 @@ export function PricingCalculatorSection() {
               value={minutes}
               onChange={setMinutes}
               onDragChange={setIsDragging}
+            />
+            <CalculatorAddOns
+              channels={channels}
+              numbers={numbers}
+              onChannelsChange={setChannels}
+              onNumbersChange={setNumbers}
             />
           </motion.div>
         </motion.div>

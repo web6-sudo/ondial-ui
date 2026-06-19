@@ -95,6 +95,25 @@ export const PRICING_MINUTES_CALCULATOR = {
   minutesPerDollar: 15,
 } as const;
 
+export const PRICING_CALCULATOR_ADDONS = {
+  channels: {
+    label: "Concurrent channels",
+    unitLabel: "$4.90/mo each",
+    unitPrice: 4.9,
+    min: 0,
+    max: 20,
+    default: 1,
+  },
+  numbers: {
+    label: "Phone numbers",
+    unitLabel: "$4.90/mo each",
+    unitPrice: 4.9,
+    min: 0,
+    max: 10,
+    default: 1,
+  },
+} as const;
+
 /** @deprecated Use PRICING_MINUTES_CALCULATOR */
 export const PRICING_CREDIT_CALCULATOR = PRICING_MINUTES_CALCULATOR;
 
@@ -102,6 +121,29 @@ export function computeMinutesMonthlyPrice(minutes: number): number {
   const { minMinutes, maxMinutes, minutesPerDollar } = PRICING_MINUTES_CALCULATOR;
   const clampedMinutes = Math.min(maxMinutes, Math.max(minMinutes, minutes));
   return clampedMinutes / minutesPerDollar;
+}
+
+export function computeCalculatorMonthlyPrice({
+  minutes,
+  channels,
+  numbers,
+}: {
+  minutes: number;
+  channels: number;
+  numbers: number;
+}): number {
+  const { channels: channelConfig, numbers: numberConfig } = PRICING_CALCULATOR_ADDONS;
+  const clampedChannels = Math.min(
+    channelConfig.max,
+    Math.max(channelConfig.min, channels),
+  );
+  const clampedNumbers = Math.min(numberConfig.max, Math.max(numberConfig.min, numbers));
+
+  return (
+    computeMinutesMonthlyPrice(minutes) +
+    clampedChannels * channelConfig.unitPrice +
+    clampedNumbers * numberConfig.unitPrice
+  );
 }
 
 /** @deprecated Use computeMinutesMonthlyPrice */

@@ -52,6 +52,15 @@ export function NavDropdownPortal({
   const reduceMotion = useReducedMotion();
   const menuId = useId();
   const [panelLayout, setPanelLayout] = useState<PanelLayout | null>(null);
+  const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!open) setHoveredSlug(null);
+  }, [open]);
+
+  useEffect(() => {
+    setHoveredSlug(null);
+  }, [pathname]);
 
   const measurePanelLayout = useCallback((): PanelLayout | null => {
     if (!triggerEl || !menu) return null;
@@ -180,15 +189,32 @@ export function NavDropdownPortal({
         exit: { opacity: 0, y: -4, transition: { duration: 0.1 } },
       };
 
+  const handlePanelLeave = useCallback(() => {
+    setHoveredSlug(null);
+    onPointerLeave();
+  }, [onPointerLeave]);
+
   const renderLink = (item: NavMenuConfig["items"][number]) => {
     const itemActive = linkIsActive(pathname, item.href);
+    const itemHovered = hoveredSlug === item.slug;
+    const showActiveState = itemActive && hoveredSlug === null;
+
     return (
       <motion.div key={item.slug} variants={itemVariants}>
         <Link
           href={item.href}
           prefetch
-          className={cn(styles.link, itemActive && styles.linkActive)}
+          className={cn(
+            styles.link,
+            itemActive && styles.linkCurrent,
+            showActiveState && styles.linkActive,
+            itemHovered && styles.linkHovered,
+          )}
           aria-current={itemActive ? "page" : undefined}
+          onMouseEnter={() => setHoveredSlug(item.slug)}
+          onMouseLeave={() => setHoveredSlug((current) => (current === item.slug ? null : current))}
+          onFocus={() => setHoveredSlug(item.slug)}
+          onBlur={() => setHoveredSlug((current) => (current === item.slug ? null : current))}
           onClick={() => onClose()}
         >
           {item.label}
@@ -266,7 +292,7 @@ export function NavDropdownPortal({
               transformOrigin: `${activeLayout.originX}px 0`,
             }}
             onMouseEnter={onPointerEnter}
-            onMouseLeave={onPointerLeave}
+            onMouseLeave={handlePanelLeave}
           >
             <motion.div layout className={styles.panel} transition={navLayoutSpring}>
               <AnimatePresence mode="wait">

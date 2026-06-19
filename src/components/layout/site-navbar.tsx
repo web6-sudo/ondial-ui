@@ -129,25 +129,20 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
     [pillHeight, pillLeft, pillOffsetX, pillOffsetY, pillOpacity, pillTop, pillWidth]
   );
 
-  const findNearestHref = useCallback((clientX: number, clientY: number) => {
-    let nearest: string | null = null;
-    let minScore = Infinity;
-
+  const findHrefUnderPointer = useCallback((clientX: number, clientY: number) => {
     for (const [href, el] of linkRefs.current) {
       const rect = el.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const dx = clientX - centerX;
-      const dy = clientY - centerY;
-      const score = dx * dx + dy * dy * 1.4;
-
-      if (score < minScore) {
-        minScore = score;
-        nearest = href;
+      if (
+        clientX >= rect.left &&
+        clientX <= rect.right &&
+        clientY >= rect.top &&
+        clientY <= rect.bottom
+      ) {
+        return href;
       }
     }
 
-    return nearest;
+    return null;
   }, []);
 
   useLayoutEffect(() => {
@@ -166,6 +161,7 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
     closeTimerRef.current = window.setTimeout(() => {
       if (!pointerInTriggerRef.current && !pointerInPanelRef.current) {
         setOpenMenuHref(null);
+        setHoveredHref(null);
       }
       closeTimerRef.current = null;
     }, NAV_DROPDOWN_CLOSE_DELAY_MS);
@@ -176,6 +172,7 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
     pointerInTriggerRef.current = null;
     pointerInPanelRef.current = false;
     setOpenMenuHref(null);
+    setHoveredHref(null);
   }, [cancelScheduledClose]);
 
   const handleTriggerEnter = useCallback(
@@ -244,10 +241,16 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
 
       if (openMenuHref) return;
 
-      const nearest = findNearestHref(event.clientX, event.clientY);
-      if (nearest) setHoveredHref(nearest);
+      const href = findHrefUnderPointer(event.clientX, event.clientY);
+      setHoveredHref(href);
 
-      const link = nearest ? linkRefs.current.get(nearest) : undefined;
+      if (!href) {
+        pillOffsetX.set(0);
+        pillOffsetY.set(0);
+        return;
+      }
+
+      const link = linkRefs.current.get(href);
       if (!link) return;
 
       const rect = link.getBoundingClientRect();
@@ -258,14 +261,15 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
       pillOffsetX.set(clamp(nx * 6, 7));
       pillOffsetY.set(clamp(ny * 3, 4));
     },
-    [findNearestHref, openMenuHref, pillOffsetX, pillOffsetY, reduceMotion]
+    [findHrefUnderPointer, openMenuHref, pillOffsetX, pillOffsetY, reduceMotion]
   );
 
   const clearHover = useCallback(() => {
     setHoveredHref(null);
     pillOffsetX.set(0);
     pillOffsetY.set(0);
-  }, [pillOffsetX, pillOffsetY]);
+    syncPillToLink(activeHref);
+  }, [activeHref, pillOffsetX, pillOffsetY, syncPillToLink]);
 
   const openMenuItem = items.find((item) => item.href === openMenuHref && item.menu);
   const openMenu = openMenuItem?.menu ? NAV_MENUS[openMenuItem.menu] : null;
@@ -347,7 +351,17 @@ function DesktopMagneticNav({ items, pathname, reduceMotion }: DesktopMagneticNa
             className={desktopLinkClassName(highlighted)}
             aria-current={active ? "page" : undefined}
             onMouseEnter={() => setHoveredHref(item.href)}
+            onMouseLeave={() => {
+              if (!openMenuHref) {
+                setHoveredHref((current) => (current === item.href ? null : current));
+              }
+            }}
             onFocus={() => setHoveredHref(item.href)}
+            onBlur={() => {
+              if (!openMenuHref) {
+                setHoveredHref((current) => (current === item.href ? null : current));
+              }
+            }}
           >
             <span className="relative z-10">{item.label}</span>
           </Link>
