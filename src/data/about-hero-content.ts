@@ -1,3 +1,5 @@
+import { DASHBOARD_LOGIN_URL } from "@/config/urls";
+
 export type AboutHeroTrait = {
   id: AboutHeroTraitId;
   label: string;
@@ -48,7 +50,7 @@ export const ABOUT_HERO_CONTENT = {
   ctas: [
     {
       label: "Start Your Transformation",
-      href: "/login",
+      href: DASHBOARD_LOGIN_URL,
       variant: "primary",
     },
     {

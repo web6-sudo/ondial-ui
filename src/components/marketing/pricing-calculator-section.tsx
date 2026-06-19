@@ -8,6 +8,7 @@ import { useCallback, useMemo, useRef, useState } from "react";
 
 import { ONDIAL_ACCENT_STYLE } from "@/components/marketing/split-screen-section";
 import { marketingSectionContainerClass } from "@/config/marketing-layout";
+import { DASHBOARD_SIGNUP_URL } from "@/config/urls";
 import {
   computeCalculatorMonthlyPrice,
   getPricingPlanForMinutes,
@@ -523,7 +524,7 @@ function PlanBuyButton({
   const displayPrice = Math.round(monthlyPrice * 100) / 100;
   const trend = useValueTrend(displayPrice);
   const isEnterprise = plan.id === "enterprise";
-  const href = plan.ctaHref ?? "/signup";
+  const href = plan.ctaHref ?? DASHBOARD_SIGNUP_URL;
   const label = isEnterprise ? plan.ctaLabel ?? "Contact Sales" : `Get ${plan.title}`;
   const labelMotion = prefersReducedMotion ? planLabelRevealReduced : planLabelReveal;
 

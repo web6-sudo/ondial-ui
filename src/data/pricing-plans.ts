@@ -1,3 +1,5 @@
+import { DASHBOARD_SIGNUP_URL } from "@/config/urls";
+
 export type PricingPlan = {
   id: string;
   title: string;
@@ -21,7 +23,7 @@ export const PRICING_PLANS: readonly PricingPlan[] = [
     description: "For small businesses",
     price: "$0.055/min",
     features: ["0 - 10,000 minutes"],
-    ctaHref: "/signup",
+    ctaHref: DASHBOARD_SIGNUP_URL,
     ctaLabel: "Start Free Trial",
   },
   {
@@ -30,7 +32,7 @@ export const PRICING_PLANS: readonly PricingPlan[] = [
     description: "For growing businesses",
     price: "$0.050/min",
     features: ["10,001 - 25,000 minutes"],
-    ctaHref: "/signup",
+    ctaHref: DASHBOARD_SIGNUP_URL,
     ctaLabel: "Start Free Trial",
   },
   {
@@ -39,7 +41,7 @@ export const PRICING_PLANS: readonly PricingPlan[] = [
     description: "For enterprise customers",
     price: "$0.045/min",
     features: ["25,001 - 100,000 minutes"],
-    ctaHref: "/signup",
+    ctaHref: DASHBOARD_SIGNUP_URL,
     ctaLabel: "Start Free Trial",
   },
   {

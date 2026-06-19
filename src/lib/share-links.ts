@@ -19,6 +19,9 @@ export function getShareLinks(url: string, title: string): ShareLinks {
 }
 
 export async function getSiteUrl(): Promise<string> {
+  const configured = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "");
+  if (configured) return configured;
+
   const { headers } = await import("next/headers");
   const headersList = await headers();
   const host = headersList.get("x-forwarded-host") ?? headersList.get("host");
