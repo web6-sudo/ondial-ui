@@ -1,29 +1,20 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
-import { MarketingPageBody } from "@/components/layout/marketing-page-body";
-import { Button } from "@/components/ui/button";
+import { BlogPageShell } from "@/components/layout/blog-page-shell";
+import { TermsAndConditionsSection } from "@/components/marketing/terms-and-conditions-section";
 
 export const metadata: Metadata = {
-  title: "Terms and conditions",
-  description: "Terms of use for Ondial.",
+  title: "Terms & Conditions",
+  description:
+    "Terms and conditions for using Ondial.ai website, products, and AI-powered services.",
 };
 
-export default function TermsPage() {
+export default function TermsAndConditionsPage() {
   return (
-    <MarketingPageBody
-      title="Terms and conditions"
-      description="Replace this placeholder with your binding terms. Version and effective date should be explicit."
-    >
-      <div className="flex flex-col gap-4 text-sm leading-relaxed text-muted-foreground">
-        <p>
-          This is placeholder content only. It does not constitute legal advice. Consult qualified counsel before
-          publishing terms of use.
-        </p>
-        <Button variant="outline" className="self-start" render={<Link href="/" prefetch />} nativeButton={false}>
-          Back home
-        </Button>
-      </div>
-    </MarketingPageBody>
+    <main className="flex flex-1 flex-col">
+      <BlogPageShell>
+        <TermsAndConditionsSection />
+      </BlogPageShell>
+    </main>
   );
 }

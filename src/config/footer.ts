@@ -2,44 +2,65 @@
  * Footer content — adjust labels, routes, and copy here.
  */
 
-export const FOOTER_LEGAL_LINKS = [
-  { href: "/privacy", label: "Privacy" },
-  { href: "/terms-and-conditions", label: "Terms" },
-  { href: "/return-policy", label: "Returns" },
-] as const;
-
-export type FooterLegalLink = (typeof FOOTER_LEGAL_LINKS)[number];
-
 export type FooterNavLink = {
   href: string;
   label: string;
   external?: boolean;
 };
 
-export const FOOTER_COMPANY_LINKS: readonly FooterNavLink[] = [
-  { href: "/pricing", label: "Pricing" },
-  { href: "/contact", label: "Contact us" },
-  { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
+export const FOOTER_QUICK_LINKS: readonly FooterNavLink[] = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About Us" },
+  { href: "/services", label: "Services" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
-export const FOOTER_PLATFORM_LINKS: readonly FooterNavLink[] = [
-  { href: "/#features", label: "Features" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/#faq", label: "FAQs" },
-  { href: "/#testimonials", label: "Testimonials" },
+export const FOOTER_RESOURCES_LINKS: readonly FooterNavLink[] = [
+  { href: "/blog", label: "Blog" },
+  { href: "/ondial-for-enterprise", label: "Enterprise" },
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms-and-conditions", label: "Terms of Service" },
 ] as const;
+
+/** Bottom bar legal links (pipe-separated on desktop). */
+export const FOOTER_BOTTOM_LEGAL_LINKS: readonly FooterNavLink[] = [
+  { href: "/terms-and-conditions", label: "Terms and Conditions" },
+  { href: "/return-policy", label: "Return Policy" },
+  { href: "/privacy", label: "Privacy Policy" },
+] as const;
+
+export type FooterLegalLink = (typeof FOOTER_BOTTOM_LEGAL_LINKS)[number];
+
+/** @deprecated Use FOOTER_BOTTOM_LEGAL_LINKS */
+export const FOOTER_LEGAL_LINKS = FOOTER_BOTTOM_LEGAL_LINKS;
+
+/** @deprecated Use FOOTER_QUICK_LINKS */
+export const FOOTER_COMPANY_LINKS = FOOTER_QUICK_LINKS;
+
+/** @deprecated Use FOOTER_RESOURCES_LINKS */
+export const FOOTER_PLATFORM_LINKS = FOOTER_RESOURCES_LINKS;
 
 export const FOOTER_SOCIAL_LINKS: readonly FooterNavLink[] = [
-  { href: "https://linkedin.com", label: "LinkedIn", external: true },
-  { href: "https://x.com", label: "Twitter / X", external: true },
-  { href: "https://github.com", label: "GitHub", external: true },
+  {
+    href: "https://www.linkedin.com/company/ondial",
+    label: "LinkedIn",
+    external: true,
+  },
+  {
+    href: "https://www.instagram.com/ondial",
+    label: "Instagram",
+    external: true,
+  },
 ] as const;
 
+export const FOOTER_BRAND_NAME = "OnDial";
+
 export const FOOTER_BRAND_TAGLINE =
-  "AI voice agents for reminders, outreach, surveys, and support—natural conversations at any scale.";
+  "Empowering businesses with AI voice agents and innovative IT solutions for smarter, faster, and more connected growth.";
 
 export const FOOTER_CONTACT_EMAIL = "info@ondial.ai";
+
+export const FOOTER_COPYRIGHT_ENTITY = "OnDial AI. All Rights Reserved.";
 
 export const FOOTER_CTA = {
   eyebrow: "Get started",
@@ -55,4 +76,9 @@ export const FOOTER_NEWSLETTER = {
   description: "Product updates, voice AI tips, and early access to new features.",
   placeholder: "Enter your email..",
   buttonLabel: "Subscribe",
+} as const;
+
+export const FOOTER_COLUMN_TITLES = {
+  quickLinks: "Quick Links",
+  resources: "Resources",
 } as const;

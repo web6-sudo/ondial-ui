@@ -5,20 +5,21 @@ import { motion, useInView, useReducedMotion, type Variants } from "framer-motio
 import { ArrowUpRight, Mail } from "lucide-react";
 import { useRef } from "react";
 
-import { FooterNewsletterForm } from "@/components/layout/footer-newsletter-form";
 import { MarketingDotBackground } from "@/components/layout/marketing-dot-background";
 import { TextReveal } from "@/components/ui/text-reveal";
 import { AppLink as Link } from "@/components/ui/app-link";
 import {
+  FOOTER_BOTTOM_LEGAL_LINKS,
+  FOOTER_BRAND_NAME,
   FOOTER_BRAND_TAGLINE,
-  FOOTER_COMPANY_LINKS,
+  FOOTER_COLUMN_TITLES,
   FOOTER_CONTACT_EMAIL,
-  FOOTER_LEGAL_LINKS,
-  FOOTER_PLATFORM_LINKS,
+  FOOTER_COPYRIGHT_ENTITY,
+  FOOTER_QUICK_LINKS,
+  FOOTER_RESOURCES_LINKS,
   FOOTER_SOCIAL_LINKS,
   type FooterNavLink,
 } from "@/config/footer";
-import { APP_NAME } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 import styles from "./marketing-site-footer.module.css";
@@ -46,6 +47,41 @@ const columnVariants: Variants = {
     },
   },
 };
+
+function LinkedInIcon() {
+  return (
+    <svg className={styles.socialIcon} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg className={styles.socialIcon} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+    </svg>
+  );
+}
+
+function FooterSocialLink({ item }: { item: FooterNavLink }) {
+  const prefersReducedMotion = useReducedMotion();
+  const Icon = item.label === "Instagram" ? InstagramIcon : LinkedInIcon;
+
+  return (
+    <motion.a
+      href={item.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styles.socialLink}
+      aria-label={item.label}
+      whileHover={prefersReducedMotion ? undefined : { y: -2 }}
+      transition={{ type: "spring", stiffness: 420, damping: 28 }}
+    >
+      <Icon />
+    </motion.a>
+  );
+}
 
 function FooterLink({ item }: { item: FooterNavLink }) {
   const prefersReducedMotion = useReducedMotion();
@@ -158,7 +194,7 @@ export function MarketingSiteFooter({ className }: MarketingSiteFooterProps) {
           <motion.div className={styles.brandCol} variants={columnVariants}>
             <Link href="/" prefetch className={styles.brandMark}>
               <Image src="/fav.svg" alt="" width={32} height={32} className="size-8" loading="lazy" />
-              <span className={styles.brandName}>{APP_NAME}</span>
+              <span className={styles.brandName}>{FOOTER_BRAND_NAME}</span>
             </Link>
             <p className={styles.tagline}>{FOOTER_BRAND_TAGLINE}</p>
             <motion.a
@@ -170,33 +206,45 @@ export function MarketingSiteFooter({ className }: MarketingSiteFooterProps) {
               <Mail className={styles.contactEmailIcon} aria-hidden strokeWidth={2} />
               <span>{FOOTER_CONTACT_EMAIL}</span>
             </motion.a>
-            <div className={styles.newsletterWrap}>
-              <FooterNewsletterForm />
+            <div className={styles.socialList}>
+              {FOOTER_SOCIAL_LINKS.map((item) => (
+                <FooterSocialLink key={item.href} item={item} />
+              ))}
             </div>
-            <TextReveal as="p" className={styles.copyright} delay={0.1} stagger={0.04}>
-              {`© ${year} ${APP_NAME}. All rights reserved.`}
-            </TextReveal>
           </motion.div>
 
           <FooterNavColumn
-            title="Company"
-            links={FOOTER_COMPANY_LINKS}
-            ariaLabel="Company links"
+            title={FOOTER_COLUMN_TITLES.quickLinks}
+            links={FOOTER_QUICK_LINKS}
+            ariaLabel="Quick links"
           />
 
           <FooterNavColumn
-            title="Platform"
-            links={FOOTER_PLATFORM_LINKS}
-            ariaLabel="Platform links"
+            title={FOOTER_COLUMN_TITLES.resources}
+            links={FOOTER_RESOURCES_LINKS}
+            ariaLabel="Resources"
           />
+        </motion.div>
 
-          <FooterNavColumn
-            title="Social"
-            links={FOOTER_SOCIAL_LINKS}
-            ariaLabel="Social links"
-          />
-
-          <FooterNavColumn title="Legal" links={FOOTER_LEGAL_LINKS} ariaLabel="Legal links" />
+        <motion.div
+          className={styles.bottomBar}
+          variants={columnVariants}
+          initial="hidden"
+          animate={showColumns ? "visible" : "hidden"}
+        >
+          <p className={styles.bottomCopyright}>
+            {`© ${year} ${FOOTER_COPYRIGHT_ENTITY}`}
+          </p>
+          <nav className={styles.bottomLegalNav} aria-label="Legal links">
+            {FOOTER_BOTTOM_LEGAL_LINKS.map((item, index) => (
+              <span key={item.href} className={styles.bottomLegalItem}>
+                {index > 0 ? <span className={styles.bottomLegalSep} aria-hidden>|</span> : null}
+                <Link href={item.href} prefetch className={styles.bottomLegalLink}>
+                  {item.label}
+                </Link>
+              </span>
+            ))}
+          </nav>
         </motion.div>
       </div>
     </footer>

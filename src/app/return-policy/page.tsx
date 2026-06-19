@@ -1,26 +1,20 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
-import { MarketingPageBody } from "@/components/layout/marketing-page-body";
-import { Button } from "@/components/ui/button";
+import { BlogPageShell } from "@/components/layout/blog-page-shell";
+import { ReturnPolicySection } from "@/components/marketing/return-policy-section";
 
 export const metadata: Metadata = {
-  title: "Return policy",
-  description: "Returns and refunds for Ondial.",
+  title: "Return Policy",
+  description:
+    "Ondial return, refund, and cancellation policy for AI-powered digital services, subscriptions, and one-time purchases.",
 };
 
 export default function ReturnPolicyPage() {
   return (
-    <MarketingPageBody
-      title="Return policy"
-      description="Describe return windows, eligible items, and refund timelines. Replace this placeholder before launch."
-    >
-      <div className="flex flex-col gap-4 text-sm leading-relaxed text-muted-foreground">
-        <p>This is placeholder content only. Align copy with your jurisdiction and product category.</p>
-        <Button variant="outline" className="self-start" render={<Link href="/" prefetch />} nativeButton={false}>
-          Back home
-        </Button>
-      </div>
-    </MarketingPageBody>
+    <main className="flex flex-1 flex-col">
+      <BlogPageShell>
+        <ReturnPolicySection />
+      </BlogPageShell>
+    </main>
   );
 }

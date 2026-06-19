@@ -94,8 +94,8 @@
 
 @media (min-width: 1100px) {
   .grid {
-    grid-template-columns: minmax(0, 1.45fr) repeat(4, minmax(0, 1fr));
-    gap: 2rem 1.75rem;
+    grid-template-columns: minmax(0, 1.55fr) repeat(2, minmax(0, 1fr));
+    gap: 2rem 2.5rem;
   }
 }
 
@@ -207,9 +207,103 @@
 
 .tagline {
   margin: 0.75rem 0 0;
-  max-width: 19rem;
+  max-width: 22rem;
   font-size: 0.875rem;
   line-height: 1.55;
+}
+
+.socialList {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 1rem;
+}
+
+.socialLink {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(0 0 0 / 0.08);
+  background: rgb(255 255 255 / 0.72);
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition:
+    color 0.22s ease,
+    border-color 0.22s ease,
+    background-color 0.22s ease;
+}
+
+.socialLink:hover,
+.socialLink:focus-visible {
+  color: var(--foreground);
+  border-color: rgb(0 0 0 / 0.14);
+  background: rgb(255 255 255 / 0.95);
+  outline: none;
+}
+
+.socialIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.bottomBar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgb(0 0 0 / 0.08);
+}
+
+@media (min-width: 768px) {
+  .bottomBar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+}
+
+.bottomCopyright {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.bottomLegalNav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+.bottomLegalItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bottomLegalSep {
+  color: rgb(0 0 0 / 0.18);
+  font-size: 0.8125rem;
+  user-select: none;
+}
+
+.bottomLegalLink {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: color 0.22s ease;
+}
+
+.bottomLegalLink:hover,
+.bottomLegalLink:focus-visible {
+  color: var(--foreground);
+  outline: none;
 }
 
 .contactEmail {
