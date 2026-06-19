@@ -9,8 +9,9 @@ import { MarketingDottedPageShell } from "@/components/layout/marketing-dotted-p
 
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "Learn about OnDial.",
+  title: { absolute: "About OnDial | AI Voice Agents for Smarter Calls" },
+  description:
+    "Discover OnDial - building AI Voice Agents that answer calls instantly, speak 20+ languages, and deliver secure, human-like customer experiences.",
 };
 
 export default function AboutPage() {

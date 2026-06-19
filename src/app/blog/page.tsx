@@ -18,9 +18,9 @@ import {
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Insights & Updates",
+  title: { absolute: "Best AI Voice Agent Automation Blogs & Insights | OnDial" },
   description:
-    "Stay updated with the latest in AI communications, connectivity, and digital transformation from the Ondial team.",
+    "Stay updated with OnDial's blog on AI voice agents, automation, and customer experience. Learn strategies, trends, and tips to grow your business smarter.",
 };
 
 async function getBlogPosts(): Promise<BlogPost[]> {

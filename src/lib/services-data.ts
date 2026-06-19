@@ -17,6 +17,10 @@ import {
   CalendarDays,
   Brain,
   Pill,
+  Zap,
+  HardHat,
+  Sprout,
+  TrendingUp,
 } from "lucide-react";
 
 /** Matte card fills — shared by service cards and marketing carousel. */
@@ -203,7 +207,143 @@ export const DEFAULT_INDUSTRIES: Industry[] = [
     description:
       "Handle prescription order updates, automate delivery notifications, share medical guidelines, and support pharmacy customer inquiries.",
   },
+  {
+    id: 20,
+    name: "AI Voice Agents for Sales & Lead Generation",
+    slug: "sales-and-lead-generation-services",
+    icon: TrendingUp,
+    description:
+      "Automate outbound outreach, qualify leads, schedule follow-ups, and accelerate your sales pipeline with AI-powered voice automation.",
+  },
+  {
+    id: 21,
+    name: "AI Voice Agents for Utilities",
+    slug: "utilities-services",
+    icon: Zap,
+    description:
+      "Automate billing inquiries, outage notifications, service requests, and account management for utility providers.",
+  },
+  {
+    id: 22,
+    name: "AI Voice Agents for Construction",
+    slug: "construction-services",
+    icon: HardHat,
+    description:
+      "Streamline site coordination, project status updates, supplier communication, and team notifications with AI voice automation.",
+  },
+  {
+    id: 23,
+    name: "AI Voice Agents for Agriculture",
+    slug: "agriculture-services",
+    icon: Sprout,
+    description:
+      "Automate farm guidance, crop advisory calls, supply chain updates, and field support with intelligent AI voice agents.",
+  },
 ];
+
+/** Per-industry SEO meta titles and descriptions for `generateMetadata`. */
+export const INDUSTRY_SEO_METADATA: Record<string, { title: string; description: string }> = {
+  "healthcare-and-medical-services": {
+    title: "AI Voice Agent for Healthcare and Medical services | OnDial",
+    description:
+      "Enhance healthcare and medical services with OnDial's AI-powered solutions. Improve patient care, streamline operations & drive efficiency.",
+  },
+  "financial-and-banking-services": {
+    title: "AI Voice Agent for Finance & Banking Services | OnDial",
+    description:
+      "Transform customer support in finance & banking with OnDial's AI Voice Agent. Automate queries, boost security, and deliver seamless, 24/7 client experiences.",
+  },
+  "real-estate-services": {
+    title: "AI Voice Agent for Real Estate Services | OnDial",
+    description:
+      "Boost property sales and customer support with OnDial's AI Voice Agent for Real Estate Services. Automate inquiries, qualify leads, and deliver 24/7 smart assistance.",
+  },
+  "retail-and-ecommerce-services": {
+    title: "AI Voice Agent for Retail & E-commerce Services | OnDial",
+    description:
+      "Boost customer engagement with OnDial's AI Voice Agent for Retail & E-commerce Services. Automate support, personalize shopping, and drive sales with ease.",
+  },
+  "insurance-services": {
+    title: "AI Voice Agent for Insurance Services | OnDial Solutions",
+    description:
+      "Transform insurance support with OnDial's AI Voice Agent for Insurance Services. Automate claims, boost customer experience, and cut response times seamlessly.",
+  },
+  "sales-and-lead-generation-services": {
+    title: "AI Voice Agent for Sales & Lead Generation Services",
+    description:
+      "Boost revenue with OnDial's AI Voice Agent for Sales & Lead Generation Services. Automate outreach, qualify leads, and close deals faster with smart voice AI.",
+  },
+  "call-center-and-bpo-services": {
+    title: "AI Voice Agent for Call Centers & BPO Services | OnDial",
+    description:
+      "Boost efficiency with OnDial's AI Voice Agent for Call Centers & BPO Services. Automate support, cut costs, and deliver exceptional customer experiences.",
+  },
+  "telecommunications-services": {
+    title: "AI Voice Agent for Telecommunications Services | OnDial",
+    description:
+      "Boost call centers and customer care with OnDial's AI Voice Agent for Telecommunications Services — streamline support, cut costs, and elevate user experiences.",
+  },
+  "automotive-services": {
+    title: "AI Voice Agent for Automotive Services | OnDial",
+    description:
+      "Streamline bookings, diagnostics, and customer support with OnDial's AI Voice Agent for Automotive Services — smarter, faster, and always on for your garage.",
+  },
+  "education-services": {
+    title: "AI Voice Agent for Education Services – OnDial",
+    description:
+      "Enhance student engagement and streamline admin tasks with OnDial's AI Voice Agent for Education Services. 24/7 support, multilingual, and secure.",
+  },
+  "travel-and-tourism-services": {
+    title: "AI Voice Agent for Travel & Tourism Services | OnDial",
+    description:
+      "Transform travel experiences with OnDial's AI Voice Agent for Travel & Tourism Services - bookings, assist travelers, and boost customer satisfaction.",
+  },
+  "hospitality-services": {
+    title: "AI Voice Agent for Hospitality Services | OnDial",
+    description:
+      "Enhance guest experiences with OnDial's AI Voice Agent. 24/7 support, multilingual capabilities, and instant responses for seamless hospitality services.",
+  },
+  "legal-services": {
+    title: "Best AI Voice Agent for Legal Services | OnDial",
+    description:
+      "Enhance your law firm's efficiency with OnDial's AI Voice Agent. Automate client intake, lead qualification, and appointment scheduling 24/7.",
+  },
+  "government-services": {
+    title: "Best AI Voice Agent for Government Services – OnDial",
+    description:
+      "Enhance citizen engagement with OnDial's AI Voice Agent. Provide 24/7 multilingual support, automate inquiries, and streamline government services efficiently.",
+  },
+  "utilities-services": {
+    title: "Best AI Voice Agent for Utilities Services | OnDial",
+    description:
+      "Enhance customer support and operational efficiency with OnDial's AI Voice Agent for Utilities Services. Automate queries, billing, and real-time assistance.",
+  },
+  "non-profit-organizations-services": {
+    title: "Best AI Voice Agent for Non-Profit Organizations Services",
+    description:
+      "Boost efficiency and donor engagement with OnDial's AI Voice Agent for Non-Profit Organizations Services. Automate calls, support, and outreach seamlessly.",
+  },
+  "transportation-and-logistics-services": {
+    title: "AI Voice Agent for Transportation & Logistics Services",
+    description:
+      "Boost efficiency and streamline operations with OnDial's AI Voice Agent for Transportation & Logistics Services. Smart automation for faster deliveries.",
+  },
+  "manufacturing-services": {
+    title: "AI Voice Agent for Manufacturing Services | OnDial",
+    description:
+      "Boost efficiency and streamline operations with OnDial's AI Voice Agent for Manufacturing Services, transforming production and factory communication.",
+  },
+  "construction-services": {
+    title: "Best AI Voice Agent for Construction Services | OnDial",
+    description:
+      "Boost efficiency with OnDial's AI Voice Agent for Construction Services. Automate site coordination, reporting, and team communication seamlessly.",
+  },
+  "agriculture-services": {
+    title: "Best AI Voice Agent for Agriculture Services | OnDial",
+    description:
+      "Boost farm efficiency with OnDial's AI Voice Agent for Agriculture Services. Automate guidance, support, and insights for smarter farming operations.",
+  },
+};
 
 export const SERVICES_DATA = DEFAULT_INDUSTRIES.map((industry, index) => ({
   id: industry.id,

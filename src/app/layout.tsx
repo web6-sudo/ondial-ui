@@ -17,10 +17,10 @@ const fontSans = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://ondial.ai"),
   title: {
-    default: "Ondial | Enterprise AI Voice Agents",
-    template: "%s · Ondial",
+    default: "Best AI Voice Agents to Automate Your Phone Calls | OnDial",
+    template: "%s | OnDial",
   },
-  description: "Automate your customer support and sales with Ondial's state-of-the-art AI voice agents. Never miss a call again.",
+  description: "Discover the best AI voice agents to automate your phone calls, reduce costs, and improve customer satisfaction with OnDial's Top AI Call Agents solution.",
   keywords: ["AI voice agents", "customer support automation", "AI sales calls", "virtual receptionist", "Ondial"],
   authors: [{ name: "Ondial" }],
   creator: "Ondial",
@@ -34,16 +34,16 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Ondial | Enterprise AI Voice Agents",
-    description: "Automate your customer support and sales with Ondial's state-of-the-art AI voice agents. Never miss a call again.",
+    title: "Best AI Voice Agents to Automate Your Phone Calls | OnDial",
+    description: "Discover the best AI voice agents to automate your phone calls, reduce costs, and improve customer satisfaction with OnDial's Top AI Call Agents solution.",
     url: "https://ondial.ai",
-    siteName: "Ondial",
+    siteName: "OnDial",
     images: [
       {
-        url: "/img/og-image.jpg", // Make sure to add this image to your public folder
+        url: "/img/logo/og.png",
         width: 1200,
         height: 630,
-        alt: "Ondial AI Voice Agents",
+        alt: "OnDial AI Voice Agents",
       },
     ],
     locale: "en_US",
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ondial | Enterprise AI Voice Agents",
-    description: "Automate your customer support and sales with Ondial's state-of-the-art AI voice agents.",
-    images: ["/img/og-image.jpg"],
+    title: "Best AI Voice Agents to Automate Your Phone Calls | OnDial",
+    description: "Discover the best AI voice agents to automate your phone calls, reduce costs, and improve customer satisfaction with OnDial's Top AI Call Agents solution.",
+    images: ["/img/logo/og.png"],
     creator: "@OndialAI",
   },
   icons: {

@@ -4,9 +4,9 @@ import { BlogPageShell } from "@/components/layout/blog-page-shell";
 import { TermsAndConditionsSection } from "@/components/marketing/terms-and-conditions-section";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions",
+  title: { absolute: "OnDial AI Terms & Conditions – Service Agreement" },
   description:
-    "Terms and conditions for using Ondial.ai website, products, and AI-powered services.",
+    "Review OnDial AI's Terms & Conditions for using our AI voice agents, services, and support. Understand your rights and responsibilities.",
 };
 
 export default function TermsAndConditionsPage() {

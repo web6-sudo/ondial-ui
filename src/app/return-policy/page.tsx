@@ -4,9 +4,9 @@ import { BlogPageShell } from "@/components/layout/blog-page-shell";
 import { ReturnPolicySection } from "@/components/marketing/return-policy-section";
 
 export const metadata: Metadata = {
-  title: "Return Policy",
+  title: { absolute: "OnDial Return Policy – Easy Returns & Refunds" },
   description:
-    "Ondial return, refund, and cancellation policy for AI-powered digital services, subscriptions, and one-time purchases.",
+    "Explore OnDial's straightforward return policy. Enjoy easy returns, transparent guidelines, and prompt support for a seamless experience.",
 };
 
 export default function ReturnPolicyPage() {

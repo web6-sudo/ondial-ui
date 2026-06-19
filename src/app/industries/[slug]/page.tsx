@@ -11,6 +11,7 @@ import {
   getIndustryHeroContent,
   getIndustryPageContent,
 } from "@/data/industry-hero-content";
+import { INDUSTRY_SEO_METADATA } from "@/lib/services-data";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -25,9 +26,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const industry = getIndustryBySlug(slug);
   if (!industry) return { title: "Industry" };
 
+  const seo = INDUSTRY_SEO_METADATA[slug];
   return {
-    title: industry.name,
-    description: industry.description,
+    title: { absolute: seo?.title ?? industry.name },
+    description: seo?.description ?? industry.description,
   };
 }
 

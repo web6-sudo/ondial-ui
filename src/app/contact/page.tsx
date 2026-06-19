@@ -5,8 +5,9 @@ import { ContactMissionSection } from "@/components/marketing/contact-mission-se
 import { ContactPageSection } from "@/components/marketing/contact-page-section";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch with OnDial.",
+  title: { absolute: "Contact OnDial AI – Reach Our Support Team Anytime" },
+  description:
+    "Reach out to OnDial AI for support and questions. Our team is ready to assist you with AI voice solutions and business automation.",
 };
 
 export default function ContactPage() {

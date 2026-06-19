@@ -12,9 +12,9 @@ import { notFound } from "next/navigation";
 // } from "@/components/marketing/services-page-sections";
 
 export const metadata: Metadata = {
-  title: "Services — OnDial Best AI Call Assistant",
+  title: { absolute: "AI Voice Call Automation Services | OnDial" },
   description:
-    "Transform the way your business communicates. OnDial AI voice call automation for 20+ industries — industry-specific templates, compliance, CRM integrations, and real-time analytics.",
+    "Boost efficiency with OnDial's AI Voice Call Automation. Streamline customer support, reduce costs & deliver faster, smarter conversations.",
 };
 
 /** Main services overview — hidden for now; sub-routes under `/services/[slug]` stay live. */

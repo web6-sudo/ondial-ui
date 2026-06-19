@@ -4,9 +4,9 @@ import { BlogPageShell } from "@/components/layout/blog-page-shell";
 import { PrivacyPolicySection } from "@/components/marketing/privacy-policy-section";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: { absolute: "OnDial Privacy Policy – Secure AI Voice Agents" },
   description:
-    "How Ondial.ai collects, uses, and protects your personal information when you use our website, products, and services.",
+    "Explore OnDial's Privacy Policy to understand how we securely handle your data with enterprise-grade protection and full compliance with privacy regulations.",
 };
 
 export default function PrivacyPage() {
