@@ -91,7 +91,7 @@ export function ShowcaseSection() {
           more than 1000+ companies use Ondial
         </p>
         <TextReveal
-          as="h2"
+          as="h1"
           className={styles.title}
           trigger="loader"
           delay={0.12}
