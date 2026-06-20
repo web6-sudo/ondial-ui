@@ -14,26 +14,26 @@ export type SiteFaqPageKey =
   | "home"
   | "about"
   | "pricing"
-  | "healthcare-and-medical-services"
-  | "financial-and-banking-services"
-  | "real-estate-services"
-  | "retail-and-ecommerce-services"
-  | "insurance-services"
-  | "sales-and-lead-generation-services"
-  | "call-center-and-bpo-services"
-  | "telecommunications-services"
-  | "automotive-services"
-  | "education-services"
-  | "travel-and-tourism-services"
-  | "hospitality-services"
-  | "legal-services"
-  | "government-services"
-  | "utilities-services"
-  | "non-profit-organizations-services"
-  | "transportation-and-logistics-services"
-  | "manufacturing-services"
-  | "construction-services"
-  | "agriculture-services"
+  | "ai-voice-agents-healthcare-medical"
+  | "ai-voice-agents-finance-banking"
+  | "ai-voice-agents-real-estate"
+  | "ai-voice-agents-retail-e-commerce"
+  | "ai-voice-agents-insurance"
+  | "ai-voice-agents-sales-lead-generation"
+  | "ai-voice-agents-call-centers-bpo"
+  | "ai-voice-agents-telecommunications"
+  | "ai-voice-agents-automotive"
+  | "ai-voice-agents-education"
+  | "ai-voice-agents-travel-tourism"
+  | "ai-voice-agents-hospitality"
+  | "ai-voice-agents-legal"
+  | "ai-voice-agents-government"
+  | "ai-voice-agents-utilities"
+  | "ai-voice-agents-non-profit-organizations"
+  | "ai-voice-agents-transportation-logistics"
+  | "ai-voice-agents-manufacturing"
+  | "ai-voice-agents-construction"
+  | "ai-voice-agents-agriculture"
 ;
 
 const HOME_HEADING = {
@@ -203,7 +203,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "Simply request a demo or contact our team. We’ll guide you through setup and ensure your AI voice agent is ready to take calls immediately.",
     },
   ],
-  "healthcare-and-medical-services": [
+  "ai-voice-agents-healthcare-medical": [
     {
       id: "what-are-ai-voice-agents-in-healthcare",
       question: "What are AI voice agents in healthcare?",
@@ -255,7 +255,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "Our expertise, secure infrastructure, and proven success in healthcare automation make OnDial a trusted partner for medical organizations.",
     },
   ],
-  "financial-and-banking-services": [
+  "ai-voice-agents-finance-banking": [
     {
       id: "what-are-ai-voice-agents-for-finance-and-banking",
       question: "What are AI voice agents for finance and banking?",
@@ -307,7 +307,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "You can partner with OnDial to integrate AI voice solutions with your existing systems and launch within weeks.",
     },
   ],
-  "real-estate-services": [
+  "ai-voice-agents-real-estate": [
     {
       id: "what-are-ai-voice-agents-for-real-estate-services",
       question: "What are AI voice agents for real estate services?",
@@ -359,7 +359,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "Simply book a demo through the OnDial website. Our team will customize AI voice workflows tailored to your real estate business needs.",
     },
   ],
-  "retail-and-ecommerce-services": [
+  "ai-voice-agents-retail-e-commerce": [
     {
       id: "what-are-ai-voice-agents-in-retail-and-e-commerce",
       question: "What are AI voice agents in retail and e-commerce?",
@@ -411,7 +411,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "OnDial offers secure, scalable, and globally optimized AI voice agent solutions that improve conversions, reduce costs, and enhance customer experience.",
     },
   ],
-  "insurance-services": [
+  "ai-voice-agents-insurance": [
     {
       id: "what-are-ai-voice-agents-for-insurance",
       question: "What are AI voice agents for insurance?",
@@ -463,7 +463,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "Insurers can contact OnDial, schedule a demo, and implement AI voice agents to automate renewals, claims, and customer engagement.",
     },
   ],
-  "sales-and-lead-generation-services": [
+  "ai-voice-agents-sales-lead-generation": [
     {
       id: "what-are-ai-voice-agents-for-sales",
       question: "What are AI voice agents for sales?",
@@ -515,7 +515,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "Simply contact OnDial. Our team will assess your needs, customize solutions, and deploy AI voice agents tailored to your sales strategy.",
     },
   ],
-  "call-center-and-bpo-services": [
+  "ai-voice-agents-call-centers-bpo": [
     {
       id: "what-are-ai-voice-agents-for-call-centers",
       question: "What are AI Voice Agents for call centers?",
@@ -567,7 +567,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "OnDial offers enterprise-grade AI solutions, multilingual support, and proven results across industries, making it a trusted global partner.",
     },
   ],
-  "telecommunications-services": [
+  "ai-voice-agents-telecommunications": [
     {
       id: "what-are-ai-voice-agents-for-telecommunications-services",
       question: "What are AI voice agents for telecommunications services?",
@@ -619,7 +619,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "OnDial offers telecom-specific AI solutions with proven global results, regulatory compliance, and seamless integration-making it a trusted AI partner.",
     },
   ],
-  "automotive-services": [
+  "ai-voice-agents-automotive": [
     {
       id: "what-are-ai-voice-agents-for-automotive-services",
       question: "What are AI voice agents for automotive services?",
@@ -671,7 +671,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "OnDial offers scalable, secure, and industry-specific AI voice agent solutions-built to deliver real results for dealerships, insurers, and repair shops.",
     },
   ],
-  "education-services": [
+  "ai-voice-agents-education": [
     {
       id: "what-are-ai-voice-agents-in-education",
       question: "What are AI voice agents in education?",
@@ -723,7 +723,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "Institutions using OnDial see fewer missed payments, higher event participation, and stronger engagement across students and alumni.",
     },
   ],
-  "travel-and-tourism-services": [
+  "ai-voice-agents-travel-tourism": [
     {
       id: "what-are-ai-voice-agents-in-travel-tourism",
       question: "What are AI voice agents in travel & tourism?",
@@ -775,7 +775,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "You can contact OnDial’s AI specialists to design a customized voice agent solution that fits your travel business needs.",
     },
   ],
-  "hospitality-services": [
+  "ai-voice-agents-hospitality": [
     {
       id: "what-are-ai-voice-agents-for-hospitality-services",
       question: "What are AI voice agents for hospitality services?",
@@ -827,7 +827,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "Most properties can implement OnDial’s AI voice agents within a few weeks, depending on system integration needs.",
     },
   ],
-  "legal-services": [
+  "ai-voice-agents-legal": [
     {
       id: "what-are-ai-voice-agents-for-legal-services",
       question: "What are AI voice agents for legal services?",
@@ -879,7 +879,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "The future includes predictive client communication, AI-driven compliance monitoring, and smarter client engagement at scale.",
     },
   ],
-  "government-services": [
+  "ai-voice-agents-government": [
     {
       id: "what-are-ai-voice-agents-for-government-services",
       question: "What are AI voice agents for government services?",
@@ -931,7 +931,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "Governments can request a demo, consult with our experts, and integrate AI voice agents tailored to their department’s needs.",
     },
   ],
-  "utilities-services": [
+  "ai-voice-agents-utilities": [
     {
       id: "how-can-ai-voice-agents-improve-utilities-billing-services",
       question: "How can AI voice agents improve utilities billing services?",
@@ -983,7 +983,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "OnDial offers customizable, secure, and globally tested AI voice agents specifically optimized for the utilities industry, ensuring reliability and scalability.",
     },
   ],
-  "non-profit-organizations-services": [
+  "ai-voice-agents-non-profit-organizations": [
     {
       id: "what-are-ai-voice-agents-for-non-profit-organizations",
       question: "What are AI voice agents for non-profit organizations?",
@@ -1035,7 +1035,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "OnDial specializes in AI voice automation for nonprofits, with proven global results, easy deployment, and transparent pricing tailored to NGO budgets.",
     },
   ],
-  "transportation-and-logistics-services": [
+  "ai-voice-agents-transportation-logistics": [
     {
       id: "what-are-ai-voice-agents-in-logistics",
       question: "What are AI voice agents in logistics?",
@@ -1087,7 +1087,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "E-commerce, shipping, freight forwarding, supply chain management, and fleet operators benefit the most.",
     },
   ],
-  "manufacturing-services": [
+  "ai-voice-agents-manufacturing": [
     {
       id: "what-are-ai-voice-agents-for-manufacturing-services",
       question: "What are AI voice agents for manufacturing services?",
@@ -1139,7 +1139,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "The future lies in IoT and AI integration, where machines and systems communicate through voice AI, driving fully automated smart factories.",
     },
   ],
-  "construction-services": [
+  "ai-voice-agents-construction": [
     {
       id: "what-are-ai-voice-agents-for-construction-services",
       question: "What are AI voice agents for construction services?",
@@ -1191,7 +1191,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "OnDial combines industry-specific expertise, secure infrastructure, and proven performance-making it the best AI voice agent company for construction services globally.",
     },
   ],
-  "agriculture-services": [
+  "ai-voice-agents-agriculture": [
     {
       id: "what-are-ai-voice-agents-for-agriculture-services",
       question: "What are AI voice agents for agriculture services?",
@@ -1246,26 +1246,26 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
 };
 
 const INDUSTRY_NAMES: Partial<Record<SiteFaqPageKey, string>> = {
-  "healthcare-and-medical-services": "Healthcare & medical services",
-  "financial-and-banking-services": "Finance & banking",
-  "real-estate-services": "Real estate",
-  "retail-and-ecommerce-services": "Retail & e-commerce",
-  "insurance-services": "Insurance",
-  "sales-and-lead-generation-services": "Sales & lead generation",
-  "call-center-and-bpo-services": "Call centers & BPO",
-  "telecommunications-services": "Telecommunications",
-  "automotive-services": "Automotive",
-  "education-services": "Education",
-  "travel-and-tourism-services": "Travel & tourism",
-  "hospitality-services": "Hospitality",
-  "legal-services": "Legal",
-  "government-services": "Government",
-  "utilities-services": "Utilities",
-  "non-profit-organizations-services": "Non-profit organizations",
-  "transportation-and-logistics-services": "Transportation & logistics",
-  "manufacturing-services": "Manufacturing",
-  "construction-services": "Construction",
-  "agriculture-services": "Agriculture",
+  "ai-voice-agents-healthcare-medical": "Healthcare & medical services",
+  "ai-voice-agents-finance-banking": "Finance & banking",
+  "ai-voice-agents-real-estate": "Real estate",
+  "ai-voice-agents-retail-e-commerce": "Retail & e-commerce",
+  "ai-voice-agents-insurance": "Insurance",
+  "ai-voice-agents-sales-lead-generation": "Sales & lead generation",
+  "ai-voice-agents-call-centers-bpo": "Call centers & BPO",
+  "ai-voice-agents-telecommunications": "Telecommunications",
+  "ai-voice-agents-automotive": "Automotive",
+  "ai-voice-agents-education": "Education",
+  "ai-voice-agents-travel-tourism": "Travel & tourism",
+  "ai-voice-agents-hospitality": "Hospitality",
+  "ai-voice-agents-legal": "Legal",
+  "ai-voice-agents-government": "Government",
+  "ai-voice-agents-utilities": "Utilities",
+  "ai-voice-agents-non-profit-organizations": "Non-profit organizations",
+  "ai-voice-agents-transportation-logistics": "Transportation & logistics",
+  "ai-voice-agents-manufacturing": "Manufacturing",
+  "ai-voice-agents-construction": "Construction",
+  "ai-voice-agents-agriculture": "Agriculture",
 };
 
 export function getSiteFaqSection(pageKey: SiteFaqPageKey): SiteFaqSection {

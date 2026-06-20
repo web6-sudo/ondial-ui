@@ -35,163 +35,163 @@ const OSAKA_TOWER = "https://assets.codepen.io/605876/do-not-copy-osaka-tower.pn
  * Per-industry background + optional foreground images.
  */
 const INDUSTRY_IMAGES: Record<string, { background: string; foreground?: string }> = {
-  "healthcare-and-medical-services": {
+  "ai-voice-agents-healthcare-medical": {
     background: "https://images.pexels.com/photos/23234956/pexels-photo-23234956.jpeg",
     foreground: "/industries/Untitled design.png",
   },
-  "insurance-services": {
+  "ai-voice-agents-insurance": {
     background: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1600&auto=format&fit=crop",
   },
-  "financial-and-banking-services": {
+  "ai-voice-agents-finance-banking": {
     background: "https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=1600&auto=format&fit=crop",
     foreground: OSAKA_TOWER,
   },
-  "real-estate-services": {
+  "ai-voice-agents-real-estate": {
     background: "https://images.pexels.com/photos/23234956/pexels-photo-23234956.jpeg",
     foreground: "/industries/Untitled design.png",
   },
-  "call-center-and-bpo-services": {
+  "ai-voice-agents-call-centers-bpo": {
     background: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1600&auto=format&fit=crop",
   },
-  "travel-and-tourism-services": {
+  "ai-voice-agents-travel-tourism": {
     background: "https://images.unsplash.com/photo-1488085061387-422e29b40080?q=80&w=1600&auto=format&fit=crop",
     foreground: OSAKA_TOWER,
   },
-  "transportation-and-logistics-services": {
+  "ai-voice-agents-transportation-logistics": {
     background: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1600&auto=format&fit=crop",
   },
-  "retail-and-ecommerce-services": {
+  "ai-voice-agents-retail-e-commerce": {
     background: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1600&auto=format&fit=crop",
   },
-  "telecommunications-services": {
+  "ai-voice-agents-telecommunications": {
     background: "https://images.unsplash.com/photo-1488509082528-cefbba5ad692?q=80&w=1600&auto=format&fit=crop",
   },
-  "automotive-services": {
+  "ai-voice-agents-automotive": {
     background: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1600&auto=format&fit=crop",
   },
-  "education-services": {
+  "ai-voice-agents-education": {
     background: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=1600&auto=format&fit=crop",
   },
-  "hospitality-services": {
+  "ai-voice-agents-hospitality": {
     background: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop",
   },
-  "legal-services": {
+  "ai-voice-agents-legal": {
     background: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1600&auto=format&fit=crop",
   },
-  "government-services": {
+  "ai-voice-agents-government": {
     background: "https://images.unsplash.com/photo-1541872705-1f73c6400ec9?q=80&w=1600&auto=format&fit=crop",
     foreground: OSAKA_TOWER,
   },
-  "manufacturing-services": {
+  "ai-voice-agents-manufacturing": {
     background: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?q=80&w=1600&auto=format&fit=crop",
   },
-  "non-profit-organizations-services": {
+  "ai-voice-agents-non-profit-organizations": {
     background: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=1600&auto=format&fit=crop",
   },
-  "event-management-services": {
+  "ai-voice-agents-event-management": {
     background: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1600&auto=format&fit=crop",
   },
-  "consulting-services": {
+  "ai-voice-agents-consulting": {
     background: "https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop",
   },
-  "pharmaceutical-services": {
+  "ai-voice-agents-pharmaceuticals": {
     background: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1600&auto=format&fit=crop",
   },
 };
 
 /** Per-industry audio demo tracks. */
 const INDUSTRY_DEMOS: Record<string, AudioDemoTrack[]> = {
-  "healthcare-and-medical-services": [
+  "ai-voice-agents-healthcare-medical": [
     { id: 1, label: "Appointment Reminder", artist: "AI Voice · Healthcare", from: "#1e3a8a", to: "#3b82f6", accent: "#60a5fa", seconds: 38 },
     { id: 2, label: "Prescription Refill", artist: "AI Voice · Healthcare", from: "#164e63", to: "#06b6d4", accent: "#22d3ee", seconds: 52 },
     { id: 3, label: "Lab Results Follow-up", artist: "AI Voice · Healthcare", from: "#1e1b4b", to: "#6366f1", accent: "#818cf8", seconds: 44 },
   ],
-  "insurance-services": [
+  "ai-voice-agents-insurance": [
     { id: 1, label: "Policy Renewal", artist: "AI Voice · Insurance", from: "#1e1b4b", to: "#4f46e5", accent: "#818cf8", seconds: 48 },
     { id: 2, label: "Claim Status Update", artist: "AI Voice · Insurance", from: "#0f172a", to: "#334155", accent: "#94a3b8", seconds: 40 },
     { id: 3, label: "Premium Reminder", artist: "AI Voice · Insurance", from: "#172554", to: "#1d4ed8", accent: "#60a5fa", seconds: 34 },
   ],
-  "financial-and-banking-services": [
+  "ai-voice-agents-finance-banking": [
     { id: 1, label: "Payment Due Reminder", artist: "AI Voice · Banking", from: "#064e3b", to: "#10b981", accent: "#34d399", seconds: 35 },
     { id: 2, label: "Fraud Alert", artist: "AI Voice · Banking", from: "#1c1917", to: "#78716c", accent: "#a8a29e", seconds: 28 },
     { id: 3, label: "Loan Application", artist: "AI Voice · Finance", from: "#052e16", to: "#16a34a", accent: "#4ade80", seconds: 58 },
   ],
-  "real-estate-services": [
+  "ai-voice-agents-real-estate": [
     { id: 1, label: "Showing Confirmation", artist: "AI Voice · Real Estate", from: "#78350f", to: "#f59e0b", accent: "#fbbf24", seconds: 42 },
     { id: 2, label: "Lead Follow-up", artist: "AI Voice · Real Estate", from: "#7c2d12", to: "#ea580c", accent: "#fb923c", seconds: 55 },
     { id: 3, label: "Lease Renewal", artist: "AI Voice · Real Estate", from: "#431407", to: "#dc2626", accent: "#f87171", seconds: 48 },
   ],
-  "call-center-and-bpo-services": [
+  "ai-voice-agents-call-centers-bpo": [
     { id: 1, label: "Customer Support", artist: "AI Voice · BPO", from: "#0c4a6e", to: "#0284c7", accent: "#38bdf8", seconds: 60 },
     { id: 2, label: "Complaint Resolution", artist: "AI Voice · BPO", from: "#164e63", to: "#0891b2", accent: "#22d3ee", seconds: 52 },
     { id: 3, label: "Survey Call", artist: "AI Voice · Call Center", from: "#1e3a8a", to: "#2563eb", accent: "#93c5fd", seconds: 45 },
   ],
-  "travel-and-tourism-services": [
+  "ai-voice-agents-travel-tourism": [
     { id: 1, label: "Booking Confirmation", artist: "AI Voice · Travel", from: "#042f2e", to: "#0f766e", accent: "#2dd4bf", seconds: 42 },
     { id: 2, label: "Flight Delay Alert", artist: "AI Voice · Travel", from: "#164e63", to: "#0e7490", accent: "#22d3ee", seconds: 30 },
     { id: 3, label: "Check-in Reminder", artist: "AI Voice · Tourism", from: "#065f46", to: "#059669", accent: "#34d399", seconds: 35 },
   ],
-  "transportation-and-logistics-services": [
+  "ai-voice-agents-transportation-logistics": [
     { id: 1, label: "Delivery ETA Update", artist: "AI Voice · Logistics", from: "#1e3a8a", to: "#1d4ed8", accent: "#60a5fa", seconds: 30 },
     { id: 2, label: "Pickup Confirmation", artist: "AI Voice · Transport", from: "#0c4a6e", to: "#0284c7", accent: "#38bdf8", seconds: 28 },
     { id: 3, label: "Shipment Alert", artist: "AI Voice · Logistics", from: "#0f172a", to: "#334155", accent: "#94a3b8", seconds: 36 },
   ],
-  "retail-and-ecommerce-services": [
+  "ai-voice-agents-retail-e-commerce": [
     { id: 1, label: "Order Status Update", artist: "AI Voice · Retail", from: "#500724", to: "#db2777", accent: "#f472b6", seconds: 30 },
     { id: 2, label: "Return Confirmation", artist: "AI Voice · E-commerce", from: "#4a044e", to: "#a21caf", accent: "#c026d3", seconds: 36 },
     { id: 3, label: "Loyalty Points Alert", artist: "AI Voice · Retail", from: "#2e1065", to: "#7c3aed", accent: "#a78bfa", seconds: 44 },
   ],
-  "telecommunications-services": [
+  "ai-voice-agents-telecommunications": [
     { id: 1, label: "Plan Upgrade Offer", artist: "AI Voice · Telecom", from: "#0c4a6e", to: "#0ea5e9", accent: "#38bdf8", seconds: 40 },
     { id: 2, label: "Outage Notification", artist: "AI Voice · Telecom", from: "#042f2e", to: "#0d9488", accent: "#2dd4bf", seconds: 28 },
     { id: 3, label: "Bill Reminder", artist: "AI Voice · Telecom", from: "#0f172a", to: "#1e40af", accent: "#60a5fa", seconds: 32 },
   ],
-  "automotive-services": [
+  "ai-voice-agents-automotive": [
     { id: 1, label: "Service Due Reminder", artist: "AI Voice · Automotive", from: "#450a0a", to: "#dc2626", accent: "#f87171", seconds: 36 },
     { id: 2, label: "Test Drive Booking", artist: "AI Voice · Automotive", from: "#431407", to: "#c2410c", accent: "#fb923c", seconds: 50 },
     { id: 3, label: "Parts Ready Alert", artist: "AI Voice · Automotive", from: "#1c1917", to: "#57534e", accent: "#a8a29e", seconds: 28 },
   ],
-  "education-services": [
+  "ai-voice-agents-education": [
     { id: 1, label: "Enrollment Reminder", artist: "AI Voice · Education", from: "#3b0764", to: "#7c3aed", accent: "#a78bfa", seconds: 44 },
     { id: 2, label: "Class Schedule Alert", artist: "AI Voice · Education", from: "#2e1065", to: "#6d28d9", accent: "#c4b5fd", seconds: 36 },
     { id: 3, label: "Tuition Due Notice", artist: "AI Voice · Education", from: "#1e1b4b", to: "#4338ca", accent: "#818cf8", seconds: 40 },
   ],
-  "hospitality-services": [
+  "ai-voice-agents-hospitality": [
     { id: 1, label: "Reservation Confirm", artist: "AI Voice · Hospitality", from: "#4c0519", to: "#e11d48", accent: "#fb7185", seconds: 38 },
     { id: 2, label: "Check-in Welcome", artist: "AI Voice · Hotel", from: "#881337", to: "#be123c", accent: "#fda4af", seconds: 30 },
     { id: 3, label: "Guest Feedback Survey", artist: "AI Voice · Hospitality", from: "#78350f", to: "#b45309", accent: "#fcd34d", seconds: 55 },
   ],
-  "legal-services": [
+  "ai-voice-agents-legal": [
     { id: 1, label: "Court Date Reminder", artist: "AI Voice · Legal", from: "#1c1917", to: "#44403c", accent: "#a8a29e", seconds: 36 },
     { id: 2, label: "Document Review Alert", artist: "AI Voice · Legal", from: "#0f172a", to: "#1e293b", accent: "#94a3b8", seconds: 42 },
     { id: 3, label: "Consultation Booking", artist: "AI Voice · Legal", from: "#172554", to: "#1e40af", accent: "#93c5fd", seconds: 50 },
   ],
-  "government-services": [
+  "ai-voice-agents-government": [
     { id: 1, label: "Appointment Reminder", artist: "AI Voice · Government", from: "#172554", to: "#1d4ed8", accent: "#60a5fa", seconds: 40 },
     { id: 2, label: "Document Ready Alert", artist: "AI Voice · Government", from: "#1e3a8a", to: "#2563eb", accent: "#93c5fd", seconds: 32 },
     { id: 3, label: "Survey Call", artist: "AI Voice · Government", from: "#0c4a6e", to: "#0369a1", accent: "#38bdf8", seconds: 48 },
   ],
-  "manufacturing-services": [
+  "ai-voice-agents-manufacturing": [
     { id: 1, label: "Order Dispatch Alert", artist: "AI Voice · Manufacturing", from: "#431407", to: "#c2410c", accent: "#fb923c", seconds: 35 },
     { id: 2, label: "Quality Check Notify", artist: "AI Voice · Manufacturing", from: "#1c1917", to: "#57534e", accent: "#a8a29e", seconds: 40 },
     { id: 3, label: "Maintenance Reminder", artist: "AI Voice · Manufacturing", from: "#78350f", to: "#b45309", accent: "#fbbf24", seconds: 44 },
   ],
-  "non-profit-organizations-services": [
+  "ai-voice-agents-non-profit-organizations": [
     { id: 1, label: "Donation Thank You", artist: "AI Voice · Non-Profit", from: "#052e16", to: "#15803d", accent: "#4ade80", seconds: 45 },
     { id: 2, label: "Event Invitation", artist: "AI Voice · Non-Profit", from: "#064e3b", to: "#059669", accent: "#34d399", seconds: 55 },
     { id: 3, label: "Volunteer Reminder", artist: "AI Voice · Non-Profit", from: "#042f2e", to: "#0f766e", accent: "#2dd4bf", seconds: 40 },
   ],
-  "event-management-services": [
+  "ai-voice-agents-event-management": [
     { id: 1, label: "Registration Confirm", artist: "AI Voice · Events", from: "#581c87", to: "#a855f7", accent: "#d8b4fe", seconds: 30 },
     { id: 2, label: "Event Detail Update", artist: "AI Voice · Events", from: "#431407", to: "#ea580c", accent: "#fdba74", seconds: 45 },
     { id: 3, label: "Feedback Request", artist: "AI Voice · Events", from: "#0c4a6e", to: "#0ea5e9", accent: "#7dd3fc", seconds: 38 },
   ],
-  "consulting-services": [
+  "ai-voice-agents-consulting": [
     { id: 1, label: "Meeting Schedule", artist: "AI Voice · Consulting", from: "#1e293b", to: "#64748b", accent: "#cbd5e1", seconds: 40 },
     { id: 2, label: "Intake Form Follow-up", artist: "AI Voice · Advisory", from: "#1e1b4b", to: "#4f46e5", accent: "#93c5fd", seconds: 50 },
     { id: 3, label: "Session Reminder", artist: "AI Voice · Consulting", from: "#064e3b", to: "#10b981", accent: "#a7f3d0", seconds: 32 },
   ],
-  "pharmaceutical-services": [
+  "ai-voice-agents-pharmaceuticals": [
     { id: 1, label: "Prescription Ready", artist: "AI Voice · Pharmacy", from: "#1e3a8a", to: "#3b82f6", accent: "#93c5fd", seconds: 35 },
     { id: 2, label: "Refill Renewal Alert", artist: "AI Voice · Pharmacy", from: "#164e63", to: "#06b6d4", accent: "#67e8f9", seconds: 44 },
     { id: 3, label: "Delivery Dispatched", artist: "AI Voice · Pharma", from: "#0f172a", to: "#475569", accent: "#94a3b8", seconds: 30 },
@@ -335,7 +335,7 @@ export type IndustryPageContent = {
    ───────────────────────────────────────────────────────── */
 
 const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
-  "real-estate-services": {
+  "ai-voice-agents-real-estate": {
     headline: "Never miss a lead",
     headlineHighlight: "again",
     subheadline: "Your AI calling agent answers every inquiry, qualifies buyers and tenants, and books property visits - 24 hours a day, without a single rep on the line.",
@@ -548,7 +548,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Real Estate Needs AI Voice Agents ?",
   },
 
-  "healthcare-and-medical-services": {
+  "ai-voice-agents-healthcare-medical": {
     headline: "Every patient call",
     headlineHighlight: "answered",
     subheadline: "Your AI calling agent books appointments, sends reminders, and handles follow-ups - 24/7, so your staff can focus on care.",
@@ -775,7 +775,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why AI Voice Agents in Healthcare & Medical Industry ?",
   },
 
-  "insurance-services": {
+  "ai-voice-agents-insurance": {
     headline: "Every policy call",
     headlineHighlight: "handled",
     subheadline: "Your AI agent answers renewals, claims inquiries, and premium reminders - 24/7, so your advisors can focus on complex cases.",
@@ -972,7 +972,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Insurance Companies Need AI Voice Agents ?",
   },
 
-  "financial-and-banking-services": {
+  "ai-voice-agents-finance-banking": {
     headline: "Every banking call",
     headlineHighlight: "resolved",
     subheadline: "Your AI calling agent handles balance inquiries, payment reminders, fraud alerts, and loan queries - securely, 24/7.",
@@ -1174,7 +1174,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Banking & Financial Services Need AI Voice Agents ?",
   },
 
-  "call-center-and-bpo-services": {
+  "ai-voice-agents-call-centers-bpo": {
     headline: "Scale your call centre",
     headlineHighlight: "with AI",
     subheadline: "Your AI agent handles tier-1 calls, routes complex queries, and completes post-call work - so your team can focus on what matters.",
@@ -1375,7 +1375,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Call Centers & BPOs Need AI Voice Agents ?",
   },
 
-  "travel-and-tourism-services": {
+  "ai-voice-agents-travel-tourism": {
     headline: "Every travel inquiry",
     headlineHighlight: "answered instantly",
     subheadline: "Your AI agent books trips, confirms reservations, handles cancellations, and sends real-time travel alerts - 24/7.",
@@ -1572,7 +1572,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Travel & Tourism Industry Needs AI Voice Agents ?",
   },
 
-  "transportation-and-logistics-services": {
+  "ai-voice-agents-transportation-logistics": {
     headline: "Every shipment call",
     headlineHighlight: "tracked & resolved",
     subheadline: "Your AI agent handles delivery ETAs, pickup confirmations, shipment alerts, and driver coordination - automatically, 24/7.",
@@ -1767,7 +1767,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Transportation & Logistics Industry Needs AI Voice Agents ?",
   },
 
-  "retail-and-ecommerce-services": {
+  "ai-voice-agents-retail-e-commerce": {
     headline: "Every shopper call",
     headlineHighlight: "answered instantly",
     subheadline: "Your AI agent handles order status, returns, product questions, and loyalty queries - 24/7, without a single human agent.",
@@ -1965,7 +1965,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Retail & E-commerce Industry Needs AI Voice Agents ?",
   },
 
-  "telecommunications-services": {
+  "ai-voice-agents-telecommunications": {
     headline: "Every telecom call",
     headlineHighlight: "resolved faster",
     subheadline: "Your AI agent handles plan queries, bill disputes, outage alerts, and upgrades - automatically, before customers need to escalate.",
@@ -2168,7 +2168,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Choose OnDial for Telecom AI Voice Agents ?",
   },
 
-  "automotive-services": {
+  "ai-voice-agents-automotive": {
     headline: "Every service call",
     headlineHighlight: "handled on cue",
     subheadline: "Your AI agent books service appointments, sends maintenance reminders, and follows up on test drives - automatically, 24/7.",
@@ -2368,7 +2368,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why AI Voice Agents Matter in the Automotive Industry ?",
   },
 
-  "education-services": {
+  "ai-voice-agents-education": {
     headline: "Every student inquiry",
     headlineHighlight: "answered",
     subheadline: "Your AI calling agent handles admissions, enrollment reminders, fee queries, and schedule changes - 24/7, so your staff can focus on teaching.",
@@ -2566,7 +2566,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Education Needs AI Voice Agents ?",
   },
 
-  "hospitality-services": {
+  "ai-voice-agents-hospitality": {
     headline: "Every guest call",
     headlineHighlight: "answered with care",
     subheadline: "Your AI calling agent handles reservations, check-in reminders, guest requests, and post-stay feedback - 24/7, in every language.",
@@ -2762,7 +2762,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Do Hotels & Resorts Need AI Voice Agents ?",
   },
 
-  "legal-services": {
+  "ai-voice-agents-legal": {
     headline: "Every client call",
     headlineHighlight: "managed professionally",
     subheadline: "Your AI calling agent handles client intake, court date reminders, consultation bookings, and document follow-ups - 24/7.",
@@ -2959,7 +2959,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Do Law Firms Need AI Voice Agents ?",
   },
 
-  "government-services": {
+  "ai-voice-agents-government": {
     headline: "Every citizen call",
     headlineHighlight: "answered",
     subheadline: "Your AI calling agent handles appointment scheduling, document status inquiries, survey calls, and citizen information - 24/7, in every language.",
@@ -3152,7 +3152,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Do Government Agencies Need AI Voice Agents ?",
   },
 
-  "manufacturing-services": {
+  "ai-voice-agents-manufacturing": {
     headline: "Every supply chain call",
     headlineHighlight: "automated",
     subheadline: "Your AI calling agent handles order dispatch alerts, quality notifications, vendor follow-ups, and maintenance reminders - 24/7.",
@@ -3344,7 +3344,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Manufacturing Needs AI Voice Agents ?",
   },
 
-  "non-profit-organizations-services": {
+  "ai-voice-agents-non-profit-organizations": {
     headline: "Every donor call",
     headlineHighlight: "handled with purpose",
     subheadline: "Your AI calling agent handles donor outreach, event invitations, volunteer coordination, and impact updates - automatically.",
@@ -3538,7 +3538,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "What Are AI Voice Agents for Non-Profits?",
   },
 
-  "event-management-services": {
+  "ai-voice-agents-event-management": {
     headline: "Every event call",
     headlineHighlight: "managed flawlessly",
     subheadline: "Your AI calling agent handles registrations, confirmations, schedule updates, and post-event feedback - automatically, at any scale.",
@@ -3728,7 +3728,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Do Event Organizers Need AI Voice Agents ?",
   },
 
-  "consulting-services": {
+  "ai-voice-agents-consulting": {
     headline: "Every client engagement",
     headlineHighlight: "starts here",
     subheadline: "Your AI calling agent handles intake calls, meeting scheduling, session reminders, and follow-ups - so your consultants focus on delivering value.",
@@ -3925,7 +3925,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCasesTitle: "Why Construction Companies Need AI Voice Agents",
   },
 
-  "pharmaceutical-services": {
+  "ai-voice-agents-pharmaceuticals": {
     headline: "Every patient & partner call",
     headlineHighlight: "handled compliantly",
     subheadline: "Your AI calling agent handles prescription reminders, delivery alerts, HCP outreach, and refill notifications - securely, 24/7.",

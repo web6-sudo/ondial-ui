@@ -14,7 +14,7 @@ import {
 import { INDUSTRY_SEO_METADATA } from "@/lib/services-data";
 import StructuredData from "@/components/StructuredData";
 import { buildServiceSchema, buildBreadcrumbSchema } from "@/lib/seo/schemaBuilders";
-import { getSiteFaqSection } from "@/data/site-faqs";
+import { getSiteFaqSection, hasSiteFaqPage } from "@/data/site-faqs";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -86,8 +86,7 @@ export default async function IndustryPage({ params }: Props) {
     ),
   ];
 
-  const pageKey = `${slug}-services` as any;
-  const industryFaq = getSiteFaqSection(pageKey);
+  const industryFaq = hasSiteFaqPage(slug) ? getSiteFaqSection(slug) : getSiteFaqSection("home");
   const industryFaqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
