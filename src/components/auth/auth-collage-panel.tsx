@@ -1,6 +1,5 @@
 import { AuthCollageScene } from "@/components/auth/auth-collage-scene";
-
-const MAIN_CARD_IMAGE = "/auth/collage-chair.png";
+import { authUiImages, authUiPanel } from "@/config/auth-ui";
 
 type AuthCollagePanelProps = {
   className?: string;
@@ -12,9 +11,9 @@ export function AuthCollagePanel({ className, fit = "height" }: AuthCollagePanel
     <AuthCollageScene
       className={className}
       fit={fit}
-      mainImageSrc={MAIN_CARD_IMAGE}
-      showKiwi
-      showAvatars
+      mainImageSrc={authUiImages.mainCollage}
+      showKiwi={authUiPanel.showKiwi}
+      showAvatars={authUiPanel.showAvatars}
     />
   );
 }

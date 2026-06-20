@@ -3,15 +3,8 @@
 import Image from "next/image";
 import { useId, type ReactNode } from "react";
 
+import { authUiCopy, authUiImages } from "@/config/auth-ui";
 import { cn } from "@/lib/utils";
-
-const AVATAR_IMAGES = [
-  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&h=120&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&h=120&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop&q=80",
-] as const;
 
 export const AUTH_COLLAGE_PATH_W = 257;
 export const AUTH_COLLAGE_DESIGN_H = 377;
@@ -30,7 +23,7 @@ const NOTCH_LEFT = 157;
 const NOTCH_W = AUTH_COLLAGE_PATH_W - NOTCH_LEFT;
 const NOTCH_H = 54;
 
-const KIWI_CARD_IMAGE = "/auth/two.jpg";
+const KIWI_CARD_IMAGE = authUiImages.kiwiCard;
 
 const pctX = (value: number) => `${(value / AUTH_COLLAGE_PATH_W) * 100}%`;
 const pctY = (value: number) => `${(value / AUTH_COLLAGE_DESIGN_H) * 100}%`;
@@ -156,7 +149,7 @@ export function AuthCollageScene({
             }}
           >
             <div className="flex items-center justify-center">
-              {AVATAR_IMAGES.map((src, index) => (
+              {authUiImages.avatars.map((src, index) => (
                 <div
                   key={src}
                   className={cn(
@@ -176,7 +169,7 @@ export function AuthCollageScene({
               ))}
             </div>
             <p className="m-0 text-center text-[12px] font-medium leading-none text-muted-foreground xl:text-xs">
-              +5000 happy customers
+              {authUiCopy.socialProof}
             </p>
           </div>
         ) : null}

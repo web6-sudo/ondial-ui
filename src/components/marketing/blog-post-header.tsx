@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ChevronLeft, Calendar, Clock } from "lucide-react";
 
 import { BlogShareButton } from "@/components/marketing/blog-share-button";
@@ -48,17 +47,7 @@ export function BlogPostHeader({ post, shareUrl }: BlogPostHeaderProps) {
       </h1>
 
       <div className="flex items-center justify-between border-t border-border/40 pt-3.5 sm:pt-4">
-        <div className="flex min-w-0 items-center gap-2.5">
-          <div className="relative size-9 shrink-0 overflow-hidden rounded-full border border-border/50 bg-muted">
-            <Image
-              src={post.author.avatar}
-              alt={post.author.name}
-              fill
-              className="object-cover"
-              sizes="36px"
-            />
-          </div>
-          <div className="min-w-0">
+        <div className="min-w-0">
             {post.author.slug ? (
               <Link
                 href={`/blog/author/${post.author.slug}`}
@@ -72,7 +61,6 @@ export function BlogPostHeader({ post, shareUrl }: BlogPostHeaderProps) {
             <p className="mt-1 text-xs text-muted-foreground">
               {post.authorDesignation || "Ondial Team"}
             </p>
-          </div>
         </div>
         <BlogShareButton title={post.title} url={shareUrl} />
       </div>
