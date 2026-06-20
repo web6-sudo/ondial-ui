@@ -10,7 +10,7 @@ export type MainNavItem = {
 
 export const MAIN_NAV: readonly MainNavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services", menu: "services" },
+  // { href: "/services", label: "Services", menu: "services" },
   { href: INDUSTRIES_NAV_ITEMS[0]?.href ?? "/pricing", label: "Industries", menu: "industries" },
   { href: "/pricing", label: "Pricing" },
   { href: "/blog", label: "Resources", menu: "resources" },

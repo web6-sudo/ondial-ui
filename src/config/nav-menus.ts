@@ -8,13 +8,14 @@ import {
   RESOURCES_OVERVIEW_HREF,
   type ResourceNavItem,
 } from "@/config/resources-nav";
-import {
-  SERVICES_NAV_ITEMS,
-  // SERVICES_OVERVIEW_HREF,
-  type ServiceNavItem,
-} from "@/config/services-nav";
+// import {
+//   SERVICES_NAV_ITEMS,
+//   // SERVICES_OVERVIEW_HREF,
+//   type ServiceNavItem,
+// } from "@/config/services-nav";
 
-export type NavMenuKind = "services" | "industries" | "resources";
+export type NavMenuKind = "industries" | "resources";
+// export type NavMenuKind = "services" | "industries" | "resources";
 
 export type NavMenuLink = {
   href: string;
@@ -35,20 +36,20 @@ export type NavMenuConfig = {
 };
 
 export const NAV_MENUS: Record<NavMenuKind, NavMenuConfig> = {
-  services: {
-    kind: "services",
-    items: SERVICES_NAV_ITEMS,
-    columns: [
-      [SERVICES_NAV_ITEMS[0], SERVICES_NAV_ITEMS[1]],
-      [SERVICES_NAV_ITEMS[2], SERVICES_NAV_ITEMS[3]],
-    ],
-    // overviewHref: SERVICES_OVERVIEW_HREF,
-    // overviewLabel: "View all services",
-    footerHint: "4 AI voice agents",
-    panelMaxWidthPx: 440,
-    ariaLabel: "Services",
-    layout: "compact",
-  },
+  // services: {
+  //   kind: "services",
+  //   items: SERVICES_NAV_ITEMS,
+  //   columns: [
+  //     [SERVICES_NAV_ITEMS[0], SERVICES_NAV_ITEMS[1]],
+  //     [SERVICES_NAV_ITEMS[2], SERVICES_NAV_ITEMS[3]],
+  //   ],
+  //   // overviewHref: SERVICES_OVERVIEW_HREF,
+  //   // overviewLabel: "View all services",
+  //   footerHint: "4 AI voice agents",
+  //   panelMaxWidthPx: 440,
+  //   ariaLabel: "Services",
+  //   layout: "compact",
+  // },
   industries: {
     kind: "industries",
     items: INDUSTRIES_NAV_ITEMS,
@@ -75,4 +76,5 @@ export function navMenuChildHrefs(kind: NavMenuKind): readonly string[] {
   return NAV_MENUS[kind].items.map((item) => item.href);
 }
 
-export type { IndustryNavItem, ResourceNavItem, ServiceNavItem };
+export type { IndustryNavItem, ResourceNavItem };
+// export type { ServiceNavItem };
