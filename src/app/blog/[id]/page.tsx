@@ -21,6 +21,7 @@ import {
   buildBreadcrumbSchema,
 } from "@/lib/seo/schemaBuilders";
 import { getSiteUrl } from "@/lib/share-links";
+import { DASHBOARD_SIGNUP_URL } from "@/config/urls";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -208,7 +209,7 @@ export default async function BlogPostPage({ params }: Props) {
               <div className="h-0.5 w-16 bg-[#534AB7]/30 rounded-full my-6" />
               <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                 <Link
-                  href="/signup"
+                  href={DASHBOARD_SIGNUP_URL}
                   className="flex items-center justify-center gap-1.5 h-11 px-6 w-full sm:w-auto rounded-xl bg-[#534AB7] hover:bg-[#4338ca] text-white font-semibold transition-colors"
                 >
                   Start Free Trial <ArrowRight className="size-4" />
