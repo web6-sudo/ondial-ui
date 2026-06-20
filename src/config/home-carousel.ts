@@ -66,7 +66,7 @@ export const HOME_CAROUSEL_SLIDES: readonly HomeCarouselSlide[] = [
     href: "/industries/transportation-and-logistics-services",
   },
   {
-    image: "/home/carousel/e-commerce.webp",
+    image: "/home/carousel/ecommerce.webp",
     title: "Retail & E-commerce",
     subtitle: "AI Voice Agents for Retail & E-commerce",
     slug: "retail-and-ecommerce-services",
