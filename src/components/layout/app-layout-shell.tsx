@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useLayoutEffect, useRef, type ReactNode } from "react";
+import { useLayoutEffect, useRef, useState, useEffect, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -43,12 +43,20 @@ function isBlogArticleRoute(pathname: string) {
 
 type AppLayoutShellProps = {
   children: ReactNode;
+  /** Server pathname so SSR and hydration agree before `usePathname` is ready. */
+  initialPathname: string;
 };
 
 /** Wraps pages in `SiteShell` with a document-flow footer after `main` (scroll to reach it). */
-export function AppLayoutShell({ children }: AppLayoutShellProps) {
-  const pathname = usePathname() ?? "";
+export function AppLayoutShell({ children, initialPathname }: AppLayoutShellProps) {
+  const clientPathname = usePathname();
+  const pathname = clientPathname ?? initialPathname;
   const shellScrollRef = useRef<HTMLDivElement>(null);
+  const [pageMotionReady, setPageMotionReady] = useState(false);
+
+  useEffect(() => {
+    setPageMotionReady(true);
+  }, []);
 
   useLayoutEffect(() => {
     const el = shellScrollRef.current;
@@ -86,7 +94,7 @@ export function AppLayoutShell({ children }: AppLayoutShellProps) {
               : "flex min-h-min flex-col"
         }
       >
-        {skipPageTransition ? (
+        {skipPageTransition || !pageMotionReady ? (
           <div className={authSplit ? "flex h-full min-h-0 flex-1 flex-col" : "flex flex-1 flex-col"}>
             {children}
           </div>

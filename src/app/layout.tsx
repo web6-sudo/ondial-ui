@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { Poppins } from "next/font/google";
 
 import { AppLayoutShell } from "@/components/layout/app-layout-shell";
@@ -76,11 +77,13 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = (await headers()).get("x-pathname") ?? "/";
+
   return (
     <html
       lang="en"
@@ -142,7 +145,7 @@ export default function RootLayout({
         />
 
         <AppProviders>
-          <AppLayoutShell>{children}</AppLayoutShell>
+          <AppLayoutShell initialPathname={pathname}>{children}</AppLayoutShell>
         </AppProviders>
       </body>
     </html>

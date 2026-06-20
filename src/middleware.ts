@@ -10,21 +10,25 @@ import {
 
 /** Marketing site: auth lives on the dashboard — redirect legacy routes when hosts differ. */
 export function middleware(request: NextRequest) {
-  if (getDashboardUrl() === getAppUrl()) {
-    return NextResponse.next();
-  }
-
   const { pathname } = request.nextUrl;
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-pathname", pathname);
 
-  if (pathname === "/login") {
-    return NextResponse.redirect(DASHBOARD_LOGIN_URL);
+  if (getDashboardUrl() !== getAppUrl()) {
+    if (pathname === "/login") {
+      return NextResponse.redirect(DASHBOARD_LOGIN_URL);
+    }
+
+    if (pathname === "/signup") {
+      return NextResponse.redirect(DASHBOARD_SIGNUP_URL);
+    }
   }
 
-  if (pathname === "/signup") {
-    return NextResponse.redirect(DASHBOARD_SIGNUP_URL);
-  }
-
-  return NextResponse.next();
+  return NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 }
 
 export const config = {
