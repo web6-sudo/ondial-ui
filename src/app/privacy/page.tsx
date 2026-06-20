@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { BlogPageShell } from "@/components/layout/blog-page-shell";
 import { PrivacyPolicySection } from "@/components/marketing/privacy-policy-section";
+import StructuredData from "@/components/StructuredData";
+import { buildWebPageSchema, buildBreadcrumbSchema } from "@/lib/seo/schemaBuilders";
 
 export const metadata: Metadata = {
   title: { absolute: "OnDial Privacy Policy – Secure AI Voice Agents" },
@@ -28,12 +30,28 @@ export const metadata: Metadata = {
   },
 };
 
+const privacySchemas = [
+  (buildWebPageSchema as any)({
+    url: "/privacy",
+    name: "OnDial Privacy Policy",
+    description:
+      "Read the official Privacy Policy of OnDial to understand how we collect, use, and protect your personal information.",
+  }),
+  (buildBreadcrumbSchema as any)(
+    [{ name: "Privacy Policy", url: "/privacy" }],
+    { anchorUrl: "/privacy" }
+  ),
+];
+
 export default function PrivacyPage() {
   return (
-    <main className="flex flex-1 flex-col">
-      <BlogPageShell>
-        <PrivacyPolicySection />
-      </BlogPageShell>
-    </main>
+    <>
+      <StructuredData data={privacySchemas} />
+      <main className="flex flex-1 flex-col">
+        <BlogPageShell>
+          <PrivacyPolicySection />
+        </BlogPageShell>
+      </main>
+    </>
   );
 }

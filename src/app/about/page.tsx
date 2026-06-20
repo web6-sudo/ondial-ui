@@ -6,7 +6,9 @@ import { AboutWhatWeDoSection } from "@/components/marketing/about-what-we-do-se
 import { AboutWhyChooseSection } from "@/components/marketing/about-why-choose-section";
 import { MarketingFaqSection } from "@/components/marketing/home-faq-section";
 import { MarketingDottedPageShell } from "@/components/layout/marketing-dotted-page-shell";
-
+import StructuredData from "@/components/StructuredData";
+import { buildAboutPageSchema, buildBreadcrumbSchema } from "@/lib/seo/schemaBuilders";
+import { getSiteFaqSection } from "@/data/site-faqs";
 
 export const metadata: Metadata = {
   title: { absolute: "About OnDial | AI Voice Agents for Smarter Calls" },
@@ -33,14 +35,44 @@ export const metadata: Metadata = {
   },
 };
 
+const aboutSchemas = [
+  (buildAboutPageSchema as any)({
+    url: "/about",
+    name: "About OnDial",
+    description:
+      "Learn about OnDial's mission to transform business communication through AI-powered voice agents.",
+  }),
+  (buildBreadcrumbSchema as any)(
+    [{ name: "About", url: "/about" }],
+    { anchorUrl: "/about" }
+  ),
+];
+
+const aboutFaq = getSiteFaqSection("about");
+const aboutFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: aboutFaq.items.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
 export default function AboutPage() {
   return (
-    <MarketingDottedPageShell>
-      <AboutHeroSection />
-      <AboutWhatWeDoSection />
-      <AboutWhyChooseSection />
-      <AboutCtaSection />
-      <MarketingFaqSection pageKey="about" />
-    </MarketingDottedPageShell>
+    <>
+      <StructuredData data={[...aboutSchemas, aboutFaqSchema]} />
+      <MarketingDottedPageShell>
+        <AboutHeroSection />
+        <AboutWhatWeDoSection />
+        <AboutWhyChooseSection />
+        <AboutCtaSection />
+        <MarketingFaqSection pageKey="about" />
+      </MarketingDottedPageShell>
+    </>
   );
 }

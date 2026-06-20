@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { BlogPageShell } from "@/components/layout/blog-page-shell";
 import { ReturnPolicySection } from "@/components/marketing/return-policy-section";
+import StructuredData from "@/components/StructuredData";
+import { buildWebPageSchema, buildBreadcrumbSchema } from "@/lib/seo/schemaBuilders";
 
 export const metadata: Metadata = {
   title: { absolute: "OnDial Return Policy – Easy Returns & Refunds" },
@@ -28,12 +30,28 @@ export const metadata: Metadata = {
   },
 };
 
+const returnPolicySchemas = [
+  (buildWebPageSchema as any)({
+    url: "/return-policy",
+    name: "OnDial Refund & Return Policy",
+    description:
+      "Read OnDial's refund and return policy for credit purchases, plan upgrades, and platform subscriptions.",
+  }),
+  (buildBreadcrumbSchema as any)(
+    [{ name: "Refund Policy", url: "/return-policy" }],
+    { anchorUrl: "/return-policy" }
+  ),
+];
+
 export default function ReturnPolicyPage() {
   return (
-    <main className="flex flex-1 flex-col">
-      <BlogPageShell>
-        <ReturnPolicySection />
-      </BlogPageShell>
-    </main>
+    <>
+      <StructuredData data={returnPolicySchemas} />
+      <main className="flex flex-1 flex-col">
+        <BlogPageShell>
+          <ReturnPolicySection />
+        </BlogPageShell>
+      </main>
+    </>
   );
 }

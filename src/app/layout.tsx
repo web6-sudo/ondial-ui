@@ -12,6 +12,10 @@ import {
   SITE_LOGO,
   SITE_URL,
 } from "@/lib/seo/siteConfig";
+import StructuredData from "@/components/StructuredData";
+import { organizationSchema } from "@/lib/seo/organizationSchema";
+import { websiteSchema } from "@/lib/seo/websiteSchema";
+import { softwareApplicationSchema } from "@/lib/seo/softwareApplicationSchema";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -100,36 +104,7 @@ export default async function RootLayout({
     >
       <body className="flex h-dvh min-h-0 flex-col overflow-hidden font-sans">
         {/* Schema.org JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "OnDial",
-              url: SITE_URL,
-              logo: SITE_LOGO,
-              description: ORGANIZATION_DESCRIPTION,
-              sameAs: [...ORGANIZATION_SOCIAL_URLS],
-              contactPoint: ORGANIZATION_CONTACT_POINTS.map((point) => ({
-                "@type": "ContactPoint",
-                ...point,
-              })),
-              address: ORGANIZATION_ADDRESS,
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "OnDial",
-              url: SITE_URL,
-            }),
-          }}
-        />
+        <StructuredData data={[organizationSchema, websiteSchema, softwareApplicationSchema]} />
 
         <AppProviders>
           <AppLayoutShell initialPathname={pathname}>{children}</AppLayoutShell>

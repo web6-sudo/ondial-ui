@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { BlogPageShell } from "@/components/layout/blog-page-shell";
 import { TermsAndConditionsSection } from "@/components/marketing/terms-and-conditions-section";
+import StructuredData from "@/components/StructuredData";
+import { buildWebPageSchema, buildBreadcrumbSchema } from "@/lib/seo/schemaBuilders";
 
 export const metadata: Metadata = {
   title: { absolute: "OnDial AI Terms & Conditions – Service Agreement" },
@@ -28,12 +30,28 @@ export const metadata: Metadata = {
   },
 };
 
+const termsSchemas = [
+  (buildWebPageSchema as any)({
+    url: "/terms-and-conditions",
+    name: "OnDial AI Terms & Conditions",
+    description:
+      "Review OnDial AI's Terms & Conditions for using our AI voice agents, services, and support.",
+  }),
+  (buildBreadcrumbSchema as any)(
+    [{ name: "Terms & Conditions", url: "/terms-and-conditions" }],
+    { anchorUrl: "/terms-and-conditions" }
+  ),
+];
+
 export default function TermsAndConditionsPage() {
   return (
-    <main className="flex flex-1 flex-col">
-      <BlogPageShell>
-        <TermsAndConditionsSection />
-      </BlogPageShell>
-    </main>
+    <>
+      <StructuredData data={termsSchemas} />
+      <main className="flex flex-1 flex-col">
+        <BlogPageShell>
+          <TermsAndConditionsSection />
+        </BlogPageShell>
+      </main>
+    </>
   );
 }

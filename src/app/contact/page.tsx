@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { MarketingDottedPageShell } from "@/components/layout/marketing-dotted-page-shell";
 import { ContactMissionSection } from "@/components/marketing/contact-mission-section";
 import { ContactPageSection } from "@/components/marketing/contact-page-section";
+import StructuredData from "@/components/StructuredData";
+import { buildContactPageSchema, buildBreadcrumbSchema } from "@/lib/seo/schemaBuilders";
 
 export const metadata: Metadata = {
   title: { absolute: "Contact OnDial AI – Reach Our Support Team Anytime" },
@@ -29,11 +31,27 @@ export const metadata: Metadata = {
   },
 };
 
+const contactSchemas = [
+  (buildContactPageSchema as any)({
+    url: "/contact",
+    name: "Contact OnDial",
+    description:
+      "Get in touch with OnDial's sales and support teams for AI voice agent demos, pricing, and integration help.",
+  }),
+  (buildBreadcrumbSchema as any)(
+    [{ name: "Contact", url: "/contact" }],
+    { anchorUrl: "/contact" }
+  ),
+];
+
 export default function ContactPage() {
   return (
-    <MarketingDottedPageShell>
-      <ContactPageSection />
-      <ContactMissionSection />
-    </MarketingDottedPageShell>
+    <>
+      <StructuredData data={contactSchemas} />
+      <MarketingDottedPageShell>
+        <ContactPageSection />
+        <ContactMissionSection />
+      </MarketingDottedPageShell>
+    </>
   );
 }

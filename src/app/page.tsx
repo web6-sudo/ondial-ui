@@ -8,6 +8,10 @@ import { IntegrationsSection } from "@/components/marketing/integrations-section
 // import { SocialProofLogosSection } from "@/components/marketing/social-proof-logos-section";
 import { ShowcaseSection } from "@/components/marketing/showcase-section";
 import { SupportedLanguagesSection } from "@/components/marketing/supported-languages-section";
+import StructuredData from "@/components/StructuredData";
+import { buildWebPageSchema } from "@/lib/seo/schemaBuilders";
+import { SITE_URL } from "@/lib/seo/siteConfig";
+import { getSiteFaqSection } from "@/data/site-faqs";
 
 export const metadata: Metadata = {
   title: { absolute: "Best AI Voice Agents to Automate Your Phone Calls | OnDial" },
@@ -34,18 +38,44 @@ export const metadata: Metadata = {
   },
 };
 
+const homePageSchema = (buildWebPageSchema as any)({
+  url: "/",
+  type: "WebPage",
+  name: "OnDial — AI Voice Agents for Phone Call Automation",
+  description:
+    "Discover OnDial's AI Voice Agents — multilingual, 24/7 phone call automation for inbound and outbound business communication.",
+  image: `${SITE_URL}/img/logo/og.png`,
+});
+
+const homeFaq = getSiteFaqSection("home");
+const homeFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: homeFaq.items.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
 export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col">
-      <ShowcaseSection />
-      {/* <SocialProofLogosSection /> */}
-      <HomeProblemSection />
-      <HomeFeaturesSection />
-      <ComplianceTrustSection />
-      <IntegrationsSection />
-      <SupportedLanguagesSection />
-      <HomeTestimonialsSection />
-      <HomeFaqSection />
-    </main>
+    <>
+      <StructuredData data={[homePageSchema, homeFaqSchema]} />
+      <main className="flex flex-1 flex-col">
+        <ShowcaseSection />
+        {/* <SocialProofLogosSection /> */}
+        <HomeProblemSection />
+        <HomeFeaturesSection />
+        <ComplianceTrustSection />
+        <IntegrationsSection />
+        <SupportedLanguagesSection />
+        <HomeTestimonialsSection />
+        <HomeFaqSection />
+      </main>
+    </>
   );
 }

@@ -9,12 +9,18 @@ import {
   EnterpriseFinalCtaSection,
   EnterpriseHeroSection,
   EnterpriseHowItWorksSection,
-  EnterpriseIntegrationsSection,
-  EnterprisePricingSection,
-  EnterpriseShiftSection,
   EnterpriseUseCasesSection,
   EnterpriseWhyChooseSection,
+  EnterpriseShiftSection,
+  EnterpriseIntegrationsSection,
+  EnterprisePricingSection,
 } from "@/components/marketing/enterprise-page-sections";
+import StructuredData from "@/components/StructuredData";
+import {
+  buildEnterpriseSoftwareApplicationSchema,
+  buildBreadcrumbSchema,
+} from "@/lib/seo/schemaBuilders";
+import { ENTERPRISE_FAQ } from "@/data/enterprise-content";
 
 export const metadata: Metadata = {
   title: { absolute: "OnDial for Enterprise – Scalable AI Voice Agents" },
@@ -41,23 +47,53 @@ export const metadata: Metadata = {
   },
 };
 
+const enterpriseSchemas = [
+  buildEnterpriseSoftwareApplicationSchema({
+    url: "/ondial-for-enterprise",
+    name: "OnDial for Enterprise",
+  }),
+  (buildBreadcrumbSchema as any)(
+    [
+      { name: "Solutions", url: "/services" },
+      { name: "OnDial for Enterprise", url: "/ondial-for-enterprise" },
+    ],
+    { anchorUrl: "/ondial-for-enterprise" }
+  ),
+];
+
+const enterpriseFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: ENTERPRISE_FAQ.items.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
 export default function OndialForEnterprisePage() {
   return (
-    <main className="flex flex-1 flex-col">
-      <BlogPageShell>
-        <EnterpriseHeroSection />
-        <EnterpriseShiftSection />
-        <EnterpriseWhyChooseSection />
-        <EnterpriseHowItWorksSection />
-        <EnterpriseUseCasesSection />
-        <EnterpriseComplianceSection />
-        <EnterpriseIntegrationsSection />
-        <EnterpriseComparisonSection />
-        <EnterpriseDeploymentSection />
-        <EnterprisePricingSection />
-        <EnterpriseFaqSection />
-        <EnterpriseFinalCtaSection />
-      </BlogPageShell>
-    </main>
+    <>
+      <StructuredData data={[...enterpriseSchemas, enterpriseFaqSchema]} />
+      <main className="flex flex-1 flex-col">
+        <BlogPageShell>
+          <EnterpriseHeroSection />
+          <EnterpriseShiftSection />
+          <EnterpriseWhyChooseSection />
+          <EnterpriseHowItWorksSection />
+          <EnterpriseUseCasesSection />
+          <EnterpriseComplianceSection />
+          <EnterpriseIntegrationsSection />
+          <EnterpriseComparisonSection />
+          <EnterpriseDeploymentSection />
+          <EnterprisePricingSection />
+          <EnterpriseFaqSection />
+          <EnterpriseFinalCtaSection />
+        </BlogPageShell>
+      </main>
+    </>
   );
 }

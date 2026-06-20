@@ -4,6 +4,10 @@ import { BlogPageShell } from "@/components/layout/blog-page-shell";
 import { HomeFaqSection } from "@/components/marketing/home-faq-section";
 import { HomePricingSection } from "@/components/marketing/home-pricing-section";
 import { PricingCalculatorSection } from "@/components/marketing/pricing-calculator-section";
+import StructuredData from "@/components/StructuredData";
+import { buildPricingSchema, buildBreadcrumbSchema } from "@/lib/seo/schemaBuilders";
+import { PRICING_PLANS } from "@/data/pricing-plans";
+import { getSiteFaqSection } from "@/data/site-faqs";
 
 export const metadata: Metadata = {
   title: { absolute: "OnDial AI Pricing – Flexible Plans for Every Business" },
@@ -30,14 +34,46 @@ export const metadata: Metadata = {
   },
 };
 
+const mappedPlans = PRICING_PLANS.map((p) => ({
+  name: p.title,
+  description: p.description,
+  price: p.price,
+  features: p.features,
+}));
+
+const pricingSchemas = [
+  (buildPricingSchema as any)({ url: "/pricing", plans: mappedPlans }),
+  (buildBreadcrumbSchema as any)(
+    [{ name: "Pricing", url: "/pricing" }],
+    { anchorUrl: "/pricing" }
+  ),
+];
+
+const pricingFaq = getSiteFaqSection("pricing");
+const pricingFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: pricingFaq.items.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
 export default function PricingPage() {
   return (
-    <main className="flex flex-1 flex-col">
-      <BlogPageShell>
-        <HomePricingSection />
-        <PricingCalculatorSection />
-        <HomeFaqSection pageKey="pricing" transparentSurface />
-      </BlogPageShell>
-    </main>
+    <>
+      <StructuredData data={[...pricingSchemas, pricingFaqSchema]} />
+      <main className="flex flex-1 flex-col">
+        <BlogPageShell>
+          <HomePricingSection />
+          <PricingCalculatorSection />
+          <HomeFaqSection pageKey="pricing" transparentSurface />
+        </BlogPageShell>
+      </main>
+    </>
   );
 }

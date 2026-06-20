@@ -14,6 +14,8 @@ import {
   fetchBlogsByAuthor,
   mapBlogSummaries,
 } from "@/lib/contentful";
+import StructuredData from "@/components/StructuredData";
+import { buildProfilePageSchema, buildBreadcrumbSchema } from "@/lib/seo/schemaBuilders";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -48,11 +50,13 @@ export default async function BlogAuthorPage({ params }: Props) {
 
   let posts;
   let authorName: string | null = null;
+  let author: any = null;
 
   try {
     const blogs = await fetchBlogsByAuthor(authorSlug);
     posts = mapBlogSummaries(blogs);
-    authorName = blogs[0]?.author?.authorName ?? null;
+    author = blogs[0]?.author ?? null;
+    authorName = author?.authorName ?? null;
   } catch (error) {
     console.error(`[blog] Failed to load author "${authorSlug}":`, error);
     notFound();
@@ -62,26 +66,47 @@ export default async function BlogAuthorPage({ params }: Props) {
     notFound();
   }
 
+  const authorSchemas = author
+    ? [
+        (buildProfilePageSchema as any)({
+          author,
+          url: `/blog/author/${author.slug || authorSlug}`,
+          blogCount: posts.length,
+        }),
+        (buildBreadcrumbSchema as any)(
+          [
+            { name: "Blog", url: "/blog" },
+            { name: "Authors", url: "/blog" },
+            { name: authorName || "Author", url: `/blog/author/${author.slug || authorSlug}` },
+          ],
+          { anchorUrl: `/blog/author/${author.slug || authorSlug}` }
+        ),
+      ]
+    : [];
+
   return (
-    <BlogPageShell>
-      <div className="mx-auto flex w-full min-w-0 max-w-3xl flex-col gap-8 px-4 pt-6 pb-12 sm:gap-10 sm:px-6 sm:pt-8 sm:pb-16 lg:max-w-4xl">
-        <BlogPageHero
-          eyebrow="Author"
-          align="start"
-          title={authorName ? `Posts by ${authorName}` : `Author: ${slug}`}
-          description="Articles from this author on the OnDial blog."
-        />
+    <>
+      <StructuredData data={authorSchemas} />
+      <BlogPageShell>
+        <div className="mx-auto flex w-full min-w-0 max-w-3xl flex-col gap-8 px-4 pt-6 pb-12 sm:gap-10 sm:px-6 sm:pt-8 sm:pb-16 lg:max-w-4xl">
+          <BlogPageHero
+            eyebrow="Author"
+            align="start"
+            title={authorName ? `Posts by ${authorName}` : `Author: ${slug}`}
+            description="Articles from this author on the OnDial blog."
+          />
 
-        <Button variant="outline" className="self-start rounded-full" render={<Link href="/blog" prefetch />} nativeButton={false}>
-          All posts
-        </Button>
+          <Button variant="outline" className="self-start rounded-full" render={<Link href="/blog" prefetch />} nativeButton={false}>
+            All posts
+          </Button>
 
-        <div className={blogListingContainerClass}>
-          <div className={blogListingInnerClass}>
-            <BlogList posts={posts} />
+          <div className={blogListingContainerClass}>
+            <div className={blogListingInnerClass}>
+              <BlogList posts={posts} />
+            </div>
           </div>
         </div>
-      </div>
-    </BlogPageShell>
+      </BlogPageShell>
+    </>
   );
 }

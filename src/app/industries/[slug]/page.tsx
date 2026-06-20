@@ -12,6 +12,9 @@ import {
   getIndustryPageContent,
 } from "@/data/industry-hero-content";
 import { INDUSTRY_SEO_METADATA } from "@/lib/services-data";
+import StructuredData from "@/components/StructuredData";
+import { buildServiceSchema, buildBreadcrumbSchema } from "@/lib/seo/schemaBuilders";
+import { getSiteFaqSection } from "@/data/site-faqs";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -62,8 +65,45 @@ export default async function IndustryPage({ params }: Props) {
   const hero        = getIndustryHeroContent(industry);
   const pageContent = getIndustryPageContent(industry.slug, industry.name);
 
+  const industryName = industry.name;
+  const seo = INDUSTRY_SEO_METADATA[slug];
+  const title = seo?.title ?? `${industryName} AI Voice Automation | OnDial`;
+  const description = seo?.description ?? `Discover how OnDial's AI voice automation can transform your ${industryName.toLowerCase()} operations.`;
+
+  const industrySchemas = [
+    buildServiceSchema({
+      url: `/industries/${slug}`,
+      name: title,
+      description: description,
+      serviceType: `AI Voice Automation for ${industryName}`,
+    }),
+    (buildBreadcrumbSchema as any)(
+      [
+        { name: "Industries", url: "/industries" },
+        { name: industryName, url: `/industries/${slug}` },
+      ],
+      { anchorUrl: `/industries/${slug}` }
+    ),
+  ];
+
+  const pageKey = `${slug}-services` as any;
+  const industryFaq = getSiteFaqSection(pageKey);
+  const industryFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: industryFaq.items.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <DemoSyncProvider>
+      <StructuredData data={[...industrySchemas, industryFaqSchema]} />
       <main className="flex flex-1 flex-col">
         <IndustryHeroHeader {...hero} />
         <AudioDemoPlayer tracks={hero.audioDemos} />
