@@ -3,6 +3,7 @@ import "server-only";
 import { cache } from "react";
 
 import { contentfulQuery } from "@/lib/contentful/client";
+import { getAdditionalSpacesConfig } from "@/lib/contentful/config";
 import type { ContentfulAuthor } from "@/lib/contentful/types";
 
 /** Keep query complexity under Contentful's 11k limit (authors × linked blogs). */
@@ -46,7 +47,7 @@ function normalizeSlug(slug: string | null | undefined): string {
     .toLowerCase();
 }
 
-async function fetchBlogAuthorBySlugMapImpl(): Promise<Map<string, ContentfulAuthor>> {
+async function fetchAuthorMapForSpace(config?: { endpoint: string; token: string }): Promise<Map<string, ContentfulAuthor>> {
   const map = new Map<string, ContentfulAuthor>();
   let skip = 0;
 
@@ -63,7 +64,7 @@ async function fetchBlogAuthorBySlugMapImpl(): Promise<Map<string, ContentfulAut
     const data = await contentfulQuery<AuthorCollectionResponse>(query, {
       limit: AUTHOR_PAGE_SIZE,
       skip,
-    });
+    }, config);
 
     const collection = data.authorCollection;
     const items = collection?.items ?? [];
@@ -96,6 +97,35 @@ async function fetchBlogAuthorBySlugMapImpl(): Promise<Map<string, ContentfulAut
   }
 
   return map;
+}
+
+async function fetchBlogAuthorBySlugMapImpl(): Promise<Map<string, ContentfulAuthor>> {
+  const mergedMap = new Map<string, ContentfulAuthor>();
+
+  // 1. Fetch from primary space
+  try {
+    const primaryMap = await fetchAuthorMapForSpace();
+    for (const [key, val] of primaryMap.entries()) {
+      mergedMap.set(key, val);
+    }
+  } catch (error) {
+    console.error("[contentful] Failed to fetch authors from primary space:", error);
+  }
+
+  // 2. Fetch from additional spaces
+  const additionalConfigs = getAdditionalSpacesConfig();
+  for (const config of additionalConfigs) {
+    try {
+      const additionalMap = await fetchAuthorMapForSpace(config);
+      for (const [key, val] of additionalMap.entries()) {
+        mergedMap.set(key, val);
+      }
+    } catch (error) {
+      console.error(`[contentful] Failed to fetch authors from additional space ${config.spaceId}:`, error);
+    }
+  }
+
+  return mergedMap;
 }
 
 /** Cached per request - shared by list, detail, and author pages. */

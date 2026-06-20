@@ -27,8 +27,9 @@ function warnUnresolvedLinks(errors: Array<{ message: string }>): void {
 export async function contentfulQuery<T>(
   query: string,
   variables: Record<string, unknown> = {},
+  config?: { endpoint: string; token: string },
 ): Promise<T> {
-  const { endpoint, token } = getContentfulConfig();
+  const { endpoint, token } = config || getContentfulConfig();
 
   const response = await fetch(endpoint, {
     method: "POST",

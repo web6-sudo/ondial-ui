@@ -3,6 +3,7 @@ import "server-only";
 import { cache } from "react";
 
 import { contentfulQuery } from "@/lib/contentful/client";
+import { getAdditionalSpacesConfig } from "@/lib/contentful/config";
 import { BLOG_DETAIL_FIELDS, BLOG_LIST_FIELDS, BLOG_SLUG_FIELDS } from "@/lib/contentful/fragments";
 import { getBlogAuthorBySlugMap } from "@/lib/contentful/fetch-authors";
 import type { ContentfulBlogDetail, ContentfulBlogSummary } from "@/lib/contentful/types";
@@ -53,6 +54,7 @@ function attachAuthors(
 async function fetchBlogCollectionPage(
   fields: string,
   skip: number,
+  config?: { endpoint: string; token: string },
 ): Promise<{ total: number; items: BlogListItem[] }> {
   const query = `
     query GetBlogs($limit: Int!, $skip: Int!) {
@@ -70,7 +72,7 @@ async function fetchBlogCollectionPage(
   const data = await contentfulQuery<BlogsCollectionResponse>(query, {
     limit: PAGE_SIZE,
     skip,
-  });
+  }, config);
 
   const collection = data.blogsCollection;
   const items = (collection?.items ?? []).filter(Boolean) as BlogListItem[];
@@ -81,12 +83,12 @@ async function fetchBlogCollectionPage(
   };
 }
 
-async function fetchAllBlogListItems(): Promise<BlogListItem[]> {
+async function fetchBlogListItemsForSpace(config?: { endpoint: string; token: string }): Promise<BlogListItem[]> {
   const all: BlogListItem[] = [];
   let skip = 0;
 
   while (true) {
-    const { total, items } = await fetchBlogCollectionPage(BLOG_LIST_FIELDS, skip);
+    const { total, items } = await fetchBlogCollectionPage(BLOG_LIST_FIELDS, skip, config);
     all.push(...items);
 
     if (items.length < PAGE_SIZE || all.length >= total) {
@@ -97,6 +99,57 @@ async function fetchAllBlogListItems(): Promise<BlogListItem[]> {
   }
 
   return all;
+}
+
+async function fetchAllBlogListItems(): Promise<BlogListItem[]> {
+  const allItems: BlogListItem[] = [];
+
+  // 1. Fetch from primary space
+  try {
+    const primaryItems = await fetchBlogListItemsForSpace();
+    allItems.push(...primaryItems);
+  } catch (error) {
+    console.error("[contentful] Failed to fetch blogs from primary space:", error);
+  }
+
+  // 2. Fetch from additional spaces
+  const additionalConfigs = getAdditionalSpacesConfig();
+  for (const config of additionalConfigs) {
+    try {
+      const additionalItems = await fetchBlogListItemsForSpace(config);
+      allItems.push(...additionalItems);
+    } catch (error) {
+      console.error(`[contentful] Failed to fetch blogs from additional space ${config.spaceId}:`, error);
+    }
+  }
+
+  // 3. De-duplicate by slug and sort by publishDate descending
+  const uniqueItemsMap = new Map<string, BlogListItem>();
+  for (const item of allItems) {
+    const slug = normalizeSlug(item.slug);
+    if (!slug) continue;
+
+    const existing = uniqueItemsMap.get(slug);
+    if (!existing) {
+      uniqueItemsMap.set(slug, item);
+    } else {
+      const existingDate = existing.publishDate ? new Date(existing.publishDate).getTime() : 0;
+      const currentDate = item.publishDate ? new Date(item.publishDate).getTime() : 0;
+      if (currentDate > existingDate) {
+        uniqueItemsMap.set(slug, item);
+      }
+    }
+  }
+
+  const mergedList = Array.from(uniqueItemsMap.values());
+
+  mergedList.sort((a, b) => {
+    const dateA = a.publishDate ? new Date(a.publishDate).getTime() : 0;
+    const dateB = b.publishDate ? new Date(b.publishDate).getTime() : 0;
+    return dateB - dateA;
+  });
+
+  return mergedList;
 }
 
 export async function fetchAllBlogSummaries(): Promise<ContentfulBlogSummary[]> {
@@ -111,43 +164,8 @@ export async function fetchAllBlogSummaries(): Promise<ContentfulBlogSummary[]> 
 export const fetchAllBlogSummariesCached = cache(fetchAllBlogSummaries);
 
 export async function fetchBlogSlugs(): Promise<string[]> {
-  const all: string[] = [];
-  let skip = 0;
-
-  while (true) {
-    const query = `
-      query GetBlogSlugs($limit: Int!, $skip: Int!) {
-        blogsCollection(
-          limit: $limit
-          skip: $skip
-          order: [publishDate_DESC, sys_firstPublishedAt_DESC]
-        ) {
-          total
-          items { ${BLOG_SLUG_FIELDS} }
-        }
-      }
-    `;
-
-    const data = await contentfulQuery<BlogSlugsResponse>(query, {
-      limit: PAGE_SIZE,
-      skip,
-    });
-
-    const collection = data.blogsCollection;
-    const slugs = (collection?.items ?? [])
-      .map((item) => normalizeSlug(item?.slug))
-      .filter((slug): slug is string => Boolean(slug));
-
-    all.push(...slugs);
-
-    if (slugs.length < PAGE_SIZE || all.length >= (collection?.total ?? 0)) {
-      break;
-    }
-
-    skip += PAGE_SIZE;
-  }
-
-  return all;
+  const blogs = await fetchAllBlogListItems();
+  return blogs.map((item) => normalizeSlug(item.slug)).filter(Boolean);
 }
 
 export async function fetchBlogBySlug(slug: string): Promise<ContentfulBlogDetail | null> {
@@ -161,8 +179,31 @@ export async function fetchBlogBySlug(slug: string): Promise<ContentfulBlogDetai
     }
   `;
 
-  const data = await contentfulQuery<BlogBySlugResponse>(query, { slug: normalizedSlug });
-  const blog = data.blogsCollection?.items?.[0] ?? null;
+  // 1. Try primary space
+  let blog: ContentfulBlogDetail | null = null;
+  try {
+    const data = await contentfulQuery<BlogBySlugResponse>(query, { slug: normalizedSlug });
+    blog = data.blogsCollection?.items?.[0] ?? null;
+  } catch (error) {
+    console.error("[contentful] Failed to query blog from primary space:", error);
+  }
+
+  // 2. Try additional spaces if not found
+  if (!blog) {
+    const additionalConfigs = getAdditionalSpacesConfig();
+    for (const config of additionalConfigs) {
+      try {
+        const data = await contentfulQuery<BlogBySlugResponse>(query, { slug: normalizedSlug }, config);
+        const found = data.blogsCollection?.items?.[0] ?? null;
+        if (found) {
+          blog = found;
+          break;
+        }
+      } catch (error) {
+        console.error(`[contentful] Failed to query blog from additional space ${config.spaceId}:`, error);
+      }
+    }
+  }
 
   if (!blog) return null;
 
@@ -191,14 +232,58 @@ export async function fetchBlogsByAuthor(authorSlug: string): Promise<Contentful
     }
   `;
 
-  const data = await contentfulQuery<BlogsCollectionResponse>(query, {
-    authorSlug: normalizedAuthorSlug,
+  const allBlogs: BlogListItem[] = [];
+
+  // 1. Fetch from primary space
+  try {
+    const data = await contentfulQuery<BlogsCollectionResponse>(query, {
+      authorSlug: normalizedAuthorSlug,
+    });
+    allBlogs.push(...((data.blogsCollection?.items ?? []).filter(Boolean) as BlogListItem[]));
+  } catch (error) {
+    console.error("[contentful] Failed to query author blogs from primary space:", error);
+  }
+
+  // 2. Fetch from additional spaces
+  const additionalConfigs = getAdditionalSpacesConfig();
+  for (const config of additionalConfigs) {
+    try {
+      const data = await contentfulQuery<BlogsCollectionResponse>(query, {
+        authorSlug: normalizedAuthorSlug,
+      }, config);
+      allBlogs.push(...((data.blogsCollection?.items ?? []).filter(Boolean) as BlogListItem[]));
+    } catch (error) {
+      console.error(`[contentful] Failed to query author blogs from space ${config.spaceId}:`, error);
+    }
+  }
+
+  // De-duplicate and sort
+  const uniqueItemsMap = new Map<string, BlogListItem>();
+  for (const item of allBlogs) {
+    const slug = normalizeSlug(item.slug);
+    if (!slug) continue;
+    const existing = uniqueItemsMap.get(slug);
+    if (!existing) {
+      uniqueItemsMap.set(slug, item);
+    } else {
+      const existingDate = existing.publishDate ? new Date(existing.publishDate).getTime() : 0;
+      const currentDate = item.publishDate ? new Date(item.publishDate).getTime() : 0;
+      if (currentDate > existingDate) {
+        uniqueItemsMap.set(slug, item);
+      }
+    }
+  }
+
+  const mergedList = Array.from(uniqueItemsMap.values());
+  mergedList.sort((a, b) => {
+    const dateA = a.publishDate ? new Date(a.publishDate).getTime() : 0;
+    const dateB = b.publishDate ? new Date(b.publishDate).getTime() : 0;
+    return dateB - dateA;
   });
 
-  const blogs = (data.blogsCollection?.items ?? []).filter(Boolean) as BlogListItem[];
   const authorMap = await getBlogAuthorBySlugMap();
 
-  return attachAuthors(blogs, authorMap).filter(
+  return attachAuthors(mergedList, authorMap).filter(
     (blog) => normalizeSlug(blog.author?.slug) === normalizedAuthorSlug,
   );
 }
