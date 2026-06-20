@@ -70,9 +70,9 @@ export const CONTACT_CHANNELS: readonly ContactChannel[] = [
   {
     id: "email",
     title: "Email",
-    lines: ["hello@ondial.ai"],
+    lines: ["info@ondial.ai"],
     detail: "We'll respond within 24 hours",
-    href: "mailto:hello@ondial.ai",
+    href: "mailto:info@ondial.ai",
   },
   {
     id: "office",
