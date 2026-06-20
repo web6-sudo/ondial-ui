@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // };
 }
 
-/** Service agent pages — hidden for now (nav commented out in `src/config/navigation.ts`). */
+/** Service agent pages - hidden for now (nav commented out in `src/config/navigation.ts`). */
 export default async function ServiceAgentPage({ params }: Props) {
   await params;
   notFound();

@@ -69,7 +69,7 @@ export function CaseStudyHeroVisual() {
       className="relative max-lg:grid max-lg:max-w-[520px] max-lg:grid-cols-2 max-lg:gap-3.5 lg:h-[540px]"
       aria-label="Customer success highlights"
     >
-      {/* 10M+ calls — top left */}
+      {/* 10M+ calls - top left */}
       <StatCard
         index={0}
         prefersReducedMotion={prefersReducedMotion}
@@ -87,7 +87,7 @@ export function CaseStudyHeroVisual() {
         <p className="mt-0.5 text-[13px] font-semibold text-[#7A748F]">{stats[2]!.label}</p>
       </StatCard>
 
-      {/* 20+ industries — top right */}
+      {/* 20+ industries - top right */}
       <StatCard
         index={1}
         prefersReducedMotion={prefersReducedMotion}
@@ -105,7 +105,7 @@ export function CaseStudyHeroVisual() {
         <p className="mt-0.5 text-[13px] font-semibold text-[#7A748F]">{stats[1]!.label}</p>
       </StatCard>
 
-      {/* 500+ businesses — center */}
+      {/* 500+ businesses - center */}
       <StatCard
         index={2}
         prefersReducedMotion={prefersReducedMotion}
@@ -127,7 +127,7 @@ export function CaseStudyHeroVisual() {
         </span>
       </StatCard>
 
-      {/* Featured story — bottom left */}
+      {/* Featured story - bottom left */}
       <StatCard
         index={3}
         prefersReducedMotion={prefersReducedMotion}
@@ -156,7 +156,7 @@ export function CaseStudyHeroVisual() {
         </Link>
       </StatCard>
 
-      {/* 4.9 CSAT — bottom right */}
+      {/* 4.9 CSAT - bottom right */}
       <StatCard
         index={4}
         prefersReducedMotion={prefersReducedMotion}

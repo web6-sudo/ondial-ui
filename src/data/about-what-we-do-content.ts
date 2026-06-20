@@ -17,7 +17,7 @@ export const ABOUT_WHAT_WE_DO_HEADING = {
   paragraphOne:
     "OnDial provides AI-powered Voice Agents that answer calls instantly, engage customers naturally, and resolve inquiries around the clock. Our agents speak 100+ languages, understand context in real time, and deliver human-like conversations that feel seamless and personal.",
   paragraphTwo:
-    "Whether it's customer support, lead qualification, appointment scheduling, or inbound call handling, OnDial ensures every customer receives fast, accurate, and professional assistance—24 hours a day, 7 days a week.",
+    "Whether it's customer support, lead qualification, appointment scheduling, or inbound call handling, OnDial ensures every customer receives fast, accurate, and professional assistance - 24 hours a day, 7 days a week.",
 } as const;
 
 export const ABOUT_WHAT_WE_DO_CAPABILITIES: readonly WhatWeDoCapability[] = [

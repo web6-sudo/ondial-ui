@@ -166,7 +166,7 @@ export function AnalyticsFlowIllustration({ className }: { className?: string })
       ))}
 
       <text x="110" y="152" textAnchor="middle" fontSize="8" fill="#888780">
-        Call volume — last 7 days
+        Call volume - last 7 days
       </text>
     </svg>
   );

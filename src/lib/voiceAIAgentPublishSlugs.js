@@ -4,7 +4,7 @@ export const CONTENTFUL_ENTRY_ID_MAX_LENGTH = 64;
 /** URL path segment: lowercase letters, numbers, hyphens; 3–80 chars */
 export const PUBLIC_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-/** Common app routes — block publishing these as CMS landing slugs */
+/** Common app routes - block publishing these as CMS landing slugs */
 export const RESERVED_VOICE_PAGE_SLUGS = new Set([
   'api',
   'admin',

@@ -66,7 +66,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-do-they-work",
       question: "How do AI Voice Agents work for businesses?",
-      answer: "They integrate with your communication systems to process voice input, understand intent, and respond naturally—helping automate customer support, sales calls, and lead qualification.",
+      answer: "They integrate with your communication systems to process voice input, understand intent, and respond naturally-helping automate customer support, sales calls, and lead qualification.",
     },
     {
       id: "multilingual",
@@ -113,7 +113,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-do-they-work",
       question: "How do AI Voice Agents work for businesses?",
-      answer: "They integrate with your communication systems to process voice input, understand intent, and respond naturally—helping automate customer support, sales calls, and lead qualification.",
+      answer: "They integrate with your communication systems to process voice input, understand intent, and respond naturally-helping automate customer support, sales calls, and lead qualification.",
     },
     {
       id: "multilingual",
@@ -217,7 +217,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "are-ai-voice-agents-secure-for-medical-communication",
       question: "Are AI voice agents secure for medical communication?",
-      answer: "Yes. Ondial solutions are HIPAA-compliant and designed with strict data privacy and security protocols.",
+      answer: "Yes. OnDial solutions are HIPAA-compliant and designed with strict data privacy and security protocols.",
     },
     {
       id: "can-ai-voice-agents-reduce-missed-appointments",
@@ -232,12 +232,12 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "do-ai-voice-agents-support-multiple-languages",
       question: "Do AI voice agents support multiple languages?",
-      answer: "Yes. Ondial AI voice solutions support multilingual communication, ensuring patients receive messages in their preferred language.",
+      answer: "Yes. OnDial AI voice solutions support multilingual communication, ensuring patients receive messages in their preferred language.",
     },
     {
       id: "can-hospitals-integrate-ai-voice-agents-with-existing-systems",
       question: "Can hospitals integrate AI voice agents with existing systems?",
-      answer: "Yes. Ondial integrates seamlessly with hospital management systems, EHRs, and scheduling tools.",
+      answer: "Yes. OnDial integrates seamlessly with hospital management systems, EHRs, and scheduling tools.",
     },
     {
       id: "how-do-ai-voice-agents-assist-in-insurance-claim-processing",
@@ -247,12 +247,12 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "are-ai-voice-agents-cost-effective-for-small-clinics",
       question: "Are AI voice agents cost-effective for small clinics?",
-      answer: "Yes. Ondial solutions scale easily, making them affordable and effective for both small clinics and large hospitals.",
+      answer: "Yes. OnDial solutions scale easily, making them affordable and effective for both small clinics and large hospitals.",
     },
     {
       id: "what-makes-ondial-the-best-choice-for-healthcare-medical-services",
-      question: "What makes Ondial the best choice for healthcare & medical services?",
-      answer: "Our expertise, secure infrastructure, and proven success in healthcare automation make Ondial a trusted partner for medical organizations.",
+      question: "What makes OnDial the best choice for healthcare & medical services?",
+      answer: "Our expertise, secure infrastructure, and proven success in healthcare automation make OnDial a trusted partner for medical organizations.",
     },
   ],
   "financial-and-banking-services": [
@@ -269,7 +269,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "are-ai-voice-agents-secure-for-financial-transactions",
       question: "Are AI voice agents secure for financial transactions?",
-      answer: "Yes, Ondial’s solutions are PCI-DSS and GDPR compliant, ensuring customer data and transactions remain fully secure.",
+      answer: "Yes, OnDial’s solutions are PCI-DSS and GDPR compliant, ensuring customer data and transactions remain fully secure.",
     },
     {
       id: "can-ai-voice-agents-replace-human-banking-agents",
@@ -284,7 +284,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "do-ai-voice-agents-support-multilingual-conversations",
       question: "Do AI voice agents support multilingual conversations?",
-      answer: "Yes, Ondial offers multilingual AI voice solutions, enabling banks to engage global customers effectively.",
+      answer: "Yes, OnDial offers multilingual AI voice solutions, enabling banks to engage global customers effectively.",
     },
     {
       id: "how-can-ai-voice-agents-help-in-loan-management",
@@ -304,7 +304,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-can-my-bank-start-using-ai-voice-agents",
       question: "How can my bank start using AI voice agents?",
-      answer: "You can partner with Ondial to integrate AI voice solutions with your existing systems and launch within weeks.",
+      answer: "You can partner with OnDial to integrate AI voice solutions with your existing systems and launch within weeks.",
     },
   ],
   "real-estate-services": [
@@ -316,7 +316,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-do-ai-voice-agents-help-real-estate-agents",
       question: "How do AI voice agents help real estate agents?",
-      answer: "They save time by handling repetitive calls, qualifying leads, and scheduling showings—allowing agents to focus on closing deals.",
+      answer: "They save time by handling repetitive calls, qualifying leads, and scheduling showings-allowing agents to focus on closing deals.",
     },
     {
       id: "can-ai-voice-agents-replace-human-real-estate-agents",
@@ -497,22 +497,22 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "do-ai-voice-agents-support-global-and-multilingual-sales-operations",
       question: "Do AI voice agents support global and multilingual sales operations?",
-      answer: "Yes, Ondial’s AI voice agents are multilingual and available 24/7. They help businesses engage prospects across time zones and languages, making global sales outreach seamless and efficient.",
+      answer: "Yes, OnDial’s AI voice agents are multilingual and available 24/7. They help businesses engage prospects across time zones and languages, making global sales outreach seamless and efficient.",
     },
     {
       id: "how-can-businesses-start-using-ai-voice-agents-for-sales",
       question: "How can businesses start using AI voice agents for sales?",
-      answer: "Getting started is simple. Ondial customizes AI voice solutions for each business, integrates them with existing systems, and ensures a smooth deployment so sales teams see results quickly.",
+      answer: "Getting started is simple. OnDial customizes AI voice solutions for each business, integrates them with existing systems, and ensures a smooth deployment so sales teams see results quickly.",
     },
     {
       id: "do-ai-voice-agents-support-global-businesses",
       question: "Do AI voice agents support global businesses?",
-      answer: "Yes, Ondial’s AI agents are multilingual and operate 24/7, making them ideal for businesses targeting international markets.",
+      answer: "Yes, OnDial’s AI agents are multilingual and operate 24/7, making them ideal for businesses targeting international markets.",
     },
     {
       id: "how-can-i-get-started-with-ai-voice-agents-for-sales",
       question: "How can I get started with AI voice agents for sales?",
-      answer: "Simply contact Ondial. Our team will assess your needs, customize solutions, and deploy AI voice agents tailored to your sales strategy.",
+      answer: "Simply contact OnDial. Our team will assess your needs, customize solutions, and deploy AI voice agents tailored to your sales strategy.",
     },
   ],
   "call-center-and-bpo-services": [
@@ -576,7 +576,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-can-ai-improve-telecom-customer-service",
       question: "How can AI improve telecom customer service?",
-      answer: "AI in telecom customer service reduces wait times, provides instant responses, and delivers 24/7 multilingual support—leading to higher satisfaction.",
+      answer: "AI in telecom customer service reduces wait times, provides instant responses, and delivers 24/7 multilingual support-leading to higher satisfaction.",
     },
     {
       id: "can-ai-voice-agents-handle-billing-inquiries",
@@ -616,14 +616,14 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "why-should-telecom-providers-choose-ondial-over-competitors",
       question: "Why should telecom providers choose OnDial over competitors?",
-      answer: "OnDial offers telecom-specific AI solutions with proven global results, regulatory compliance, and seamless integration—making it a trusted AI partner.",
+      answer: "OnDial offers telecom-specific AI solutions with proven global results, regulatory compliance, and seamless integration-making it a trusted AI partner.",
     },
   ],
   "automotive-services": [
     {
       id: "what-are-ai-voice-agents-for-automotive-services",
       question: "What are AI voice agents for automotive services?",
-      answer: "AI voice agents are automated systems that handle customer calls and reminders for dealerships, repair shops, insurers, and lenders—offering instant, personalized support.",
+      answer: "AI voice agents are automated systems that handle customer calls and reminders for dealerships, repair shops, insurers, and lenders-offering instant, personalized support.",
     },
     {
       id: "how-do-ai-voice-agents-improve-customer-experience",
@@ -633,22 +633,22 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "can-ai-voice-agents-help-with-vehicle-recalls",
       question: "Can AI voice agents help with vehicle recalls?",
-      answer: "Yes. They notify customers of recalls, explain safety concerns, and schedule repair appointments automatically—ensuring compliance and trust.",
+      answer: "Yes. They notify customers of recalls, explain safety concerns, and schedule repair appointments automatically-ensuring compliance and trust.",
     },
     {
       id: "how-do-ai-voice-agents-benefit-car-dealerships",
       question: "How do AI voice agents benefit car dealerships?",
-      answer: "Dealerships can use AI for sales follow-ups, trade-in evaluations, financing updates, and after-sales service reminders—driving customer loyalty.",
+      answer: "Dealerships can use AI for sales follow-ups, trade-in evaluations, financing updates, and after-sales service reminders-driving customer loyalty.",
     },
     {
       id: "are-ai-voice-agents-useful-for-auto-repair-shops",
       question: "Are AI voice agents useful for auto repair shops?",
-      answer: "Absolutely. They schedule appointments, send reminders, and update customers on service status—reducing no-shows and improving efficiency.",
+      answer: "Absolutely. They schedule appointments, send reminders, and update customers on service status-reducing no-shows and improving efficiency.",
     },
     {
       id: "can-ai-assist-with-automotive-financing-and-insurance",
       question: "Can AI assist with automotive financing and insurance?",
-      answer: "Yes. AI voice agents help with loan refinancing, payment plan modifications, policy renewals, and claim support—making processes smoother for customers.",
+      answer: "Yes. AI voice agents help with loan refinancing, payment plan modifications, policy renewals, and claim support-making processes smoother for customers.",
     },
     {
       id: "do-ai-voice-agents-support-multiple-languages",
@@ -668,7 +668,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "why-should-automotive-businesses-choose-ondial",
       question: "Why should automotive businesses choose OnDial?",
-      answer: "OnDial offers scalable, secure, and industry-specific AI voice agent solutions—built to deliver real results for dealerships, insurers, and repair shops.",
+      answer: "OnDial offers scalable, secure, and industry-specific AI voice agent solutions-built to deliver real results for dealerships, insurers, and repair shops.",
     },
   ],
   "education-services": [
@@ -684,8 +684,8 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     },
     {
       id: "can-ondial-s-ai-agents-work-in-multiple-languages",
-      question: "Can Ondial’s AI agents work in multiple languages?",
-      answer: "Yes. Ondial supports global education institutions with multilingual AI voice services.",
+      question: "Can OnDial’s AI agents work in multiple languages?",
+      answer: "Yes. OnDial supports global education institutions with multilingual AI voice services.",
     },
     {
       id: "how-do-they-help-with-tuition-compliance",
@@ -695,12 +695,12 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "are-ai-voice-agents-secure-for-student-data",
       question: "Are AI voice agents secure for student data?",
-      answer: "Yes. Ondial follows strict compliance standards to protect sensitive student and institutional data.",
+      answer: "Yes. OnDial follows strict compliance standards to protect sensitive student and institutional data.",
     },
     {
       id: "can-they-integrate-with-existing-school-systems",
       question: "Can they integrate with existing school systems?",
-      answer: "Absolutely. Ondial integrates with ERP, LMS, and CRM platforms without disrupting existing processes.",
+      answer: "Absolutely. OnDial integrates with ERP, LMS, and CRM platforms without disrupting existing processes.",
     },
     {
       id: "how-do-ai-agents-support-alumni-outreach",
@@ -710,7 +710,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "do-small-schools-benefit-from-ai-voice-agents",
       question: "Do small schools benefit from AI voice agents?",
-      answer: "Yes. Ondial’s platform scales to fit small schools, mid-sized colleges, and global universities.",
+      answer: "Yes. OnDial’s platform scales to fit small schools, mid-sized colleges, and global universities.",
     },
     {
       id: "how-do-ai-agents-help-with-student-well-being",
@@ -720,7 +720,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "what-measurable-impact-do-ai-voice-agents-deliver",
       question: "What measurable impact do AI voice agents deliver?",
-      answer: "Institutions using Ondial see fewer missed payments, higher event participation, and stronger engagement across students and alumni.",
+      answer: "Institutions using OnDial see fewer missed payments, higher event participation, and stronger engagement across students and alumni.",
     },
   ],
   "travel-and-tourism-services": [
@@ -757,7 +757,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "can-ai-voice-agents-replace-human-staff-in-travel",
       question: "Can AI voice agents replace human staff in travel?",
-      answer: "Not entirely—they handle routine tasks, while human staff focus on complex, emotional, or premium service interactions.",
+      answer: "Not entirely-they handle routine tasks, while human staff focus on complex, emotional, or premium service interactions.",
     },
     {
       id: "how-do-ai-voice-agents-support-travel-insurance-services",
@@ -765,7 +765,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
       answer: "They provide quick policy explanations, claim guidance, and coverage reminders, reducing delays for travelers.",
     },
     {
-      id: "what-makes-ondial-s-ai-voice-agents-different",
+      id: "what-makes-OnDial-s-ai-voice-agents-different",
       question: "What makes OnDial’s AI voice agents different?",
       answer: "OnDial offers scalable, customizable, and industry-specific AI solutions tailored for travel and tourism businesses worldwide.",
     },
@@ -784,7 +784,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-can-ai-improve-hotel-reservations",
       question: "How can AI improve hotel reservations?",
-      answer: "AI ensures accurate, instant confirmations, handles special requests, and reduces booking errors—improving reliability for both guests and hotels.",
+      answer: "AI ensures accurate, instant confirmations, handles special requests, and reduces booking errors-improving reliability for both guests and hotels.",
     },
     {
       id: "do-ai-voice-assistants-replace-hotel-staff",
@@ -804,7 +804,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-does-ai-help-with-guest-loyalty-programs",
       question: "How does AI help with guest loyalty programs?",
-      answer: "AI personalizes rewards, promotions, and offers—making guests feel valued and encouraging repeat bookings.",
+      answer: "AI personalizes rewards, promotions, and offers-making guests feel valued and encouraging repeat bookings.",
     },
     {
       id: "can-hotels-integrate-ai-voice-agents-with-their-existing-systems",
@@ -940,7 +940,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "can-ai-voice-agents-handle-outage-notifications-effectively",
       question: "Can AI voice agents handle outage notifications effectively?",
-      answer: "Yes. They deliver real-time updates about outages, restoration timelines, and alternative service options—reducing call center traffic during emergencies.",
+      answer: "Yes. They deliver real-time updates about outages, restoration timelines, and alternative service options-reducing call center traffic during emergencies.",
     },
     {
       id: "are-ai-voice-agents-useful-for-energy-efficiency-programs",
@@ -950,7 +950,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-do-ai-agents-support-gas-and-water-utilities",
       question: "How do AI agents support gas and water utilities?",
-      answer: "They automate meter reading schedules, send safety alerts for leaks, and manage service requests—ensuring smooth communication between providers and customers.",
+      answer: "They automate meter reading schedules, send safety alerts for leaks, and manage service requests-ensuring smooth communication between providers and customers.",
     },
     {
       id: "what-security-measures-protect-customer-data",
@@ -970,7 +970,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-are-ai-voice-agents-integrated-with-utilities-systems",
       question: "How are AI voice agents integrated with utilities systems?",
-      answer: "They connect with billing software, CRM, outage management systems, and communication platforms—ensuring seamless operations and customer updates.",
+      answer: "They connect with billing software, CRM, outage management systems, and communication platforms-ensuring seamless operations and customer updates.",
     },
     {
       id: "can-ai-voice-agents-help-with-renewable-energy-adoption",
@@ -992,12 +992,12 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-can-ai-voice-agents-improve-fundraising",
       question: "How can AI voice agents improve fundraising?",
-      answer: "They automate donor outreach, send personalized reminders, and collect pledges faster—helping nonprofits raise more funds in less time.",
+      answer: "They automate donor outreach, send personalized reminders, and collect pledges faster-helping nonprofits raise more funds in less time.",
     },
     {
       id: "can-ai-voice-agents-handle-volunteer-recruitment",
       question: "Can AI voice agents handle volunteer recruitment?",
-      answer: "Yes, AI bots schedule volunteers, send confirmations, and manage availability updates—saving nonprofits significant administrative time.",
+      answer: "Yes, AI bots schedule volunteers, send confirmations, and manage availability updates-saving nonprofits significant administrative time.",
     },
     {
       id: "are-ai-voice-agents-secure-for-donor-communication",
@@ -1044,7 +1044,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-do-ai-voice-agents-improve-customer-experience",
       question: "How do AI voice agents improve customer experience?",
-      answer: "They provide real-time delivery notifications, proactive delay alerts, and faster responses—improving trust and transparency.",
+      answer: "They provide real-time delivery notifications, proactive delay alerts, and faster responses-improving trust and transparency.",
     },
     {
       id: "can-ai-voice-agents-reduce-logistics-costs",
@@ -1116,7 +1116,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "how-do-ai-voice-agents-help-with-safety-protocols",
       question: "How do AI voice agents help with safety protocols?",
-      answer: "They deliver automated reminders, emergency alerts, and incident reporting updates—ensuring workers follow safety standards.",
+      answer: "They deliver automated reminders, emergency alerts, and incident reporting updates-ensuring workers follow safety standards.",
     },
     {
       id: "what-role-do-ai-voice-agents-play-in-regulatory-compliance",
@@ -1153,7 +1153,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "can-ai-voice-agents-track-building-permits-and-inspections",
       question: "Can AI voice agents track building permits and inspections?",
-      answer: "Yes, AI agents automatically notify teams about permit approvals, inspection schedules, and compliance requirements—helping avoid costly delays in approvals.",
+      answer: "Yes, AI agents automatically notify teams about permit approvals, inspection schedules, and compliance requirements-helping avoid costly delays in approvals.",
     },
     {
       id: "how-do-ai-voice-agents-support-safety-in-construction",
@@ -1163,7 +1163,7 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "can-ai-voice-agents-handle-payment-schedules",
       question: "Can AI voice agents handle payment schedules?",
-      answer: "Absolutely. AI assistants track payment milestones, send invoice reminders, and notify finance teams—ensuring smooth billing and cash flow management.",
+      answer: "Absolutely. AI assistants track payment milestones, send invoice reminders, and notify finance teams-ensuring smooth billing and cash flow management.",
     },
     {
       id: "how-do-ai-agents-manage-material-deliveries",
@@ -1188,14 +1188,14 @@ const FAQ_ITEMS: Record<SiteFaqPageKey, readonly SiteFaqItem[]> = {
     {
       id: "why-should-construction-companies-choose-ondial-for-ai-voice-agents",
       question: "Why should construction companies choose OnDial for AI voice agents?",
-      answer: "OnDial combines industry-specific expertise, secure infrastructure, and proven performance—making it the best AI voice agent company for construction services globally.",
+      answer: "OnDial combines industry-specific expertise, secure infrastructure, and proven performance-making it the best AI voice agent company for construction services globally.",
     },
   ],
   "agriculture-services": [
     {
       id: "what-are-ai-voice-agents-for-agriculture-services",
       question: "What are AI voice agents for agriculture services?",
-      answer: "AI voice agents are intelligent assistants that provide farmers with real-time updates on crop management, market prices, loans, and compliance—all through simple voice commands.",
+      answer: "AI voice agents are intelligent assistants that provide farmers with real-time updates on crop management, market prices, loans, and compliance-all through simple voice commands.",
     },
     {
       id: "how-can-ai-voice-agents-help-in-crop-management",

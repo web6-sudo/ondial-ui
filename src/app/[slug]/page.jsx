@@ -285,7 +285,7 @@ export default async function VoiceAIAgentPage({ params }) {
     isStatePage
       ? buildLocalBusinessSchema({
           url: `/${normalizedSlug}`,
-          name: page.data?.metaData?.title || `OnDial AI Voice Agent — ${titleCaseLang}`,
+          name: page.data?.metaData?.title || `OnDial AI Voice Agent - ${titleCaseLang}`,
           description:
             page.data?.metaData?.description ||
             `OnDial's AI voice agent for ${titleCaseLang} with 24/7 call automation.`,

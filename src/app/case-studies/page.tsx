@@ -10,12 +10,12 @@ import { CaseStudyTickerSection } from "@/components/marketing/case-study-ticker
 export const metadata: Metadata = {
   title: { absolute: "AI Voice Agent Case Studies & Success Stories | OnDial" },
   description:
-    "Real businesses, real conversations, real growth — see how teams automate calls and scale support with OnDial AI voice agents.",
+    "Real businesses, real conversations, real growth - see how teams automate calls and scale support with OnDial AI voice agents.",
   alternates: { canonical: "https://www.ondial.ai/case-studies" },
   openGraph: {
     title: "AI Voice Agent Case Studies & Success Stories | OnDial",
     description:
-      "Real businesses, real conversations, real growth — see how teams automate calls and scale support with OnDial AI voice agents.",
+      "Real businesses, real conversations, real growth - see how teams automate calls and scale support with OnDial AI voice agents.",
     url: "https://www.ondial.ai/case-studies",
     siteName: "OnDial",
     images: [{ url: "https://www.ondial.ai/img/logo/og.png", width: 1200, height: 630, alt: "OnDial Case Studies" }],
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Voice Agent Case Studies & Success Stories | OnDial",
     description:
-      "Real businesses, real conversations, real growth — see how teams automate calls and scale support with OnDial AI voice agents.",
+      "Real businesses, real conversations, real growth - see how teams automate calls and scale support with OnDial AI voice agents.",
     images: ["https://www.ondial.ai/img/logo/og.png"],
     creator: "@ondialai",
   },

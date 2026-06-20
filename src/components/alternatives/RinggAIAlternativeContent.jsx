@@ -566,7 +566,7 @@ function IndustriesHubSection() {
         <SectionHeader
           badge="Industries"
           title="Where OnDial outperforms Ringg AI"
-          subtitle="Explore by sector — compliance proof, language reach, and automation playbooks."
+          subtitle="Explore by sector - compliance proof, language reach, and automation playbooks."
         />
 
         <div className="mt-8 flex justify-center gap-2">
@@ -821,7 +821,7 @@ export default function RinggAIAlternativeContent() {
         <FAQSection
           badgeIcon="HelpCircle"
           badgeText="Frequently Asked Questions"
-          title="Ringg AI Alternative —"
+          title="Ringg AI Alternative -"
           highlightedTitle="FAQs"
           description="Get answers to common questions about switching from Ringg AI to OnDial."
           faqs={faqs}

@@ -32,7 +32,7 @@ export function LeadQualificationIllustration({ className }: LeadQualificationIl
         strokeWidth="0.5"
       />
 
-      {/* ── Left side lead — filters out ── */}
+      {/* ── Left side lead - filters out ── */}
       <g transform="translate(78, 50)">
         <g className={flowStyles.leadParticle1}>
           <circle r="6" fill="#fff" stroke="#E6C07A" strokeWidth="0.5" />
@@ -40,7 +40,7 @@ export function LeadQualificationIllustration({ className }: LeadQualificationIl
         </g>
       </g>
 
-      {/* ── Right side lead — filters out ── */}
+      {/* ── Right side lead - filters out ── */}
       <g transform="translate(142, 50)">
         <g className={flowStyles.leadParticle3}>
           <circle r="6" fill="#fff" stroke="#E6C07A" strokeWidth="0.5" />
@@ -48,7 +48,7 @@ export function LeadQualificationIllustration({ className }: LeadQualificationIl
         </g>
       </g>
 
-      {/* ── Center hot lead — qualifies ── */}
+      {/* ── Center hot lead - qualifies ── */}
       <g transform="translate(110, 118)">
         <g className={flowStyles.leadParticle2}>
           <circle className={flowStyles.leadHotGlow} r="9" fill="none" stroke="#E6C07A" strokeWidth="1.25" />

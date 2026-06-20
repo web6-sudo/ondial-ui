@@ -149,7 +149,7 @@ function FooterNavColumn({
 
 export type MarketingSiteFooterProps = {
   className?: string;
-  /** @deprecated CTA card removed — kept for API compatibility. */
+  /** @deprecated CTA card removed - kept for API compatibility. */
   showCtaCard?: boolean;
 };
 

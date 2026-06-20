@@ -23,7 +23,7 @@ export const NEWS_PAGE_CONTENT = {
   titleAccent: "AI voice",
   titleThird: "innovation",
   subtitle:
-    "Ship notes, feature releases, and integrations — everything your team needs to stay ahead with OnDial.",
+    "Ship notes, feature releases, and integrations - everything your team needs to stay ahead with OnDial.",
   subscribeLabel: "Subscribe for updates",
   subscribeHref: "#footer-newsletter-email",
   exploreLabel: "Explore releases",
@@ -50,7 +50,7 @@ export const NEWS_PAGE_CONTENT = {
         category: "Integration",
         title: "HubSpot & Salesforce sync",
         description:
-          "Call outcomes and follow-up tasks write back to your CRM in real time — no manual entry after every conversation.",
+          "Call outcomes and follow-up tasks write back to your CRM in real time - no manual entry after every conversation.",
         date: "May 2026",
         dateIso: "2026-05",
         href: "/news",

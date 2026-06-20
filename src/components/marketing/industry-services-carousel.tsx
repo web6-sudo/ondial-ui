@@ -110,7 +110,7 @@ const SERVICE_CARD_THEMES = [
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-/** Shortest-path offset on a ring — keeps cards visible on both sides (infinite loop). */
+/** Shortest-path offset on a ring - keeps cards visible on both sides (infinite loop). */
 function getCircularOffset(index: number, active: number, count: number) {
   let offset = index - active;
   const half = count / 2;
@@ -142,7 +142,7 @@ function cardMotion(offset: number, reducedMotion: boolean) {
   return {
     x: Math.round(clamped * 148),
     rotateY: clamped * -22,
-    /* Keep active card on z=0 — translateZ blurs text under perspective */
+    /* Keep active card on z=0 - translateZ blurs text under perspective */
     z: abs === 0 ? 0 : -abs * 64,
     scale: abs === 0 ? 1 : abs === 1 ? 0.88 : 0.8,
     opacity: abs === 0 ? 1 : abs === 1 ? 0.72 : abs === 2 ? 0.42 : 0,

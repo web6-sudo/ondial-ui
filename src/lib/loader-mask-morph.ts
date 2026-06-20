@@ -1,13 +1,13 @@
 import gsap from "gsap";
 
-/** Clip-path artboard — bottom edge maps to the panel’s physical bottom. */
+/** Clip-path artboard - bottom edge maps to the panel’s physical bottom. */
 const CLIP_W = 1440;
 const CLIP_H = 1000;
 const CLIP_BOTTOM = 1000;
 
 export const LOADER_CLIP_TRANSFORM = `scale(${1 / CLIP_W}, ${1 / CLIP_H})`;
 
-/** Flat loader silhouette — top pinned at y=0. */
+/** Flat loader silhouette - top pinned at y=0. */
 export function buildLoaderClipPath(t: number) {
   const bow = t * 132;
   const controlY = CLIP_BOTTOM - bow;

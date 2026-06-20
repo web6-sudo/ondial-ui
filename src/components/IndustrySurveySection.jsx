@@ -457,7 +457,7 @@ export default function IndustrySurveySection({
     return () => window.removeEventListener('resize', updateItemsPerView);
   }, []);
 
-  // Reset scroll when search/filter changes — avoid showing duplicate carousel clones
+  // Reset scroll when search/filter changes - avoid showing duplicate carousel clones
   useEffect(() => {
     if (enableCarouselLoop && displayedIndustries.length > 0) {
       setScrollPosition(displayedIndustries.length);
@@ -571,7 +571,7 @@ export default function IndustrySurveySection({
           </div>
         </motion.div>
 
-        {/* Industry cards — centered grid when searching or few results; carousel otherwise */}
+        {/* Industry cards - centered grid when searching or few results; carousel otherwise */}
         <motion.div
           className={`relative ${unifiedGrid ? 'mb-0' : 'mb-16'}`}
           {...revealMotion(revealOnMount, {

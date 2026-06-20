@@ -287,7 +287,7 @@ export function buildPricingSchema({ plans = [], url = '/pricing' } = {}) {
     '@context': 'https://schema.org',
     '@type': 'Product',
     '@id': `${absoluteUrl(url)}#product`,
-    name: `${SITE_NAME} AI Voice Agent — Pricing Plans`,
+    name: `${SITE_NAME} AI Voice Agent - Pricing Plans`,
     description:
       'Flexible per-minute pricing for AI voice call automation. Starter, Professional, and Enterprise tiers.',
     brand: ORG_REF,

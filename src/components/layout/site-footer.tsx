@@ -8,7 +8,7 @@ export type FooterLinkItem = {
   label: string;
 };
 
-/** @deprecated Use config in `@/config/footer` — kept for API compatibility. */
+/** @deprecated Use config in `@/config/footer` - kept for API compatibility. */
 export type SiteFooterProps = {
   brandLabel?: string;
   description?: ReactNode;

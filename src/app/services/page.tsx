@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
 };
 
-/** Main services overview — hidden for now; sub-routes under `/services/[slug]` stay live. */
+/** Main services overview - hidden for now; sub-routes under `/services/[slug]` stay live. */
 export default function ServicesPage() {
   notFound();
 

@@ -14,7 +14,7 @@ type MarketingDotBackgroundProps = {
   layered?: boolean;
 };
 
-/** Full-bleed radial dot grid with soft edge fade — matches industry/blog pattern. */
+/** Full-bleed radial dot grid with soft edge fade - matches industry/blog pattern. */
 export function MarketingDotBackground({
   className,
   size = 14,

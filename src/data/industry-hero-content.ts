@@ -28,7 +28,7 @@ export type IndustryHeroContent = {
   audioDemos: AudioDemoTrack[];
 };
 
-/** Osaka reference tower PNG — decorative depth layer. */
+/** Osaka reference tower PNG - decorative depth layer. */
 const OSAKA_TOWER = "https://assets.codepen.io/605876/do-not-copy-osaka-tower.png";
 
 /**
@@ -304,11 +304,11 @@ export type IndustryDemoScenario = {
   actions: { icon: string; label: string; val: string }[];
   logLines: { t: string; dot: "pur" | "grn" | "amb"; text: string }[];
   outcomes: { icon: string; label: string; val: string }[];
-  /** Appointment flows — slots offered to the caller */
+  /** Appointment flows - slots offered to the caller */
   availableSlots?: string[];
   /** Which slot the caller selects */
   selectedSlot?: string;
-  /** Lab / order flows — fields the AI collects before lookup */
+  /** Lab / order flows - fields the AI collects before lookup */
   identityChecks?: IndustryDemoIdentityCheck[];
 };
 
@@ -337,7 +337,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "real-estate-services": {
     headline: "Never miss a lead",
     headlineHighlight: "again",
-    subheadline: "Your AI calling agent answers every inquiry, qualifies buyers and tenants, and books property visits — 24 hours a day, without a single rep on the line.",
+    subheadline: "Your AI calling agent answers every inquiry, qualifies buyers and tenants, and books property visits - 24 hours a day, without a single rep on the line.",
     stats: [
       { value: "3×", label: "More leads qualified" },
       { value: "80%", label: "Reduction in missed calls" },
@@ -352,7 +352,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
         lang: "en",
         aiResponse: "Yes, the 3BHK in Bandra West is still available! It's ₹1.2 Cr for 1,450 sq ft with parking. Would you like to schedule a viewing?",
         messages: [
-          { from: "caller", text: "Hi, I saw a 3BHK listing on your site in Bandra West — is it still available, and what's the asking price?" },
+          { from: "caller", text: "Hi, I saw a 3BHK listing on your site in Bandra West - is it still available, and what's the asking price?" },
           { from: "ai", text: "Let me check that listing for you right away." },
           { from: "caller", text: "Sure, thanks." },
           { from: "ai", text: "Yes, it's still available at ₹1.2 Cr. Would you like to book a viewing this week?" },
@@ -415,7 +415,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
         ],
         logLines: [
           { t: "0:01", dot: "pur", text: "Call answered by AI agent" },
-          { t: "0:03", dot: "pur", text: "Intent: viewing request — Worli 2BHK" },
+          { t: "0:03", dot: "pur", text: "Intent: viewing request - Worli 2BHK" },
           { t: "0:04", dot: "amb", text: "calendar_check() → Sat 11am free" },
           { t: "0:05", dot: "amb", text: "slot_book() → confirmed" },
           { t: "0:05", dot: "amb", text: "sms_send() → confirmation dispatched" },
@@ -471,20 +471,20 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       },
     ],
     useCases: [
-      { title: "Property inquiries", description: "Answers questions on listings, pricing, availability, and amenities — instantly, any hour.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "PhoneIncoming" },
-      { title: "Visit scheduling", description: "Books property viewings directly on the call — synced to your agent's calendar in real time.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "CalendarDays" },
+      { title: "Property inquiries", description: "Answers questions on listings, pricing, availability, and amenities - instantly, any hour.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "PhoneIncoming" },
+      { title: "Visit scheduling", description: "Books property viewings directly on the call - synced to your agent's calendar in real time.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "CalendarDays" },
       { title: "Lead qualification", description: "Asks budget, timeline, and preference questions to score and route the hottest leads first.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "Filter" },
-      { title: "Follow-up reminders", description: "Calls back leads who didn't convert — automatically, with a personalised message.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "BellRing" },
+      { title: "Follow-up reminders", description: "Calls back leads who didn't convert - automatically, with a personalised message.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "BellRing" },
       { title: "Rental applications", description: "Walks tenants through application steps and collects key details over the phone.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "FileText" },
       { title: "Tenant support", description: "Handles maintenance requests, payment queries, and lease questions without agent involvement.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "UserCheck" },
     ],
     benefits: [
-      { title: "Never miss an after-hours lead", description: "The AI answers every call at 11 pm on a Sunday — just like a top agent would at 9 am on Monday.", icon: "Clock" },
-      { title: "Consistent scripts, every call", description: "Every caller hears the same professional, on-brand experience — regardless of volume or time of day.", icon: "MessageSquare" },
+      { title: "Never miss an after-hours lead", description: "The AI answers every call at 11 pm on a Sunday - just like a top agent would at 9 am on Monday.", icon: "Clock" },
+      { title: "Consistent scripts, every call", description: "Every caller hears the same professional, on-brand experience - regardless of volume or time of day.", icon: "MessageSquare" },
       { title: "Syncs with your CRM instantly", description: "Pushes lead data, notes, and booked slots into HubSpot, Salesforce, or Zoho automatically.", icon: "Plug" },
-      { title: "Speaks every buyer's language", description: "Auto-detects the caller's language and responds naturally — across 100+ languages.", icon: "Languages" },
-      { title: "Full visibility into call quality", description: "Transcripts, sentiment scores, and conversion rates for every call — in one dashboard.", icon: "BarChart2" },
-      { title: "Live in under 30 minutes", description: "Connect your number, pick a real estate template, and your agent is live — no IT team needed.", icon: "Settings" },
+      { title: "Speaks every buyer's language", description: "Auto-detects the caller's language and responds naturally - across 100+ languages.", icon: "Languages" },
+      { title: "Full visibility into call quality", description: "Transcripts, sentiment scores, and conversion rates for every call - in one dashboard.", icon: "BarChart2" },
+      { title: "Live in under 30 minutes", description: "Connect your number, pick a real estate template, and your agent is live - no IT team needed.", icon: "Settings" },
     ],
     outcomes: [
       { value: "3×", label: "More qualified leads", sublabel: "Per month vs manual call handling" },
@@ -535,7 +535,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       }
     ],
     testimonial: {
-      quote: "We were losing leads every weekend. Since OnDial, our AI answers every call, qualifies the buyer, and books the viewing — before I've even had my morning coffee. Our conversion rate is up 40% in 3 months.",
+      quote: "We were losing leads every weekend. Since OnDial, our AI answers every call, qualifies the buyer, and books the viewing - before I've even had my morning coffee. Our conversion rate is up 40% in 3 months.",
       name: "Ravi Shah",
       role: "Principal Broker · Prestige Realty, Mumbai",
       initials: "RS",
@@ -549,7 +549,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "healthcare-and-medical-services": {
     headline: "Every patient call",
     headlineHighlight: "answered",
-    subheadline: "Your AI calling agent books appointments, sends reminders, and handles follow-ups — 24/7, so your staff can focus on care.",
+    subheadline: "Your AI calling agent books appointments, sends reminders, and handles follow-ups - 24/7, so your staff can focus on care.",
     stats: [
       { value: "60%", label: "Fewer no-shows" },
       { value: "24/7", label: "Patient availability" },
@@ -563,7 +563,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
         aiResponse: "You're all set, Asha. Your appointment with Dr. Mehta is confirmed for Tuesday at 10:30 AM. A confirmation SMS has been sent to your number on file.",
         messages: [
           { from: "caller", text: "Hi, I'd like to book a general check-up with Dr. Mehta." },
-          { from: "ai", text: "Of course — let me check Dr. Mehta's available slots for you." },
+          { from: "ai", text: "Of course - let me check Dr. Mehta's available slots for you." },
           { from: "ai", text: "I have three openings: Tuesday 10:30 AM, Tuesday 11:45 AM, or Thursday 2:00 PM. Which works best for you?" },
           { from: "caller", text: "Tuesday at 10:30 AM, please." },
           { from: "ai", text: "Great choice. To complete the booking, I'll need your patient ID and date of birth." },
@@ -608,14 +608,14 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       {
         label: "Lab report request",
         duration: "1:10",
-        aiResponse: "Your CBC panel results are ready. I've sent a secure report link to asha.sharma@gmail.com — it expires in 48 hours.",
+        aiResponse: "Your CBC panel results are ready. I've sent a secure report link to asha.sharma@gmail.com - it expires in 48 hours.",
         messages: [
           { from: "caller", text: "I'm calling to check if my blood test results are ready." },
           { from: "ai", text: "I can help with that. For security, may I have your patient ID or medical record number?" },
           { from: "caller", text: "It's PAT-77320." },
           { from: "ai", text: "Thank you. And your date of birth, please?" },
           { from: "caller", text: "June 8, 1985." },
-          { from: "ai", text: "Verified. Your results are ready — should I send the secure report link to your email on file, or a different address?" },
+          { from: "ai", text: "Verified. Your results are ready - should I send the secure report link to your email on file, or a different address?" },
           { from: "caller", text: "Send it to asha.sharma@gmail.com." },
         ],
         caller: "Asha Sharma",
@@ -654,7 +654,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       {
         label: "Order tracking",
         duration: "0:55",
-        aiResponse: "Your lab order LAB-22941 was processed yesterday. Results are finalized — I've emailed a copy to vikram.rao@email.com and updated your patient portal.",
+        aiResponse: "Your lab order LAB-22941 was processed yesterday. Results are finalized - I've emailed a copy to vikram.rao@email.com and updated your patient portal.",
         messages: [
           { from: "caller", text: "What's the status of my lab order from last week?" },
           { from: "ai", text: "I can look that up. What's your order reference number or patient ID?" },
@@ -697,7 +697,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       },
     ],
     useCases: [
-      { title: "Appointment booking", description: "Books and reschedules patient appointments instantly — synced to your clinic calendar in real time.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "CalendarDays" },
+      { title: "Appointment booking", description: "Books and reschedules patient appointments instantly - synced to your clinic calendar in real time.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "CalendarDays" },
       { title: "Reminder calls", description: "Reduces no-shows by calling patients 24–48 hours before their appointment automatically.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "BellRing" },
       { title: "Lab result follow-ups", description: "Notifies patients when results are ready and routes complex queries to clinical staff.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "FileText" },
       { title: "Prescription refills", description: "Handles refill requests and routes urgent cases to the prescribing doctor automatically.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "Pill" },
@@ -705,12 +705,12 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "Post-visit follow-up", description: "Checks in on patients after procedures, collects feedback, and flags concerns to clinicians.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "UserCheck" },
     ],
     benefits: [
-      { title: "24/7 patient access", description: "Patients can book or change appointments at 2 AM — without waking your reception team.", icon: "Clock" },
+      { title: "24/7 patient access", description: "Patients can book or change appointments at 2 AM - without waking your reception team.", icon: "Clock" },
       { title: "Reduce administrative load", description: "Free your staff from routine scheduling calls so they can focus on in-clinic patient care.", icon: "MessageSquare" },
       { title: "EHR & calendar sync", description: "Pushes appointment data directly into your practice management system automatically.", icon: "Plug" },
       { title: "Multilingual support", description: "Communicates in the patient's preferred language across 100+ languages seamlessly.", icon: "Languages" },
       { title: "Compliance-ready transcripts", description: "Every call is logged, transcribed, and stored in line with healthcare data requirements.", icon: "BarChart2" },
-      { title: "Live in under 30 minutes", description: "Connect your clinic number, choose a healthcare template, and you're live — no IT needed.", icon: "Settings" },
+      { title: "Live in under 30 minutes", description: "Connect your clinic number, choose a healthcare template, and you're live - no IT needed.", icon: "Settings" },
     ],
     outcomes: [
       { value: "60%", label: "Fewer no-shows", sublabel: "Via automated reminder calls" },
@@ -775,7 +775,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "insurance-services": {
     headline: "Every policy call",
     headlineHighlight: "handled",
-    subheadline: "Your AI agent answers renewals, claims inquiries, and premium reminders — 24/7, so your advisors can focus on complex cases.",
+    subheadline: "Your AI agent answers renewals, claims inquiries, and premium reminders - 24/7, so your advisors can focus on complex cases.",
     stats: [
       { value: "70%", label: "Faster claims triage" },
       { value: "24/7", label: "Policy support coverage" },
@@ -829,7 +829,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
           { from: "caller", text: "I want to check the status of my insurance claim." },
           { from: "ai", text: "Sure! Could I have your policy number or claim reference?" },
           { from: "caller", text: "It's CLM-9823." },
-          { from: "ai", text: "Your claim is under assessment — estimated resolution by June 20th. Shall I email you the full status report?" },
+          { from: "ai", text: "Your claim is under assessment - estimated resolution by June 20th. Shall I email you the full status report?" },
         ],
         caller: "Sonia Patel",
         num: "+91 98877 11223",
@@ -880,7 +880,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
         ],
         logLines: [
           { t: "0:01", dot: "pur", text: "Outbound reminder call placed" },
-          { t: "0:02", dot: "pur", text: "Caller engaged — payment intent" },
+          { t: "0:02", dot: "pur", text: "Caller engaged - payment intent" },
           { t: "0:03", dot: "amb", text: "sms_payment() → Link sent" },
           { t: "0:05", dot: "grn", text: "Payment reminder logged" },
         ],
@@ -901,7 +901,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "Customer retention", description: "Re-engages lapsed or at-risk policyholders with personalised outbound calls.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "UserCheck" },
     ],
     benefits: [
-      { title: "24/7 policy support", description: "Policyholders get instant answers at any hour — no hold queues, no lost calls.", icon: "Clock" },
+      { title: "24/7 policy support", description: "Policyholders get instant answers at any hour - no hold queues, no lost calls.", icon: "Clock" },
       { title: "Reduce lapse rates", description: "Automated premium reminders with payment links cut policy lapses by up to 35%.", icon: "BellRing" },
       { title: "CRM & policy system sync", description: "Pushes call outcomes and updates directly into your policy management platform.", icon: "Plug" },
       { title: "Multilingual support", description: "Handles customers in their preferred language across 100+ languages automatically.", icon: "Languages" },
@@ -971,7 +971,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "financial-and-banking-services": {
     headline: "Every banking call",
     headlineHighlight: "resolved",
-    subheadline: "Your AI calling agent handles balance inquiries, payment reminders, fraud alerts, and loan queries — securely, 24/7.",
+    subheadline: "Your AI calling agent handles balance inquiries, payment reminders, fraud alerts, and loan queries - securely, 24/7.",
     stats: [
       { value: "90%", label: "Routine call automation" },
       { value: "24/7", label: "Banking support" },
@@ -1097,7 +1097,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "EMI & payment reminders", description: "Proactively reminds customers of upcoming EMIs and sends secure payment links automatically.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "BellRing" },
       { title: "Fraud alerts & blocking", description: "Instantly notifies customers of suspicious transactions and enables card blocking on the call.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "ShieldCheck" },
       { title: "Loan & credit inquiries", description: "Checks eligibility, presents offers, and books specialist callbacks in one seamless call.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "BarChart2" },
-      { title: "Balance & statement queries", description: "Provides balances, mini-statements, and transaction history over voice — securely.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "Database" },
+      { title: "Balance & statement queries", description: "Provides balances, mini-statements, and transaction history over voice - securely.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "Database" },
       { title: "KYC follow-ups", description: "Reminds customers to complete KYC verification and guides them through the process.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "UserCheck" },
       { title: "Customer onboarding", description: "Walks new customers through account setup and collects required information on the call.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "UserPlus" },
     ],
@@ -1105,9 +1105,9 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "Secure by design", description: "All calls are encrypted and compliant with RBI, PCI-DSS, and banking data regulations.", icon: "ShieldCheck" },
       { title: "Zero missed payments", description: "Automated EMI reminders with payment links reduce delinquency before it happens.", icon: "BellRing" },
       { title: "Core banking integration", description: "Connects to your CBS, CRM, and fraud systems for real-time data on every call.", icon: "Plug" },
-      { title: "Multilingual banking support", description: "Serves customers in 100+ languages — regional language support built in.", icon: "Languages" },
+      { title: "Multilingual banking support", description: "Serves customers in 100+ languages - regional language support built in.", icon: "Languages" },
       { title: "Full audit trail", description: "Every interaction is logged, transcribed, and stored for compliance and quality review.", icon: "BarChart2" },
-      { title: "Live in under 30 minutes", description: "No engineering work required — connect your number and go live with a banking template.", icon: "Settings" },
+      { title: "Live in under 30 minutes", description: "No engineering work required - connect your number and go live with a banking template.", icon: "Settings" },
     ],
     outcomes: [
       { value: "90%", label: "Routine calls automated", sublabel: "Freeing advisors for complex cases" },
@@ -1172,7 +1172,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "call-center-and-bpo-services": {
     headline: "Scale your call centre",
     headlineHighlight: "with AI",
-    subheadline: "Your AI agent handles tier-1 calls, routes complex queries, and completes post-call work — so your team can focus on what matters.",
+    subheadline: "Your AI agent handles tier-1 calls, routes complex queries, and completes post-call work - so your team can focus on what matters.",
     stats: [
       { value: "3×", label: "More calls handled per agent" },
       { value: "50%", label: "AHT reduction" },
@@ -1188,7 +1188,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
           { from: "caller", text: "Hi, I've been waiting for my order for 5 days. What's going on?" },
           { from: "ai", text: "I'm sorry to hear that! Let me pull up your order. Could I have your order number or registered email?" },
           { from: "caller", text: "It's ORD-5521." },
-          { from: "ai", text: "Your order is delayed at the courier hub due to a weather disruption. I've raised a priority escalation — you'll get an update within 2 hours. I apologise for the inconvenience." },
+          { from: "ai", text: "Your order is delayed at the courier hub due to a weather disruption. I've raised a priority escalation - you'll get an update within 2 hours. I apologise for the inconvenience." },
         ],
         caller: "Priya Sharma",
         num: "+91 98765 11223",
@@ -1226,7 +1226,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
           { from: "caller", text: "I want to raise a formal complaint about your billing." },
           { from: "ai", text: "I understand, and I'm sorry for the trouble. Could you describe the issue so I can log it accurately?" },
           { from: "caller", text: "I was charged twice for the same service last month." },
-          { from: "ai", text: "I've raised a formal complaint — reference #CMP-8811. A senior agent will contact you within 4 hours and the duplicate charge will be reversed." },
+          { from: "ai", text: "I've raised a formal complaint - reference #CMP-8811. A senior agent will contact you within 4 hours and the duplicate charge will be reversed." },
         ],
         caller: "Aditya Rao",
         num: "+91 90000 22334",
@@ -1294,20 +1294,20 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       },
     ],
     useCases: [
-      { title: "Tier-1 call handling", description: "Resolves routine inquiries instantly — order status, FAQs, account info — without a human agent.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "PhoneIncoming" },
+      { title: "Tier-1 call handling", description: "Resolves routine inquiries instantly - order status, FAQs, account info - without a human agent.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "PhoneIncoming" },
       { title: "Intelligent call routing", description: "Identifies caller intent and routes complex cases to the right agent or team automatically.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "Filter" },
-      { title: "Complaint management", description: "Logs complaints, raises tickets, and schedules callbacks — all on the same call.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "FileText" },
+      { title: "Complaint management", description: "Logs complaints, raises tickets, and schedules callbacks - all on the same call.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "FileText" },
       { title: "CSAT surveys", description: "Runs automated post-call satisfaction surveys and logs scores directly into your CRM.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "BarChart2" },
       { title: "Post-call wrap-up", description: "Completes call summaries, CRM updates, and ticket creation automatically after each call.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "CheckCheck" },
-      { title: "Outbound campaigns", description: "Runs proactive outreach at scale — renewals, follow-ups, and win-back campaigns.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "BellRing" },
+      { title: "Outbound campaigns", description: "Runs proactive outreach at scale - renewals, follow-ups, and win-back campaigns.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "BellRing" },
     ],
     benefits: [
       { title: "Handle 3× more volume", description: "AI handles tier-1 calls while your agents focus on complex, high-value interactions.", icon: "PhoneIncoming" },
       { title: "Cut AHT by 50%", description: "Automated call summaries and CRM sync eliminate post-call work for every agent.", icon: "Clock" },
       { title: "CRM & ticketing integration", description: "Works with Salesforce, Zendesk, Freshdesk, and all major platforms out of the box.", icon: "Plug" },
-      { title: "100+ language support", description: "Serve customers in their native language — multilingual handling built in.", icon: "Languages" },
+      { title: "100+ language support", description: "Serve customers in their native language - multilingual handling built in.", icon: "Languages" },
       { title: "Real-time dashboards", description: "Live call monitoring, agent metrics, CSAT scores, and resolution rates in one place.", icon: "BarChart2" },
-      { title: "Deploy in under 30 minutes", description: "No coding needed — connect your telephony and go live with a BPO-ready template.", icon: "Settings" },
+      { title: "Deploy in under 30 minutes", description: "No coding needed - connect your telephony and go live with a BPO-ready template.", icon: "Settings" },
     ],
     outcomes: [
       { value: "3×", label: "More calls handled", sublabel: "Per agent per day vs before" },
@@ -1372,7 +1372,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "travel-and-tourism-services": {
     headline: "Every travel inquiry",
     headlineHighlight: "answered instantly",
-    subheadline: "Your AI agent books trips, confirms reservations, handles cancellations, and sends real-time travel alerts — 24/7.",
+    subheadline: "Your AI agent books trips, confirms reservations, handles cancellations, and sends real-time travel alerts - 24/7.",
     stats: [
       { value: "4×", label: "More bookings captured" },
       { value: "24/7", label: "Travel support coverage" },
@@ -1498,12 +1498,12 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "Post-trip feedback", description: "Collects traveller satisfaction scores and reviews automatically after each journey.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "BarChart2" },
     ],
     benefits: [
-      { title: "24/7 traveller support", description: "Handles bookings and alerts around the clock — even for customers in different time zones.", icon: "Clock" },
-      { title: "Never miss a booking", description: "Every inquiry is captured and responded to instantly — no missed calls, no lost revenue.", icon: "PhoneIncoming" },
+      { title: "24/7 traveller support", description: "Handles bookings and alerts around the clock - even for customers in different time zones.", icon: "Clock" },
+      { title: "Never miss a booking", description: "Every inquiry is captured and responded to instantly - no missed calls, no lost revenue.", icon: "PhoneIncoming" },
       { title: "GDS & PMS integration", description: "Connects to your booking systems, GDS, and property management platforms in real time.", icon: "Plug" },
-      { title: "Multilingual traveller care", description: "Speaks to tourists in their native language — 100+ languages supported automatically.", icon: "Languages" },
+      { title: "Multilingual traveller care", description: "Speaks to tourists in their native language - 100+ languages supported automatically.", icon: "Languages" },
       { title: "Real-time trip analytics", description: "Track booking rates, call sentiment, and cancellations in your live dashboard.", icon: "BarChart2" },
-      { title: "Live in under 30 minutes", description: "No IT team required — connect your travel number and start handling bookings instantly.", icon: "Settings" },
+      { title: "Live in under 30 minutes", description: "No IT team required - connect your travel number and start handling bookings instantly.", icon: "Settings" },
     ],
     outcomes: [
       { value: "4×", label: "More bookings captured", sublabel: "Inquiries answered 24/7" },
@@ -1554,7 +1554,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       }
     ],
     testimonial: {
-      quote: "Peak season used to break our call centre. With OnDial, every inquiry is answered in seconds — bookings, alerts, and cancellations. We've grown revenue 40% without adding staff.",
+      quote: "Peak season used to break our call centre. With OnDial, every inquiry is answered in seconds - bookings, alerts, and cancellations. We've grown revenue 40% without adding staff.",
       name: "Ananya Pillai",
       role: "Head of Customer Experience · SkyRoute Travel",
       initials: "AP",
@@ -1568,7 +1568,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "transportation-and-logistics-services": {
     headline: "Every shipment call",
     headlineHighlight: "tracked & resolved",
-    subheadline: "Your AI agent handles delivery ETAs, pickup confirmations, shipment alerts, and driver coordination — automatically, 24/7.",
+    subheadline: "Your AI agent handles delivery ETAs, pickup confirmations, shipment alerts, and driver coordination - automatically, 24/7.",
     stats: [
       { value: "80%", label: "Fewer WISMO calls" },
       { value: "24/7", label: "Delivery support" },
@@ -1653,7 +1653,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
         aiResponse: `"Your shipment #SHP-5512 encountered a delay at the customs checkpoint. New estimated delivery is June 16th. I've raised a priority case for you."`,
         messages: [
           { from: "ai", text: "This is an alert regarding your shipment #SHP-5512. There is a delay at the customs checkpoint. Your new delivery date is June 16th." },
-          { from: "caller", text: "This is urgent — I need it by June 15th. What can be done?" },
+          { from: "caller", text: "This is urgent - I need it by June 15th. What can be done?" },
           { from: "ai", text: "I understand the urgency. I've raised a priority escalation with our customs team. You'll receive an update within 2 hours." },
         ],
         caller: "Arjun Mehta",
@@ -1684,7 +1684,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       },
     ],
     useCases: [
-      { title: "WISMO call deflection", description: "Answers 'Where is my order?' calls instantly with live tracking data — no agent needed.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "Search" },
+      { title: "WISMO call deflection", description: "Answers 'Where is my order?' calls instantly with live tracking data - no agent needed.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "Search" },
       { title: "Pickup & delivery alerts", description: "Proactively notifies customers and drivers about pickups, ETAs, and schedule changes.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "Bell" },
       { title: "Exception management", description: "Alerts customers of delays and raises escalations automatically with defined SLAs.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "FileText" },
       { title: "Driver coordination", description: "Handles driver check-ins, route confirmations, and delivery completions via voice.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "PhoneCall" },
@@ -1692,12 +1692,12 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "Fleet operations support", description: "Handles maintenance alerts, fuel reports, and compliance reminders for fleet managers.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "Settings" },
     ],
     benefits: [
-      { title: "Kill WISMO calls", description: "80% of 'where is my order?' calls are resolved automatically — no agent time wasted.", icon: "Search" },
-      { title: "Proactive exception alerts", description: "Customers are notified of delays before they need to call — reducing inbound volume.", icon: "Bell" },
+      { title: "Kill WISMO calls", description: "80% of 'where is my order?' calls are resolved automatically - no agent time wasted.", icon: "Search" },
+      { title: "Proactive exception alerts", description: "Customers are notified of delays before they need to call - reducing inbound volume.", icon: "Bell" },
       { title: "TMS & WMS integration", description: "Connects to your transport and warehouse management systems for real-time tracking data.", icon: "Plug" },
       { title: "Multilingual logistics", description: "Communicates with customers and drivers in 100+ languages automatically.", icon: "Languages" },
       { title: "End-to-end call analytics", description: "Track call volumes, resolution rates, and exception trends in your operations dashboard.", icon: "BarChart2" },
-      { title: "Live in under 30 minutes", description: "No engineering work — connect your logistics number and start handling calls instantly.", icon: "Settings" },
+      { title: "Live in under 30 minutes", description: "No engineering work - connect your logistics number and start handling calls instantly.", icon: "Settings" },
     ],
     outcomes: [
       { value: "80%", label: "Fewer WISMO calls", sublabel: "Deflected by automated tracking updates" },
@@ -1762,7 +1762,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "retail-and-ecommerce-services": {
     headline: "Every shopper call",
     headlineHighlight: "answered instantly",
-    subheadline: "Your AI agent handles order status, returns, product questions, and loyalty queries — 24/7, without a single human agent.",
+    subheadline: "Your AI agent handles order status, returns, product questions, and loyalty queries - 24/7, without a single human agent.",
     stats: [
       { value: "75%", label: "Routine queries automated" },
       { value: "24/7", label: "Shopper support" },
@@ -1814,7 +1814,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
         messages: [
           { from: "caller", text: "I'd like to return an item from my recent order." },
           { from: "ai", text: "Of course! Could I have your order number?" },
-          { from: "caller", text: "ORD-5512 — the blue shirt, it doesn't fit." },
+          { from: "caller", text: "ORD-5512 - the blue shirt, it doesn't fit." },
           { from: "ai", text: "I've initiated a return for the blue shirt in order #ORD-5512. Pickup will be in 2 business days and your refund processed within 5–7 days." },
         ],
         caller: "Ravi Jain",
@@ -1881,7 +1881,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       },
     ],
     useCases: [
-      { title: "Order status & tracking", description: "Answers WISMO calls instantly with live shipment data — no agent, no wait time.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "Search" },
+      { title: "Order status & tracking", description: "Answers WISMO calls instantly with live shipment data - no agent, no wait time.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "Search" },
       { title: "Returns & refunds", description: "Initiates returns, schedules pickups, and tracks refund status automatically on the call.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "RotateCcw" },
       { title: "Loyalty & rewards", description: "Reminds shoppers of expiring points, shares redemption options, and drives repeat purchases.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "Star" },
       { title: "Product questions", description: "Answers availability, sizing, and product detail questions without hold queues.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "MessageSquare" },
@@ -1889,12 +1889,12 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "Flash sale notifications", description: "Sends targeted outbound calls alerting VIP customers to exclusive deals and drops.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "Flame" },
     ],
     benefits: [
-      { title: "24/7 shopper support", description: "Customers get instant answers on orders, returns, and loyalty — day or night.", icon: "Clock" },
+      { title: "24/7 shopper support", description: "Customers get instant answers on orders, returns, and loyalty - day or night.", icon: "Clock" },
       { title: "Reduce support costs", description: "75% of routine retail queries are handled without any human agent involvement.", icon: "BarChart2" },
       { title: "OMS & CRM integration", description: "Connects to Shopify, WooCommerce, Magento, and all major order management systems.", icon: "Plug" },
-      { title: "100+ language support", description: "Serves shoppers in their native language — regional language support built in.", icon: "Languages" },
+      { title: "100+ language support", description: "Serves shoppers in their native language - regional language support built in.", icon: "Languages" },
       { title: "Revenue recovery calls", description: "Automated cart recovery and loyalty nudge calls drive measurable incremental revenue.", icon: "Flame" },
-      { title: "Live in under 30 minutes", description: "No developer needed — connect your store's number and start handling calls instantly.", icon: "Settings" },
+      { title: "Live in under 30 minutes", description: "No developer needed - connect your store's number and start handling calls instantly.", icon: "Settings" },
     ],
     outcomes: [
       { value: "75%", label: "Queries automated", sublabel: "Order, return, and loyalty calls" },
@@ -1945,7 +1945,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       }
     ],
     testimonial: {
-      quote: "OnDial handles 80% of our customer support calls automatically — order status, returns, and loyalty queries. Our team now focuses on VIP shoppers. Support costs dropped 55%.",
+      quote: "OnDial handles 80% of our customer support calls automatically - order status, returns, and loyalty queries. Our team now focuses on VIP shoppers. Support costs dropped 55%.",
       name: "Pooja Khanna",
       role: "Head of CX · StyleHub E-commerce",
       initials: "PK",
@@ -1959,7 +1959,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "telecommunications-services": {
     headline: "Every telecom call",
     headlineHighlight: "resolved faster",
-    subheadline: "Your AI agent handles plan queries, bill disputes, outage alerts, and upgrades — automatically, before customers need to escalate.",
+    subheadline: "Your AI agent handles plan queries, bill disputes, outage alerts, and upgrades - automatically, before customers need to escalate.",
     stats: [
       { value: "80%", label: "Tier-1 call deflection" },
       { value: "24/7", label: "Network & billing support" },
@@ -2012,9 +2012,9 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
         aiResponse: `"We're aware of a network outage in your area affecting services until approximately 3 PM today. Our engineers are working on it. I've logged your report."`,
         messages: [
           { from: "caller", text: "My internet has been down for 2 hours. What's happening?" },
-          { from: "ai", text: "I can see there's a known network outage in your area. Our engineers are working on it — estimated resolution is 3 PM today." },
+          { from: "ai", text: "I can see there's a known network outage in your area. Our engineers are working on it - estimated resolution is 3 PM today." },
           { from: "caller", text: "Fine. Please log this complaint." },
-          { from: "ai", text: "Done — your complaint is logged as case #OUT-4421. You'll receive an SMS when service is restored." },
+          { from: "ai", text: "Done - your complaint is logged as case #OUT-4421. You'll receive an SMS when service is restored." },
         ],
         caller: "Deepa Menon",
         num: "+91 91234 88890",
@@ -2084,7 +2084,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     ],
     useCases: [
       { title: "Plan queries & upgrades", description: "Recommends better plans based on usage and completes upgrades instantly on the call.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "BarChart2" },
-      { title: "Billing & payment", description: "Sends bill reminders, payment links, and sets up auto-pay — reducing payment defaults.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "Database" },
+      { title: "Billing & payment", description: "Sends bill reminders, payment links, and sets up auto-pay - reducing payment defaults.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "Database" },
       { title: "Outage management", description: "Proactively alerts customers of outages and logs complaints without agent involvement.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "Bell" },
       { title: "Technical troubleshooting", description: "Walks customers through self-service fixes for common connectivity issues.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "Wrench" },
       { title: "Churn prevention", description: "Identifies at-risk customers and offers personalised retention packages proactively.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "UserCheck" },
@@ -2147,7 +2147,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       }
     ],
     testimonial: {
-      quote: "OnDial deflects 80% of our tier-1 calls — bill reminders, outage alerts, plan upgrades. Our NPS improved 15 points and we saved ₹40L in the first year.",
+      quote: "OnDial deflects 80% of our tier-1 calls - bill reminders, outage alerts, plan upgrades. Our NPS improved 15 points and we saved ₹40L in the first year.",
       name: "Sanjay Reddy",
       role: "GM Customer Experience · ConnectNow Telecom",
       initials: "SR",
@@ -2161,7 +2161,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "automotive-services": {
     headline: "Every service call",
     headlineHighlight: "handled on cue",
-    subheadline: "Your AI agent books service appointments, sends maintenance reminders, and follows up on test drives — automatically, 24/7.",
+    subheadline: "Your AI agent books service appointments, sends maintenance reminders, and follows up on test drives - automatically, 24/7.",
     stats: [
       { value: "3×", label: "More service bookings" },
       { value: "24/7", label: "Dealership support" },
@@ -2176,7 +2176,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
         messages: [
           { from: "caller", text: "I need to book my car for its annual service." },
           { from: "ai", text: "Sure! Could I have your vehicle registration number?" },
-          { from: "caller", text: "MH-02-AB-1234 — it's a Honda City." },
+          { from: "caller", text: "MH-02-AB-1234 - it's a Honda City." },
           { from: "ai", text: "Your Honda City is due for its 10,000 km service. I have Saturday 10 AM available at Apex Honda, Andheri. Shall I confirm that?" },
           { from: "caller", text: "Yes, perfect." },
         ],
@@ -2214,7 +2214,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
         aiResponse: `"Your test drive for the Tata Nexon EV is booked for Sunday at 11 AM. Our executive will meet you at your preferred location."`,
         messages: [
           { from: "caller", text: "I'm interested in a test drive for the Tata Nexon EV." },
-          { from: "ai", text: "Excellent choice! When would you prefer — this weekend? I can arrange a home test drive at your convenience." },
+          { from: "ai", text: "Excellent choice! When would you prefer - this weekend? I can arrange a home test drive at your convenience." },
           { from: "caller", text: "Sunday at 11 AM would work." },
           { from: "ai", text: "Confirmed! Our sales executive will be at your location on Sunday at 11 AM with the Nexon EV. You'll receive their contact 30 minutes before arrival." },
         ],
@@ -2282,7 +2282,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       },
     ],
     useCases: [
-      { title: "Service appointment booking", description: "Books, reschedules, and confirms service slots instantly — synced to your workshop calendar.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "CalendarDays" },
+      { title: "Service appointment booking", description: "Books, reschedules, and confirms service slots instantly - synced to your workshop calendar.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "CalendarDays" },
       { title: "Test drive scheduling", description: "Captures interest, books home or showroom test drives, and creates CRM leads automatically.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "Star" },
       { title: "Maintenance reminders", description: "Proactively calls customers when their vehicle is due for service based on mileage or date.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "BellRing" },
       { title: "Service status updates", description: "Keeps customers informed on their vehicle's service progress without agent involvement.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "Wrench" },
@@ -2290,10 +2290,10 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "Lead follow-up", description: "Re-engages test drive leads and showroom visitors who haven't converted yet.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "UserPlus" },
     ],
     benefits: [
-      { title: "24/7 dealership support", description: "Customers can book service or test drives at any hour — your AI never sleeps.", icon: "Clock" },
+      { title: "24/7 dealership support", description: "Customers can book service or test drives at any hour - your AI never sleeps.", icon: "Clock" },
       { title: "Reduce no-shows by 55%", description: "Automated reminder calls and SMS before every appointment reduce missed slots.", icon: "BellRing" },
       { title: "DMS & CRM integration", description: "Connects to your dealer management system and CRM for real-time vehicle and lead data.", icon: "Plug" },
-      { title: "Multilingual customer care", description: "Speaks to customers in their preferred language — regional languages supported.", icon: "Languages" },
+      { title: "Multilingual customer care", description: "Speaks to customers in their preferred language - regional languages supported.", icon: "Languages" },
       { title: "Full service analytics", description: "Track appointment rates, no-shows, and test drive conversions in your dashboard.", icon: "BarChart2" },
       { title: "Live in under 30 minutes", description: "Connect your dealership number and launch with an automotive-ready AI template.", icon: "Settings" },
     ],
@@ -2360,7 +2360,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "education-services": {
     headline: "Every student inquiry",
     headlineHighlight: "answered",
-    subheadline: "Your AI calling agent handles admissions, enrollment reminders, fee queries, and schedule changes — 24/7, so your staff can focus on teaching.",
+    subheadline: "Your AI calling agent handles admissions, enrollment reminders, fee queries, and schedule changes - 24/7, so your staff can focus on teaching.",
     stats: [
       { value: "60%", label: "More inquiries captured" },
       { value: "24/7", label: "Student support" },
@@ -2373,7 +2373,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
         duration: "0:18",
         aiResponse: `"Your enrollment for the MBA programme closes on June 20th. I've sent the admission form link and fee details to your email. Shall I connect you with an advisor?"`,
         messages: [
-          { from: "ai", text: "Hello! This is a reminder that the enrollment deadline for the MBA programme is June 20th — just 5 days away." },
+          { from: "ai", text: "Hello! This is a reminder that the enrollment deadline for the MBA programme is June 20th - just 5 days away." },
           { from: "caller", text: "I'm still deciding. Can you send me the fee structure?" },
           { from: "ai", text: "I've sent the fee structure and scholarship information to your registered email. Would you like to speak with an admission advisor?" },
           { from: "caller", text: "Yes, please arrange a call." },
@@ -2490,9 +2490,9 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "24/7 student & parent support", description: "Inquiries, reminders, and schedule alerts handled around the clock without staff.", icon: "Clock" },
       { title: "Never lose an admission lead", description: "Every admissions inquiry is captured and followed up automatically.", icon: "UserPlus" },
       { title: "SIS & LMS integration", description: "Connects to your student information and learning management systems.", icon: "Plug" },
-      { title: "Multilingual education", description: "Communicates with students and parents in their preferred language — 100+ supported.", icon: "Languages" },
+      { title: "Multilingual education", description: "Communicates with students and parents in their preferred language - 100+ supported.", icon: "Languages" },
       { title: "Enrolment analytics", description: "Track inquiry rates, conversion, fee collection, and class attendance in one dashboard.", icon: "BarChart2" },
-      { title: "Live in under 30 minutes", description: "No IT team required — connect your institution's number and start automating calls.", icon: "Settings" },
+      { title: "Live in under 30 minutes", description: "No IT team required - connect your institution's number and start automating calls.", icon: "Settings" },
     ],
     outcomes: [
       { value: "60%", label: "More inquiries handled", sublabel: "Without additional admin staff" },
@@ -2557,7 +2557,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "hospitality-services": {
     headline: "Every guest call",
     headlineHighlight: "answered with care",
-    subheadline: "Your AI calling agent handles reservations, check-in reminders, guest requests, and post-stay feedback — 24/7, in every language.",
+    subheadline: "Your AI calling agent handles reservations, check-in reminders, guest requests, and post-stay feedback - 24/7, in every language.",
     stats: [
       { value: "4×", label: "More reservations captured" },
       { value: "24/7", label: "Guest support coverage" },
@@ -2674,18 +2674,18 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       },
     ],
     useCases: [
-      { title: "Reservation handling", description: "Confirms, modifies, and cancels reservations instantly — synced to your PMS in real time.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "CalendarDays" },
+      { title: "Reservation handling", description: "Confirms, modifies, and cancels reservations instantly - synced to your PMS in real time.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "CalendarDays" },
       { title: "Pre-arrival concierge", description: "Calls guests before arrival to share room details, arrange transfers, and upsell packages.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "Star" },
       { title: "Guest feedback surveys", description: "Runs automated post-stay satisfaction surveys and feeds results into your review pipeline.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "MessageSquare" },
       { title: "Room service requests", description: "Takes in-room requests via voice and routes them to housekeeping or F&B instantly.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "Bell" },
       { title: "Upsell & upgrades", description: "Offers room upgrades, spa packages, and dining reservations during pre-arrival calls.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "Flame" },
-      { title: "Late checkout handling", description: "Manages late checkout requests, availability checks, and charges — automatically.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "Clock" },
+      { title: "Late checkout handling", description: "Manages late checkout requests, availability checks, and charges - automatically.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "Clock" },
     ],
     benefits: [
       { title: "24/7 concierge service", description: "Guests get instant answers on reservations, amenities, and requests at any hour.", icon: "Clock" },
       { title: "Reduce no-shows by 50%", description: "Automated check-in reminders and pre-arrival calls cut last-minute cancellations.", icon: "BellRing" },
       { title: "PMS & CRS integration", description: "Connects to Opera, Cloudbeds, and all major property management systems.", icon: "Plug" },
-      { title: "Multilingual guest care", description: "Hosts international guests in their native language — 100+ languages supported.", icon: "Languages" },
+      { title: "Multilingual guest care", description: "Hosts international guests in their native language - 100+ languages supported.", icon: "Languages" },
       { title: "Revenue per room analytics", description: "Track upsell conversion, guest satisfaction, and repeat bookings in your dashboard.", icon: "BarChart2" },
       { title: "Live in under 30 minutes", description: "Connect your hotel number and go live with a hospitality-grade AI template.", icon: "Settings" },
     ],
@@ -2752,7 +2752,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "legal-services": {
     headline: "Every client call",
     headlineHighlight: "managed professionally",
-    subheadline: "Your AI calling agent handles client intake, court date reminders, consultation bookings, and document follow-ups — 24/7.",
+    subheadline: "Your AI calling agent handles client intake, court date reminders, consultation bookings, and document follow-ups - 24/7.",
     stats: [
       { value: "70%", label: "Faster client intake" },
       { value: "24/7", label: "Client support coverage" },
@@ -2872,16 +2872,16 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     useCases: [
       { title: "Client intake", description: "Collects case details, conflict checks, and client information over the call before the first meeting.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "UserCheck" },
       { title: "Court date reminders", description: "Calls clients before hearings to confirm attendance and share logistics automatically.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "BellRing" },
-      { title: "Consultation booking", description: "Matches clients with the right attorney and books consultations — 24/7, without reception.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "CalendarDays" },
+      { title: "Consultation booking", description: "Matches clients with the right attorney and books consultations - 24/7, without reception.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "CalendarDays" },
       { title: "Document follow-ups", description: "Alerts clients when documents are ready for review or signature and sends secure links.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "FileText" },
       { title: "Payment reminders", description: "Sends retainer payment reminders and billing notifications without awkward conversations.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "Database" },
       { title: "Case status updates", description: "Provides automated updates on case progress and scheduled hearings to keep clients informed.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "MessageSquare" },
     ],
     benefits: [
-      { title: "24/7 client availability", description: "Never miss a new client inquiry — your AI handles intake and bookings around the clock.", icon: "Clock" },
+      { title: "24/7 client availability", description: "Never miss a new client inquiry - your AI handles intake and bookings around the clock.", icon: "Clock" },
       { title: "Reduce missed court dates", description: "Automated hearing reminders cut missed appearances and last-minute rescheduling.", icon: "BellRing" },
       { title: "Practice management sync", description: "Integrates with Clio, MyCase, and other legal practice management platforms.", icon: "Plug" },
-      { title: "Multilingual client care", description: "Communicates with clients in their preferred language — 100+ languages supported.", icon: "Languages" },
+      { title: "Multilingual client care", description: "Communicates with clients in their preferred language - 100+ languages supported.", icon: "Languages" },
       { title: "Confidential call logging", description: "Every interaction is logged with attorney-client privilege compliance in mind.", icon: "ShieldCheck" },
       { title: "Live in under 30 minutes", description: "Connect your firm's number and go live with a legal-ready AI template instantly.", icon: "Settings" },
     ],
@@ -2948,7 +2948,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "government-services": {
     headline: "Every citizen call",
     headlineHighlight: "answered",
-    subheadline: "Your AI calling agent handles appointment scheduling, document status inquiries, survey calls, and citizen information — 24/7, in every language.",
+    subheadline: "Your AI calling agent handles appointment scheduling, document status inquiries, survey calls, and citizen information - 24/7, in every language.",
     stats: [
       { value: "80%", label: "Routine inquiries automated" },
       { value: "24/7", label: "Citizen support coverage" },
@@ -3062,7 +3062,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       },
     ],
     useCases: [
-      { title: "Appointment scheduling", description: "Books and reminds citizens of government service appointments automatically — in multiple languages.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "CalendarDays" },
+      { title: "Appointment scheduling", description: "Books and reminds citizens of government service appointments automatically - in multiple languages.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "CalendarDays" },
       { title: "Document status alerts", description: "Notifies citizens when documents are processed, ready, or dispatched for collection.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "FileText" },
       { title: "Citizen feedback surveys", description: "Runs large-scale citizen satisfaction and scheme feedback surveys at low cost.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "BarChart2" },
       { title: "Grievance intake", description: "Collects citizen complaints, assigns reference numbers, and routes to the correct department.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "MessageSquare" },
@@ -3071,11 +3071,11 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     ],
     benefits: [
       { title: "24/7 citizen access", description: "Citizens can get answers, schedule appointments, and check status at any hour.", icon: "Clock" },
-      { title: "Scale to millions of calls", description: "Handle bulk citizen outreach — surveys, alerts, reminders — in seconds.", icon: "PhoneIncoming" },
+      { title: "Scale to millions of calls", description: "Handle bulk citizen outreach - surveys, alerts, reminders - in seconds.", icon: "PhoneIncoming" },
       { title: "Government system integration", description: "Connects to legacy citizen management, HRMS, and grievance redressal portals.", icon: "Plug" },
       { title: "22 Indian language support", description: "Communicates in all scheduled Indian languages plus global language support.", icon: "Languages" },
       { title: "Transparent audit trail", description: "All citizen interactions are logged and reportable for accountability and compliance.", icon: "ShieldCheck" },
-      { title: "Live in under 30 minutes", description: "No IT procurement needed — deploy on existing telephony with a government template.", icon: "Settings" },
+      { title: "Live in under 30 minutes", description: "No IT procurement needed - deploy on existing telephony with a government template.", icon: "Settings" },
     ],
     outcomes: [
       { value: "80%", label: "Routine calls automated", sublabel: "Without staff involvement" },
@@ -3140,7 +3140,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "manufacturing-services": {
     headline: "Every supply chain call",
     headlineHighlight: "automated",
-    subheadline: "Your AI calling agent handles order dispatch alerts, quality notifications, vendor follow-ups, and maintenance reminders — 24/7.",
+    subheadline: "Your AI calling agent handles order dispatch alerts, quality notifications, vendor follow-ups, and maintenance reminders - 24/7.",
     stats: [
       { value: "70%", label: "Fewer manual follow-up calls" },
       { value: "24/7", label: "Operations support" },
@@ -3257,7 +3257,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "QC & inspection updates", description: "Alerts customers when batches pass or fail quality checks, with report delivery.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "CheckCheck" },
       { title: "Maintenance reminders", description: "Schedules preventive maintenance calls for plant machinery based on defined schedules.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "Wrench" },
       { title: "Vendor & supplier follow-ups", description: "Follows up on purchase orders, delivery ETAs, and pending invoices automatically.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "PhoneCall" },
-      { title: "Production milestone alerts", description: "Notifies clients at key production stages — material sourcing, WIP, and completion.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "BarChart2" },
+      { title: "Production milestone alerts", description: "Notifies clients at key production stages - material sourcing, WIP, and completion.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "BarChart2" },
       { title: "Complaint & defect intake", description: "Collects product defect reports and routes them to the quality team automatically.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "FileText" },
     ],
     benefits: [
@@ -3266,7 +3266,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "ERP & MES integration", description: "Connects to SAP, Oracle, and other enterprise manufacturing systems in real time.", icon: "Plug" },
       { title: "Multilingual plant support", description: "Communicates with global vendors and customers in 100+ languages automatically.", icon: "Languages" },
       { title: "Supply chain analytics", description: "Track dispatch rates, QC pass rates, and vendor call outcomes in your dashboard.", icon: "BarChart2" },
-      { title: "Live in under 30 minutes", description: "No engineering work — connect your plant number and launch with a manufacturing template.", icon: "Settings" },
+      { title: "Live in under 30 minutes", description: "No engineering work - connect your plant number and launch with a manufacturing template.", icon: "Settings" },
     ],
     outcomes: [
       { value: "70%", label: "Fewer manual calls", sublabel: "Dispatch and QC alerts automated" },
@@ -3331,7 +3331,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "non-profit-organizations-services": {
     headline: "Every donor call",
     headlineHighlight: "handled with purpose",
-    subheadline: "Your AI calling agent handles donor outreach, event invitations, volunteer coordination, and impact updates — automatically.",
+    subheadline: "Your AI calling agent handles donor outreach, event invitations, volunteer coordination, and impact updates - automatically.",
     stats: [
       { value: "4×", label: "More donor calls reached" },
       { value: "24/7", label: "Donor & volunteer support" },
@@ -3450,16 +3450,16 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "Event invitations", description: "Invites donors and stakeholders to fundraisers, galas, and community events automatically.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "CalendarDays" },
       { title: "Volunteer coordination", description: "Sends shift reminders, location details, and coordinator contacts to volunteers.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "UserCheck" },
       { title: "Fundraising campaigns", description: "Runs outbound donation campaigns with personalised asks based on donor history.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "Flame" },
-      { title: "Impact reporting calls", description: "Shares impact updates with donors — stories, outcomes, and fund utilisation.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "BarChart2" },
+      { title: "Impact reporting calls", description: "Shares impact updates with donors - stories, outcomes, and fund utilisation.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "BarChart2" },
       { title: "Tax receipt dispatch", description: "Sends 80G/tax receipts and year-end giving summaries to donors automatically.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "FileText" },
     ],
     benefits: [
       { title: "Reach more donors at lower cost", description: "AI calls replace expensive outbound telemarketing at a fraction of the cost.", icon: "Flame" },
       { title: "Automate volunteer management", description: "Shift reminders, confirmations, and coordination handled automatically.", icon: "UserCheck" },
       { title: "CRM & fundraising platform sync", description: "Integrates with Salesforce NPSP, Raiser's Edge, and popular NGO CRMs.", icon: "Plug" },
-      { title: "Multilingual donor engagement", description: "Reaches donors in their preferred language — regional language support built in.", icon: "Languages" },
+      { title: "Multilingual donor engagement", description: "Reaches donors in their preferred language - regional language support built in.", icon: "Languages" },
       { title: "Fundraising analytics", description: "Track call conversion, donation rates, and campaign ROI in your dashboard.", icon: "BarChart2" },
-      { title: "Live in under 30 minutes", description: "No IT team required — connect your number and launch your first campaign instantly.", icon: "Settings" },
+      { title: "Live in under 30 minutes", description: "No IT team required - connect your number and launch your first campaign instantly.", icon: "Settings" },
     ],
     outcomes: [
       { value: "4×", label: "More donors contacted", sublabel: "Per campaign vs manual calling" },
@@ -3510,7 +3510,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       }
     ],
     testimonial: {
-      quote: "OnDial calls 500 donors per day for our campaigns — thank-yous, invites, and impact updates. Donor retention improved 30% and our fundraising cost per dollar dropped by half.",
+      quote: "OnDial calls 500 donors per day for our campaigns - thank-yous, invites, and impact updates. Donor retention improved 30% and our fundraising cost per dollar dropped by half.",
       name: "Sunita Krishnan",
       role: "Executive Director · Children First Foundation",
       initials: "SK",
@@ -3524,7 +3524,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "event-management-services": {
     headline: "Every event call",
     headlineHighlight: "managed flawlessly",
-    subheadline: "Your AI calling agent handles registrations, confirmations, schedule updates, and post-event feedback — automatically, at any scale.",
+    subheadline: "Your AI calling agent handles registrations, confirmations, schedule updates, and post-event feedback - automatically, at any scale.",
     stats: [
       { value: "5×", label: "Faster registration handling" },
       { value: "24/7", label: "Event support coverage" },
@@ -3713,7 +3713,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "consulting-services": {
     headline: "Every client engagement",
     headlineHighlight: "starts here",
-    subheadline: "Your AI calling agent handles intake calls, meeting scheduling, session reminders, and follow-ups — so your consultants focus on delivering value.",
+    subheadline: "Your AI calling agent handles intake calls, meeting scheduling, session reminders, and follow-ups - so your consultants focus on delivering value.",
     stats: [
       { value: "3×", label: "More consultations booked" },
       { value: "24/7", label: "Client support coverage" },
@@ -3727,7 +3727,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
         aiResponse: `"Your strategy session with our senior consultant is confirmed for June 19th at 2 PM. A video call link has been sent to your email."`,
         messages: [
           { from: "caller", text: "I'd like to schedule a strategy session with your firm." },
-          { from: "ai", text: "Certainly! Could I know the nature of the engagement — business strategy, digital transformation, or HR consulting?" },
+          { from: "ai", text: "Certainly! Could I know the nature of the engagement - business strategy, digital transformation, or HR consulting?" },
           { from: "caller", text: "Business strategy. I'm looking for a 1-hour initial session." },
           { from: "ai", text: "I've scheduled you with our senior strategy consultant for June 19th at 2 PM. A video call link is on its way to your email." },
         ],
@@ -3832,7 +3832,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
     ],
     useCases: [
       { title: "Client intake & discovery", description: "Collects project briefs and requirements over the call before the first consultant meeting.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "UserCheck" },
-      { title: "Consultation booking", description: "Matches clients with the right specialist and books sessions — 24/7, without admin staff.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "CalendarDays" },
+      { title: "Consultation booking", description: "Matches clients with the right specialist and books sessions - 24/7, without admin staff.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "CalendarDays" },
       { title: "Session reminders", description: "Sends personalised reminders with meeting links and pre-read materials before every session.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "BellRing" },
       { title: "Proposal follow-ups", description: "Re-engages prospects who received proposals but haven't responded with personalised calls.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "FileText" },
       { title: "Feedback collection", description: "Gathers client satisfaction and project outcome feedback automatically after engagements.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "BarChart2" },
@@ -3842,7 +3842,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "24/7 client availability", description: "Clients can book consultations and get intake handled at any hour, any day.", icon: "Clock" },
       { title: "Never lose a new lead", description: "Every inbound inquiry is captured and followed up without admin involvement.", icon: "UserPlus" },
       { title: "CRM & scheduling integration", description: "Connects to Salesforce, HubSpot, Calendly, and all major consulting platforms.", icon: "Plug" },
-      { title: "Multilingual client support", description: "Engages global clients in their preferred language — 100+ languages supported.", icon: "Languages" },
+      { title: "Multilingual client support", description: "Engages global clients in their preferred language - 100+ languages supported.", icon: "Languages" },
       { title: "Engagement analytics", description: "Track conversion rates, meeting show rates, and client satisfaction in one dashboard.", icon: "BarChart2" },
       { title: "Live in under 30 minutes", description: "Connect your firm's number and launch with a consulting-ready AI template.", icon: "Settings" },
     ],
@@ -3909,7 +3909,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
   "pharmaceutical-services": {
     headline: "Every patient & partner call",
     headlineHighlight: "handled compliantly",
-    subheadline: "Your AI calling agent handles prescription reminders, delivery alerts, HCP outreach, and refill notifications — securely, 24/7.",
+    subheadline: "Your AI calling agent handles prescription reminders, delivery alerts, HCP outreach, and refill notifications - securely, 24/7.",
     stats: [
       { value: "65%", label: "Better medication adherence" },
       { value: "24/7", label: "Patient & pharmacy support" },
@@ -4035,7 +4035,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "Improve medication adherence", description: "Automated refill and adherence reminders improve patient outcomes and reduce lapses.", icon: "UserCheck" },
       { title: "HIPAA & regulatory compliant", description: "All patient calls are encrypted and compliant with pharma data and privacy regulations.", icon: "ShieldCheck" },
       { title: "CRM & pharmacy system sync", description: "Connects to your pharmacy management system, CRM, and HCP database in real time.", icon: "Plug" },
-      { title: "Multilingual patient support", description: "Communicates with patients in their regional language — 100+ languages supported.", icon: "Languages" },
+      { title: "Multilingual patient support", description: "Communicates with patients in their regional language - 100+ languages supported.", icon: "Languages" },
       { title: "Drug safety reporting", description: "Structures and routes adverse event reports to pharmacovigilance teams automatically.", icon: "BarChart2" },
       { title: "Live in under 30 minutes", description: "Connect your pharma helpline and go live with a healthcare-grade AI template.", icon: "Settings" },
     ],
@@ -4107,7 +4107,7 @@ function buildFallbackContent(industryName: string): IndustryPageContent {
   return {
     headline: `Transform your`,
     headlineHighlight: `${industryName} calls`,
-    subheadline: `Your AI calling agent handles every inbound call, qualifies leads, and books follow-ups — 24 hours a day, automatically.`,
+    subheadline: `Your AI calling agent handles every inbound call, qualifies leads, and books follow-ups - 24 hours a day, automatically.`,
     stats: [
       { value: "3×", label: "More calls handled" },
       { value: "80%", label: "Reduction in missed calls" },
@@ -4123,7 +4123,7 @@ function buildFallbackContent(industryName: string): IndustryPageContent {
           { from: "caller", text: `Hi, I have a question about your ${shortName.toLowerCase()} services.` },
           { from: "ai", text: "Happy to help! Could you tell me a bit more about what you're looking for so I can point you in the right direction?" },
           { from: "caller", text: "I'd like to know about pricing and availability." },
-          { from: "ai", text: "Great question. I can either share those details now or connect you with a specialist — which would you prefer?" },
+          { from: "ai", text: "Great question. I can either share those details now or connect you with a specialist - which would you prefer?" },
         ],
         caller: "Aarav Sharma",
         num: "+91 98765 01234",
@@ -4193,7 +4193,7 @@ function buildFallbackContent(industryName: string): IndustryPageContent {
         messages: [
           { from: "caller", text: "I was contacted earlier and wanted to follow up." },
           { from: "ai", text: "Absolutely. Could I take your name and the reference number from your earlier call?" },
-          { from: "caller", text: "Sure — it's John, reference 4821." },
+          { from: "caller", text: "Sure - it's John, reference 4821." },
           { from: "ai", text: "Found it! Let me pull up your details and connect you with the right person." },
         ],
         caller: "Kabir Mehta",
@@ -4224,19 +4224,19 @@ function buildFallbackContent(industryName: string): IndustryPageContent {
     ],
     useCases: [
       { title: "Inbound call handling", description: "Answers every call instantly, day or night, with a professional on-brand voice.", iconBg: "bg-[#EEEDFE]", iconColor: "text-[#534AB7]", icon: "PhoneIncoming" },
-      { title: "Appointment scheduling", description: "Books and reschedules meetings directly on the call — synced to your team's calendar.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "CalendarDays" },
+      { title: "Appointment scheduling", description: "Books and reschedules meetings directly on the call - synced to your team's calendar.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "CalendarDays" },
       { title: "Lead qualification", description: "Asks qualifying questions and routes hot prospects directly to your sales team.", iconBg: "bg-[#FAEEDA]", iconColor: "text-[#633806]", icon: "Filter" },
       { title: "Follow-up automation", description: "Re-engages prospects who didn't convert with personalised automated outreach.", iconBg: "bg-[#E6F1FB]", iconColor: "text-[#0C447C]", icon: "BellRing" },
       { title: "Customer support", description: "Handles FAQs, status queries, and common issues without a human agent.", iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]", icon: "MessageSquare" },
       { title: "CRM data capture", description: "Automatically logs every call detail, notes, and outcome into your CRM.", iconBg: "bg-[#E1F5EE]", iconColor: "text-[#085041]", icon: "Database" },
     ],
     benefits: [
-      { title: "Never miss a call", description: "The AI answers every call instantly — even at midnight on a public holiday.", icon: "Clock" },
+      { title: "Never miss a call", description: "The AI answers every call instantly - even at midnight on a public holiday.", icon: "Clock" },
       { title: "Consistent quality always", description: "Every caller gets the same professional experience, regardless of call volume.", icon: "MessageSquare" },
       { title: "Instant CRM sync", description: "Pushes call data, leads, and bookings into HubSpot, Salesforce, or Zoho automatically.", icon: "Plug" },
-      { title: "Multilingual support", description: "Speaks your customer's language — auto-detected across 100+ languages.", icon: "Languages" },
+      { title: "Multilingual support", description: "Speaks your customer's language - auto-detected across 100+ languages.", icon: "Languages" },
       { title: "Full call analytics", description: "Transcripts, sentiment scores, and conversion data in one clean dashboard.", icon: "BarChart2" },
-      { title: "Live in under 30 minutes", description: "Connect your number, pick a template, and your agent is live — no engineering needed.", icon: "Settings" },
+      { title: "Live in under 30 minutes", description: "Connect your number, pick a template, and your agent is live - no engineering needed.", icon: "Settings" },
     ],
     outcomes: [
       { value: "3×", label: "More calls handled", sublabel: "Per agent vs manual handling" },
@@ -4255,7 +4255,7 @@ function buildFallbackContent(industryName: string): IndustryPageContent {
       { title: "Chronic Disease Management", description: "Ongoing voice check-ins for diabetes, hypertension, and other chronic conditions help patients stay consistent with their treatment plans.", icon: "Database" },
     ],
     testimonial: {
-      quote: `OnDial transformed how we handle calls. We went from missing 30% of inbound inquiries to answering 100% of them — automatically. The ROI was clear within the first month.`,
+      quote: `OnDial transformed how we handle calls. We went from missing 30% of inbound inquiries to answering 100% of them - automatically. The ROI was clear within the first month.`,
       name: "Alex Fernandes",
       role: `Operations Manager · ${industryName} Firm`,
       initials: "AF",

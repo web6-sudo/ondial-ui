@@ -15,7 +15,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
   {
     id: "priya",
     quote:
-      "We replaced three evening support shifts with one Ondial agent and kept CSAT flat. Setup took an afternoon—not a quarter.",
+      "We replaced three evening support shifts with one OnDial agent and kept CSAT flat. Setup took an afternoon - not a quarter.",
     name: "Priya N.",
     role: "Head of Operations, FleetCo",
     avatarSrc: u("photo-1494790108377-be9c29b29330"),

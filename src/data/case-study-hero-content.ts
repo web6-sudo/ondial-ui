@@ -11,7 +11,7 @@ export const CASE_STUDY_HERO_CONTENT = {
   eyebrow: "Case Studies",
   titleLines: ["Real businesses.", "Real conversations.", "Real growth."] as const,
   description:
-    "See how teams automate calls, recover missed revenue, and scale customer support with Ondial.",
+    "See how teams automate calls, recover missed revenue, and scale customer support with OnDial.",
 } as const;
 
 export const CASE_STUDY_HERO_METRICS: readonly CaseStudyHeroMetric[] = [

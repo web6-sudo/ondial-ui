@@ -9,14 +9,14 @@ type IllustrationProps = {
   className?: string;
 };
 
-/** Outer mini-card — same footprint in every problem card image slot. */
+/** Outer mini-card - same footprint in every problem card image slot. */
 const illustrationFrameClass =
   "relative flex h-full min-h-0 w-full flex-col overflow-hidden rounded-[10px] border shadow-[0_2px_10px_-4px_rgba(15,23,42,0.12)]";
 
 /** Main content area below optional header/footer chrome. */
 const illustrationBodyClass = "flex min-h-0 flex-1 flex-col";
 
-/** CRM to Spreadsheet copying layout — illustrating manual, slow work. */
+/** CRM to Spreadsheet copying layout - illustrating manual, slow work. */
 function ManualLoggingIllustration({ className }: IllustrationProps) {
   return (
     <div
@@ -95,7 +95,7 @@ function ManualLoggingIllustration({ className }: IllustrationProps) {
   );
 }
 
-/** Call queue hub — on-hold circle, phone icon, busy reps. */
+/** Call queue hub - on-hold circle, phone icon, busy reps. */
 function CallQueuesIllustration({ className }: IllustrationProps) {
   const reps = ["Rep 1", "Rep 2", "Rep 3"];
 
@@ -275,7 +275,7 @@ function RepIcon({ className, style }: { className?: string; style?: CSSProperti
   );
 }
 
-/** Hiring cost chart — rising bars (with stacked rep icons), flat quality line (animated). */
+/** Hiring cost chart - rising bars (with stacked rep icons), flat quality line (animated). */
 function ScalingHiringIllustration({ className }: IllustrationProps) {
   const qualityRatio = 0.34;
 

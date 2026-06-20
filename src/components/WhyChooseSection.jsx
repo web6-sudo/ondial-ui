@@ -127,7 +127,7 @@ export default function WhyChooseSection({
   ],
   title = "Trusted by All Businesses Worldwide",
   subtitle = "Why Choose OnDial?",
-  description = "OnDial delivers real-time, multilingual AI Voice Agents that empower companies to handle calls, automate workflows, and connect with customers—faster, smarter, and at scale.",
+  description = "OnDial delivers real-time, multilingual AI Voice Agents that empower companies to handle calls, automate workflows, and connect with customers-faster, smarter, and at scale.",
   highlightText = "All Businesses",
   className = "",
 }) {
@@ -147,7 +147,7 @@ export default function WhyChooseSection({
       />
 
       <div className="relative max-w-7xl mx-auto">
-        {/* Header — centered, premium minimal */}
+        {/* Header - centered, premium minimal */}
         <motion.div
           className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
@@ -183,7 +183,7 @@ export default function WhyChooseSection({
           <div className="w-16 h-1 bg-gradient-to-r from-indigo-500 to-indigo-300 rounded-full mx-auto" />
         </motion.div>
 
-        {/* Features — large line icons, centered (reference layout) */}
+        {/* Features - large line icons, centered (reference layout) */}
         <div className="flex flex-wrap justify-center gap-x-10 gap-y-14 sm:gap-x-14 lg:gap-x-20 lg:gap-y-16 max-w-5xl mx-auto">
           {features.map((feature, index) => {
             const Icon =

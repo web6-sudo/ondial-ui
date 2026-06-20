@@ -30,7 +30,7 @@ export type ServicesIndustry = {
 
 export const SERVICES_HERO = {
   tag: "AI voice call automation",
-  title: "OnDial — Best AI call assistant",
+  title: "OnDial - Best AI call assistant",
   description:
     "Transform the way your business communicates. From healthcare reminders to retail updates and financial alerts, OnDial's AI-powered call automation delivers speed, accuracy, and scalability across 20+ industries.",
   ctas: [
@@ -47,13 +47,13 @@ export const SERVICES_WHY_CHOOSE = {
   eyebrow: "Why choose OnDial",
   title: "Why Choose OnDial?",
   description:
-    "Purpose-built AI voice automation with industry templates, enterprise compliance, and integrations that go live in minutes — not months.",
+    "Purpose-built AI voice automation with industry templates, enterprise compliance, and integrations that go live in minutes - not months.",
   cards: [
     {
       id: "industry-ai",
       title: "Industry-Specific AI",
       description:
-        "Tailored templates for healthcare, finance, retail, logistics, and more — ready to deploy in minutes.",
+        "Tailored templates for healthcare, finance, retail, logistics, and more - ready to deploy in minutes.",
       iconKey: "hospital",
       iconBg: "#EEEDFE",
       iconColor: "#534AB7",
@@ -77,7 +77,7 @@ export const SERVICES_WHY_CHOOSE = {
     {
       id: "integrations",
       title: "Seamless Integrations",
-      description: "CRM, APIs, and webhooks supported — connect Salesforce, HubSpot, Zoho, and more.",
+      description: "CRM, APIs, and webhooks supported - connect Salesforce, HubSpot, Zoho, and more.",
       iconKey: "plug",
       iconBg: "#E6F1FB",
       iconColor: "#0C447C",
@@ -554,7 +554,7 @@ export const SERVICES_FAQ = {
       id: "security",
       question: "How does OnDial ensure data security and compliance?",
       answer:
-        "OnDial is built with enterprise-grade security. It offers end-to-end encryption, role-based access, and regular compliance audits. Depending on the industry, OnDial supports HIPAA for healthcare, PCI DSS for payments, and GDPR for data protection—making it one of the most secure AI voice automation platforms available.",
+        "OnDial is built with enterprise-grade security. It offers end-to-end encryption, role-based access, and regular compliance audits. Depending on the industry, OnDial supports HIPAA for healthcare, PCI DSS for payments, and GDPR for data protection-making it one of the most secure AI voice automation platforms available.",
     },
     {
       id: "smb",

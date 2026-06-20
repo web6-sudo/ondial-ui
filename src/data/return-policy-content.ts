@@ -2,7 +2,7 @@ export const RETURN_POLICY_META = {
   eyebrow: "Legal",
   title: "Return Policy",
   intro:
-    "At Ondial, we value your trust and aim to provide the best possible experience with our AI-powered services. Our Return & Refund Policy is designed to ensure transparency, fairness, and customer satisfaction. Please read the following terms carefully before making a purchase.",
+    "At OnDial, we value your trust and aim to provide the best possible experience with our AI-powered services. Our Return & Refund Policy is designed to ensure transparency, fairness, and customer satisfaction. Please read the following terms carefully before making a purchase.",
 } as const;
 
 export type ReturnPolicySection = {
@@ -19,7 +19,7 @@ export const RETURN_POLICY_SECTIONS: readonly ReturnPolicySection[] = [
     id: "return-policy",
     title: "Return Policy",
     paragraphs: [
-      "Since Ondial offers digital AI-based services, returns of intangible products (such as software, credits, subscriptions, or digital solutions) are not applicable.",
+      "Since OnDial offers digital AI-based services, returns of intangible products (such as software, credits, subscriptions, or digital solutions) are not applicable.",
       "However, if you face any technical issues, service-related problems, or accidental billing errors, you may request a resolution through our customer support team within 7 days of purchase.",
       "Each request is carefully reviewed, and we strive to resolve issues promptly and fairly.",
     ],

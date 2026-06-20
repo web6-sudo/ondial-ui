@@ -18,7 +18,7 @@ export type TestimonialPhotoColumn = {
   offset: number;
   width: number;
   paddingTop?: number;
-  /** Negative margin (rem) for the top placeholder clip — center stagger */
+  /** Negative margin (rem) for the top placeholder clip - center stagger */
   topPlaceholderPull?: number;
   /** Outer columns only show at xl; default md */
   showFrom?: "md" | "lg";
@@ -91,7 +91,7 @@ export const TESTIMONIAL_HERO_COLUMNS: readonly TestimonialPhotoColumn[] = [
       { id: "c4-b", type: "photo", spacerBefore: TESTIMONIAL_CARD_GAP, width: 100, height: 120, src: u("photo-1568602471122-7832951cc4c5"), alt: "", animationDelay: 0.18 },
     ],
   },
-  /* Center band: staggered like side columns — uneven tops, gaps, and tile sizes */
+  /* Center band: staggered like side columns - uneven tops, gaps, and tile sizes */
   {
     id: "col-c1",
     side: "center",

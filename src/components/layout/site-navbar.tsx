@@ -40,7 +40,7 @@ function mobileLinkClassName(active: boolean) {
   );
 }
 
-/** Black pill bar with subtle depth — active link sits in a white elevated pill. */
+/** Black pill bar with subtle depth - active link sits in a white elevated pill. */
 const glassBar = cn(
   "relative isolate overflow-hidden rounded-full border border-white/10",
   "bg-linear-to-b from-zinc-900 via-black to-zinc-950",
@@ -49,12 +49,12 @@ const glassBar = cn(
   "max-md:before:hidden"
 );
 
-/** Inner track — links sit flush inside the black bar. */
+/** Inner track - links sit flush inside the black bar. */
 const navTrack = cn(
   "relative flex min-h-0 w-fit max-w-full shrink-0 items-center gap-0.5 self-stretch rounded-full"
 );
 
-/** White elevated pill — positioned by magnetic track, not per-link inset. */
+/** White elevated pill - positioned by magnetic track, not per-link inset. */
 const activeNavPill = cn(
   "pointer-events-none absolute z-0 rounded-full bg-white",
   "shadow-[0_2px_8px_-2px_rgba(0,0,0,0.25),0_1px_3px_rgba(0,0,0,0.12),inset_0_1px_0_0_rgba(255,255,255,0.95)]"

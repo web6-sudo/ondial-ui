@@ -31,7 +31,7 @@ export const NEWS_UPDATE_ITEMS: readonly NewsUpdateItem[] = [
     date: "May 12th",
     title: "HubSpot & Salesforce sync",
     description:
-      "Call outcomes and follow-up tasks write back to your CRM in real time — no manual entry after every call.",
+      "Call outcomes and follow-up tasks write back to your CRM in real time - no manual entry after every call.",
   },
   {
     id: "language-routing",

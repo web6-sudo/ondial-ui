@@ -88,7 +88,7 @@ export function ShowcaseSection() {
     >
       <header className={styles.header}>
         <p className={cn(marketingEyebrowClass, styles.badgeSpacing)}>
-          more than 1000+ companies use Ondial
+          more than 1000+ companies use OnDial
         </p>
         <TextReveal
           as="h1"

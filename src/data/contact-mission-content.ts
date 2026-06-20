@@ -39,7 +39,7 @@ export const CONTACT_MISSION_PILLARS: readonly ContactMissionPillar[] = [
     number: "01",
     title: "24/7 AI Voice Agents",
     description:
-      "Always-on agents that answer, route, and resolve — without waiting for business hours. Deploy in minutes and scale across every inbound line.",
+      "Always-on agents that answer, route, and resolve - without waiting for business hours. Deploy in minutes and scale across every inbound line.",
     image: AI_COMM_IMAGE,
     thumbImages: [CONNECTIVITY_IMAGE, PRODUCTIVITY_IMAGE],
     managedBy: [
@@ -69,7 +69,7 @@ export const CONTACT_MISSION_PILLARS: readonly ContactMissionPillar[] = [
     number: "03",
     title: "Real-Time Intelligence",
     description:
-      "Instant voice response the moment a call connects — with live summaries, CRM sync, and zero lag in the conversation loop.",
+      "Instant voice response the moment a call connects - with live summaries, CRM sync, and zero lag in the conversation loop.",
     image: PRODUCTIVITY_IMAGE,
     thumbImages: [AI_COMM_IMAGE, CONNECTIVITY_IMAGE],
     managedBy: [
@@ -84,7 +84,7 @@ export const CONTACT_MISSION_PILLARS: readonly ContactMissionPillar[] = [
     number: "04",
     title: "Customer-First Support",
     description:
-      "Human-like, context-aware conversations that feel personal — ensuring every caller is heard and helped exactly when they need it.",
+      "Human-like, context-aware conversations that feel personal - ensuring every caller is heard and helped exactly when they need it.",
     image: CUSTOMER_FIRST_IMAGE,
     thumbImages: [CONNECTIVITY_IMAGE, AUTHOR_AVATAR],
     managedBy: [

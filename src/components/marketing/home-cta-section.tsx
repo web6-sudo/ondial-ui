@@ -10,7 +10,7 @@ export function HomeCtaSection() {
       description="Spin up a voice agent in minutes, test with real numbers, and go live when your script sounds right."
       visualPosition="right"
       tone="contrast"
-      visualLabel="Get started — UI placeholder"
+      visualLabel="Get started - UI placeholder"
       contentClassName="lg:px-16"
     >
       <div className="flex flex-wrap items-center gap-3">

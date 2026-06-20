@@ -98,5 +98,5 @@ async function fetchBlogAuthorBySlugMapImpl(): Promise<Map<string, ContentfulAut
   return map;
 }
 
-/** Cached per request — shared by list, detail, and author pages. */
+/** Cached per request - shared by list, detail, and author pages. */
 export const getBlogAuthorBySlugMap = cache(fetchBlogAuthorBySlugMapImpl);

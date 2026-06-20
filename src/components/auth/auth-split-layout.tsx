@@ -13,7 +13,7 @@ type AuthSplitLayoutProps = {
 const navContentOffset =
   "scroll-pt-[calc(env(safe-area-inset-top,0px)+5.75rem)] pt-[calc(env(safe-area-inset-top,0px)+5.75rem)] md:scroll-pt-[calc(env(safe-area-inset-top,0px)+4.25rem)] md:pt-[calc(env(safe-area-inset-top,0px)+4.25rem)]";
 
-/** Top/bottom inset only — flush to the split edge (left) and shell edge (right). */
+/** Top/bottom inset only - flush to the split edge (left) and shell edge (right). */
 const collagePanelPad =
   "box-border flex flex-col pl-0 pr-1 pb-0 sm:pt-3 sm:pb-3 lg:pt-7 lg:pb-4 lg:pr-4" ;
 

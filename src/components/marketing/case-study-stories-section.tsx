@@ -76,7 +76,7 @@ export function CaseStudyStoriesSection() {
                 transition={{ duration: 0.55, ease: easeOut }}
                 className="rounded-2xl py-16 text-center text-sm text-[#7A748F]"
               >
-                No case studies in this category yet —{" "}
+                No case studies in this category yet -{" "}
                 <button
                   type="button"
                   onClick={() => setActiveFilter("all")}

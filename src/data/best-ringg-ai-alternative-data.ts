@@ -53,9 +53,9 @@ export const ringgAlternativePageData = {
     badge: 'Best Ringg AI Alternative',
     title: 'Best Ringg AI Alternative',
     subtitle:
-      'OnDial matches Ringg AI on AI voice agents, multilingual calling, and CRM sync — then adds a free trial, 100+ languages, and documented HIPAA, GDPR, and PCI DSS compliance.',
+      'OnDial matches Ringg AI on AI voice agents, multilingual calling, and CRM sync - then adds a free trial, 100+ languages, and documented HIPAA, GDPR, and PCI DSS compliance.',
     highlights: [
-      'Self-serve free trial — no sales demo required',
+      'Self-serve free trial - no sales demo required',
       '100+ languages vs Ringg AI’s 20+',
       'Documented HIPAA, GDPR, PCI DSS, SOC 2 & ISO',
       'No-code workflows without extra tools',
@@ -107,7 +107,7 @@ export const ringgAlternativePageData = {
       {
         icon: PhoneCall,
         title: 'Smart Auto Dialer',
-        summary: 'High-velocity dialing with smart retry — up to 1,000 calls/minute.',
+        summary: 'High-velocity dialing with smart retry - up to 1,000 calls/minute.',
         description:
           'Ringg AI dials at high velocity with smart retry logic to reach more contacts. It targets up to 1000 calls per minute for large outbound campaigns.',
       },
@@ -165,7 +165,7 @@ export const ringgAlternativePageData = {
       {
         icon: DollarSign,
         title: 'High Pricing',
-        summary: 'Published rates start at $0.06–$0.10/min — real costs often run higher at scale.',
+        summary: 'Published rates start at $0.06–$0.10/min - real costs often run higher at scale.',
         description:
           'Ringg AI publishes pricing, starting at $0.10 per connected minute on its flex plan and $0.06 per minute on enterprise. That looks simple on the surface. But independent reviews note the real per minute cost often lands higher than cheaper rivals, and one comparison flagged it as more expensive than alternatives at $0.05 per minute. For teams running 100,000 minutes a month, that gap adds up to thousands of dollars every single month.',
       },
@@ -179,7 +179,7 @@ export const ringgAlternativePageData = {
       {
         icon: Scale,
         title: 'Industry-Specific Requirements',
-        summary: 'No public HIPAA or GDPR documentation — only ISO and SOC2 listed.',
+        summary: 'No public HIPAA or GDPR documentation - only ISO and SOC2 listed.',
         description:
           'Ringg AI lists industry pages for healthcare, logistics, e-commerce, fintech, hiring, and edtech. But it does not publicly state HIPAA or GDPR compliance, listing only ISO and SOC2 on its site. For regulated fields like healthcare and finance, that gap matters. Procurement and legal teams often cannot approve a vendor that does not document HIPAA or GDPR, no matter how good the calling is.',
       },
@@ -193,7 +193,7 @@ export const ringgAlternativePageData = {
       {
         icon: AlertTriangle,
         title: 'Scalability Concerns',
-        summary: 'Raw call capacity is strong — evaluation and onboarding scale is the bottleneck.',
+        summary: 'Raw call capacity is strong - evaluation and onboarding scale is the bottleneck.',
         description:
           'Ringg AI advertises 10,000+ concurrent calls and 99.9% adherence, so raw capacity is not the issue. The concern is operational scale, not call volume. With no free trial and a sales led process, scaling your evaluation across teams or use cases takes longer. You also cannot validate performance at your own volume until after you sign and onboard through sales.',
       },
@@ -245,20 +245,20 @@ export const ringgAlternativePageData = {
     badge: 'Why OnDial is the Best Ringg AI Alternative',
     title: 'Why OnDial is the best Ringg AI alternative',
     intro:
-      'OnDial removes the friction that pushes Ringg AI users elsewhere — free trial access, 100+ languages, and a documented compliance stack.',
+      'OnDial removes the friction that pushes Ringg AI users elsewhere - free trial access, 100+ languages, and a documented compliance stack.',
     highlightPills: ['Free trial', '100+ languages', 'Full compliance stack'],
     features: [
       {
         icon: Bot,
         title: 'Better Call Automation',
-        summary: 'Inbound and outbound automation with equal depth — not outbound-only.',
+        summary: 'Inbound and outbound automation with equal depth - not outbound-only.',
         description:
           'OnDial deploys autonomous AI voice agents that handle inbound and outbound calls 24/7 with human like tone. AI voice agents are software systems that handle phone calls using artificial intelligence, without a human on the line. Ringg AI focuses heavily on outbound campaigns. OnDial automates both directions with equal depth, from lead qualification to round the clock support.',
       },
       {
         icon: Rocket,
         title: 'Faster Deployment',
-        summary: 'Sign up, build, and test on your schedule — no required sales demo.',
+        summary: 'Sign up, build, and test on your schedule - no required sales demo.',
         description:
           'OnDial lets you start with a free trial and a no code platform, so business teams can go live without engineering help. Ringg AI requires a sales demo before you can even access the product, which independent reviews flag as real friction. With OnDial, you sign up, build, and test on your own schedule. That speed matters when you are comparing platforms.',
       },
@@ -272,14 +272,14 @@ export const ringgAlternativePageData = {
       {
         icon: Workflow,
         title: 'Flexible AI Workflows',
-        summary: 'Branching call logic inside the platform — no external tools needed.',
+        summary: 'Branching call logic inside the platform - no external tools needed.',
         description:
           'OnDial gives teams no code tools to build branching call logic and automate full conversations. One verified Ringg AI reviewer said building flows was hard and needed outside tools. OnDial is built so non technical teams can design, adjust, and launch workflows directly inside the platform. You shape the conversation without stitching together extra software.',
       },
       {
         icon: Shield,
         title: 'Enterprise-Grade Security',
-        summary: 'HIPAA, GDPR, PCI DSS, SOC 2 & ISO — documented for procurement teams.',
+        summary: 'HIPAA, GDPR, PCI DSS, SOC 2 & ISO - documented for procurement teams.',
         description:
           'OnDial documents a full compliance stack on its site, including HIPAA, GDPR, PCI DSS, SOC 2, and ISO. It adds encrypted data handling and AI specific controls for call recordings, transcripts, and agent workflows. Ringg AI publicly states only ISO and SOC2. For healthcare, finance, and other regulated teams, OnDial gives the documented proof that procurement and legal ask about first.',
       },
@@ -325,7 +325,7 @@ export const ringgAlternativePageData = {
         icon: 'Headphones',
         category: 'inbound',
         title: 'Inbound Call Automation',
-        summary: '24/7 answers — no hold music, smart routing for complex cases.',
+        summary: '24/7 answers - no hold music, smart routing for complex cases.',
         description:
           'OnDial answers inbound calls around the clock with 24/7 AI support that never misses a customer. Callers get instant answers instead of hold music or voicemail. The agent understands intent, resolves common questions, and routes complex cases smartly. You capture every opportunity, even after hours and on weekends when your team is offline.',
       },
@@ -391,7 +391,7 @@ export const ringgAlternativePageData = {
         title: 'Healthcare',
         summary: 'Patient scheduling, reminders, refills & follow-ups with documented HIPAA compliance.',
         bullets: ['Appointment reminders & refill calls', 'Lab result notifications', 'Fewer no-shows'],
-        edge: 'OnDial documents HIPAA — Ringg AI does not publicly state it.',
+        edge: 'OnDial documents HIPAA - Ringg AI does not publicly state it.',
         description:
           'OnDial automates patient scheduling, appointment reminders, prescription refills, follow ups, and lab result calls. This reduces no shows and keeps patients engaged with timely outreach. OnDial documents HIPAA compliance directly on its site, which regulated healthcare teams require. Ringg AI does not publicly state HIPAA compliance, listing only ISO and SOC2. For clinics and hospitals, that documented proof is often the deciding factor.',
       },
@@ -436,7 +436,7 @@ export const ringgAlternativePageData = {
         title: 'Banking & Finance',
         summary: 'Fraud alerts, loan updates & payment reminders with full compliance stack.',
         bullets: ['Fraud alert calls', 'Loan status updates', 'Payment reminders'],
-        edge: 'GDPR, PCI DSS & SOC 2 documented — Ringg AI does not state GDPR/PCI.',
+        edge: 'GDPR, PCI DSS & SOC 2 documented - Ringg AI does not state GDPR/PCI.',
         description:
           'OnDial enables fraud alerts, loan status updates, payment reminders, and account notifications. It handles compliance sensitive calls with documented GDPR, PCI DSS, and SOC 2 coverage. Ringg AI does not publicly state GDPR or PCI DSS, only ISO and SOC2. For banks and lenders, that documented stack clears procurement faster. OnDial automates routine finance calls while protecting sensitive account data.',
       },
@@ -512,7 +512,7 @@ export const ringgAlternativePageData = {
       {
         icon: ArrowRightLeft,
         title: 'How Easy is the Transition?',
-        summary: 'Run OnDial alongside Ringg AI — switch when you are confident.',
+        summary: 'Run OnDial alongside Ringg AI - switch when you are confident.',
         description:
           'OnDial gives you a free trial and a no code platform, so you can rebuild and test before fully cutting over. You do not wait on a long sales process to get started. Business teams set up agents themselves, while developers can use API integration if they prefer. This means you can run OnDial alongside your current setup and switch when you are confident.',
       },
@@ -555,7 +555,7 @@ export const ringgAlternativePageData = {
       {
         icon: 'Heart',
         title: 'Improve Customer Experience',
-        summary: 'Instant answers in 100+ languages — no hold or voicemail.',
+        summary: 'Instant answers in 100+ languages - no hold or voicemail.',
         description:
           'OnDial answers every call instantly with human like tone and 100+ language support. Customers never wait on hold or hit a dead voicemail. They get help in their own language, any hour of the day. This consistent, fast service lifts satisfaction across every single interaction.',
       },
@@ -675,7 +675,7 @@ export const ringgAlternativePageData = {
   cta: {
     badgeIcon: 'Bot',
     badgeText: 'Ready to Switch?',
-    title: 'Start with OnDial — the best',
+    title: 'Start with OnDial - the best',
     highlightedTitle: 'Ringg AI alternative',
     description:
       'Skip the sales demo. Sign up for a free trial, test your workflows, and see why teams choose OnDial for AI voice agents, 100+ languages, and documented compliance.',

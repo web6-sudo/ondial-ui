@@ -1,5 +1,5 @@
 /**
- * Homepage 3D carousel — single source of truth.
+ * Homepage 3D carousel - single source of truth.
  *
  * Workflow:
  * 1. Add source images to `public/home/carousel/` (JPG or PNG).
@@ -102,5 +102,5 @@ export const HOME_CAROUSEL_SLIDES: readonly HomeCarouselSlide[] = [
   },
 ] as const;
 
-/** First visible slide — preloaded for faster LCP. */
+/** First visible slide - preloaded for faster LCP. */
 export const HOME_CAROUSEL_PRELOAD_IMAGE = HOME_CAROUSEL_SLIDES[0]?.image;

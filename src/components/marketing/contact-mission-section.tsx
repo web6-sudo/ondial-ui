@@ -61,7 +61,7 @@ function MissionRow({
           isActive && "py-8 sm:py-10 lg:py-12",
         )}
       >
-        {/* Image column — desktop */}
+        {/* Image column - desktop */}
         <div className="relative hidden min-h-0 lg:block">
           <div
             className={cn(
@@ -86,7 +86,7 @@ function MissionRow({
 
         </div>
 
-        {/* Image column — mobile/tablet */}
+        {/* Image column - mobile/tablet */}
         <div className="relative lg:hidden">
           <div
             className={cn(

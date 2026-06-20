@@ -4,7 +4,7 @@ type HeroProps = {
   children?: ReactNode;
 };
 
-/** Minimal full-viewport slot — add your own visuals or replace entirely. */
+/** Minimal full-viewport slot - add your own visuals or replace entirely. */
 export default function Hero({ children }: HeroProps) {
   return (
     <section className="relative flex min-h-screen w-full flex-1 flex-col justify-center overflow-hidden px-4 py-16 sm:px-6">

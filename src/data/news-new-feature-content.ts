@@ -10,7 +10,7 @@ export type NewsFeatureCard = {
 
 export const NEWS_NEW_FEATURE_HEADING = {
   titleAccent: "New",
-  titleRest: "feature on Ondial",
+  titleRest: "feature on OnDial",
   footer: "Built for: Healthcare, Real Estate, Hospitality, E-commerce, SaaS",
 } as const;
 
@@ -38,7 +38,7 @@ export const NEWS_NEW_FEATURE_CARDS: readonly NewsFeatureCard[] = [
     image: "/blog_productivity_1777703371947.png",
     imageAlt: "Workflow productivity and CRM sync",
     calloutBold: "Sync outcomes",
-    callout: " to HubSpot and Salesforce automatically — zero manual entry.",
+    callout: " to HubSpot and Salesforce automatically - zero manual entry.",
     layout: "wide",
     calloutPosition: "bottom",
   },

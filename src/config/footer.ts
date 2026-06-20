@@ -1,5 +1,5 @@
 /**
- * Footer content — adjust labels, routes, and copy here.
+ * Footer content - adjust labels, routes, and copy here.
  */
 
 import {

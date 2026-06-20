@@ -41,9 +41,9 @@ export const metadata: Metadata = {
 const homePageSchema = (buildWebPageSchema as any)({
   url: "/",
   type: "WebPage",
-  name: "OnDial — AI Voice Agents for Phone Call Automation",
+  name: "OnDial - AI Voice Agents for Phone Call Automation",
   description:
-    "Discover OnDial's AI Voice Agents — multilingual, 24/7 phone call automation for inbound and outbound business communication.",
+    "Discover OnDial's AI Voice Agents - multilingual, 24/7 phone call automation for inbound and outbound business communication.",
   image: `${SITE_URL}/img/logo/og.png`,
 });
 

@@ -32,7 +32,7 @@ export function FooterNewsletterForm({ className }: FooterNewsletterFormProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
-        Thanks—you&apos;re on the list. We&apos;ll be in touch soon.
+        Thanks-you&apos;re on the list. We&apos;ll be in touch soon.
       </motion.p>
     );
   }

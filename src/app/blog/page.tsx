@@ -67,7 +67,7 @@ const BLOG_PAGE_FAQS = {
   items: [
     {
       question: "What is an AI voice agent?",
-      answer: "An AI voice agent is a software-based virtual assistant capable of understanding spoken language, processing customer queries, and responding naturally—without human intervention. It can handle tasks like answering calls, booking appointments, providing order updates, and qualifying leads."
+      answer: "An AI voice agent is a software-based virtual assistant capable of understanding spoken language, processing customer queries, and responding naturally-without human intervention. It can handle tasks like answering calls, booking appointments, providing order updates, and qualifying leads."
     },
     {
       question: "How can AI voice agents help small businesses?",

@@ -15,7 +15,7 @@ type QueryParams = Record<string, string | number | boolean | undefined | null>;
 
 export type ApiRequestOptions = Omit<RequestInit, "body"> & {
   params?: QueryParams;
-  /** JSON body — serialized automatically. */
+  /** JSON body - serialized automatically. */
   json?: unknown;
   body?: BodyInit | null;
 };

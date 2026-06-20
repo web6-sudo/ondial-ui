@@ -8,7 +8,7 @@ export type ShareLinks = {
 export function getShareLinks(url: string, title: string): ShareLinks {
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
-  const emailBody = encodeURIComponent(`Check out this article on Ondial:\n\n${title}\n${url}`);
+  const emailBody = encodeURIComponent(`Check out this article on OnDial:\n\n${title}\n${url}`);
 
   return {
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,

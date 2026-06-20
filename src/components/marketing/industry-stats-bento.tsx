@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import type { IndustryStat } from "@/data/industry-hero-content";
 import { cn } from "@/lib/utils";
 
-/** Bento mask — desktop canvas 1130 × 310 */
+/** Bento mask - desktop canvas 1130 × 310 */
 export const INDUSTRY_STATS_BENTO_PATH =
   "M 278 10 L 372 10 A 28 28 0 0 1 400 38 L 400 132 A 28 28 0 0 1 372 160 L 250 160 L 250 160 L 250 38 A 28 28 0 0 1 278 10 Z " +
   "M 368 10 L 462 10 A 28 28 0 0 1 490 38 L 490 160 L 490 160 L 368 160 A 28 28 0 0 1 340 132 L 340 38 A 28 28 0 0 1 368 10 Z " +
@@ -25,7 +25,7 @@ export const INDUSTRY_STATS_BENTO_PATH =
   "M 970 122 C 970 143 975.6 150 998 150 H 970 Z " +
   "M 730 122 C 730 143 724.4 150 702 150 H 730 Z";
 
-/** Bento mask — mobile canvas 330 × 590 */
+/** Bento mask - mobile canvas 330 × 590 */
 export const INDUSTRY_STATS_BENTO_MOBILE_PATH =
   "M 170 430 L 292 430 A 28 28 0 0 1 320 458 L 320 552 A 28 28 0 0 1 292 580 L 198 580 A 28 28 0 0 1 170 552 L 170 430 L 170 430 Z " +
   "M 48 290 L 170 290 L 170 290 L 170 440 L 170 440 L 48 440 A 28 28 0 0 1 20 412 L 20 318 A 28 28 0 0 1 48 290 Z " +
@@ -53,7 +53,7 @@ type StatSlot = {
 };
 
 /**
- * Desktop gap cells (1130×310) — [3×, 80%, 24/7, <2s]
+ * Desktop gap cells (1130×310) - [3×, 80%, 24/7, <2s]
  * Derived from blue-path bounds; content is flex-centered inside each cell.
  */
 const DESKTOP_STAT_SLOTS: StatSlot[] = [
@@ -68,7 +68,7 @@ const DESKTOP_STAT_SLOTS: StatSlot[] = [
 ];
 
 /**
- * Mobile gap cells (330×590) — [3×, 80%, 24/7, <2s]
+ * Mobile gap cells (330×590) - [3×, 80%, 24/7, <2s]
  */
 const MOBILE_STAT_SLOTS: StatSlot[] = [
   /* top-right white */
@@ -104,7 +104,7 @@ export function IndustryStatsBento({ stats, className }: IndustryStatsBentoProps
 
   return (
     <div className={cn("mx-auto w-full", className)}>
-      {/* Mobile — vertical bento */}
+      {/* Mobile - vertical bento */}
       <BentoPanel
         className="md:hidden max-w-[330px]"
         width={BENTO_MOBILE_W}
@@ -117,7 +117,7 @@ export function IndustryStatsBento({ stats, className }: IndustryStatsBentoProps
         labelClassName={BENTO_LABEL_CLASS_MOBILE}
       />
 
-      {/* Tablet / desktop — horizontal bento */}
+      {/* Tablet / desktop - horizontal bento */}
       <BentoPanel
         className="hidden md:block max-w-[clamp(480px,92%,1130px)]"
         width={BENTO_W}

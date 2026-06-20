@@ -1,9 +1,9 @@
 export const PRIVACY_POLICY_META = {
   eyebrow: "Legal",
-  title: "Privacy Policy for Ondial.ai",
+  title: "Privacy Policy for OnDial.ai",
   lastUpdated: "August 26, 2025",
   intro:
-    "At Ondial.ai, your privacy and trust are very important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our website, products, and services. Please read this policy carefully to understand our practices.",
+    "At OnDial.ai, your privacy and trust are very important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our website, products, and services. Please read this policy carefully to understand our practices.",
 } as const;
 
 export type PrivacyPolicySection = {
@@ -50,7 +50,7 @@ export const PRIVACY_POLICY_SECTIONS: readonly PrivacyPolicySection[] = [
   {
     id: "cookies",
     title: "Cookies & Tracking Policy",
-    lead: "Ondial.ai uses cookies to:",
+    lead: "OnDial.ai uses cookies to:",
     bullets: [
       "Remember your preferences and settings.",
       "Improve website functionality and user experience.",
@@ -89,7 +89,7 @@ export const PRIVACY_POLICY_SECTIONS: readonly PrivacyPolicySection[] = [
     id: "children",
     title: "Children's Privacy",
     paragraphs: [
-      "Ondial.ai services are not directed at children under 13 (or the minimum age in your country). We do not knowingly collect data from minors.",
+      "OnDial.ai services are not directed at children under 13 (or the minimum age in your country). We do not knowingly collect data from minors.",
     ],
   },
   {

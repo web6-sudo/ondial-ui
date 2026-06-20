@@ -16,7 +16,7 @@ export const INTEGRATIONS_HEADING = {
   eyebrow: "Integrations",
   title: "Works with your existing stack",
   description:
-    "Connect OnDial to your CRM, calendars, and ticketing stack—sync outcomes, trigger calls from helpdesk workflows, and keep every conversation in context for enterprise teams.",
+    "Connect OnDial to your CRM, calendars, and ticketing stack-sync outcomes, trigger calls from helpdesk workflows, and keep every conversation in context for enterprise teams.",
 } as const;
 
 export const INTEGRATION_CATEGORIES: Record<
@@ -94,6 +94,6 @@ export const INTEGRATION_PARTNERS: readonly IntegrationPartner[] = [
 export const INTEGRATIONS_API_CALLOUT = {
   title: "REST API & webhooks",
   description:
-    "Push call events, transcripts, and disposition codes to any endpoint—or pull customer context before the agent speaks. Built for enterprise security reviews and custom stacks.",
+    "Push call events, transcripts, and disposition codes to any endpoint-or pull customer context before the agent speaks. Built for enterprise security reviews and custom stacks.",
   ctaHref: "/pricing",
 } as const;

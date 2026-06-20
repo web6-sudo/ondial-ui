@@ -23,7 +23,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-/** Matte card fills — shared by service cards and marketing carousel. */
+/** Matte card fills - shared by service cards and marketing carousel. */
 export const SERVICE_MATTE_COLORS = [
   "#5D57A3",
   "#0057C7",
@@ -32,7 +32,7 @@ export const SERVICE_MATTE_COLORS = [
   "#4A4E69",
 ] as const;
 
-/** Tailwind classes for service cards — must match keys in `service-card` BG_COLOR_MAP. */
+/** Tailwind classes for service cards - must match keys in `service-card` BG_COLOR_MAP. */
 const CARD_BG_COLORS = SERVICE_MATTE_COLORS.map(
   (hex) => `bg-[${hex}]`,
 ) as [
@@ -281,15 +281,15 @@ export const INDUSTRY_SEO_METADATA: Record<string, { title: string; description:
   "telecommunications-services": {
     title: "AI Voice Agent for Telecommunications Services | OnDial",
     description:
-      "Boost call centers and customer care with OnDial's AI Voice Agent for Telecommunications Services — streamline support, cut costs, and elevate user experiences.",
+      "Boost call centers and customer care with OnDial's AI Voice Agent for Telecommunications Services - streamline support, cut costs, and elevate user experiences.",
   },
   "automotive-services": {
     title: "AI Voice Agent for Automotive Services | OnDial",
     description:
-      "Streamline bookings, diagnostics, and customer support with OnDial's AI Voice Agent for Automotive Services — smarter, faster, and always on for your garage.",
+      "Streamline bookings, diagnostics, and customer support with OnDial's AI Voice Agent for Automotive Services - smarter, faster, and always on for your garage.",
   },
   "education-services": {
-    title: "AI Voice Agent for Education Services – OnDial",
+    title: "AI Voice Agent for Education Services - OnDial",
     description:
       "Enhance student engagement and streamline admin tasks with OnDial's AI Voice Agent for Education Services. 24/7 support, multilingual, and secure.",
   },
@@ -309,7 +309,7 @@ export const INDUSTRY_SEO_METADATA: Record<string, { title: string; description:
       "Enhance your law firm's efficiency with OnDial's AI Voice Agent. Automate client intake, lead qualification, and appointment scheduling 24/7.",
   },
   "government-services": {
-    title: "Best AI Voice Agent for Government Services – OnDial",
+    title: "Best AI Voice Agent for Government Services - OnDial",
     description:
       "Enhance citizen engagement with OnDial's AI Voice Agent. Provide 24/7 multilingual support, automate inquiries, and streamline government services efficiently.",
   },

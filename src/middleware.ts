@@ -8,7 +8,7 @@ import {
   getDashboardUrl,
 } from "@/config/urls";
 
-/** Marketing site: auth lives on the dashboard — redirect legacy routes when hosts differ. */
+/** Marketing site: auth lives on the dashboard - redirect legacy routes when hosts differ. */
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const requestHeaders = new Headers(request.headers);

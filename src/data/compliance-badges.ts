@@ -3,9 +3,9 @@ export const COMPLIANCE_HEADING = {
   titleLead: "Trust built for",
   titleAccent: "AI voice agents",
   description:
-    "Calling agents handle sensitive conversations—compliance is a top objection, especially in healthcare and finance. Ondial meets the standards your buyers ask about first.",
+    "Calling agents handle sensitive conversations - compliance is a top objection, especially in healthcare and finance. OnDial meets the standards your buyers ask about first.",
   footnote:
-    "AI-specific controls for voice transcripts, call recordings, and agent workflows—so regulated teams can deploy with confidence.",
+    "AI-specific controls for voice transcripts, call recordings, and agent workflows - so regulated teams can deploy with confidence.",
 } as const;
 
 export type ComplianceBadgeId = "hipaa" | "gdpr" | "pci-dss" | "soc-2" | "iso-security";

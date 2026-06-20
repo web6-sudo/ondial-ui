@@ -2,7 +2,7 @@ export const BLOG_SLUG_FIELDS = `
   slug
 `;
 
-/** List/card queries — author is joined separately to avoid broken reference errors. */
+/** List/card queries - author is joined separately to avoid broken reference errors. */
 export const BLOG_LIST_FIELDS = `
   title
   slug

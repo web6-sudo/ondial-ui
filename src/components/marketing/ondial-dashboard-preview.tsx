@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 type OndialDashboardPreviewProps = {
   className?: string;
-  /** Match auth split panel — end-aligned, full-height column with collage clip */
+  /** Match auth split panel - end-aligned, full-height column with collage clip */
   variant?: "default" | "auth-panel";
 };
 
@@ -23,7 +23,7 @@ function DashboardSvg() {
       <rect x="20" y="20" width="280" height="32" rx="10" fill="#EEEDFE" stroke="#CECBF6" strokeWidth="0.5" />
       <rect x="20" y="44" width="280" height="8" fill="#EEEDFE" />
       <text x="160" y="40" textAnchor="middle" fontSize="11" fontWeight="500" fill="#3C3489">
-        OnDial — AI call dashboard
+        OnDial - AI call dashboard
       </text>
       <rect x="36" y="64" width="80" height="50" rx="6" fill="#EEEDFE" stroke="#CECBF6" strokeWidth="0.5" />
       <text x="76" y="85" textAnchor="middle" fontSize="18" fontWeight="500" fill="#534AB7">

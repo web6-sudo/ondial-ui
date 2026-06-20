@@ -24,7 +24,7 @@ export const CONTACT_HERO = {
   titleAccent: "Let's talk about your",
   title: "voice AI goals",
   description:
-    "Book a demo, ask about pricing, or get support — our team is here to help.",
+    "Book a demo, ask about pricing, or get support - our team is here to help.",
 } as const;
 
 export const CONTACT_FORM = {
@@ -49,7 +49,7 @@ export const CONTACT_SIDE = {
   description: "Choose your preferred way to connect",
   asideTitle: "Don't hesitate to contact us",
   asideDescription:
-    "Whether you need a demo, have questions about AI voice agents, or want to explore enterprise plans — we're here to help.",
+    "Whether you need a demo, have questions about AI voice agents, or want to explore enterprise plans - we're here to help.",
 } as const;
 
 export const CONTACT_SUBJECTS: readonly ContactSubject[] = [

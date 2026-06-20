@@ -4,7 +4,7 @@ export type ServiceNavItem = {
   slug: string;
 };
 
-/** Commented out while Services nav/pages are disabled — restore with `navigation.ts` + `nav-menus.ts`. */
+/** Commented out while Services nav/pages are disabled - restore with `navigation.ts` + `nav-menus.ts`. */
 export const SERVICES_NAV_ITEMS: readonly ServiceNavItem[] = [
   // { href: "/services/sales-agent", label: "Sales Agent", slug: "sales-agent" },
   // {

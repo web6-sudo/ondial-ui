@@ -15,7 +15,7 @@ type ShellBottomBlurProps = {
   enabled?: boolean;
 };
 
-/** Fixed feathered blur at the shell bottom — hidden when the footer scrolls into view. */
+/** Fixed feathered blur at the shell bottom - hidden when the footer scrolls into view. */
 export function ShellBottomBlur({ scrollContainerRef, enabled = true }: ShellBottomBlurProps) {
   const [visible, setVisible] = useState(true);
 

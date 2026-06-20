@@ -43,7 +43,7 @@ const variants = {
   },
 };
 
-/** Parallax depth config — positive = follows cursor, negative = opposes */
+/** Parallax depth config - positive = follows cursor, negative = opposes */
 const DEPTH = {
   bg: { x: -22, y: -13 },
   title: { x: 16, y: 9 },
@@ -100,7 +100,7 @@ export function IndustryHeroHeader({
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >
-          {/* 1 — Background: parallax deep layer + entrance fade/zoom */}
+          {/* 1 - Background: parallax deep layer + entrance fade/zoom */}
           <motion.div
             style={{ x: bgX, y: bgY }}
             className="absolute inset-[-3%] w-[106%] h-[106%]"
@@ -116,7 +116,7 @@ export function IndustryHeroHeader({
             />
           </motion.div>
 
-          {/* 2 — Title: entrance only, no parallax */}
+          {/* 2 - Title: entrance only, no parallax */}
           <motion.p
             variants={variants.title}
             initial="hidden"
@@ -127,7 +127,7 @@ export function IndustryHeroHeader({
             {title}
           </motion.p>
 
-          {/* 3 — Foreground: parallax close layer + rises-up entrance (renders after title → on top) */}
+          {/* 3 - Foreground: parallax close layer + rises-up entrance (renders after title → on top) */}
           {foregroundImage && (
             <motion.div
               style={{ x: fgX, y: fgY }}
@@ -145,7 +145,7 @@ export function IndustryHeroHeader({
             </motion.div>
           )}
 
-          {/* gradient overlay — fades in slowly after bg is visible */}
+          {/* gradient overlay - fades in slowly after bg is visible */}
           <motion.div
             className={styles.blurOverlay}
             initial={{ opacity: 0 }}
@@ -154,7 +154,7 @@ export function IndustryHeroHeader({
             aria-hidden
           />
 
-          {/* blur layers — each layer staggers in for a soft progressive effect */}
+          {/* blur layers - each layer staggers in for a soft progressive effect */}
           {[1, 2, 3, 4, 5].map((index) => (
             <motion.div
               key={index}
@@ -171,7 +171,7 @@ export function IndustryHeroHeader({
             />
           ))}
 
-          {/* 4 — Bottom content: subtle parallax + fade-up entrance */}
+          {/* 4 - Bottom content: subtle parallax + fade-up entrance */}
           <motion.div
             style={{ x: contentX, y: contentY }}
             className="absolute bottom-0 w-full pointer-events-none"

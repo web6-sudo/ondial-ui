@@ -305,10 +305,10 @@ function DemoPlayer({ scenarios }: { scenarios: IndustryPageContent["demoScenari
         </span>
       </div>
 
-      {/* ── Body — 2-col ── */}
+      {/* ── Body - 2-col ── */}
       <div className="grid grid-cols-1 md:grid-cols-2" style={{ minHeight: 340 }}>
 
-        {/* LEFT — Synced transcript */}
+        {/* LEFT - Synced transcript */}
         <div className="flex flex-col overflow-hidden border-b md:border-b-0 md:border-r border-border/60">
           <div className="px-4 pt-3 pb-2 shrink-0 border-b border-border/60">
             <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Live Transcript</p>
@@ -344,7 +344,7 @@ function DemoPlayer({ scenarios }: { scenarios: IndustryPageContent["demoScenari
           </div>
         </div>
 
-        {/* RIGHT — Controls (light) */}
+        {/* RIGHT - Controls (light) */}
         <div className="flex flex-col gap-4 p-4 bg-[#FAFAFA]">
 
           {/* Scenario tabs */}
@@ -363,10 +363,10 @@ function DemoPlayer({ scenarios }: { scenarios: IndustryPageContent["demoScenari
             </div>
           </div>
 
-          {/* Player card — light version */}
+          {/* Player card - light version */}
           <div className="rounded-2xl border border-border/60 bg-white overflow-hidden"
             style={{ boxShadow: "0 2px 12px -3px rgba(83,74,183,0.10)" }}>
-            {/* Row 1 — album art + title + wave */}
+            {/* Row 1 - album art + title + wave */}
             <div className="flex items-center gap-3 px-3.5 pt-3.5 pb-2">
               <div className="shrink-0 rounded-[10px] overflow-hidden flex items-center justify-between px-[5px]"
                 style={{
@@ -405,7 +405,7 @@ function DemoPlayer({ scenarios }: { scenarios: IndustryPageContent["demoScenari
                 ))}
               </div>
             </div>
-            {/* Row 2 — progress */}
+            {/* Row 2 - progress */}
             <div className="px-4 mb-0.5">
               <div className="relative h-[3px] rounded-full bg-[#E8E7F8]">
                 <div className="absolute inset-y-0 left-0 rounded-full"
@@ -420,7 +420,7 @@ function DemoPlayer({ scenarios }: { scenarios: IndustryPageContent["demoScenari
                 <span>-{fmtSecs(Math.max(0, durSecs - elapsedSec))}</span>
               </div>
             </div>
-            {/* Row 3 — controls */}
+            {/* Row 3 - controls */}
             <div className="flex items-center justify-center gap-8 pb-4 pt-1">
               <button onClick={() => handleScenario((activeIdx - 1 + scenarios.length) % scenarios.length)}
                 className="text-[#534AB7]/40 hover:text-[#534AB7] transition-colors active:scale-90">
@@ -467,7 +467,7 @@ function DemoPlayer({ scenarios }: { scenarios: IndustryPageContent["demoScenari
   );
 }
 
-/* ─── How it works — interactive call simulation ─────────── */
+/* ─── How it works - interactive call simulation ─────────── */
 type CallStatus = "idle" | "ringing" | "live" | "resolved";
 type StageStatus = "idle" | "active" | "processing" | "done";
 
@@ -497,7 +497,7 @@ const CALL_COPY: Record<IndustryCallDirection, {
   inbound: {
     stageTitle: "Call received",
     stageIcon: "PhoneIncoming",
-    stageDesc: "Inbound call detected on your business number. AI agent answers within 2 seconds — no hold music.",
+    stageDesc: "Inbound call detected on your business number. AI agent answers within 2 seconds - no hold music.",
     processing: "Answering...",
     done: "Answered",
     ringing: "Ringing...",
@@ -714,7 +714,7 @@ function HowItWorks({ scenarios }: { scenarios: IndustryDemoScenario[] }) {
     activateStage(3);
     await sleep(500); if (cancelRef.current) return;
     processingStage(3, "Generating...");
-    // Conversation turns only — final resolution comes from aiResponse (avoids duplicate AI bubbles)
+    // Conversation turns only - final resolution comes from aiResponse (avoids duplicate AI bubbles)
     let followUp = s.messages.slice(2);
     const lastTurn = followUp[followUp.length - 1];
     if (lastTurn?.from === "ai") {
@@ -826,10 +826,10 @@ function HowItWorks({ scenarios }: { scenarios: IndustryDemoScenario[] }) {
       {/* Header */}
       <p className={cn(marketingEyebrowClass, "mb-4")}>How it works</p>
       <h2 className="text-balance text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl mb-3">
-        From ring to resolution — live
+        From ring to resolution - live
       </h2>
       <p className="text-base leading-relaxed text-muted-foreground mb-8 max-w-xl">
-        Watch the AI agent handle inbound and outbound calls — understand intent, call tools, and take action in real time.
+        Watch the AI agent handle inbound and outbound calls - understand intent, call tools, and take action in real time.
       </p>
 
       {/* Simulation grid */}
@@ -938,7 +938,7 @@ function HowItWorks({ scenarios }: { scenarios: IndustryDemoScenario[] }) {
                     </span>
                   </div>
 
-                  {/* Stage body — framer collapse */}
+                  {/* Stage body - framer collapse */}
                   <motion.div
                     initial={false}
                     animate={{ height: stOpen[i] ? "auto" : 0 }}
@@ -953,10 +953,10 @@ function HowItWorks({ scenarios }: { scenarios: IndustryDemoScenario[] }) {
                             {i === 0
                               ? callCopy.stageDesc
                               : scene.identityChecks?.length
-                                ? "Collects required patient ID, date of birth, or email — then delivers results or confirms the booking."
+                                ? "Collects required patient ID, date of birth, or email - then delivers results or confirms the booking."
                                 : scene.availableSlots?.length
                                   ? "Offers available slots, records the caller's choice, and verifies identity before booking."
-                                  : "Composes a natural, accurate reply using tool results — spoken back to the caller instantly."}
+                                  : "Composes a natural, accurate reply using tool results - spoken back to the caller instantly."}
                           </p>
                           {i === 3 && identityRevealed > 0 && scene.identityChecks && (
                             <div className="mb-2.5 space-y-1.5">
@@ -1081,7 +1081,7 @@ function HowItWorks({ scenarios }: { scenarios: IndustryDemoScenario[] }) {
                       {i === 4 && (
                         <>
                           <p className="text-[12px] text-muted-foreground leading-[1.6]">
-                            All downstream actions fire automatically — no human needed.
+                            All downstream actions fire automatically - no human needed.
                           </p>
                           <div className="grid grid-cols-2 gap-1.5 mt-1">
                             {actions.map((a, ai) => (
@@ -1174,7 +1174,7 @@ const USE_CASE_SOFT_COLORS = [
   { iconBg: "bg-[#FCEBEB]", iconColor: "text-[#A32D2D]" },
 ] as const;
 
-/** Shared S-curve shape (300 × 340) — used on every outcome card */
+/** Shared S-curve shape (300 × 340) - used on every outcome card */
 const OUTCOME_SHAPE = {
   width: 300,
   height: 340,
@@ -1183,7 +1183,7 @@ const OUTCOME_SHAPE = {
   gradTo: { x: 0, y: 340 },
 } as const;
 
-/** Natural shape proportions — avoids horizontal squash */
+/** Natural shape proportions - avoids horizontal squash */
 const OUTCOME_CARD_ASPECT = "300 / 340";
 
 const OUTCOME_STAT_SHADOW =
@@ -1272,7 +1272,7 @@ function IndustryDotBackground() {
   );
 }
 
-/* ─── Separators / labels — site-matched ─────────────────── */
+/* ─── Separators / labels - site-matched ─────────────────── */
 function Eyebrow({ children }: { children: React.ReactNode }) {
   if (typeof children === "string") {
     return (
@@ -1391,7 +1391,7 @@ export function IndustryPageSections({ content, industryName, industrySlug }: {
           <Eyebrow>Use cases</Eyebrow>
           <SectionHead
             title="What the agent handles"
-            sub="Every routine call — handled automatically, perfectly, every time."
+            sub="Every routine call - handled automatically, perfectly, every time."
           />
 
           <motion.div
@@ -1437,7 +1437,7 @@ export function IndustryPageSections({ content, industryName, industrySlug }: {
         {/* ── How it helps ── */}
         <FadeSection className="py-12 sm:py-16">
           {/*
-          Benefit card clip-path — viewBox 0→150 (w=150), 0→50 (h=50)
+          Benefit card clip-path - viewBox 0→150 (w=150), 0→50 (h=50)
           Normalised: Xn=x/150  Yn=y/50
         */}
           <svg width="0" height="0" aria-hidden className="absolute overflow-hidden">
@@ -1451,7 +1451,7 @@ export function IndustryPageSections({ content, industryName, industrySlug }: {
           <Eyebrow>How OnDial helps</Eyebrow>
           <SectionHead
             title={<>Built for <span className="text-[#534AB7]">{industryName.toLowerCase()}</span> teams</>}
-            sub="From small teams to large operations — fits right into your workflow."
+            sub="From small teams to large operations - fits right into your workflow."
           />
           <motion.div variants={cardGridVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {content.benefits.map((b, i) => {
@@ -1564,7 +1564,7 @@ export function IndustryPageSections({ content, industryName, industrySlug }: {
         </FadeSection>
 
 
-        {/* ── Services — 3D clickable carousel ── */}
+        {/* ── Services - 3D clickable carousel ── */}
         <FadeSection className="py-12 sm:py-16">
           <Eyebrow>Services</Eyebrow>
           <SectionHead
@@ -1617,7 +1617,7 @@ export function IndustryPageSections({ content, industryName, industrySlug }: {
 
                 <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 px-7 py-7">
 
-                  {/* Left — badge + headline + sub */}
+                  {/* Left - badge + headline + sub */}
                   <div className="min-w-0">
                     <span className="inline-flex items-center gap-1.5 mb-3 rounded-full bg-white/15 border border-white/20 px-3 py-1 text-[0.6875rem] font-medium uppercase tracking-widest text-white/90">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#A5F3C4] inline-block" />
@@ -1631,7 +1631,7 @@ export function IndustryPageSections({ content, industryName, industrySlug }: {
                     </p>
                   </div>
 
-                  {/* Right — buttons + social proof */}
+                  {/* Right - buttons + social proof */}
                   <div className="flex flex-col items-start sm:items-end gap-4 shrink-0">
                     <div className="flex gap-2.5 flex-wrap">
                       <Link href="/pricing"

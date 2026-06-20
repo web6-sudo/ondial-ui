@@ -228,7 +228,7 @@ function CaseStudyRichProse({
       <blockquote>
         <p>&ldquo;{item.quote}&rdquo;</p>
         <footer>
-          — {item.name}, {item.role}, {item.company}
+          - {item.name}, {item.role}, {item.company}
         </footer>
       </blockquote>
 
@@ -268,7 +268,7 @@ function CaseStudySimpleProse({ item }: { item: CaseStudyItem }) {
       <blockquote>
         <p>&ldquo;{item.quote}&rdquo;</p>
         <footer>
-          — {item.name}, {item.role}, {item.company}
+          - {item.name}, {item.role}, {item.company}
         </footer>
       </blockquote>
 

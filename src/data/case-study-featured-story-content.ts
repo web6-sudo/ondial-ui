@@ -13,10 +13,10 @@ export const FEATURED_SUCCESS_STORY = {
   secondaryMetrics: [
     { value: "98%", label: "Calls Answered" },
     { value: "2.9x", label: "ROI" },
-    { value: "24/7", label: "Bookings from Ondial" },
+    { value: "24/7", label: "Bookings from OnDial" },
     { value: "100+", label: "Languages Supported" },
   ],
-  quote: "Since implementing Ondial, our booking rates skyrocketed and it quickly became our highest-performing source of new business.",
+  quote: "Since implementing OnDial, our booking rates skyrocketed and it quickly became our highest-performing source of new business.",
   author: {
     name: "Elena Vasquez",
     role: "CEO, Horizon Table Restaurant Group",

@@ -29,7 +29,7 @@ type SiteShellProps = {
   bleedUnderNav?: boolean;
   /** Overlay UI anchored to the shell scroll container (e.g. custom scrollbar). */
   scrollIndicator?: ReactNode;
-  /** Feathered bottom blur for footer reveal — disable on long-form reading pages. */
+  /** Feathered bottom blur for footer reveal - disable on long-form reading pages. */
   bottomBlurEnabled?: boolean;
 };
 
@@ -74,7 +74,7 @@ export function SiteShell({
             aria-label={`${APP_NAME} home`}
             className="absolute left-[15px] top-[15px] z-60 block h-[33px] w-[120px]"
           />
-          {/* Corner notch — square top-left on the card; this SVG provides the branded curve */}
+          {/* Corner notch - square top-left on the card; this SVG provides the branded curve */}
           <svg
             width="180"
             height="90"

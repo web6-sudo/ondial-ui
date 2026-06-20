@@ -310,7 +310,7 @@ function MinutesTickSlider({ value, onChange, onDragChange }: MinutesTickSliderP
         }}
       >
         <SliderSlideHint hidden={isDragging || hasInteracted} />
-        {/* Tooltip pill — same left % as active spike */}
+        {/* Tooltip pill - same left % as active spike */}
         <motion.div
           className="pointer-events-none absolute top-0 z-20 -translate-x-1/2"
           animate={{
@@ -359,7 +359,7 @@ function MinutesTickSlider({ value, onChange, onDragChange }: MinutesTickSliderP
             );
           })}
 
-          {/* Active spike — exact ratio position, matches pill center */}
+          {/* Active spike - exact ratio position, matches pill center */}
           <motion.div
             className="absolute bottom-0 z-10 -translate-x-1/2 rounded-full bg-[#2F67D8]"
             style={{ width: "2px" }}

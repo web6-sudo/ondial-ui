@@ -35,11 +35,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: authorName
         ? `Read articles by ${authorName} on the OnDial blog.`
         : `Posts by ${slug}.`,
+      alternates: {
+        canonical: `https://www.ondial.ai/blog/author/${slug}`,
+      },
     };
   } catch {
     return {
       title: `Author · ${slug}`,
       description: `Posts by ${slug}.`,
+      alternates: {
+        canonical: `https://www.ondial.ai/blog/author/${slug}`,
+      },
     };
   }
 }

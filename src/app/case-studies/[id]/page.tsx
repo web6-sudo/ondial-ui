@@ -35,6 +35,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: item.headline,
       description,
     },
+    alternates: {
+      canonical: `https://www.ondial.ai/case-studies/${id}`,
+    },
   };
 }
 

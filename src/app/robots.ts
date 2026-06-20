@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo/siteConfig";
 
 /**
- * Dynamic robots.ts — replaces public/robots.txt.
+ * Dynamic robots.ts - replaces public/robots.txt.
  * Next.js serves this at /robots.txt automatically.
  * Ensures public/robots.txt does not exist to avoid conflicts.
  */

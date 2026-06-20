@@ -61,7 +61,7 @@ export function SocialProofLogosSection() {
 
       <div className={styles.marquee}>
         <div className={styles.viewport}>
-          <ul className={styles.track} aria-label="Companies that trust Ondial">
+          <ul className={styles.track} aria-label="Companies that trust OnDial">
             {loop.map((brand, index) => (
               <li
                 key={`${brand.id}-${index}`}

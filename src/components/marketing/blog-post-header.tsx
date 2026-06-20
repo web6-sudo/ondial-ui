@@ -59,7 +59,7 @@ export function BlogPostHeader({ post, shareUrl }: BlogPostHeaderProps) {
               <p className="truncate text-sm font-medium leading-none text-foreground">{post.author.name}</p>
             )}
             <p className="mt-1 text-xs text-muted-foreground">
-              {post.authorDesignation || "Ondial Team"}
+              {post.authorDesignation || "OnDial Team"}
             </p>
         </div>
         <BlogShareButton title={post.title} url={shareUrl} />

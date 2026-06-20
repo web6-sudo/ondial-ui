@@ -93,7 +93,7 @@ export function FeatureIllustration({ id, wide = false }: FeatureIllustrationPro
             <rect className={flowStyles.liveBadge} x="168" y="108" width="96" height="14" rx="3" fill="#E1F5EE" />
             <circle className={flowStyles.liveDot} cx="176" cy="112" r="2.5" fill="#085041" />
             <text x="223" y="115" textAnchor="middle" fontSize="8" fill="#085041" fontWeight="500">
-              Live — Handling call
+              Live - Handling call
             </text>
           </g>
 
@@ -243,7 +243,7 @@ export function FeatureIllustration({ id, wide = false }: FeatureIllustrationPro
           <g className={flowStyles.schedBookedPopup}>
             <rect x="38" y="130" width="144" height="20" rx="4" fill="#E1F5EE" stroke="#A3D9BE" strokeWidth="0.5" />
             <text x="110" y="144" textAnchor="middle" fontSize="9" fill="#085041" fontWeight="500">
-              ✓ Booked — Wed 11th, 2:00 PM
+              ✓ Booked - Wed 11th, 2:00 PM
             </text>
           </g>
         </svg>

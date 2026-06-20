@@ -23,7 +23,7 @@ export const HOME_FEATURES_HEADING = {
   titleLead: "Transform Business Communication",
   titleTail: "with",
   titleAccent: "OnDial AI Voice Agents",
-  subtitle: "One AI agent. Every call handled — inbound, outbound, 24/7.",
+  subtitle: "One AI agent. Every call handled - inbound, outbound, 24/7.",
 } as const;
 
 export const HOME_FEATURE_CARDS: readonly HomeFeatureCard[] = [
@@ -33,7 +33,7 @@ export const HOME_FEATURE_CARDS: readonly HomeFeatureCard[] = [
   //   illustration: "live-calls",
   //   illustrationBg: "#F8F7FF",
   //   pill: { label: "24/7 Availability", tone: "purple" },
-  //   title: "Handles every call — live, naturally",
+  //   title: "Handles every call - live, naturally",
   //   description:
   //     "The AI answers instantly, speaks like a human, and logs everything to your CRM automatically. No hold music. No missed calls.",
   // },
@@ -44,7 +44,7 @@ export const HOME_FEATURE_CARDS: readonly HomeFeatureCard[] = [
   //   illustrationBg: "#F0FAF5",
   //   pill: { label: "Auto Scheduling", tone: "green" },
   //   title: "Books appointments on the call",
-  //   description: "Checks availability and confirms slots — no human needed.",
+  //   description: "Checks availability and confirms slots - no human needed.",
   // },
   // {
   //   id: "multilingual",
@@ -71,7 +71,7 @@ export const HOME_FEATURE_CARDS: readonly HomeFeatureCard[] = [
   //   illustrationBg: "#FFF5F5",
   //   pill: { label: "Real-time Insights", tone: "red" },
   //   title: "Full visibility into every call",
-  //   description: "Sentiment, CSAT, resolution rate — all in one dashboard.",
+  //   description: "Sentiment, CSAT, resolution rate - all in one dashboard.",
   // },
   // {
   //   id: "integrations",
@@ -100,7 +100,7 @@ export const HOME_FEATURE_CARDS: readonly HomeFeatureCard[] = [
     illustrationBg: "#F0FAF5",
     pill: { label: "Automate bookings fully", tone: "green" },
     title: "Appointment Scheduling",
-    description: "AI Call Automation checks availability, schedules appointments, and confirms bookings instantly — no human intervention required.",
+    description: "AI Call Automation checks availability, schedules appointments, and confirms bookings instantly - no human intervention required.",
   },
   {
     id: "multilingual",
@@ -127,7 +127,7 @@ export const HOME_FEATURE_CARDS: readonly HomeFeatureCard[] = [
     illustrationBg: "#FFF5F5",
     pill: { label: "Boost insights & ROI", tone: "red" },
     title: "Smart Analytics",
-    description: "Sentiment, CSAT, resolution rate — all in one AI-powered analytics dashboard.",
+    description: "Sentiment, CSAT, resolution rate - all in one AI-powered analytics dashboard.",
   },
   {
     id: "integrations",

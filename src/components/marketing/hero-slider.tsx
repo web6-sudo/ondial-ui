@@ -108,7 +108,7 @@ export default function HeroSlider() {
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent dark:from-black/90" />
           </div>
 
-          {/* Content — bottom padding clears progress controls on narrow screens */}
+          {/* Content - bottom padding clears progress controls on narrow screens */}
           <div className="absolute inset-0 flex items-center pb-24 pt-[max(5.5rem,env(safe-area-inset-top))] sm:items-center sm:pb-0 sm:pt-0">
             <div className="mx-auto w-full min-w-0 max-w-[min(100%,80rem)] px-4 sm:px-6 lg:px-8 xl:px-12">
               <div className="max-w-2xl">
@@ -119,7 +119,7 @@ export default function HeroSlider() {
                   animate="visible"
                 >
                   <span className="mb-3 inline-block rounded-full border border-primary/30 bg-primary/20 px-2.5 py-1 text-[0.65rem] font-semibold tracking-wider text-primary uppercase backdrop-blur-md sm:mb-4 sm:px-3 sm:text-xs">
-                    Ondial Innovation
+                    OnDial Innovation
                   </span>
                 </motion.div>
 

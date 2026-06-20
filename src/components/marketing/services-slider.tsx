@@ -134,7 +134,7 @@ export default function ServicesSlider() {
             Industries we serve
           </span>
           <h2 className="max-w-4xl text-balance text-[clamp(1.65rem,4.2vw+0.85rem,3.65rem)] font-semibold leading-[1.12] tracking-tight text-neutral-950 sm:leading-[1.1]">
-            AI voice calls tailored to your sector—reminders, updates, surveys, and
+            AI voice calls tailored to your sector-reminders, updates, surveys, and
             outreach that sound natural and scale with your team
           </h2>
         </div>

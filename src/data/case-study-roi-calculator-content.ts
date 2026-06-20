@@ -2,7 +2,7 @@ export const ROI_CALCULATOR_HEADING = {
   eyebrow: "ROI calculator",
   title: "Quantify the cost of missed calls",
   description:
-    "Model your revenue at risk and the opportunity OnDial can recover — adjust the sliders to match your business.",
+    "Model your revenue at risk and the opportunity OnDial can recover - adjust the sliders to match your business.",
 } as const;
 
 /** Share of lost pipeline typically recoverable with 24/7 AI call handling. */

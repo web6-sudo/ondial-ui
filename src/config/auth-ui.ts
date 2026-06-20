@@ -1,6 +1,6 @@
 /**
  * =============================================================================
- * AUTH UI — single source of truth (login + signup split layout)
+ * AUTH UI - single source of truth (login + signup split layout)
  * =============================================================================
  *
  * Full code + AI instructions for porting: `src/config/auth-ui-ai-pack.md`
@@ -21,7 +21,7 @@
  * column is shown (mobile / tablet).
  *
  * -----------------------------------------------------------------------------
- * REPLICATE IN ANOTHER PROJECT — copy these files
+ * REPLICATE IN ANOTHER PROJECT - copy these files
  * -----------------------------------------------------------------------------
  *
  * Components (required):
@@ -67,7 +67,7 @@
  * Dependencies: `next/image`, `lucide-react`, `cn` utility (clsx + tailwind-merge).
  *
  * -----------------------------------------------------------------------------
- * RIGHT PANEL — where each image goes
+ * RIGHT PANEL - where each image goes
  * -----------------------------------------------------------------------------
  *
  * Design canvas: 330 × 377 px (aspect ratio 330:377). Everything scales together.
@@ -96,7 +96,7 @@
  * Right column = AuthCollagePanel (hidden below xl breakpoint).
  *
  * -----------------------------------------------------------------------------
- * IMAGE ASSETS — specs & placement
+ * IMAGE ASSETS - specs & placement
  * -----------------------------------------------------------------------------
  *
  * | Slot            | Config key              | Default path                  | Size hint                          |
@@ -126,8 +126,8 @@
  * TOGGLE PANEL ELEMENTS
  * -----------------------------------------------------------------------------
  *
- * authUiPanel.showKiwi    — bottom-left rounded image card
- * authUiPanel.showAvatars — top notch avatar stack + social proof line
+ * authUiPanel.showKiwi    - bottom-left rounded image card
+ * authUiPanel.showAvatars - top notch avatar stack + social proof line
  *
  * Both are consumed by `AuthCollagePanel` → `AuthCollageScene`.
  *

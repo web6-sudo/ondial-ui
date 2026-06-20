@@ -66,7 +66,7 @@ export default async function VoiceAIAgentStatePage({ params }) {
   const stateSchemas = [
     buildLocalBusinessSchema({
       url: `/voice-ai-agent-state/${normalized}`,
-      name: data?.metaData?.title || `OnDial AI Voice Agent — ${region}`,
+      name: data?.metaData?.title || `OnDial AI Voice Agent - ${region}`,
       description:
         data?.metaData?.description ||
         `Deploy OnDial's AI voice agent across ${region} with regional language coverage and 24/7 call automation.`,

@@ -13,11 +13,11 @@ import {
 import { HOME_PROBLEM_CARDS, HOME_PROBLEM_HEADING } from "@/data/home-problem-content";
 import { cn } from "@/lib/utils";
 
-/** Fixed card footprint — illustration ~58%, content ~42%. */
+/** Fixed card footprint - illustration ~58%, content ~42%. */
 const PROBLEM_CARD_WIDTH = 280;
 const PROBLEM_CARD_HEIGHT = 400;
 
-/** Illustration zone height — 58% of card; tight uniform inset. */
+/** Illustration zone height - 58% of card; tight uniform inset. */
 const PROBLEM_ILLUSTRATION_RATIO = 58;
 const PROBLEM_CONTENT_RATIO = 100 - PROBLEM_ILLUSTRATION_RATIO;
 

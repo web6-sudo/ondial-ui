@@ -69,7 +69,7 @@ export const CASE_STUDY_CARDS: readonly CaseStudyCard[] = [
     headline: "Emergency calls answered in under 8 seconds, 24/7",
     metric: { value: "8s", label: "Avg. answer time" },
     summary:
-      "OnDial qualifies urgency, captures address and issue type, and dispatches the nearest crew — even at 2 AM on weekends.",
+      "OnDial qualifies urgency, captures address and issue type, and dispatches the nearest crew - even at 2 AM on weekends.",
     readTime: "3 min read",
     location: "Dallas, TX",
   },
@@ -93,7 +93,7 @@ export const CASE_STUDY_CARDS: readonly CaseStudyCard[] = [
     headline: "Lead qualification automated across 12 product lines",
     metric: { value: "2.4x", label: "Qualified leads" },
     summary:
-      "Voice agents capture policy interest, coverage needs, and contact details — routing only sales-ready prospects to agents.",
+      "Voice agents capture policy interest, coverage needs, and contact details - routing only sales-ready prospects to agents.",
     readTime: "4 min read",
     location: "Chicago, IL",
   },
@@ -105,7 +105,7 @@ export const CASE_STUDY_CARDS: readonly CaseStudyCard[] = [
     headline: "3× more intake consults booked after business hours",
     metric: { value: "3×", label: "Intake consults" },
     summary:
-      "Prospective clients get immediate responses on practice areas, fees, and availability — with consults booked before competitors call back.",
+      "Prospective clients get immediate responses on practice areas, fees, and availability - with consults booked before competitors call back.",
     readTime: "5 min read",
     location: "Atlanta, GA",
   },
@@ -117,7 +117,7 @@ export const CASE_STUDY_CARDS: readonly CaseStudyCard[] = [
     headline: "3× more leads handled without adding headcount",
     metric: { value: "3×", label: "Lead volume" },
     summary:
-      "Inbound buyers are qualified in real time, preferences captured, and viewings scheduled — with hot leads routed instantly to agents.",
+      "Inbound buyers are qualified in real time, preferences captured, and viewings scheduled - with hot leads routed instantly to agents.",
     readTime: "3 min read",
     location: "Miami, FL",
   },

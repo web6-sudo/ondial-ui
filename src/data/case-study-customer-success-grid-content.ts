@@ -24,7 +24,7 @@ export const CUSTOMER_SUCCESS_GRID_HEADING = {
   eyebrow: "Customer success",
   title: "Results that speak for themselves",
   description:
-    "Six teams across industries — same outcome: more answered calls, more booked revenue, and less strain on staff.",
+    "Six teams across industries - same outcome: more answered calls, more booked revenue, and less strain on staff.",
 } as const;
 
 export const CUSTOMER_SUCCESS_STORIES: readonly CustomerSuccessStory[] = [
@@ -39,7 +39,7 @@ export const CUSTOMER_SUCCESS_STORIES: readonly CustomerSuccessStory[] = [
       { value: "$120K", label: "Revenue Added" },
     ],
     description:
-      "Inbound buyers are qualified in real time, preferences captured, and viewings scheduled — with hot leads routed instantly to agents.",
+      "Inbound buyers are qualified in real time, preferences captured, and viewings scheduled - with hot leads routed instantly to agents.",
     href: "/case-studies#horizon-realty",
   },
   {
@@ -81,7 +81,7 @@ export const CUSTOMER_SUCCESS_STORIES: readonly CustomerSuccessStory[] = [
       { value: "+52%", label: "Jobs Booked" },
     ],
     description:
-      "OnDial qualifies urgency, captures address and issue type, and dispatches the nearest crew — even at 2 AM on weekends.",
+      "OnDial qualifies urgency, captures address and issue type, and dispatches the nearest crew - even at 2 AM on weekends.",
     href: "/case-studies#flowright-plumbing",
   },
   {
@@ -95,7 +95,7 @@ export const CUSTOMER_SUCCESS_STORIES: readonly CustomerSuccessStory[] = [
       { value: "$340K", label: "Pipeline Added" },
     ],
     description:
-      "Voice agents capture policy interest, coverage needs, and contact details — routing only sales-ready prospects to agents.",
+      "Voice agents capture policy interest, coverage needs, and contact details - routing only sales-ready prospects to agents.",
     href: "/case-studies#northstar-insurance",
   },
   {
@@ -109,7 +109,7 @@ export const CUSTOMER_SUCCESS_STORIES: readonly CustomerSuccessStory[] = [
       { value: "+61%", label: "After-hours Leads" },
     ],
     description:
-      "Prospective clients get immediate responses on practice areas, fees, and availability — with consults booked before competitors call back.",
+      "Prospective clients get immediate responses on practice areas, fees, and availability - with consults booked before competitors call back.",
     href: "/case-studies#hartwell-legal",
   },
 ] as const;

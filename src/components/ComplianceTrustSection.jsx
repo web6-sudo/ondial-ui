@@ -10,7 +10,7 @@ const COMPLIANCE_HEADING = {
   eyebrow: 'Compliance & security',
   title: 'Trust built for AI voice agents',
   description:
-    'Calling agents handle sensitive conversations—compliance is a top objection, especially in healthcare and finance. This dedicated trust strip shows how your product meets the standards buyers ask about first.',
+    'Calling agents handle sensitive conversations-compliance is a top objection, especially in healthcare and finance. This dedicated trust strip shows how your product meets the standards buyers ask about first.',
 };
 
 const COMPLIANCE_BADGES = [
@@ -54,7 +54,7 @@ function resolveBadgeLogoSrc(logo) {
 }
 
 const FOOTNOTE =
-  'AI-specific controls for voice transcripts, call recordings, and agent workflows—so regulated teams can deploy with confidence.';
+  'AI-specific controls for voice transcripts, call recordings, and agent workflows-so regulated teams can deploy with confidence.';
 
 export default function ComplianceTrustSection({ unifiedGrid = false }) {
   return (

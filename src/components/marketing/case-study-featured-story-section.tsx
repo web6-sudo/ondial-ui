@@ -215,7 +215,7 @@ export function CaseStudyFeaturedStorySection() {
           />
 
           <div className="relative grid gap-8 p-6 sm:p-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center lg:gap-6 xl:gap-10 xl:p-10">
-            {/* Left — company */}
+            {/* Left - company */}
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
               <div
                 className={cn(
@@ -265,7 +265,7 @@ export function CaseStudyFeaturedStorySection() {
               </div>
             </div>
 
-            {/* Center — metrics */}
+            {/* Center - metrics */}
             <div className="flex flex-col items-center border-y border-border/40 py-6 lg:border-x lg:border-y-0 lg:px-6 lg:py-0 xl:px-8">
               <p className="m-0 text-[clamp(2.75rem,6vw,4rem)] font-bold leading-none tracking-tight text-[hsl(var(--section-accent-h)_var(--section-accent-s)_var(--section-accent-l))]">
                 {story.primaryMetric.value}
@@ -292,7 +292,7 @@ export function CaseStudyFeaturedStorySection() {
               </div>
             </div>
 
-            {/* Right — dashboard */}
+            {/* Right - dashboard */}
             <div className="min-w-0 transition-transform duration-500 group-hover:scale-[1.01]">
               <DashboardMockup />
             </div>

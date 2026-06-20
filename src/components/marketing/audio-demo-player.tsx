@@ -73,14 +73,14 @@ export function AudioDemoPlayer({ tracks }: { tracks: AudioDemoTrack[] }) {
     }));
   }, []);
 
-  /* Bar animation — only run own noise when standalone playing; inline bars come from context */
+  /* Bar animation - only run own noise when standalone playing; inline bars come from context */
   useEffect(() => {
     if (!playing || inlinePlaying) return;
     const id = setInterval(animateBars, INTERVAL);
     return () => clearInterval(id);
   }, [playing, inlinePlaying, animateBars]);
 
-  /* Elapsed clock — only for the standalone floating player */
+  /* Elapsed clock - only for the standalone floating player */
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -126,7 +126,7 @@ export function AudioDemoPlayer({ tracks }: { tracks: AudioDemoTrack[] }) {
               "sm:right-[max(1.5rem,calc(1.25rem+env(safe-area-inset-right)))]",
             )}
           >
-            {/* Draggable anchor — y-draggable */}
+            {/* Draggable anchor - y-draggable */}
             <motion.div
               drag="y"
               dragMomentum={false}
@@ -134,7 +134,7 @@ export function AudioDemoPlayer({ tracks }: { tracks: AudioDemoTrack[] }) {
               dragConstraints={{ top: -(typeof window !== "undefined" ? window.innerHeight - 120 : 600), bottom: 0 }}
               style={{ y: dragY, touchAction: "none" }}
             >
-              {/* ── Shape morph container — explicit dimensions so both states are always known ── */}
+              {/* ── Shape morph container - explicit dimensions so both states are always known ── */}
               <motion.div
                 animate={{
                   width: expanded ? 340 : 260,
@@ -203,9 +203,9 @@ export function AudioDemoPlayer({ tracks }: { tracks: AudioDemoTrack[] }) {
                       exit={{ opacity: 0, transition: FAST }}
                       style={{ position: "absolute", inset: 0, width: 340 }}
                     >
-                      {/* Row 1 — art + info + wave icon */}
+                      {/* Row 1 - art + info + wave icon */}
                       <div className="flex items-center gap-3 px-3 pt-3 pb-2">
-                        {/* Album art — centered waveform */}
+                        {/* Album art - centered waveform */}
                         <div className="shrink-0 rounded-[10px] overflow-hidden flex items-center justify-between px-[5px]"
                           style={{
                             width: 56, height: 56,
@@ -245,7 +245,7 @@ export function AudioDemoPlayer({ tracks }: { tracks: AudioDemoTrack[] }) {
                         </div>
                       </div>
 
-                      {/* Row 2 — progress */}
+                      {/* Row 2 - progress */}
                       <div className="px-4 mb-1">
                         <div className="relative h-[3px] rounded-full" style={{ background: "rgba(255,255,255,0.12)" }}>
                           <motion.div className="absolute inset-y-0 left-0 rounded-full"
@@ -268,7 +268,7 @@ export function AudioDemoPlayer({ tracks }: { tracks: AudioDemoTrack[] }) {
                         </div>
                       </div>
 
-                      {/* Row 3 — controls */}
+                      {/* Row 3 - controls */}
                       <div className="flex items-center justify-between px-4 pb-3 pt-1">
                         <div></div>
                         <motion.button whileTap={{ scale: 0.82 }} onClick={() => changeTrack(-1)}>

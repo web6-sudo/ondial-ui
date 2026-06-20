@@ -72,7 +72,7 @@ export function AppLayoutShell({ children, initialPathname }: AppLayoutShellProp
   const blogArticleRoute = isBlogArticleRoute(pathname);
   /** Page `transform` breaks `backdrop-filter` on industry hero blur layers. */
   const industryDetailPage = pathname.startsWith("/industries/");
-  /** No enter/exit motion — transform/opacity can stick on direct tab loads until repaint. */
+  /** No enter/exit motion - transform/opacity can stick on direct tab loads until repaint. */
   const skipPageTransition = industryDetailPage || dottedSurfaceRoute;
 
   return (

@@ -104,7 +104,7 @@ export const ENTERPRISE_SHIFT_SECTION = {
       id: "enterprise-scale",
       title: "Value at enterprise scale",
       description:
-        "Reach every overdue account, follow up every lead within minutes, and screen every applicant — without adding headcount.",
+        "Reach every overdue account, follow up every lead within minutes, and screen every applicant - without adding headcount.",
     },
     {
       id: "built-for-india",
@@ -119,7 +119,7 @@ export const ENTERPRISE_WHY_CHOOSE = {
   eyebrow: "Why Enterprises Choose OnDial",
   title: "Built for the scale, reliability, and oversight enterprises require",
   description:
-    "OnDial removes the three constraints that break enterprise voice operations — latency, capacity limits, and blind reporting — in one shared platform.",
+    "OnDial removes the three constraints that break enterprise voice operations - latency, capacity limits, and blind reporting - in one shared platform.",
   pills: [
     { id: "latency", label: "Latency", detail: "Conversations stay natural and responsive" },
     { id: "capacity", label: "Capacity", detail: "Peak-hour throughput without infrastructure limits" },
@@ -164,7 +164,7 @@ export const ENTERPRISE_WHY_CHOOSE = {
     },
   ] as const satisfies readonly EnterpriseCard[],
   closingQuote:
-    "One integrated system — not separate tools — so call quality, throughput, and reporting stay consistent as volume grows.",
+    "One integrated system - not separate tools - so call quality, throughput, and reporting stay consistent as volume grows.",
 } as const;
 
 export const ENTERPRISE_HOW_IT_WORKS = {
@@ -277,7 +277,7 @@ export const ENTERPRISE_COMPLIANCE = {
   eyebrow: "Security, Compliance and Governance",
   title: "Communication that meets Indian regulatory expectations",
   description:
-    "For enterprise buyers, compliance is a precondition — not a feature. OnDial is designed around the rules governing business communication in India.",
+    "For enterprise buyers, compliance is a precondition - not a feature. OnDial is designed around the rules governing business communication in India.",
   pillars: [
     {
       id: "trai",
@@ -291,7 +291,7 @@ export const ENTERPRISE_COMPLIANCE = {
       label: "Data privacy",
       title: "DPDP-ready handling",
       description:
-        "Personal data handled in line with the Digital Personal Data Protection Act — critical for KYC, finance, and healthcare calls.",
+        "Personal data handled in line with the Digital Personal Data Protection Act - critical for KYC, finance, and healthcare calls.",
     },
   ] as const,
   complianceTeamTitle: "What enterprise compliance teams get",
@@ -333,7 +333,7 @@ export const ENTERPRISE_INTEGRATIONS = {
   eyebrow: "Integrations and Infrastructure",
   title: "Connects to your stack and scales with your volume",
   description:
-    "One platform for outbound campaigns and inbound service — with CRM sync and elastic infrastructure underneath.",
+    "One platform for outbound campaigns and inbound service - with CRM sync and elastic infrastructure underneath.",
   columns: [
     {
       id: "crm",
@@ -372,7 +372,7 @@ export const ENTERPRISE_COMPARISON = {
   eyebrow: "AI Voice Agents vs Traditional Calling Teams",
   title: "What changes when an enterprise automates calling",
   description:
-    "AI voice agents are strongest where human teams are weakest — and enterprises run both together for the best outcome.",
+    "AI voice agents are strongest where human teams are weakest - and enterprises run both together for the best outcome.",
   rows: [
     { id: "capacity", dimension: "Capacity", traditional: "Fixed by headcount", ondial: "Scales on demand" },
     { id: "cost", dimension: "Cost", traditional: "Scales linearly with volume", ondial: "Low marginal cost per call" },
@@ -420,7 +420,7 @@ export const ENTERPRISE_DEPLOYMENT = {
       id: "templates",
       title: "Ready-to-deploy templates",
       description:
-        "Proven conversation flows for 8 industries — shorten implementation from weeks to days.",
+        "Proven conversation flows for 8 industries - shorten implementation from weeks to days.",
     },
     {
       id: "no-tech",
@@ -432,7 +432,7 @@ export const ENTERPRISE_DEPLOYMENT = {
       id: "cross-dept",
       title: "Cross-department speed",
       description:
-        "Marketing, finance, and HR each launch independently — faster adoption across the organisation.",
+        "Marketing, finance, and HR each launch independently - faster adoption across the organisation.",
     },
   ] as const satisfies readonly EnterpriseCard[],
   departments: [
@@ -457,7 +457,7 @@ export const ENTERPRISE_PRICING = {
   eyebrow: "Enterprise Pricing",
   title: "Transparent pricing built for the Indian market",
   description:
-    "Enterprise-grade voice technology at a cost structure designed for Indian operations — not imported pricing that assumes a different market.",
+    "Enterprise-grade voice technology at a cost structure designed for Indian operations - not imported pricing that assumes a different market.",
   valueCards: [
     {
       id: "grow",
@@ -498,7 +498,7 @@ export const ENTERPRISE_FAQ = {
       id: "what-is",
       question: "What is OnDial for enterprise?",
       answer:
-        "OnDial for enterprise is an AI voice agent platform built for large-scale outbound and inbound calling. It handles thousands of concurrent conversations with ultra-low latency, TRAI DLT alignment, DPDP-ready data handling, CRM integrations, and deep conversation analytics — purpose-built for Indian businesses.",
+        "OnDial for enterprise is an AI voice agent platform built for large-scale outbound and inbound calling. It handles thousands of concurrent conversations with ultra-low latency, TRAI DLT alignment, DPDP-ready data handling, CRM integrations, and deep conversation analytics - purpose-built for Indian businesses.",
     },
     {
       id: "concurrent-calls",
@@ -516,7 +516,7 @@ export const ENTERPRISE_FAQ = {
       id: "crm",
       question: "Can OnDial integrate with our existing CRM?",
       answer:
-        "Yes. OnDial syncs lead status, call outcomes, sales scores, and appointment bookings with your CRM automatically — keeping pipeline and follow-ups current without manual entry.",
+        "Yes. OnDial syncs lead status, call outcomes, sales scores, and appointment bookings with your CRM automatically - keeping pipeline and follow-ups current without manual entry.",
     },
     {
       id: "inbound",
@@ -540,13 +540,13 @@ export const ENTERPRISE_FAQ = {
       id: "voice-cloning",
       question: "Can OnDial create a custom branded voice for our enterprise?",
       answer:
-        "Yes. OnDial supports voice cloning at scale — create custom branded AI voices or replicate approved voices with high accuracy, keeping a consistent voice identity across thousands of calls.",
+        "Yes. OnDial supports voice cloning at scale - create custom branded AI voices or replicate approved voices with high accuracy, keeping a consistent voice identity across thousands of calls.",
     },
     {
       id: "differentiation",
       question: "How is OnDial different from other AI calling platforms?",
       answer:
-        "OnDial combines massive concurrent call handling, ultra-low latency, Indian regulatory compliance (TRAI DLT and DPDP), deep conversation analytics, and prebuilt industry templates in one integrated platform — not separate point solutions.",
+        "OnDial combines massive concurrent call handling, ultra-low latency, Indian regulatory compliance (TRAI DLT and DPDP), deep conversation analytics, and prebuilt industry templates in one integrated platform - not separate point solutions.",
     },
     {
       id: "industries",
