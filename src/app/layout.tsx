@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Poppins } from "next/font/google";
+import Script from "next/script";
 
 import { AppLayoutShell } from "@/components/layout/app-layout-shell";
 import { AppProviders } from "@/components/providers/app-providers";
@@ -42,6 +43,9 @@ export const metadata: Metadata = {
     email: false,
     address: false,
     telephone: false,
+  },
+  alternates: {
+    canonical: "https://www.ondial.ai",
   },
   openGraph: {
     title: "Best AI Voice Agents to Automate Your Phone Calls | OnDial",
@@ -102,6 +106,22 @@ export default async function RootLayout({
       className={cn("h-full overflow-hidden", "antialiased", "font-sans", fontSans.variable)}
       suppressHydrationWarning
     >
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-S0BEQDE207"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-S0BEQDE207');
+          `}
+        </Script>
+      </head>
       <body className="flex h-dvh min-h-0 flex-col overflow-hidden font-sans">
         {/* Schema.org JSON-LD */}
         <StructuredData data={[organizationSchema, websiteSchema, softwareApplicationSchema]} />

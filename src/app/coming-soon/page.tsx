@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: { absolute: "Coming Soon | OnDial" },
   description: "Something exciting is coming soon from OnDial. Stay tuned for updates on our latest AI voice agent features.",
   robots: { index: false, follow: false },
+  alternates: { canonical: "https://www.ondial.ai/coming-soon" },
 };
 
 export default function ComingSoonPage() {

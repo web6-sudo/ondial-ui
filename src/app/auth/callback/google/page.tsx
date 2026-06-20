@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Google sign-in",
   description: "OAuth callback landing.",
   robots: { index: false, follow: false },
+  alternates: { canonical: "https://www.ondial.ai/auth/callback/google" },
 };
 
 type Props = {

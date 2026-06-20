@@ -140,7 +140,7 @@ export async function generateMetadata({ params }) {
     title: metaData.title,
     description: metaData.description,
     alternates: {
-      canonical: metaData.canonical,
+      canonical: metaData.canonical || `https://www.ondial.ai/${slug}`,
     },
     openGraph: {
       title: metaData.title,
