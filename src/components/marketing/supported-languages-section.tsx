@@ -1,11 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Play } from "lucide-react";
-import { AnimatePresence, motion, useInView, useReducedMotion, type Variants } from "framer-motion";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion, type Variants } from "framer-motion";
+import { useRef } from "react";
 
-import { LanguagesVoiceWaveform } from "@/components/marketing/languages-voice-waveform";
 import { ONDIAL_ACCENT_STYLE } from "@/components/marketing/split-screen-section";
 import { TextReveal } from "@/components/ui/text-reveal";
 import {
@@ -19,7 +17,6 @@ import {
   LANGUAGES_SECTION_HEADING,
   LANGUAGES_SECTION_STATS,
   LANGUAGES_TOTAL_COUNT,
-  type FeaturedLanguage,
 } from "@/data/languages-section-content";
 import { flagImageUrl } from "@/lib/languages-data";
 import { cn } from "@/lib/utils";
@@ -75,23 +72,6 @@ const langCellVariants: Variants = {
   },
 };
 
-const accentGridVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.04, delayChildren: 0.03 },
-  },
-};
-
-const accentTagVariants: Variants = {
-  hidden: { opacity: 0, y: 6 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.24, ease: easeOut },
-  },
-  exit: { opacity: 0, y: -4, transition: { duration: 0.14 } },
-};
-
 function LanguageFlag({
   countryCode,
   alt,
@@ -124,48 +104,7 @@ export function SupportedLanguagesSection() {
   const mainInView = useInView(mainRef, { once: true, amount: 0.12 });
   const showPanels = prefersReducedMotion || mainInView;
 
-  const langCellRefs = useRef(new Map<string, HTMLButtonElement>());
-
-  const [selectedId, setSelectedId] = useState(FEATURED_LANGUAGES[0]!.id);
-  const [selectedAccentId, setSelectedAccentId] = useState(FEATURED_LANGUAGES[0]!.accents[0]!.id);
-  const [playing, setPlaying] = useState(false);
-
-  const selectedLanguage = useMemo(
-    () => FEATURED_LANGUAGES.find((lang) => lang.id === selectedId) ?? FEATURED_LANGUAGES[0]!,
-    [selectedId],
-  );
-
-  const selectedAccent = useMemo(
-    () =>
-      selectedLanguage.accents.find((accent) => accent.id === selectedAccentId) ??
-      selectedLanguage.accents[0]!,
-    [selectedLanguage, selectedAccentId],
-  );
-
   const moreCount = Math.max(0, 100 - LANGUAGES_GRID_VISIBLE);
-  const previewKey = `${selectedLanguage.id}-${selectedAccent.id}`;
-
-  const setLangCellRef = useCallback((id: string, node: HTMLButtonElement | null) => {
-    if (node) {
-      langCellRefs.current.set(id, node);
-      return;
-    }
-    langCellRefs.current.delete(id);
-  }, []);
-
-  function handleSelectLanguage(language: FeaturedLanguage) {
-    setSelectedId(language.id);
-    setSelectedAccentId(language.accents[0]!.id);
-    setPlaying(false);
-    langCellRefs.current.get(language.id)?.scrollIntoView({
-      block: "nearest",
-      behavior: prefersReducedMotion ? "auto" : "smooth",
-    });
-  }
-
-  function handlePlayPreview() {
-    setPlaying((current) => !current);
-  }
 
   return (
     <section
@@ -246,30 +185,22 @@ export function SupportedLanguagesSection() {
                   initial="hidden"
                   animate={showPanels ? "visible" : "hidden"}
                 >
-                  {FEATURED_LANGUAGES.map((language) => {
-                    const isActive = language.id === selectedId;
-                    return (
-                      <motion.button
-                        key={language.id}
-                        ref={(node) => setLangCellRef(language.id, node)}
-                        type="button"
-                        role="listitem"
-                        variants={langCellVariants}
-                        className={cn(styles.langCell, isActive && styles.langCellActive)}
-                        aria-pressed={isActive}
-                        whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
-                        onClick={() => handleSelectLanguage(language)}
-                      >
-                        <LanguageFlag
-                          countryCode={language.countryCode}
-                          alt={`${language.name} flag`}
-                          className={styles.langFlag}
-                        />
-                        <span className={styles.langName}>{language.name}</span>
-                        <span className={styles.langNative}>{language.nativeName}</span>
-                      </motion.button>
-                    );
-                  })}
+                  {FEATURED_LANGUAGES.map((language) => (
+                    <motion.div
+                      key={language.id}
+                      role="listitem"
+                      variants={langCellVariants}
+                      className={styles.langCell}
+                    >
+                      <LanguageFlag
+                        countryCode={language.countryCode}
+                        alt={`${language.name} flag`}
+                        className={styles.langFlag}
+                      />
+                      <span className={styles.langName}>{language.name}</span>
+                      <span className={styles.langNative}>{language.nativeName}</span>
+                    </motion.div>
+                  ))}
                 </motion.div>
               </div>
 
@@ -281,137 +212,6 @@ export function SupportedLanguagesSection() {
                 <span className={styles.morePill}>+ {moreCount} more</span>
               </div>
             </motion.div>
-
-            <div className={styles.previewStack}>
-              <motion.div
-                className={styles.voiceCard}
-                variants={panelVariants}
-                initial="hidden"
-                animate={showPanels ? "visible" : "hidden"}
-                transition={{ delay: 0.06 }}
-              >
-                <div className={styles.voiceTop}>
-                  <p className={styles.voiceLabel}>Voice preview</p>
-
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={previewKey}
-                      className={styles.activeLang}
-                      initial={prefersReducedMotion ? false : { opacity: 0, x: -8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={prefersReducedMotion ? undefined : { opacity: 0, x: 6 }}
-                      transition={{ duration: 0.24, ease: easeOut }}
-                    >
-                      <LanguageFlag
-                        countryCode={selectedAccent.countryCode}
-                        alt={`${selectedLanguage.name} flag`}
-                        className={styles.activeFlag}
-                        size={32}
-                      />
-                      <div>
-                        <p className={styles.activeName}>{selectedLanguage.name}</p>
-                        <p className={styles.activeNative}>
-                          {selectedLanguage.nativeName} · {selectedAccent.label} · Auto-detected
-                        </p>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-
-                  <LanguagesVoiceWaveform playing={playing} languageKey={previewKey} />
-
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={previewKey}
-                      className={styles.transcript}
-                      initial={prefersReducedMotion ? false : { opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={prefersReducedMotion ? undefined : { opacity: 0, y: -4 }}
-                      transition={{ duration: 0.24, ease: easeOut }}
-                    >
-                      <p className={styles.callerLine}>{selectedLanguage.callerLine}</p>
-                      <p className={styles.agentLine}>{selectedLanguage.agentReply}</p>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                <div className={styles.voiceFoot}>
-                  <motion.button
-                    type="button"
-                    className={cn(styles.playBtn, playing && styles.playBtnActive)}
-                    aria-pressed={playing}
-                    aria-label={`Preview ${selectedLanguage.name} voice`}
-                    onClick={handlePlayPreview}
-                    whileTap={prefersReducedMotion ? undefined : { scale: 0.94 }}
-                  >
-                    <Play className="size-3 fill-current" aria-hidden />
-                  </motion.button>
-                  <AnimatePresence mode="wait">
-                    <motion.p
-                      key={selectedLanguage.id}
-                      className={styles.playLabel}
-                      initial={prefersReducedMotion ? false : { opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={prefersReducedMotion ? undefined : { opacity: 0 }}
-                      transition={{ duration: 0.18 }}
-                    >
-                      Hear the AI speak in <strong>{selectedLanguage.name}</strong>
-                    </motion.p>
-                  </AnimatePresence>
-                </div>
-
-                <div className={styles.accentSection}>
-                  <AnimatePresence mode="wait">
-                    <motion.p
-                      key={selectedLanguage.id}
-                      className={styles.accentTitle}
-                      initial={prefersReducedMotion ? false : { opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={prefersReducedMotion ? undefined : { opacity: 0 }}
-                      transition={{ duration: 0.18 }}
-                    >
-                      {selectedLanguage.name} accents
-                    </motion.p>
-                  </AnimatePresence>
-
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={selectedLanguage.id}
-                      className={styles.accentGrid}
-                      variants={accentGridVariants}
-                      initial="hidden"
-                      animate="visible"
-                      exit="hidden"
-                    >
-                      {selectedLanguage.accents.map((accent) => {
-                        const isActive = accent.id === selectedAccentId;
-                        return (
-                          <motion.button
-                            key={accent.id}
-                            type="button"
-                            variants={accentTagVariants}
-                            className={cn(styles.accentTag, isActive && styles.accentTagActive)}
-                            aria-pressed={isActive}
-                            whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-                            onClick={() => {
-                              setSelectedAccentId(accent.id);
-                              setPlaying(false);
-                            }}
-                          >
-                            <LanguageFlag
-                              countryCode={accent.countryCode}
-                              alt={`${accent.label} accent flag`}
-                              className={styles.accentFlag}
-                              size={14}
-                            />
-                            {accent.label}
-                          </motion.button>
-                        );
-                      })}
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </motion.div>
-            </div>
           </div>
         </div>
       </div>

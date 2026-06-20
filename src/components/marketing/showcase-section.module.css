@@ -79,17 +79,26 @@
   color: var(--muted-foreground);
 }
 
-.ctaHost {
+.ctaRow {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
+  gap: 0.75rem;
   width: 100%;
   margin-bottom: 0.5rem;
 }
 
 @media (min-width: 640px) {
-  .ctaHost {
+  .ctaRow {
+    gap: 1rem;
     margin-bottom: 0.65rem;
   }
+}
+
+.ctaHost {
+  display: flex;
+  justify-content: center;
 }
 
 .cta {

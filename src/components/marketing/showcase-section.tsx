@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 
 import styles from "./showcase-section.module.css";
 
-function ShowcaseCta() {
+function ShowcaseCtaButton({ href, label }: { href: string; label: string }) {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
   const playArrow = () => lottieRef.current?.play();
@@ -34,13 +34,13 @@ function ShowcaseCta() {
       onHoverEnd={resetArrow}
     >
       <Link
-        href="/pricing"
+        href={href}
         className={styles.cta}
         onFocus={playArrow}
         onBlur={resetArrow}
         onClick={playArrow}
       >
-        Get Started Now
+        {label}
         <motion.span className={styles.ctaIcon} aria-hidden variants={ctaIconVariants}>
           <motion.div className={styles.ctaLottieWrap} variants={ctaArrowVariants}>
             <Lottie
@@ -54,6 +54,15 @@ function ShowcaseCta() {
         </motion.span>
       </Link>
     </motion.div>
+  );
+}
+
+function ShowcaseCtas() {
+  return (
+    <div className={styles.ctaRow}>
+      <ShowcaseCtaButton href="/signup" label="Get Started Now" />
+      <ShowcaseCtaButton href="/contact" label="Get Demo" />
+    </div>
   );
 }
 
@@ -103,7 +112,7 @@ export function ShowcaseSection() {
           Explore how teams use AI voice for reminders, outreach, surveys, and
           support from first plan to ongoing scale.
         </p>
-        <ShowcaseCta />
+        <ShowcaseCtas />
       </header>
 
       <ThreeDCarousel />
