@@ -3281,7 +3281,7 @@ const INDUSTRY_PAGE_CONTENT: Record<string, IndustryPageContent> = {
       { title: "ERP & MES integration", description: "Connects to SAP, Oracle, and other enterprise manufacturing systems in real time.", icon: "Plug" },
       { title: "Multilingual plant support", description: "Communicates with global vendors and customers in 100+ languages automatically.", icon: "Languages" },
       { title: "Supply chain analytics", description: "Track dispatch rates, QC pass rates, and vendor call outcomes in your dashboard.", icon: "BarChart2" },
-      { title: "Live in under 30 minutes", description: "No engineering work - connect your plant number and launch with a manufacturing template.", icon: "Settings" },
+      { title: "Live in under 5 minutes", description: "No engineering work - connect your plant number and launch with a manufacturing template.", icon: "Settings" },
     ],
     outcomes: [
       { value: "70%", label: "Fewer manual calls", sublabel: "Dispatch and QC alerts automated" },

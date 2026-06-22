@@ -49,6 +49,23 @@ const glassBar = cn(
   "max-md:before:hidden"
 );
 
+/** Separate CTA pill beside the nav - same black bar + white inner cylinder as nav links. */
+const navCtaShell = cn(
+  glassBar,
+  "shrink-0 p-0.5 sm:p-1"
+);
+
+const navCtaLink = cn(
+  "inline-flex cursor-pointer items-center justify-center rounded-full px-3.5 py-3 text-[13px] font-semibold leading-none tracking-tight sm:px-4 sm:py-3.5",
+  "bg-white text-black",
+  "shadow-[0_2px_8px_-2px_rgba(0,0,0,0.25),0_1px_3px_rgba(0,0,0,0.12),inset_0_1px_0_0_rgba(255,255,255,0.95)]",
+  "transition-[transform,box-shadow] duration-200 ease-out",
+  "hover:shadow-[0_3px_12px_-2px_rgba(0,0,0,0.3),0_1px_4px_rgba(0,0,0,0.14),inset_0_1px_0_0_rgba(255,255,255,0.95)]",
+  "active:scale-[0.98]",
+  "outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
+  "motion-reduce:transform-none"
+);
+
 /** Inner track - links sit flush inside the black bar. */
 const navTrack = cn(
   "relative flex min-h-0 w-fit max-w-full shrink-0 items-center gap-0.5 self-stretch rounded-full"
@@ -390,14 +407,21 @@ export type SiteNavbarProps = {
 
 const drawerEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+function NavSignupCta({ item, className }: { item: MainNavItem; className?: string }) {
+  return (
+    <div className={cn(navCtaShell, className)}>
+      <Link href={item.href} prefetch className={navCtaLink}>
+        {item.label}
+      </Link>
+    </div>
+  );
+}
+
 export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps) {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
-  const lastItem = items.length > 0 ? items[items.length - 1] : undefined;
-  const splitContactIntoCtaPill =
-    !end && lastItem !== undefined && lastItem.href === "/contact" && items.length >= 2;
-  const desktopRowItems = splitContactIntoCtaPill ? items.slice(0, -1) : items;
-  const contactItem = splitContactIntoCtaPill ? lastItem : undefined;
+  const navLinks = items.filter((item) => !item.cta);
+  const ctaItem = items.find((item) => item.cta);
   const menuId = useId();
   const titleId = useId();
   const panelRef = useRef<HTMLElement>(null);
@@ -469,7 +493,7 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
     if (mobileOpen) setMenuLatchOpen(true);
   }, [mobileOpen]);
 
-  const allDesktopItems = contactItem ? [...desktopRowItems, contactItem] : desktopRowItems;
+  const allDesktopItems = navLinks;
 
   const drawerTransition = reduceMotion
     ? { duration: 0.01 }
@@ -529,7 +553,7 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
   };
 
   const renderMobileLinks = () =>
-    items.map((item) => {
+    navLinks.map((item) => {
       const active = navItemIsActive(pathname, item);
 
       if (item.menu) {
@@ -705,7 +729,7 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
               {renderMobileLinks()}
             </motion.nav>
 
-            {end ? (
+            {(end || ctaItem) ? (
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -715,7 +739,8 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
                 <p className="mb-2 px-1 text-[0.65rem] font-medium uppercase tracking-wider text-muted-foreground/90">
                   Actions
                 </p>
-                <div className="rounded-2xl border border-border/40 bg-muted/25 p-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45)]">
+                <div className="flex flex-col gap-2 rounded-2xl border border-border/40 bg-muted/25 p-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.45)]">
+                  {ctaItem ? <NavSignupCta item={ctaItem} className="w-full [&_a]:w-full" /> : null}
                   {end}
                 </div>
               </motion.div>
@@ -740,14 +765,14 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
         )}
       >
       <div className="pointer-events-none relative z-[1] mx-auto flex w-full justify-end px-2 sm:px-3 lg:justify-center">
-        <div
-          className={cn(
-            "pointer-events-auto relative z-[2] flex w-fit max-w-[min(100%,calc(100vw-1.25rem))] shrink-0 items-center rounded-full p-0.5 sm:p-1",
-            "gap-0.5 sm:gap-1",
-            end && "lg:gap-2",
-            glassBar
-          )}
-        >
+        <div className="pointer-events-auto relative z-[2] flex w-fit max-w-[min(100%,calc(100vw-1.25rem))] shrink-0 items-center gap-2 sm:gap-2.5">
+          <div
+            className={cn(
+              "flex w-fit max-w-full shrink-0 items-center rounded-full p-0.5 sm:p-1",
+              "gap-0.5 sm:gap-1",
+              glassBar
+            )}
+          >
             <nav
               aria-label="Primary"
               className="hidden min-h-0 flex-row flex-wrap items-stretch justify-center gap-1 sm:gap-1.5 lg:flex"
@@ -759,12 +784,7 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
               />
             </nav>
 
-            <div
-              className={cn(
-                "flex shrink-0 items-center gap-2",
-                end ? navTrack : "lg:contents"
-              )}
-            >
+            <div className="flex shrink-0 items-center gap-2 lg:contents">
               {end}
               <button
                 type="button"
@@ -792,7 +812,10 @@ export function SiteNavbar({ items = MAIN_NAV, end, className }: SiteNavbarProps
               </button>
             </div>
           </div>
+
+          {ctaItem ? <NavSignupCta item={ctaItem} className="hidden lg:flex" /> : null}
         </div>
+      </div>
       </header>
       {mobileDrawer}
     </>

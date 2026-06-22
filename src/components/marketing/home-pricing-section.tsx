@@ -4,14 +4,13 @@ import { motion, useInView, useReducedMotion, type Variants } from "framer-motio
 import { useRef } from "react";
 
 import { BlogPageHero } from "@/components/marketing/blog-page-hero";
+import { usePricingCountry } from "@/components/marketing/pricing-country-context";
+import { PricingCountryBar } from "@/components/marketing/pricing-country-bar";
 import { PricingPlanCard } from "@/components/marketing/pricing-plan-card";
 import { ONDIAL_ACCENT_STYLE } from "@/components/marketing/split-screen-section";
 import { TextReveal } from "@/components/ui/text-reveal";
 import { marketingSectionContainerClass } from "@/config/marketing-layout";
-import {
-  HOME_PRICING_HEADING,
-  HOME_PRICING_PLANS,
-} from "@/data/home-pricing-plans";
+import { HOME_PRICING_HEADING } from "@/data/home-pricing-plans";
 import { cn } from "@/lib/utils";
 
 const gridVariants: Variants = {
@@ -38,6 +37,7 @@ const cardVariants: Variants = {
 
 export function HomePricingSection() {
   const prefersReducedMotion = useReducedMotion();
+  const { countryId, plans, addonFeatures, creditsFootnote } = usePricingCountry();
   const gridRef = useRef<HTMLDivElement>(null);
   const gridInView = useInView(gridRef, { once: true, amount: 0.05, margin: "0px 0px -80px 0px" });
   const showCards = prefersReducedMotion || gridInView;
@@ -70,23 +70,28 @@ export function HomePricingSection() {
           }
           description={HOME_PRICING_HEADING.description}
         />
+
+        <PricingCountryBar />
       </div>
 
       <div className={cn(marketingSectionContainerClass, "mt-8 sm:mt-10")}>
         <motion.div
+          key={countryId}
           ref={gridRef}
           className="grid gap-6 md:grid-cols-2 xl:grid-cols-4 xl:gap-5"
           variants={gridVariants}
           initial="hidden"
           animate={showCards ? "visible" : "hidden"}
         >
-          {HOME_PRICING_PLANS.map((plan) => (
-            <motion.div key={plan.id} variants={cardVariants}>
+          {plans.map((plan) => (
+            <motion.div key={`${countryId}-${plan.id}`} variants={cardVariants}>
               <PricingPlanCard
                 title={plan.title}
                 description={plan.description}
                 price={plan.price}
                 features={plan.features}
+                extraFeatures={addonFeatures}
+                creditsFootnote={creditsFootnote}
                 ctaHref={plan.ctaHref}
                 ctaLabel={plan.ctaLabel}
                 carouselActive

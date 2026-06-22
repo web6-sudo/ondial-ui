@@ -24,14 +24,14 @@ const ctaArrowVariants = {
   },
 };
 
-type AboutHeroCtaProps = {
+type HeroDemoCtaButtonProps = {
   href: string;
   label: string;
   className?: string;
-  linkClassName?: string;
 };
 
-export function AboutHeroCta({ href, label, className, linkClassName }: AboutHeroCtaProps) {
+/** Homepage hero CTA — white pill, black border, black circle + arrow on the right. */
+export function HeroDemoCtaButton({ href, label, className }: HeroDemoCtaButtonProps) {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
   const playArrow = () => lottieRef.current?.play();
@@ -43,7 +43,7 @@ export function AboutHeroCta({ href, label, className, linkClassName }: AboutHer
 
   return (
     <motion.div
-      className="flex mb-0.5 sm:mb-0.65 text-xs sm:text-sm"
+      className={cn(showcaseStyles.heroDemoCtaHost, className)}
       initial="initial"
       whileHover="hover"
       onHoverStart={playArrow}
@@ -51,21 +51,25 @@ export function AboutHeroCta({ href, label, className, linkClassName }: AboutHer
     >
       <Link
         href={href}
-        className={cn(showcaseStyles.pillCta, linkClassName)}
         prefetch
+        className={showcaseStyles.heroDemoCta}
         onFocus={playArrow}
         onBlur={resetArrow}
         onClick={playArrow}
       >
         {label}
-        <motion.span className={showcaseStyles.pillCtaIcon} aria-hidden variants={ctaIconVariants}>
-          <motion.div className={showcaseStyles.pillCtaLottieWrap} variants={ctaArrowVariants}>
+        <motion.span
+          className={showcaseStyles.heroDemoCtaIcon}
+          aria-hidden
+          variants={ctaIconVariants}
+        >
+          <motion.div className={showcaseStyles.heroDemoCtaLottieWrap} variants={ctaArrowVariants}>
             <Lottie
               lottieRef={lottieRef}
               animationData={arrowRightAnimation}
               autoplay={false}
               loop={false}
-              className={showcaseStyles.pillCtaLottie}
+              className={showcaseStyles.heroDemoCtaLottie}
             />
           </motion.div>
         </motion.span>

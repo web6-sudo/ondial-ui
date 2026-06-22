@@ -560,6 +560,9 @@ function HowItWorks({ scenarios }: { scenarios: IndustryDemoScenario[] }) {
   const waveTimer = useRef<ReturnType<typeof setInterval> | null>(null);
   const pipelineRef = useRef<HTMLDivElement>(null);
   const stageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const hasAutoStartedRef = useRef(false);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const sleep = (ms: number) =>
     new Promise<void>(res => setTimeout(res, ms));
@@ -645,8 +648,16 @@ function HowItWorks({ scenarios }: { scenarios: IndustryDemoScenario[] }) {
   useEffect(() => {
     setSceneIdx(0);
     hardReset();
+    hasAutoStartedRef.current = false;
     // eslint-disable-next-line react-hooks/exhaustive-deps -- reset when industry scenarios change
   }, [scenarios]);
+
+  useEffect(() => {
+    if (!isInView || hasAutoStartedRef.current || scenarios.length === 0) return;
+    hasAutoStartedRef.current = true;
+    void startSim();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- auto-start once when section enters view
+  }, [isInView, scenarios]);
 
   async function startSim() {
     if (running || scenarios.length === 0) return;
@@ -822,7 +833,7 @@ function HowItWorks({ scenarios }: { scenarios: IndustryDemoScenario[] }) {
   if (!scene) return null;
 
   return (
-    <div>
+    <div ref={sectionRef}>
       {/* Header */}
       <p className={cn(marketingEyebrowClass, "mb-4")}>How it works</p>
       <h2 className="text-balance text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl mb-3">
@@ -867,10 +878,10 @@ function HowItWorks({ scenarios }: { scenarios: IndustryDemoScenario[] }) {
               onClick={isDone ? resetSim : startSim}
               disabled={running && !isDone}
               className={cn(
-                "w-full text-[12px] font-semibold rounded-xl px-3 py-2 transition-all active:scale-[0.98]",
+                "w-full cursor-pointer text-[12px] font-semibold rounded-xl px-3 py-2 transition-all active:scale-[0.98]",
                 isDone
                   ? "bg-muted hover:bg-muted/80 text-foreground border border-border"
-                  : "bg-[#534AB7] text-white hover:bg-[#4338CA] shadow-sm shadow-[#534AB7]/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                  : "bg-[#534AB7] text-white hover:bg-[#4338CA] shadow-sm shadow-[#534AB7]/20 disabled:cursor-not-allowed disabled:opacity-50",
               )}
             >
               {isDone ? (
@@ -882,7 +893,7 @@ function HowItWorks({ scenarios }: { scenarios: IndustryDemoScenario[] }) {
 
             {(running || isDone) && (
               <button onClick={resetSim}
-                className="w-full text-[12px] font-medium text-muted-foreground border border-border/80 rounded-xl px-3 py-1.5 hover:bg-muted/40 transition-colors">
+                className="w-full cursor-pointer text-[12px] font-medium text-muted-foreground border border-border/80 rounded-xl px-3 py-1.5 hover:bg-muted/40 transition-colors">
                 <RotateCcw className="inline w-3 h-3 mr-1.5 -mt-px" />Reset
               </button>
             )}
@@ -896,7 +907,7 @@ function HowItWorks({ scenarios }: { scenarios: IndustryDemoScenario[] }) {
                 <button key={i} onClick={() => { if (!running) { setSceneIdx(i); hardReset(); } }}
                   disabled={running}
                   className={cn(
-                    "text-[11px] px-4 py-2 rounded-xl border text-left transition-all duration-200",
+                    "cursor-pointer text-[11px] px-4 py-2 rounded-xl border text-left transition-all duration-200 disabled:cursor-not-allowed",
                     sceneIdx === i
                       ? "bg-[#EEEDFE] text-[#3C3489] border-[#AFA9EC] font-semibold shadow-sm"
                       : "bg-white/60 hover:bg-white border-border/50 text-muted-foreground hover:text-foreground disabled:opacity-50",

@@ -11,17 +11,22 @@ import { cn } from "@/lib/utils";
 /** Next Link + variant propagation for the CTA hover (same as /pricing carousel) */
 const MotionLink = motion.create(Link);
 
-const EXTRA_FEATURES = [
+const DEFAULT_EXTRA_FEATURES = [
   "Concurrent Channels ($4.9)",
   "Phone Numbers ($4.9)",
   "Monthly valid credits",
 ] as const;
+
+const DEFAULT_CREDITS_FOOTNOTE =
+  "After 1 month, unused credits will be charged at 0.055 credit per minute.";
 
 export type PricingPlanCardProps = {
   title: string;
   description: string;
   price: string;
   features: readonly string[];
+  extraFeatures?: readonly string[];
+  creditsFootnote?: string;
   ctaHref?: string;
   ctaLabel?: string;
   className?: string;
@@ -35,6 +40,8 @@ export function PricingPlanCard({
   description,
   price,
   features,
+  extraFeatures = DEFAULT_EXTRA_FEATURES,
+  creditsFootnote = DEFAULT_CREDITS_FOOTNOTE,
   ctaHref = "/contact",
   ctaLabel = "Get Started Now",
   className,
@@ -43,8 +50,7 @@ export function PricingPlanCard({
 }: PricingPlanCardProps) {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
-  const scale =
-    carouselDesktop ? 1 : carouselActive ? 1 : 0.98;
+  const scale = carouselDesktop ? 1 : carouselActive ? 1 : 0.98;
 
   return (
     <motion.article
@@ -61,7 +67,14 @@ export function PricingPlanCard({
     >
       <div className="relative aspect-3/5 w-full rounded-[2rem] bg-black p-2">
         <div className="absolute right-2 top-1 z-20 flex h-[11%] min-h-[2.25rem] w-[6.5rem] items-center justify-center text-center text-xs font-bold tracking-tight text-white sm:text-sm">
-          {price}
+          <motion.span
+            key={price}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {price}
+          </motion.span>
         </div>
         <div className="relative h-full w-full">
           <svg
@@ -95,7 +108,7 @@ export function PricingPlanCard({
                   <span>{feature}</span>
                 </li>
               ))}
-              {EXTRA_FEATURES.map((feature) => (
+              {extraFeatures.map((feature) => (
                 <li key={feature} className="flex items-center gap-2 leading-snug">
                   <span
                     className="h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground"
@@ -106,7 +119,7 @@ export function PricingPlanCard({
               ))}
             </ul>
             <p className="mt-3 text-xs leading-relaxed text-muted-foreground sm:mt-4">
-              After 1 month, unused credits will be charged at 0.055 credit per minute.
+              {creditsFootnote}
             </p>
             <MotionLink
               href={ctaHref}

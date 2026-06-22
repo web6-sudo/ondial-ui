@@ -1,12 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { useRef } from "react";
-import { motion } from "framer-motion";
-import Lottie, { type LottieRefCurrentProps } from "lottie-react";
 import type { CSSProperties } from "react";
 
-import arrowRightAnimation from "@/assets/animations/arrow-right.json";
+import { HeroDemoCtaButton } from "@/components/marketing/hero-demo-cta-button";
 import { ThreeDCarousel } from "@/components/marketing/three-d-carousel";
 import { TextReveal } from "@/components/ui/text-reveal";
 import { marketingEyebrowClass, marketingSectionBgClass } from "@/config/marketing-layout";
@@ -15,71 +11,13 @@ import { cn } from "@/lib/utils";
 
 import styles from "./showcase-section.module.css";
 
-function ShowcaseCtaButton({ href, label }: { href: string; label: string }) {
-  const lottieRef = useRef<LottieRefCurrentProps>(null);
-
-  const playArrow = () => lottieRef.current?.play();
-
-  const resetArrow = () => {
-    lottieRef.current?.stop();
-    lottieRef.current?.goToAndStop(0, true);
-  };
-
-  return (
-    <motion.div
-      className={styles.ctaHost}
-      initial="initial"
-      whileHover="hover"
-      onHoverStart={playArrow}
-      onHoverEnd={resetArrow}
-    >
-      <Link
-        href={href}
-        className={styles.cta}
-        onFocus={playArrow}
-        onBlur={resetArrow}
-        onClick={playArrow}
-      >
-        {label}
-        <motion.span className={styles.ctaIcon} aria-hidden variants={ctaIconVariants}>
-          <motion.div className={styles.ctaLottieWrap} variants={ctaArrowVariants}>
-            <Lottie
-              lottieRef={lottieRef}
-              animationData={arrowRightAnimation}
-              autoplay={false}
-              loop={false}
-              className={styles.ctaLottie}
-            />
-          </motion.div>
-        </motion.span>
-      </Link>
-    </motion.div>
-  );
-}
-
 function ShowcaseCtas() {
   return (
     <div className={styles.ctaRow}>
-      <ShowcaseCtaButton href="/signup" label="Get Started Now" />
-      <ShowcaseCtaButton href="/contact" label="Get Demo" />
+      <HeroDemoCtaButton href="/contact" label="Get Demo" />
     </div>
   );
 }
-
-const ctaIconVariants = {
-  initial: { scale: 1 },
-  hover: { scale: 1.06, transition: { type: "spring" as const, stiffness: 320, damping: 22 } },
-};
-
-const ctaArrowVariants = {
-  initial: { opacity: 1, scale: 1, x: 0 },
-  hover: {
-    opacity: 1,
-    scale: 1,
-    x: 3,
-    transition: { delay: 0.05, type: "spring" as const, stiffness: 200 },
-  },
-};
 
 export function ShowcaseSection() {
   return (
@@ -97,7 +35,7 @@ export function ShowcaseSection() {
     >
       <header className={styles.header}>
         <p className={cn(marketingEyebrowClass, styles.badgeSpacing)}>
-          more than 1000+ companies use OnDial
+          more than a voice
         </p>
         <TextReveal
           as="h1"
@@ -109,7 +47,7 @@ export function ShowcaseSection() {
           Automate Your Calls with OnDial AI Voice Agents
         </TextReveal>
         <p className={styles.description}>
-          Explore how teams use AI voice for reminders, outreach, surveys, and
+          Explore how teams use AI Call Automation for reminders, outreach, surveys, and
           support from first plan to ongoing scale.
         </p>
         <ShowcaseCtas />

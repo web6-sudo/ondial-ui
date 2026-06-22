@@ -4,6 +4,7 @@ import { BlogPageShell } from "@/components/layout/blog-page-shell";
 import { HomeFaqSection } from "@/components/marketing/home-faq-section";
 import { HomePricingSection } from "@/components/marketing/home-pricing-section";
 import { PricingCalculatorSection } from "@/components/marketing/pricing-calculator-section";
+import { PricingCountryProvider } from "@/components/marketing/pricing-country-context";
 import StructuredData from "@/components/StructuredData";
 import { buildPricingSchema, buildBreadcrumbSchema } from "@/lib/seo/schemaBuilders";
 import { PRICING_PLANS } from "@/data/pricing-plans";
@@ -69,9 +70,11 @@ export default function PricingPage() {
       <StructuredData data={[...pricingSchemas, pricingFaqSchema]} />
       <main className="flex flex-1 flex-col">
         <BlogPageShell>
-          <HomePricingSection />
-          <PricingCalculatorSection />
-          <HomeFaqSection pageKey="pricing" transparentSurface />
+          <PricingCountryProvider>
+            <HomePricingSection />
+            <PricingCalculatorSection />
+            <HomeFaqSection pageKey="pricing" transparentSurface />
+          </PricingCountryProvider>
         </BlogPageShell>
       </main>
     </>

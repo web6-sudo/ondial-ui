@@ -84,24 +84,75 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.625rem;
   width: 100%;
   margin-bottom: 0.5rem;
 }
 
 @media (min-width: 640px) {
   .ctaRow {
-    gap: 1rem;
+    gap: 0.75rem;
     margin-bottom: 0.65rem;
   }
 }
 
-.ctaHost {
+.heroDemoCtaHost {
   display: flex;
   justify-content: center;
 }
 
-.cta {
+.heroDemoCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+  border: 1.5px solid #000;
+  border-radius: 9999px;
+  background: #fff;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--foreground);
+  text-decoration: none;
+  box-shadow: 0 2px 12px -4px rgb(0 0 0 / 0.12);
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.heroDemoCta:hover,
+.heroDemoCta:focus-visible {
+  box-shadow: 0 4px 24px -8px rgb(0 0 0 / 0.2);
+  outline: none;
+}
+
+.heroDemoCtaIcon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: #000;
+}
+
+.heroDemoCtaLottieWrap {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.heroDemoCtaLottie {
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: brightness(0) invert(1);
+}
+
+.pillCtaHost {
+  display: flex;
+  justify-content: center;
+}
+
+.pillCta {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -115,15 +166,16 @@
   text-decoration: none;
   box-shadow: 0 2px 12px -4px hsl(var(--showcase-accent-h) var(--showcase-accent-s) var(--showcase-accent-l) / 0.2);
   transition: box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
-.cta:hover,
-.cta:focus-visible {
+.pillCta:hover,
+.pillCta:focus-visible {
   box-shadow: 0 4px 24px -8px hsl(var(--showcase-accent-h) var(--showcase-accent-s) var(--showcase-accent-l) / 0.35);
   outline: none;
 }
 
-.ctaIcon {
+.pillCtaIcon {
   display: grid;
   place-items: center;
   width: 2.25rem;
@@ -133,17 +185,169 @@
   background: hsl(var(--showcase-accent-h) var(--showcase-accent-s) var(--showcase-accent-l));
 }
 
-.ctaLottieWrap {
+.pillCtaLottieWrap {
   display: grid;
   place-items: center;
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.ctaLottie {
+.pillCtaLottie {
   width: 1.5rem;
   height: 1.5rem;
   filter: brightness(0) invert(1);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cta:focus-visible {
+  outline: 2px solid rgb(0 0 0 / 0.35);
+  outline-offset: 2px;
+}
+
+.beamHost {
+  display: inline-flex;
+}
+
+.beamButton {
+  position: relative;
+  display: inline-flex;
+  padding: 1.5px;
+  border-radius: 9999px;
+  overflow: hidden;
+  isolation: isolate;
+  text-decoration: none;
+  cursor: pointer;
+  background: rgb(0 0 0 / 0.08);
+}
+
+.beamButton:focus-visible {
+  outline: 2px solid rgb(0 0 0 / 0.35);
+  outline-offset: 3px;
+}
+
+.beamSpin {
+  position: absolute;
+  inset: -160%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 255deg,
+    rgb(0 0 0 / 0.35) 278deg,
+    rgb(0 0 0) 292deg,
+    rgb(0 0 0 / 0.85) 306deg,
+    transparent 328deg,
+    transparent 360deg
+  );
+  animation: beamSpin 2.6s linear infinite;
+  transition: opacity 0.35s ease;
+}
+
+.beamButton:hover .beamSpin,
+.beamButton:focus-visible .beamSpin {
+  opacity: 0.35;
+}
+
+.beamInner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.625rem 1.375rem;
+  border-radius: 9999px;
+  background: var(--background);
+  white-space: nowrap;
+  border: 1px solid rgb(0 0 0 / 0.1);
+  overflow: hidden;
+  transition: border-color 0.35s ease;
+}
+
+.beamFill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #000;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.beamLabel {
+  position: relative;
+  z-index: 1;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+  transition: color 0.35s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+}
+
+.beamButton:hover .beamFill,
+.beamButton:focus-visible .beamFill {
+  transform: scaleX(1);
+}
+
+.beamButton:hover .beamLabel,
+.beamButton:focus-visible .beamLabel {
+  color: #fff;
+}
+
+.beamButton:hover .beamInner,
+.beamButton:focus-visible .beamInner {
+  border-color: rgb(0 0 0 / 0.85);
+}
+
+@keyframes beamSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beamSpin {
+    animation: none;
+    background: conic-gradient(from 0deg, rgb(0 0 0 / 0.2), rgb(0 0 0), rgb(0 0 0 / 0.2));
+  }
+
+  .beamFill {
+    transition-duration: 0.01ms;
+  }
+
+  .beamLabel {
+    transition-delay: 0s;
+  }
+}
+
+.ctaSecondary {
+  border: 1px solid rgb(0 0 0 / 0.1);
+  background: transparent;
+  color: var(--foreground);
+}
+
+.ctaSecondary:hover {
+  border-color: rgb(0 0 0 / 0.16);
+  background: rgb(0 0 0 / 0.03);
 }
 
 /* Full width — cylindrical 3D ring (reference: perspective + rotateY/translateZ chain) */

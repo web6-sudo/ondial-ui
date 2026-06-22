@@ -4,15 +4,18 @@ import NumberFlow, { continuous, type Trend } from "@number-flow/react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Minus, Plus } from "lucide-react";
 import Link from "next/link";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { ONDIAL_ACCENT_STYLE } from "@/components/marketing/split-screen-section";
+import { usePricingCountry } from "@/components/marketing/pricing-country-context";
 import { marketingSectionContainerClass } from "@/config/marketing-layout";
 import { DASHBOARD_SIGNUP_URL } from "@/config/urls";
 import {
-  computeCalculatorMonthlyPrice,
+  computeCountryCalculatorMonthlyPrice,
+  getCountryCalculatorAddons,
+} from "@/data/pricing-by-country";
+import {
   getPricingPlanForMinutes,
-  PRICING_CALCULATOR_ADDONS,
   PRICING_MINUTES_CALCULATOR,
 } from "@/data/pricing-plans";
 import { cn } from "@/lib/utils";
@@ -486,7 +489,11 @@ function CalculatorAddOns({
   onChannelsChange: (value: number) => void;
   onNumbersChange: (value: number) => void;
 }) {
-  const { channels: channelConfig, numbers: numberConfig } = PRICING_CALCULATOR_ADDONS;
+  const { countryId } = usePricingCountry();
+  const { channels: channelConfig, numbers: numberConfig } = useMemo(
+    () => getCountryCalculatorAddons(countryId),
+    [countryId],
+  );
 
   return (
     <div className={styles.addOnList}>
@@ -520,6 +527,7 @@ function PlanBuyButton({
   isDragging?: boolean;
 }) {
   const prefersReducedMotion = useReducedMotion();
+  const { country } = usePricingCountry();
   const plan = useMemo(() => getPricingPlanForMinutes(minutes), [minutes]);
   const displayPrice = Math.round(monthlyPrice * 100) / 100;
   const trend = useValueTrend(displayPrice);
@@ -527,6 +535,7 @@ function PlanBuyButton({
   const href = plan.ctaHref ?? DASHBOARD_SIGNUP_URL;
   const label = isEnterprise ? plan.ctaLabel ?? "Contact Sales" : `Get ${plan.title}`;
   const labelMotion = prefersReducedMotion ? planLabelRevealReduced : planLabelReveal;
+  const currencyLabel = `${country.currency.code} ${displayPrice.toFixed(country.currency.monthlyFractionDigits)}`;
 
   return (
     <MotionLink
@@ -536,7 +545,7 @@ function PlanBuyButton({
       aria-label={
         isEnterprise
           ? `${label} for custom pricing`
-          : `${label} for ${displayPrice.toFixed(2)} dollars per month`
+          : `${label} for ${currencyLabel} per month`
       }
       whileHover={
         prefersReducedMotion
@@ -576,16 +585,16 @@ function PlanBuyButton({
             <span className={styles.planBuyButtonDivider} aria-hidden />
             <span className={styles.planBuyButtonPrice}>
               <span className={styles.planBuyButtonPriceCurrency} aria-hidden>
-                $
+                {country.currency.symbol}
               </span>
               <NumberFlow
                 value={displayPrice}
                 trend={trend}
                 format={{
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
+                  minimumFractionDigits: country.currency.monthlyFractionDigits,
+                  maximumFractionDigits: country.currency.monthlyFractionDigits,
                 }}
-                locales="en-US"
+                locales={country.currency.locale}
                 className={styles.planBuyButtonPriceFlow}
                 plugins={[continuous]}
                 willChange
@@ -631,8 +640,10 @@ function PriceCounter({
   isDragging?: boolean;
 }) {
   const prefersReducedMotion = useReducedMotion();
+  const { country } = usePricingCountry();
   const displayPrice = Math.round(price * 100) / 100;
   const trend = useValueTrend(displayPrice);
+  const currencyLabel = `${country.currency.code} ${displayPrice.toFixed(country.currency.monthlyFractionDigits)}`;
 
   return (
     <motion.div
@@ -640,7 +651,7 @@ function PriceCounter({
       role="status"
       aria-live="polite"
       aria-atomic="true"
-      aria-label={`Monthly price ${displayPrice.toFixed(2)} dollars`}
+      aria-label={`Monthly price ${currencyLabel}`}
       animate={
         prefersReducedMotion
           ? undefined
@@ -661,16 +672,16 @@ function PriceCounter({
         animate={prefersReducedMotion ? undefined : { opacity: isDragging ? 0.78 : 0.92 }}
         transition={{ duration: 0.2 }}
       >
-        $
+        {country.currency.symbol}
       </motion.span>
       <NumberFlow
         value={displayPrice}
         trend={trend}
         format={{
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
+          minimumFractionDigits: country.currency.monthlyFractionDigits,
+          maximumFractionDigits: country.currency.monthlyFractionDigits,
         }}
-        locales="en-US"
+        locales={country.currency.locale}
         className={styles.priceFlow}
         plugins={[continuous]}
         isolate
@@ -683,13 +694,20 @@ function PriceCounter({
 
 export function PricingCalculatorSection() {
   const prefersReducedMotion = useReducedMotion();
+  const { countryId, country } = usePricingCountry();
   const [minutes, setMinutes] = useState<number>(PRICING_MINUTES_CALCULATOR.defaultMinutes);
-  const [channels, setChannels] = useState<number>(PRICING_CALCULATOR_ADDONS.channels.default);
-  const [numbers, setNumbers] = useState<number>(PRICING_CALCULATOR_ADDONS.numbers.default);
+  const addonDefaults = useMemo(() => getCountryCalculatorAddons(countryId), [countryId]);
+  const [channels, setChannels] = useState<number>(addonDefaults.channels.default);
+  const [numbers, setNumbers] = useState<number>(addonDefaults.numbers.default);
+
+  useEffect(() => {
+    setChannels(addonDefaults.channels.default);
+    setNumbers(addonDefaults.numbers.default);
+  }, [countryId, addonDefaults.channels.default, addonDefaults.numbers.default]);
   const [isDragging, setIsDragging] = useState(false);
   const monthlyPrice = useMemo(
-    () => computeCalculatorMonthlyPrice({ minutes, channels, numbers }),
-    [minutes, channels, numbers],
+    () => computeCountryCalculatorMonthlyPrice(countryId, { minutes, channels, numbers }),
+    [countryId, minutes, channels, numbers],
   );
 
   const staggerContainer = useMemo(
@@ -727,6 +745,13 @@ export function PricingCalculatorSection() {
           >
             {PRICING_MINUTES_CALCULATOR.title}
           </motion.h2>
+
+          <motion.p
+            className="mt-2 text-sm font-medium text-muted-foreground"
+            variants={sectionReveal}
+          >
+            Estimated in {country.currency.code} for {country.name}
+          </motion.p>
 
           <motion.div
             className="mt-4 flex w-full justify-center sm:mt-5"
