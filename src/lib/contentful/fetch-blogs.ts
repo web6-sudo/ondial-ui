@@ -55,7 +55,7 @@ async function fetchBlogCollectionPage(
   fields: string,
   skip: number,
   config?: { endpoint: string; token: string },
-): Promise<{ total: number; items: BlogListItem[] }> {
+): Promise<{ total: number; items: BlogListItem[]; rawCount: number }> {
   const query = `
     query GetBlogs($limit: Int!, $skip: Int!) {
       blogsCollection(
@@ -75,11 +75,13 @@ async function fetchBlogCollectionPage(
   }, config);
 
   const collection = data.blogsCollection;
-  const items = (collection?.items ?? []).filter(Boolean) as BlogListItem[];
+  const rawItems = collection?.items ?? [];
+  const items = rawItems.filter(Boolean) as BlogListItem[];
 
   return {
     total: collection?.total ?? items.length,
     items,
+    rawCount: rawItems.length,
   };
 }
 
@@ -88,10 +90,10 @@ async function fetchBlogListItemsForSpace(config?: { endpoint: string; token: st
   let skip = 0;
 
   while (true) {
-    const { total, items } = await fetchBlogCollectionPage(BLOG_LIST_FIELDS, skip, config);
+    const { total, items, rawCount } = await fetchBlogCollectionPage(BLOG_LIST_FIELDS, skip, config);
     all.push(...items);
 
-    if (items.length < PAGE_SIZE || all.length >= total) {
+    if (rawCount < PAGE_SIZE || all.length >= total) {
       break;
     }
 

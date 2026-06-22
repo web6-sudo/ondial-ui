@@ -24,6 +24,26 @@ function normalizeSlug(slug: string | null | undefined): string {
 function formatPublishDate(value: string | null | undefined): string {
   if (!value) return "";
 
+  // If the date string has a time/timezone, e.g. "2025-10-10T00:00:00.000+05:30"
+  // or "2025-10-10", extract the date part "2025-10-10" to parse in UTC.
+  const datePart = value.split("T")[0];
+  const parts = datePart.split("-");
+  if (parts.length === 3) {
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // 0-indexed month
+    const day = parseInt(parts[2], 10);
+
+    const date = new Date(Date.UTC(year, month, day));
+    if (!Number.isNaN(date.getTime())) {
+      return new Intl.DateTimeFormat("en-US", {
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+        timeZone: "UTC",
+      }).format(date);
+    }
+  }
+
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
 
