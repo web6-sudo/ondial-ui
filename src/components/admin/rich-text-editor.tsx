@@ -531,9 +531,8 @@ function Toolbar({
     editor.chain().focus().setImage({
       src: attrs.src,
       alt: attrs.alt,
-      // @ts-expect-error width/height are custom attributes
-      width: attrs.width,
-      height: attrs.height,
+      width: attrs.width ?? undefined,
+      height: attrs.height ?? undefined,
     }).run();
   }
 
