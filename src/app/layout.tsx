@@ -101,7 +101,7 @@ export default async function RootLayout({
       className={cn("h-full overflow-hidden", "antialiased", "font-sans", fontSans.variable)}
       suppressHydrationWarning
     >
-      <head>
+      <body className="flex h-dvh min-h-0 flex-col overflow-hidden font-sans">
         {/* Google tag (gtag.js) */}
         <Script
           async
@@ -116,8 +116,7 @@ export default async function RootLayout({
             gtag('config', 'G-S0BEQDE207');
           `}
         </Script>
-      </head>
-      <body className="flex h-dvh min-h-0 flex-col overflow-hidden font-sans">
+
         {/* Schema.org JSON-LD */}
         <StructuredData data={[organizationSchema, websiteSchema, softwareApplicationSchema]} />
 
