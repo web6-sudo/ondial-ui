@@ -63,9 +63,9 @@ export const CONTACT_CHANNELS: readonly ContactChannel[] = [
   {
     id: "phone",
     title: "Phone",
-    lines: ["+91 90345 67890", "+91 98765 43210"],
-    detail: "Mon-Fri from 8am to 6pm",
-    href: "tel:+919034567890",
+    lines: ["+91 99796 20507", "+91 81608 35445"],
+    // detail: "Mon-Fri from 8am to 6pm",
+    href: "tel:+919979620507",
   },
   {
     id: "email",
@@ -74,15 +74,15 @@ export const CONTACT_CHANNELS: readonly ContactChannel[] = [
     detail: "We'll respond within 24 hours",
     href: "mailto:info@ondial.ai",
   },
-  {
-    id: "office",
-    title: "Office",
-    lines: ["123 Innovation Drive", "San Francisco, CA 94107"],
-    href: "https://maps.google.com/?q=123+Innovation+Drive+San+Francisco+CA+94107",
-  },
-  {
-    id: "hours",
-    title: "Work Hours",
-    lines: ["Mon - Fri: 8:00 AM - 6:00 PM", "Sat - Sun: Closed"],
-  },
+  // {
+  //   id: "office",
+  //   title: "Office",
+  //   lines: ["123 Innovation Drive", "San Francisco, CA 94107"],
+  //   href: "https://maps.google.com/?q=123+Innovation+Drive+San+Francisco+CA+94107",
+  // },
+  // {
+  //   id: "hours",
+  //   title: "Work Hours",
+  //   lines: ["Mon - Fri: 8:00 AM - 6:00 PM", "Sat - Sun: Closed"],
+  // },
 ] as const;
