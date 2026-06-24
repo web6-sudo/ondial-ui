@@ -14,7 +14,7 @@ export type ContactChannelId = "phone" | "email" | "office" | "hours";
 export type ContactChannel = {
   id: ContactChannelId;
   title: string;
-  lines: readonly string[];
+  lines?: readonly string[];
   detail?: string;
   href?: string;
 };

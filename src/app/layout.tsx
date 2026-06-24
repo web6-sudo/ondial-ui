@@ -1,18 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Poppins } from "next/font/google";
-import Script from "next/script";
-
 import { AppLayoutShell } from "@/components/layout/app-layout-shell";
 import { AppProviders } from "@/components/providers/app-providers";
-import { ORGANIZATION_SOCIAL_URLS } from "@/config/social";
-import {
-  ORGANIZATION_ADDRESS,
-  ORGANIZATION_CONTACT_POINTS,
-  ORGANIZATION_DESCRIPTION,
-  SITE_LOGO,
-  SITE_URL,
-} from "@/lib/seo/siteConfig";
 import StructuredData from "@/components/StructuredData";
 import { organizationSchema } from "@/lib/seo/organizationSchema";
 import { websiteSchema } from "@/lib/seo/websiteSchema";
@@ -110,21 +100,6 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <body className="flex h-dvh min-h-0 flex-col overflow-hidden font-sans">
-        {/* Google tag (gtag.js) */}
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-S0BEQDE207"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-S0BEQDE207');
-          `}
-        </Script>
-
         {/* Schema.org JSON-LD */}
         <StructuredData data={[organizationSchema, websiteSchema, softwareApplicationSchema]} />
 
