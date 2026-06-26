@@ -160,7 +160,7 @@ export async function listVoiceAIAgentStateSlugs() {
 }
 
 /**
- * @param {string} slug URL slug e.g. best-english-voice-agent-united-kingdom
+ * @param {string} slug URL slug e.g. best-english-voice-ai-agent-united-kingdom
  * @returns {Promise<null | { stateKey: string, stateLabel: string, record: object }>}
  */
 async function getVoiceAIAgentStateRecordUncached(slug) {

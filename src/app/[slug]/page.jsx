@@ -42,10 +42,10 @@ async function getVoiceAIAgentDataFromJson(slug) {
 
     if (!languageData) {
       language = slug;
-      if (slug.startsWith('best-') && slug.includes('-voice-agent')) {
-        const voiceAgentIndex = slug.indexOf('-voice-agent');
-        if (voiceAgentIndex > 5) {
-          language = slug.substring(5, voiceAgentIndex);
+      if (slug.startsWith('best-') && slug.includes('-voice-ai-agent')) {
+        const voiceAIAgentIndex = slug.indexOf('-voice-ai-agent');
+        if (voiceAIAgentIndex > 5) {
+          language = slug.substring(5, voiceAIAgentIndex);
         }
       }
 
@@ -170,10 +170,10 @@ export async function generateMetadata({ params }) {
 
 function JsonVoiceAIAgentPage({ data, slug }) {
   let language = data.language || slug;
-  if (slug.startsWith('best-') && slug.includes('-voice-agent')) {
-    const voiceAgentIndex = slug.indexOf('-voice-agent');
-    if (voiceAgentIndex > 5) {
-      language = slug.substring(5, voiceAgentIndex);
+  if (slug.startsWith('best-') && slug.includes('-voice-ai-agent')) {
+    const voiceAIAgentIndex = slug.indexOf('-voice-ai-agent');
+    if (voiceAIAgentIndex > 5) {
+      language = slug.substring(5, voiceAIAgentIndex);
     }
   }
 
